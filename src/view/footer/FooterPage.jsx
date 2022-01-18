@@ -126,7 +126,7 @@ const FooterPage = () => {
               </div>
             </div>
             {/* === */}
-            <p>
+            <p className='small text-white text-opacity-75'>
               <div className='fw-bold'>Copyright @ bscbay.com</div>
               Disclaimer: The information provided shall not in any way
               constitute a recommendation as to whether you should invest in any

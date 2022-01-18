@@ -17,7 +17,7 @@ const HomeSectionSix = () => {
               <span className='text-white-2'>Are You Ready to</span> <br />{' '}
               <b>Accelerate Your Earning?</b>
             </div>
-            <p className='mt-3 mb-4 px-0 col-md-10 col-lg-7 mx-auto'>
+            <p className='mt-3 mb-4 px-0 col-md-10 col-lg-7 mx-auto text-white text-opacity-75'>
               I'm a paragraph. Click here to add your own text and edit me. It’s
               easy. Just click “Edit Text” or double click me to add your own
               content and make changes to the font.
