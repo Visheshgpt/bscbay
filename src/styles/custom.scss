@@ -327,7 +327,7 @@ a {
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     background-image: url(../assets/choose-icon-bg.png);
     background-position: center center;
     background-size: cover;
@@ -366,7 +366,7 @@ a {
 .tab-link {
   padding: 0 20px 0 0;
   &::after {
-    content: '';
+    content: "";
     display: flex;
     height: 2px;
     width: 0;
@@ -381,4 +381,20 @@ a {
       transition: all 0.3s ease;
     }
   }
+}
+
+.cart-outline {
+  border: 1px solid #f1c342;
+}
+
+.bg-color-homepage-section-one {
+  background: linear-gradient(180deg, #383a41 0%, #020214 100%), #ffffff;
+}
+
+.bg-color-homepage-section-one-box {
+  background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
+}
+
+.bg-color-homepage-section-two {
+  background: linear-gradient(180deg, #383a41 0%, #020214 100%), #ffffff;
 }

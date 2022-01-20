@@ -107,7 +107,7 @@ const TieredSystemSection = () => {
                 <ul className='nav row row-cols-1 row-cols-sm-2 row-cols-lg-3 gy-4'>
                   {list.map((item) => (
                     <li>
-                      <div className='bg-secondary rounded-lg-2 d-flex flex-column icon-hover p-4 text-center'>
+                      <div className='bg-secondary rounded-lg-2 d-flex flex-column icon-hover p-4 text-center cart-outline'>
                         <div className='text-primary pb-3'>
                           <h4 className='mb-0 text-capitalize'>{item.title}</h4>
                         </div>
