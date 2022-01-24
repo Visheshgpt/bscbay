@@ -58,7 +58,7 @@ const HomeSectionFour = () => {
                     className='pe-4 object-fit-contain'
                     height={60}
                     width={65}
-                    src='./assets/rewards-0.png'
+                    src='./assets/rewards-0.svg'
                     alt='..'
                   />
                 </div>
@@ -72,7 +72,7 @@ const HomeSectionFour = () => {
                         <img
                           className='pe-2'
                           height={12}
-                          src='./assets/rewards-small.png'
+                          src='./assets/rewards-small.svg'
                           alt='..'
                         />
                         <span>All Investors will pay 10% transaction fee</span>
@@ -81,7 +81,7 @@ const HomeSectionFour = () => {
                         <img
                           className='pe-2'
                           height={12}
-                          src='./assets/rewards-small.png'
+                          src='./assets/rewards-small.svg'
                           alt='..'
                         />
                         <span>
@@ -92,7 +92,7 @@ const HomeSectionFour = () => {
                         <img
                           className='pe-2'
                           height={12}
-                          src='./assets/rewards-small.png'
+                          src='./assets/rewards-small.svg'
                           alt='..'
                         />
                         <span>
@@ -103,7 +103,7 @@ const HomeSectionFour = () => {
                         <img
                           className='pe-2'
                           height={12}
-                          src='./assets/rewards-small.png'
+                          src='./assets/rewards-small.svg'
                           alt='..'
                         />
                         <span>
@@ -121,7 +121,7 @@ const HomeSectionFour = () => {
                     className='pe-4 object-fit-contain'
                     height={60}
                     width={65}
-                    src='./assets/rewards-1.png'
+                    src='./assets/rewards-1.svg'
                     alt='..'
                   />
                 </div>

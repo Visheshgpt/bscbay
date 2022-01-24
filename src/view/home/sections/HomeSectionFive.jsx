@@ -20,7 +20,7 @@ const HomeSectionFive = () => {
   ];
 
   return (
-    <section className='bg-color-2 text-white py-5'>
+    <section className='bg-color-homepage-section-five text-white py-5'>
       <Container fluid='xxl' className='px-0 position-relative'>
         <img
           className='position-absolute end-0'
@@ -61,7 +61,7 @@ const HomeSectionFive = () => {
                         <img
                           className='pe-3'
                           height={10}
-                          src='./assets/check.png'
+                          src='./assets/check.svg'
                           alt='..'
                         />
                         <span>
@@ -75,7 +75,7 @@ const HomeSectionFive = () => {
                         <img
                           className='pe-3'
                           height={10}
-                          src='./assets/check.png'
+                          src='./assets/check.svg'
                           alt='..'
                         />
                         <span>
@@ -88,7 +88,7 @@ const HomeSectionFive = () => {
                         <img
                           className='pe-3'
                           height={10}
-                          src='./assets/check.png'
+                          src='./assets/check.svg'
                           alt='..'
                         />
                         <span>
@@ -100,7 +100,7 @@ const HomeSectionFive = () => {
                         <img
                           className='pe-3'
                           height={10}
-                          src='./assets/check.png'
+                          src='./assets/check.svg'
                           alt='..'
                         />
                         <span>
@@ -113,7 +113,7 @@ const HomeSectionFive = () => {
                         <img
                           className='pe-3'
                           height={10}
-                          src='./assets/check.png'
+                          src='./assets/check.svg'
                           alt='..'
                         />
                         <span>
@@ -165,7 +165,7 @@ const HomeSectionFive = () => {
                   <div style={{ width: 90 }} key={i}>
                     <img
                       className='w-100'
-                      src={`/assets/bb-icon-${i}.png`}
+                      src={`/assets/bb-icon-${i}.svg`}
                       alt={data.key}
                     />
                   </div>

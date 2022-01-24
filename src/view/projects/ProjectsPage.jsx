@@ -1,53 +1,57 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
-import { Head } from '../../components/Head';
+import React from "react";
+import { Container } from "react-bootstrap";
+import { Head } from "../../components/Head";
 
-import ProjectCard from '../../components/ProjectCard';
+import ProjectCard from "../../components/ProjectCard";
 
 const ProjectsPage = () => {
-  const cardsList = [{}, {}];
+  const cardsList = [{}, {}, {}, {}];
 
   const now = 1.5;
 
   return (
-    <section className='flex-fill bg-color-2 text-white py-5 position-relative'>
-      <Head title='Projects' />
-      <Container fluid='xxl'>
+    <section className="flex-fill bg-color-2 text-white py-5 position-relative">
+      <Head title="Projects" />
+      <Container fluid="xxl">
         <img
-          style={{ top: '30%', width: '20%' }}
-          className='position-absolute start-0'
-          src='./assets/bg-5.png'
-          alt='..'
+          style={{ top: "30%", width: "20%" }}
+          className="position-absolute start-0"
+          src="./assets/bg-5.png"
+          alt=".."
         />
         <img
-          style={{ top: '65%', width: '20%' }}
-          className='position-absolute start-0'
-          src='./assets/bg-5.png'
-          alt='..'
+          style={{ top: "65%", width: "20%" }}
+          className="position-absolute start-0"
+          src="./assets/bg-5.png"
+          alt=".."
         />
 
-        <Container className='pt-lg-5 position-relative'>
+        <Container className="pt-lg-5 position-relative">
           <div>
             {/* Headings */}
-            <div className='text-center mb-5'>
-              <div className='heading-primary text-uppercase'>
-                PROJECTS <span className='text-primary'>OPEN</span> NOW
+            <div className="text-center mb-5">
+              <div className="heading-primary text-uppercase">
+                PROJECTS <span className="text-primary">OPEN</span> NOW
               </div>
-              <div className='h5 my-5 text-white-50'>
+              <div className="h5 my-5 text-white-50">
                 No projects currently open
               </div>
-              <div className='heading-primary text-uppercase'>
-                PROJECTS <span className='text-primary'>COMING</span> Soon
+              <div className="heading-primary text-uppercase">
+                PROJECTS <span className="text-primary">COMING</span> Soon
               </div>
             </div>
             {/* /Headings */}
-            <ul className='nav row row-cols-1 row-cols-md-2 gy-3'>
-              {cardsList.map((item) => (
-                <li>
-                  <ProjectCard now={now} />
-                </li>
-              ))}
-            </ul>
+            {/* <ul className='nav row row-cols-1 row-cols-md-2 gy-3'> */}
+           
+              <ul className="d-flex flex-wrap">
+              
+                {cardsList.map((item) => (
+                  <li className="box-size mt-3 ">
+                    <ProjectCard now={now} />
+                  </li>
+                ))}
+              </ul>
+            
           </div>
         </Container>
       </Container>

@@ -61,7 +61,7 @@ const TieredSystemSection = () => {
   ];
 
   return (
-    <section className='bg-color-2 text-white'>
+    <section className='bg-color-homepage-section-tiered-system text-white'>
       <Container fluid='xxl' className='px-0 position-relative'>
         <img
           className='position-absolute bottom-0 start-0 w-auto-sm-100'

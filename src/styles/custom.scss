@@ -398,3 +398,47 @@ a {
 .bg-color-homepage-section-two {
   background: linear-gradient(180deg, #383a41 0%, #020214 100%), #ffffff;
 }
+.bg-color-homepage-section-five {
+  background: linear-gradient(180deg, #383a41 0%, #222426 100%), #ffffff;
+}
+.bg-color-homepage-section-tiered-system {
+  background: linear-gradient(180deg, #383a41 0%, #000000 100%), #ffffff;
+}
+.detail-design {
+  cursor: pointer;
+  height: 44px;
+  border: 1px solid #f1c342;
+  font-size: 14px;
+  width: auto;
+  text-align: center;
+  font-weight: 600;
+  line-height: 26px;
+}
+.detail-design-color {
+  color: #383a41;
+}
+
+.box-size {
+  width: 30%;
+  height: auto;
+  margin-right: 10px;
+  list-style-type: none;
+}
+.detail-design:hover {
+  background-color: #f1c342;
+}
+
+.card-box-information:hover {
+  border: 1px solid #f1c342;
+  box-shadow: none;
+}
+.card-box-information {
+  background-color: $color-dark-2;
+  border-radius: 10px;
+  color: $color-white;
+  box-shadow: inset 0px -10px 0px rgba(0, 0, 0, 0.25);
+  &.active {
+    background-color: #1b1b20;
+    color: $color-primary;
+  }
+}
