@@ -9,6 +9,7 @@ import { ReactComponent as Icon2 } from '../../assets/ib-icon-2.svg';
 import { ReactComponent as Icon3 } from '../../assets/ib-icon-3.svg';
 import { ReactComponent as Icon4 } from '../../assets/ib-icon-4.svg';
 import { useLocation } from 'react-router-dom';
+import { Navbar } from "../navbar/Navbar.jsx";
 
 const InformationPage = () => {
   const { hash } = useLocation();
@@ -154,6 +155,8 @@ const InformationPage = () => {
   ]);
 
   return (
+    <>
+    <Navbar/>
     <section className='flex-fill bg-color-2 text-white py-5 position-relative'>
       <Head title='Information' />
 
@@ -181,6 +184,7 @@ const InformationPage = () => {
         </Row>
       </Container>
     </section>
+    </>
   );
 };
 

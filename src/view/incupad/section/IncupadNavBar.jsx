@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import LaunchStepTwo from "../launch-steps/LaunchStepTwo";
-import LaunchStepThree from "../launch-steps/LaunchStepThree";
+import LaunchStepTwo from "../../launch-steps/LaunchStepTwo";
+import LaunchStepThree from "../../launch-steps/LaunchStepThree";
 
-export const Navbar = () => {
+const IncupadNavBar = () => {
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
 
@@ -73,7 +73,7 @@ export const Navbar = () => {
       <LaunchStepThree show={show3} onHide={handleClose3} />
       <section
         id="navbar"
-        className="position-sticky fixed-top bg-secondary py-3"
+        className={`position-fixed fixed-top bg-transparent  py-3`}
       >
         <Container fluid="xxl" className="position-relative">
           <div className="bg-testing-1" />
@@ -146,3 +146,5 @@ export const Navbar = () => {
     </>
   );
 };
+
+export default IncupadNavBar;

@@ -5,11 +5,14 @@ import { Head } from '../../components/Head';
 import AllocationSection from './sections/AllocationSection';
 import ProjectDetailsSection from './sections/ProjectDetailsSection';
 import ScheduleSection from './sections/ScheduleSection';
+import { Navbar } from "../navbar/Navbar.jsx";
 
 const ProjectItemPage = () => {
   const now = 50.5;
 
   return (
+    <>
+    <Navbar/>
     <section className='flex-fill bg-secondary text-white py-5 position-relative'>
       <Head title='Project' />
       <section className='detail-banner pb-5'>
@@ -189,7 +192,8 @@ const ProjectItemPage = () => {
           </div>
         </Container>
       </section>
-    </section>
+    </section></>
+    
   );
 };
 
