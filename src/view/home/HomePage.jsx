@@ -18,7 +18,7 @@ const HomePage = () => {
       <HomeSectionOne />
       <HomeSectionTwo />
       <HomeSectionThree />
-      <TieredSystemSection />
+      {/* <TieredSystemSection /> */}
       <HomeSectionFour />
       <HomeSectionFive />
       <HomeSectionRoadmap />

@@ -6,35 +6,32 @@ import ScrollAnimation from "react-animate-on-scroll";
 const HomeSectionThree = () => {
   const dataArr = [
     {
-      title: `Investment Tokenomics`,
-      text: `Earn Daily BNB through rewards, the powerful investment
-        Tokenomics allow you to extract daily BNB rewards on your
-        investments.`,
+      title: `Auto USDT Distribution`,
+      text: `Earn USDT through rewards; the powerful investment tokenomics of BSCBay allow investors to automatically get rewards in USDT on their investments every 4 hours.`,
     },
     {
-      title: `Launchpad`,
-      text: `Launchpad allows New Projects to showcase new crypto products and attract investors. Each projects launched on the Launchpad would be KYCd & Liquidity Locked.  We would help the project in various steps including - Audit, Marketing, Investments & Future Course of Actions. `,
+      title: `IncuPad`,
+      text: `IncuPad allows New Projects to showcase new crypto products and attract investors. Each projects launched on the IncuPad would be KYCd & Liquidity Locked. We would help the project in various steps including - Audit, Marketing, Investments & Future Course of Actions to ensure its success.
+      `,
     },
     {
       title: `DEXPad`,
       text: `DEXPad allows New Projects to showcase new crypto products and attract investors. As a token developer, our technology can serve you to launch your project. As an investor, feel free to browse the latest projects, read carefully the reports from external providers, and most importantly never forget your own due diligence prior to any form of participation. `,
     },
     {
-      title: `Lockers & Mint Factory`,
-      text: `Project developers are welcomed to use our security feature allowing them to lock their liquidity provider tokens.Locking liquidity is becoming a standard in the DeFi industry and BSCBay brings the most secured lockers in place. We bring both Liquidity & Token Locker for developers to use.`,
+      title: `Liquidity & Token Lockers`,
+      text: `Project developers are welcome to use our security feature allowing them to lock their liquidity provider & team tokens. Locking liquidity is becoming a standard in the DeFi industry and BSCBay brings the most secured lockers in place. We bring both Liquidity & Token Locker for developers to use.
+      `,
     },
     {
-      title: `Analytics`,
+      title: `Token Mint Factory`,
+      text: `Bscbay Token Factory will enable users to use this services where there will be No code requirement to launch their own token, simply navigate through the terminal, design token and launch with just a few clicks.  We will offer standard and custom token development services.`,
+    },
+    {
+      title: `Charts & Analytics`,
       text: `Charts for every token launched via BSC network available on your fingertips. These open up the avenues for Promotions, Marketing & opportunities to invest`,
     },
-    {
-      title: `DEXPad`,
-      text: `DEXPad allows New Projects to showcase new crypto products and attract investors. As a token developer, our technology can serve you to launch your project. 
-
-      ​
-      
-      As an investor, feel free to browse the latest projects, read carefully the reports from external providers, and most importantly never forget your own due diligence prior to any form of participation.`,
-    },
+   
   ];
 
   return (
@@ -111,7 +108,8 @@ const HomeSectionThree = () => {
                       </Link>
                     </div>
                     <div className="p-2">
-                      <Link className="btn-1 button-1 btn-color w-100">
+                      <Link className="btn-1 button-1 btn-color w-100" 
+                       onClick= {"https://bscscan.com/address/0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6"}  >
                         <img height={20} src="./assets/file-1.png" alt="file" />
                         <span className="ms-2 text-uppercase fw-bold text-small">
                           Official Smart Contract

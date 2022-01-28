@@ -24,133 +24,54 @@ const InformationPage = () => {
       set: '#box-1',
 
       icon: <Icon0 />,
-      title: 'Investment Tokenomics',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
-    },
-    {
-      id: 'box-2',
-      set: '#box-2',
-      icon: <Icon1 />,
-      title: 'Launchpad',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
+      title: 'Auto USDT Distribution',
+      text: `Earn USDT through rewards; the powerful investment tokenomics of BSCBay allow 
+      investors to automatically get rewards in USDT on their investments every 4 hours.`,
     },
     {
       id: 'box-3',
       set: '#box-3',
       icon: <Icon2 />,
-      title: 'DEXPad',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
+      title: 'IncuPad',
+      text: `IncuPad allows New Projects to showcase new crypto products and attract investors. Each projects launched on the 
+      IncuPad would be KYCd & Liquidity Locked. We would help the project in various steps 
+      including - Audit, Marketing, Investments & Future Course of Actions to ensure its success.`,
     },
     {
       id: 'box-4',
       set: '#box-4',
       icon: <Icon3 />,
-      title: 'Lockers & Mint Factory',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
+      title: 'DEXPad',
+      text: `DEXPad allows New Projects to showcase new crypto products and attract investors. As a token developer, our 
+      technology can serve you to launch your project. As an investor, feel free to browse the latest projects, read carefully 
+      the reports from external providers, and most importantly never forget your own due diligence prior to any form of 
+      participation. `,
     },
     {
       id: 'box-5',
       set: '#box-5',
       icon: <Icon4 />,
-      title: 'Analytics',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
+      title: 'Liquidity & Token Lockers',
+      text: `Project developers are welcome to use our security feature allowing them to lock their liquidity provider & team tokens. Locking liquidity is becoming a standard in the DeFi industry and BSCBay brings the most secured lockers in place. We bring both Liquidity & Token Locker for
+       developers to use.`,
     },
     {
       id: 'box-6',
       set: '#box-6',
       icon: <Icon2 />,
-      title: 'DEXPad',
-      text: `Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy
-        text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged. It was
-        popularised in the 1960s with the release of Letraset sheets
-        containing Lorem Ipsum passages, and more recently with desktop
-        publishing software like Aldus PageMaker including versions of
-        Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and
-        typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown
-        printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also
-        the leap into electronic typesetting, remaining essentially
-        unchanged.`,
+      title: 'Token Mint Factory',
+      text: `Bscbay Token Factory will enable users to use this services where there will be No code requirement to launch their
+       own token, simply navigate through the terminal, design token and launch with just a few clicks.  We will offer standard and 
+       custom token development services.`,
+    },
+    {
+      id: 'box-7',
+      set: '#box-7',
+      icon: <Icon2 />,
+      title: 'Charts & Analytics',
+      text: `Charts for every token launched via BSC network available on your fingertips. These open up the avenues 
+      for Promotions, Marketing & opportunities 
+      to invest`,
     },
   ]);
 

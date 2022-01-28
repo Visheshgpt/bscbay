@@ -14,11 +14,10 @@ const HomeSectionRoadmap = () => {
           >
             <div className='heading-primary-2'>Roadmap</div>
             <p className='mt-3 mb-4 px-0 col-md-11 col-lg-10 mx-auto'>
-              To eradicate poverty, we need to work together. We’re building a
-              suite of tools designed to help the next billion people leapfrog
-              traditional banks and go straight to DeFi. We’re also making
-              weekly donations through two world-class charities. Plus look out
-              for community events, merchandise, and more coming your way soon!
+            We at BSCBay are building a suite of tools designed to help millions of people leapfrog traditional banks and go 
+            straight to DeFi. We’re also making weekly donations through two world-class charities. Plus look out for community 
+            events, merchandise, and more coming your way soon!
+
             </p>
           </ScrollAnimation>
           <div className='px-0 col-lg-10 mx-auto mb-5 pb-md-5'>

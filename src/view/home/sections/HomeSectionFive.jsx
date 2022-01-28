@@ -53,7 +53,7 @@ const HomeSectionFive = () => {
               >
                 <div>
                   <div className='heading-primary-2 mb-2'>
-                    The <span className='text-primary'>BSC</span> EcoSystem
+                    The <span className='text-primary'>BSC</span> Ecosystem
                   </div>
                   <p className='mb-0 text-white-2'>
                     <ul className='nav flex-column'>
@@ -92,8 +92,8 @@ const HomeSectionFive = () => {
                           alt='..'
                         />
                         <span>
-                          These <b>Rewards are distributed in terms of $BNB,</b>{' '}
-                          claimable daily through our Dapp.
+                          These <b>Rewards are distributed in terms of $USDT,</b>{' '}
+                         sent automatically directly to your wallet.
                         </span>
                       </li>
                       <li className='py-2'>
@@ -133,7 +133,7 @@ const HomeSectionFive = () => {
             animateOut='bounceOutRight'
             scrollableParentSelector='#scrolly-main'
           >
-            <div className='py-5 my-lg-5 text-center'>
+            {/* <div className='py-5 my-lg-5 text-center'>
               <div className='heading-secondary mb-4'>
                 We Take Pride in Our Numbers
               </div>
@@ -149,7 +149,7 @@ const HomeSectionFive = () => {
                   </div>
                 ))}
               </Row>
-            </div>
+            </div> */}
           </ScrollAnimation>
           <div className='border-top border-bottom border-secondary py-4'>
             <ScrollAnimation
