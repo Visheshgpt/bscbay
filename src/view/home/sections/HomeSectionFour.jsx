@@ -41,9 +41,8 @@ const HomeSectionFour = () => {
                   </li>
                   <li>
                     For Investors, It's as simple as holding{' '}
-                    <b> $BSCB tokens</b> in their wallet and getting more{' '}
-                    <b>$BSCB & $BNB.</b> Investors can yeild daily rewards based
-                    on their investment through the available Dapp.
+                    <b> $BSCB tokens</b> in their wallet and getting {' '}
+                    <b>Auto $USDT</b> rewards directly into their wallets. 
                   </li>
                   <li>
                     <b>$BSCB is reward</b> distribution strategy works in the
@@ -85,7 +84,7 @@ const HomeSectionFour = () => {
                           alt='..'
                         />
                         <span>
-                          <b>4%</b> goes to BNB Reward Pool
+                          <b>4%</b> goes as auto $USDT rewards
                         </span>
                       </li>
                       <li className='py-1'>
@@ -96,7 +95,7 @@ const HomeSectionFour = () => {
                           alt='..'
                         />
                         <span>
-                          <b>4%</b> goes to liquidity
+                          <b>3%</b> goes to liquidity
                         </span>
                       </li>
                       <li className='py-1'>
@@ -107,7 +106,29 @@ const HomeSectionFour = () => {
                           alt='..'
                         />
                         <span>
-                          <b>2%</b> is distributed among the holders
+                          <b>2%</b> is utilized for marketing budgets
+                        </span>
+                      </li>
+                      <li className='py-1'>
+                        <img
+                          className='pe-2'
+                          height={12}
+                          src='./assets/rewards-small.svg'
+                          alt='..'
+                        />
+                        <span>
+                          <b>1%</b> will be used to Auto Buy-Back BSCB tokens to sustain & grow BSCB price constantly.
+                        </span>
+                      </li>
+                      <li className='py-1'>
+                        <img
+                          className='pe-2'
+                          height={12}
+                          src='./assets/rewards-small.svg'
+                          alt='..'
+                        />
+                        <span>
+                          <b>1%</b> will be held by team for development & expansion
                         </span>
                       </li>
                     </ul>
@@ -127,20 +148,20 @@ const HomeSectionFour = () => {
                 </div>
                 <div className='flex-fill'>
                   <div className='title-small fw-600 mb-1'>
-                    Stake Holders Rewards
+                  Stake Holders Rewards (In Addition to Investment Dilution Rewards)
                   </div>
                   <p className='mb-0'>
                     <ul className='nav flex-column'>
                       <li className='py-2'>
                         <div className='mb-1'>
-                          ​<b>50%</b> Earnings from every project launched will
+                          ​<b>40%</b> Earnings from every project launched will
                           be distributed to investors
                         </div>
                         <ProgressBar variant='warning' now={50} />
                       </li>
                       <li className='py-2'>
                         <div className='mb-1'>
-                          ​<b>50%</b> Earning of Via all Lock earnings will be
+                          ​<b>40%</b> Earning of Via all Lock earnings will be
                           distributed to Investors
                         </div>
                         <ProgressBar variant='warning' now={50} />

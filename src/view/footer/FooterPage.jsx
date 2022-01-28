@@ -86,10 +86,10 @@ const FooterPage = () => {
               </ul>
             </div>
             {/* === */}
-            <p>
+            {/* <p>
               123-456-7890, Info@mysite.com, 500 Terry Francois St, San
               Francisco, CA 94158
-            </p>
+            </p> */}
             {/* === */}
             <Row className='justify-content-center mb-3' style={{ gap: 0 }}>
               {socialMediaArr.map((data, i) => (

@@ -9,9 +9,9 @@ import { ReactComponent as Rocket } from "../../../assets/rocket.svg";
 import CoinGecko from "coingecko-api";
 import Web3 from "web3";
 import BSCBAYabi from "../../../shared/BSCBAYabi.json";
-import LaunchStepOne from "../../launch-steps/LaunchStepOne";
-import LaunchStepTwo from "../../launch-steps/LaunchStepTwo";
-import LaunchStepThree from "../../launch-steps/LaunchStepThree";
+// import LaunchStepOne from "../../launch-steps/LaunchStepOne";
+// import LaunchStepTwo from "../../launch-steps/LaunchStepTwo";
+// import LaunchStepThree from "../../launch-steps/LaunchStepThree";
 
 const HomeSectionOne = () => {
   const [show, setShow] = useState(true);
@@ -40,15 +40,15 @@ const HomeSectionOne = () => {
   const [totalreflectionFees, settotalreflectionFees] = useState(0);
 
   const boxArr = [
-    { name: "Max Tx Amount", number: "8210" },
+    // { name: "Max Tx Amount", number: "8210" },
     { name: "BSCB MarketCap", number: "503.400 " },
     { name: "Per Million BCBS", number: "$1.02" },
     { name: "Liquidity Pool", number: "$1,291,627" },
-    { name: "Reward Pool", number: "$13,231" },
-    { name: "Reward Pool Limit", number: "$13,231" },
-    { name: "Amount Distributed", number: "$1,291,627" },
-    { name: "Amount Reinvested", number: "$1,291,627" },
-    { name: "Reflection ", number: "$1.02" },
+    // { name: "Reward Pool", number: "$13,231" },
+    // { name: "Reward Pool Limit", number: "$13,231" },
+    { name: "Total USDT Distributed", number: "$1,291,627" },
+    { name: "Total Buyback", number: "$1,291,627" },
+    { name: "Total Users", number: "$1.02" },
   ];
 
   const socialMediaArr = [
@@ -61,31 +61,31 @@ const HomeSectionOne = () => {
 
   let address = window.sessionStorage.getItem("walletAddress");
 
-  if (address) {
-    console.log("yes");
+  // if (address) {
+  //   console.log("yes");
 
-    link = (
-      <Link to="/wallet" className="btn-1 button-1 btn-color w-100">
-        <div style={{ height: 45, width: 45 }}>
-          <Rocket />
-        </div>
-        {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
-        <span className="text-uppercase fw-bold me-3">Launch App</span>
-      </Link>
-    );
-  } else {
-    console.log("no");
+  //   link = (
+  //     <Link to="/wallet" className="btn-1 button-1 btn-color w-100">
+  //       <div style={{ height: 45, width: 45 }}>
+  //         <Rocket />
+  //       </div>
+  //       {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
+  //       <span className="text-uppercase fw-bold me-3">Launch App</span>
+  //     </Link>
+  //   );
+  // } else {            
+  //   console.log("no");
 
-    link = (
-      <Link onClick={handleShow2} className="btn-1 button-1 btn-color w-100">
-        <div style={{ height: 45, width: 45 }}>
-          <Rocket />
-        </div>
-        {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
-        <span className="text-uppercase fw-bold me-3"> Launch App</span>
-      </Link>
-    );
-  }
+  //   link = (
+  //     <Link onClick={handleShow2} className="btn-1 button-1 btn-color w-100">
+  //       <div style={{ height: 45, width: 45 }}>
+  //         <Rocket />
+  //       </div>
+  //       {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
+  //       <span className="text-uppercase fw-bold me-3"> Launch App</span>
+  //     </Link>
+  //   );
+  // }
 
   function web3apis() {
     // let address = window.sessionStorage.getItem("walletAddress");
@@ -249,21 +249,21 @@ const HomeSectionOne = () => {
 
   var marketcap = circulatingSupply * priceperToken;
   var permillbcbs = ((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice;
-  boxArr[0].number = maxTransactionAmount;
-  boxArr[1].number = "$ " + marketcap.toFixed(2);
-  boxArr[2].number = "$ " + permillbcbs.toFixed(2);
-  boxArr[3].number = "$ " + (oneBNBprice * LPbnb * 2).toFixed(2);
-  boxArr[4].number = "BNB " + Number(TotalbnbinrewardPool).toFixed(2);
-  boxArr[5].number = "BNB " + Number(rewardhardCap);
-  boxArr[6].number = "$ " + (distributedBnb * oneBNBprice).toFixed(2);
-  boxArr[7].number = "$ " + (totalreinvested * priceperToken).toFixed(2);
-  boxArr[8].number = (totalreflectionFees * 0.167).toFixed(0);
+  // boxArr[0].number = maxTransactionAmount;
+  // boxArr[1].number = "$ " + marketcap.toFixed(2);
+  // boxArr[2].number = "$ " + permillbcbs.toFixed(2);
+  // boxArr[3].number = "$ " + (oneBNBprice * LPbnb * 2).toFixed(2);
+  // boxArr[4].number = "BNB " + Number(TotalbnbinrewardPool).toFixed(2);
+  // boxArr[5].number = "BNB " + Number(rewardhardCap);
+  // boxArr[6].number = "$ " + (distributedBnb * oneBNBprice).toFixed(2);
+  // boxArr[7].number = "$ " + (totalreinvested * priceperToken).toFixed(2);
+  // boxArr[8].number = (totalreflectionFees * 0.167).toFixed(0);
 
   return (
     <section className="bg-color-homepage-section-one text-white">
-      <LaunchStepOne onClick={handleShow2} show={show} onHide={handleClose} />
-      <LaunchStepTwo onClick={handleShow3} show={show2} onHide={handleClose2} />
-      <LaunchStepThree show={show3} onHide={handleClose3} />
+      {/* <LaunchStepOne onClick={handleShow2} show={show} onHide={handleClose} /> */}
+      {/* <LaunchStepTwo onClick={handleShow3} show={show2} onHide={handleClose2} /> */}
+      {/* <LaunchStepThree show={show3} onHide={handleClose3} /> */}
       <ScrollAnimation
         animateIn="zoomInDown"
         animateOut="zoomOutUp"
@@ -277,7 +277,7 @@ const HomeSectionOne = () => {
                   The <span className="text-primary">BSC</span> Ecosystem
                 </div>
                 <div className="text-white-2 fw-light heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  Investing | Decentralized Launch Pad Token Minting | Lockers |
+                  Passive Income | Auto USDT Distribution | Incupad | DexPad | Token Minting | Lockers |
                   Analytics
                 </div>
                 <div className="d-flex flex-column flex-md-row mx-0">

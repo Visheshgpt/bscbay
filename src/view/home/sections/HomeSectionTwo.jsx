@@ -24,11 +24,11 @@ const HomeSectionTwo = () => {
                     <div>PROTOCOLS & SERVICES</div>
                   </div>
                   <p className="px-0 col-lg-9">
-                    <b>Started in June 2021,</b> BSCBay provides an ever-growing
-                    suite of decentralized services. The objective is to create
-                    wealth for investors and bring unprecedented value to the
-                    De-Fi space as a whole by delivering flexible, disruptive,
-                    and trusted technology.
+                <p></p>
+                  BSCBay is a blockchain innovation hub with a combination of Incupad and Decentralized Launchpad complimenting Solution Partner Tools coupled with Passive Income Tokenomics.<p></p>
+BSCBAY is the next step in the evolution of DEFI. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution.
+
+
                   </p>
                 </div>
               </ScrollAnimation>
