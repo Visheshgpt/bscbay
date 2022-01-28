@@ -6,6 +6,7 @@ import ProjectItemPage from "./view/projects/ProjectItemPage";
 import ProjectsPage from "./view/projects/ProjectsPage";
 import IncupadPage from "./view/incupad/IncupadPage";
 import WalletPage from "./view/wallet/WalletPage";
+import UpcommingPools from "./view/upcommingPools/UpcommingPools";
 // import Dapp from './components/Dapp'
 
 const Routes = () => {
@@ -17,6 +18,7 @@ const Routes = () => {
       <Route exact path="/wallet" component={WalletPage} />
       <Route exact path="/information" component={InformationPage} />
       <Route exact path="/incupad" component={IncupadPage} />
+      <Route exact path="/upcomming-pools/:title" component={UpcommingPools} />
       {/* <Route exact path='/wallet/dashboard' component={Dapp} /> */}
     </Switch>
   );

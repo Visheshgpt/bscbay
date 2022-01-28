@@ -6,7 +6,7 @@ const IncupadBannerSection = () => {
   return (
     <Container as="section" fluid="xxl" className="incupad-banner-section">
       <Row>
-        <Col lg={8} xl={6} className="">
+        <Col lg={8} xl={6} >
           <h1>
             Enter The <span>Gateway Of Blockchain</span> Gaming
           </h1>

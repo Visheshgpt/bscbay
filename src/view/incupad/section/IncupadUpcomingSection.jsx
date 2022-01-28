@@ -8,73 +8,105 @@ const IncupadUpcomingSection = () => {
     { title: "Buy on Kucoin", img: "./assets/is-3.svg" },
     { title: "Buy on Gate.io", img: "./assets/is-4.svg" },
   ];
+
   const upcomingPoolData = [
     {
+      title: "CyberTrade",
       tag: "First Phase",
       img: "./assets/is-card-1.svg",
-      title: "CyberTrade",
       description:
         " CyberTrade is an upcoming open-world MMO RPG game built on Binance Smart Chain.",
-      timeImg: "./assets/is-time-1.svg",
       time: "48 Hours",
-      timeStatus: "remaining",
-      allocation: "0.01",
-      maximun: "TBA",
-      access: "Private",
+      tokenDistribution: "",
+      tokenPrice: 456,
+      minAllocation: 0.01,
+      maxAllocation: 2644.09,
+      symbol: "CCASH",
+      decimals: 18,
+      allocationType: "BUSD",
+      totalSupply: 380000,
+      accessType: "Private",
+      about: ["hjvdlhvgbdfhvb", "ujdhvidbsv"],
+      address: "TBA",
     },
     {
+      title: "CyberTrade 1",
       tag: "First Phase",
       img: "./assets/is-card-1.svg",
-      title: "CyberTrade",
       description:
         " CyberTrade is an upcoming open-world MMO RPG game built on Binance Smart Chain.",
-      timeImg: "./assets/is-time-1.svg",
       time: "48 Hours",
-      timeStatus: "remaining",
-      allocation: "0.01",
-      maximun: "TBA",
-      access: "Private",
+      tokenDistribution: "",
+      tokenPrice: 456,
+      minAllocation: 0.01,
+      maxAllocation: 2644.09,
+      symbol: "CCASH",
+      decimals: 18,
+      allocationType: "BUSD",
+      totalSupply: 380000,
+      accessType: "Private",
+      about: ["hjvdlhvgbdfhvb", "ujdhvidbsv"],
+      address: "TBA",
     },
     {
+      title: "CyberTrade 2",
       tag: "First Phase",
       img: "./assets/is-card-1.svg",
-      title: "CyberTrade",
       description:
         " CyberTrade is an upcoming open-world MMO RPG game built on Binance Smart Chain.",
-      timeImg: "./assets/is-time-1.svg",
       time: "48 Hours",
-      timeStatus: "remaining",
-      allocation: "0.01",
-      maximun: "TBA",
-      access: "Private",
+      tokenDistribution: "",
+      tokenPrice: 456,
+      minAllocation: 0.01,
+      maxAllocation: 2644.09,
+      symbol: "CCASH",
+      decimals: 18,
+      allocationType: "BUSD",
+      totalSupply: 380000,
+      accessType: "Private",
+      about: ["hjvdlhvgbdfhvb", "ujdhvidbsv"],
+      address: "TBA",
     },
     {
+      title: "CyberTrade 3",
       tag: "First Phase",
       img: "./assets/is-card-1.svg",
-      title: "CyberTrade",
       description:
         " CyberTrade is an upcoming open-world MMO RPG game built on Binance Smart Chain.",
-      timeImg: "./assets/is-time-1.svg",
       time: "48 Hours",
-      timeStatus: "remaining",
-      allocation: "0.01",
-      maximun: "TBA",
-      access: "Private",
+      tokenDistribution: "",
+      tokenPrice: 456,
+      minAllocation: 0.01,
+      maxAllocation: 2644.09,
+      symbol: "CCASH",
+      decimals: 18,
+      allocationType: "BUSD",
+      totalSupply: 380000,
+      accessType: "Private",
+      about: ["hjvdlhvgbdfhvb", "ujdhvidbsv"],
+      address: "TBA",
     },
     {
+      title: "CyberTrade 4",
       tag: "First Phase",
       img: "./assets/is-card-1.svg",
-      title: "CyberTrade",
       description:
         " CyberTrade is an upcoming open-world MMO RPG game built on Binance Smart Chain.",
-      timeImg: "./assets/is-time-1.svg",
       time: "48 Hours",
-      timeStatus: "remaining",
-      allocation: "0.01",
-      maximun: "TBA",
-      access: "Private",
+      tokenDistribution: "",
+      tokenPrice: 456,
+      minAllocation: 0.01,
+      maxAllocation: 2644.09,
+      symbol: "CCASH",
+      decimals: 18,
+      allocationType: "BUSD",
+      totalSupply: 380000,
+      accessType: "Private",
+      about: ["hjvdlhvgbdfhvb", "ujdhvidbsv"],
+      address: "TBA",
     },
   ];
+
   return (
     <Container as="section" fluid="xxl" className="incupad-upcoming-section">
       <Container>
@@ -101,27 +133,27 @@ const IncupadUpcomingSection = () => {
                 <p className="card-description">{item.description}</p>
                 <div className="card-time">
                   <img
-                    src={item.timeImg}
+                    src="./assets/is-time-1.svg"
                     alt="time icon"
                     width="22"
                     height="22"
                   />
                   <span>{item.time}</span>
                 </div>
-                <span className="card-time-status">{item.timeStatus}</span>
+                <span className="card-time-status">remaining</span>
 
                 <div className="incupad-upcoming-pool-card-lower">
                   <div className="min-allocation">
                     <span className="lower-card-name">Min Allocation</span>
-                    <span>{item.allocation}</span>
+                    <span>{item.minAllocation}</span>
                   </div>
                   <div className="min-allocation">
-                    <span className="lower-card-name">Maximum</span>
-                    <span>{item.maximun}</span>
+                    <span className="lower-card-name">Max Allocation</span>
+                    <span>{item.maxAllocation}</span>
                   </div>
                   <div className="min-allocation">
-                    <span className="lower-card-name">Access</span>
-                    <span>{item.access}</span>
+                    <span className="lower-card-name">Access Type</span>
+                    <span>{item.accessType}</span>
                   </div>
                 </div>
               </div>
