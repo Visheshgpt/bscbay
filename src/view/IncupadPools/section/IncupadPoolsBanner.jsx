@@ -1,12 +1,12 @@
 import { Container, Row, Col, ProgressBar } from "react-bootstrap";
 
-const UpcommingPoolsBanner = ({ activePool }) => {
+const IncupadPoolsBanner = ({ activePool }) => {
   return (
     <Container as="section" fluid="xxl" className="upcoming-pool-banner">
       <Container>
         <Row>
           <Col lg={7} md={7} className="left-section">
-            <img src={activePool.img} alt={activePool.title} />
+            <img src={`../../${activePool.img}`} alt={activePool.title} />
             <h2>{activePool.title}</h2>
             <p>{activePool.description}</p>
             <div>
@@ -27,7 +27,7 @@ const UpcommingPoolsBanner = ({ activePool }) => {
                 <h5>Total Raise</h5>
                 <h4>0 BUSD</h4>
                 <ProgressBar now={30} className="progress-bar-section" />
-                <span >Participant : 500/Limited</span>
+                <span>Participant : 500/Limited</span>
               </div>
             </div>
           </Col>
@@ -37,4 +37,4 @@ const UpcommingPoolsBanner = ({ activePool }) => {
   );
 };
 
-export default UpcommingPoolsBanner;
+export default IncupadPoolsBanner;

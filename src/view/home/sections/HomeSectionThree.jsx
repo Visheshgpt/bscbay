@@ -31,7 +31,6 @@ const HomeSectionThree = () => {
       title: `Charts & Analytics`,
       text: `Charts for every token launched via BSC network available on your fingertips. These open up the avenues for Promotions, Marketing & opportunities to invest`,
     },
-   
   ];
 
   return (
@@ -50,7 +49,7 @@ const HomeSectionThree = () => {
         <Container className="py-5 z-10">
           <div
             id="investment"
-            className="px-0 col-xl-9 mx-auto scroll-settings"
+            className="px-0 col-xl-10 mx-auto scroll-settings"
           >
             <ScrollAnimation
               animateIn="bounceInLeft"
@@ -108,8 +107,12 @@ const HomeSectionThree = () => {
                       </Link>
                     </div>
                     <div className="p-2">
-                      <Link className="btn-1 button-1 btn-color w-100" 
-                       onClick= {"https://bscscan.com/address/0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6"}  >
+                      <Link
+                        className="btn-1 button-1 btn-color w-100"
+                        onClick={
+                          "https://bscscan.com/address/0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6"
+                        }
+                      >
                         <img height={20} src="./assets/file-1.png" alt="file" />
                         <span className="ms-2 text-uppercase fw-bold text-small">
                           Official Smart Contract

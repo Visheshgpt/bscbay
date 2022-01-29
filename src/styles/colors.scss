@@ -76,3 +76,9 @@ $color-dark-2: #292b32;
     background-color: $color-primary;
   }
 }
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #242837 !important;
+  font-weight: 600 !important;
+  background-color: #ffd366 !important;
+}

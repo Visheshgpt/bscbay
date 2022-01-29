@@ -3,7 +3,7 @@
 }
 // banner section
 .incupad-banner-section {
-  background: url("../assets/bg-incupad1.png") no-repeat center;
+  background: url("../assets/upcomming-bg.png") no-repeat center;
   background-size: cover;
   width: 100%;
   height: 100vh;
@@ -115,6 +115,10 @@
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   border-radius: 10px;
 }
+.incupad-upcoming-pool-card > img {
+  width: 80px !important;
+  height: 80px !important;
+}
 .card-tag {
   margin-top: 20px;
   padding: 5px;
@@ -149,6 +153,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+.card-time img {
+  width: 22px !important;
+  height: 22px !important;
 }
 .card-time span {
   font-size: 24px;

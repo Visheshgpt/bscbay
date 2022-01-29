@@ -80,7 +80,7 @@ export const Navbar = () => {
           <div className="d-flex align-items-center z-10">
             <div className="d-flex align-items-end justify-content-center mb-2">
               <Link to="/">
-                <img className="logo-img" src="/assets/logo.png" alt="Logo" />
+                <img className="logo-img" src="/assets/logo.svg" alt="Logo" />
               </Link>
             </div>
             <div className="ms-auto d-none d-md-flex align-items-center">
@@ -91,7 +91,7 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item pe-lg-4">
-                  <Link to="/projects" className="nav-link">
+                  <Link to="/incupad" className="nav-link">
                     Projects
                   </Link>
                 </li>

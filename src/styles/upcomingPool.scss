@@ -89,7 +89,6 @@
   color: #ffffff;
   font-size: 400;
 }
-
 .progress-bar-section {
   background: rgba(88, 85, 85, 0.2);
   border: 1px solid #383a41;
@@ -109,7 +108,6 @@
   display: flex;
   justify-content: right;
 }
-
 @media (max-width: 575.98px) {
   .upcoming-pool-banner {
     height: 140vh;
@@ -211,7 +209,30 @@
   margin: 17px 0px;
   font-weight: 300;
 }
-
+.custom-dropdown-btn > button {
+  color: #ffd366 !important;
+  background-color: transparent !important;
+}
+.custom-dropdown-btn > button:active,
+.custom-dropdown-btn > button:hover,
+.custom-dropdown-btn > button:focus {
+  background-color: #ffd46617 !important;
+}
+.custom-dropdown-btn > button::after {
+  display: none;
+}
+.custom-dropdown-btn .dropdown-menu {
+  background-color: #36373e;
+}
+.custom-dropdown-btn .dropdown-singleItem {
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.custom-dropdown-btn .dropdown-singleItem span {
+  margin-left: 10px;
+}
 @media (max-width: 575.98px) {
   .pool-information-card > div {
     font-size: 12px;

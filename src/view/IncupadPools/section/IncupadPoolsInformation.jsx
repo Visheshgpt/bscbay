@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 
-const UpcommingPoolsInformation = ({ activePool }) => {
+const IncupadPoolsInformation = ({ activePool }) => {
   return (
     <Container as="section" fluid="xxl" className="pool-information-section">
       <Container>
@@ -47,12 +47,12 @@ const UpcommingPoolsInformation = ({ activePool }) => {
                 <span>{activePool.decimals}</span>
               </div>
               <div>
-                <span>ADDRESS</span>
-                <span>{activePool.address}</span>
-              </div>
-              <div>
                 <span>TOTAL SUPPLY</span>
                 <span>{activePool.totalSupply}</span>
+              </div>
+              <div>
+                <span>ADDRESS</span>
+                <span>{activePool.inputTokenaddress}</span>
               </div>
             </div>
           </Col>
@@ -74,4 +74,4 @@ const UpcommingPoolsInformation = ({ activePool }) => {
   );
 };
 
-export default UpcommingPoolsInformation;
+export default IncupadPoolsInformation;

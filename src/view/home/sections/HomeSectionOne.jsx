@@ -73,7 +73,7 @@ const HomeSectionOne = () => {
   //       <span className="text-uppercase fw-bold me-3">Launch App</span>
   //     </Link>
   //   );
-  // } else {            
+  // } else {
   //   console.log("no");
 
   //   link = (
@@ -277,8 +277,8 @@ const HomeSectionOne = () => {
                   The <span className="text-primary">BSC</span> Ecosystem
                 </div>
                 <div className="text-white-2 fw-light heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  Passive Income | Auto USDT Distribution | Incupad | DexPad | Token Minting | Lockers |
-                  Analytics
+                  Passive Income | Auto USDT Distribution | Incupad | DexPad |
+                  Token Minting | Lockers | Analytics
                 </div>
                 <div className="d-flex flex-column flex-md-row mx-0">
                   <div className="pe-md-2">
@@ -323,10 +323,20 @@ const HomeSectionOne = () => {
               xl={7}
               className="order-first order-lg-last mb-4 mb-lg-0"
             >
-              <div className="z-10 w-100" style={{ height: "100%" }}>
+              <div className="d-md-none z-10 w-100" style={{ height: "100%" }}>
                 <img
                   className="h-100 w-100 d-block"
                   src="./assets/bg-0.gif"
+                  alt=".."
+                />
+              </div>
+              <div
+                className="d-none d-md-block z-10 w-100"
+                style={{ height: "100%" }}
+              >
+                <img
+                  className="h-100 w-100 d-block"
+                  src="./assets/home-desktop.svg"
                   alt=".."
                 />
               </div>

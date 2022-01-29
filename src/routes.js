@@ -6,20 +6,18 @@ import ProjectItemPage from "./view/projects/ProjectItemPage";
 import ProjectsPage from "./view/projects/ProjectsPage";
 import IncupadPage from "./view/incupad/IncupadPage";
 import WalletPage from "./view/wallet/WalletPage";
-import UpcommingPools from "./view/upcommingPools/UpcommingPools";
-// import Dapp from './components/Dapp'
+import IncupadPools from "./view/IncupadPools/IncupadPools";
+import PageNotFound from "./view/PageNotFound/PageNotFound";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route exact path="/projects" component={ProjectsPage} />
-      <Route exact path="/projects/item" component={ProjectItemPage} />
-      <Route exact path="/wallet" component={WalletPage} />
-      <Route exact path="/information" component={InformationPage} />
+      <Route path="/wallet" component={WalletPage} />
+      <Route path="/information" component={InformationPage} />
       <Route exact path="/incupad" component={IncupadPage} />
-      <Route exact path="/upcomming-pools/:title" component={UpcommingPools} />
-      {/* <Route exact path='/wallet/dashboard' component={Dapp} /> */}
+      <Route path="/incupad/:title" component={IncupadPools} />
+      <Route exact path="*" component={PageNotFound} />
     </Switch>
   );
 };
