@@ -10,11 +10,14 @@ const IncupadFeaturedSection = () => {
   const upcomingData = [
     { title: "Apply as a project", img: "./assets/is-1.svg" },
     { title: "Buy on Pancakeswap", img: "./assets/is-2.svg" },
-    { title: "Buy on Kucoin", img: "./assets/is-3.svg" },
-    { title: "Buy on Gate.io", img: "./assets/is-4.svg" },
+    // { title: "Buy on Kucoin", img: "./assets/is-3.svg" },
+    // { title: "Buy on Gate.io", img: "./assets/is-4.svg" },
   ];
 
   const featuredPoolData = poolData.filter((item) => item.featured === true);
+
+   console.log("featured pool", featuredPoolData);
+   
 
   const options = {
     dots: false,
@@ -27,7 +30,7 @@ const IncupadFeaturedSection = () => {
         items: 1,
       },
       768: {
-        items: 2,
+        items: 1,
       },
       1200: {
         items: 3,
@@ -43,7 +46,7 @@ const IncupadFeaturedSection = () => {
       <Container>
         <Row>
           {upcomingData.map((item, index) => (
-            <Col xs={6} lg={3} key={index}>
+            <Col xs={6} lg={6} key={index}>
               <div className="incupad-upcoming-card">
                 <img src={item.img} alt={item.title} />
                 <span>{item.title}</span>

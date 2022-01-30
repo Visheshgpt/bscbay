@@ -29,39 +29,24 @@ const IncupadNavBar = () => {
   let address = window.sessionStorage.getItem("walletAddress");
 
   if (address) {
-    link = (
-      <Link to="/wallet" className="btn btn-outline-primary text-white fw-500">
-        Launch app
-      </Link>
-    );
-    linkmobile = (
-      <Link
-        to="/wallet"
-        className="btn btn-sm btn-outline-primary text-white fw-500"
-      >
-        <small>
-          {" "}
-          <small>Launch app</small>{" "}
-        </small>
-      </Link>
-    );
-  } else {
+  } 
+  else {
     link = (
       <Link
-        onClick={handleShow2}
+       to = "/"
         className="btn btn-outline-primary text-white fw-500"
       >
-        Launch app
+        Home
       </Link>
     );
     linkmobile = (
       <Link
-        onClick={handleShow2}
+        to = "/"
         className="btn btn-sm btn-outline-primary text-white fw-500"
       >
         <small>
           {" "}
-          <small>Launch app</small>{" "}
+          <small>Home</small>{" "}
         </small>
       </Link>
     );
@@ -90,7 +75,7 @@ const IncupadNavBar = () => {
                     Services
                   </Link>
                 </li>
-                <li className="nav-item pe-lg-4">
+                {/* <li className="nav-item pe-lg-4">
                   <Link to="/incupad" className="nav-link">
                     Projects
                   </Link>
@@ -102,7 +87,7 @@ const IncupadNavBar = () => {
                 </li>
                 <li className="nav-item pe-lg-4">
                   <Link className="nav-link">About us</Link>
-                </li>
+                </li> */}
                 <li className="nav-item">{link}</li>
               </ul>
             </div>
@@ -123,7 +108,7 @@ const IncupadNavBar = () => {
                 <small>Services</small>
               </Link>
             </li>
-            <li className="nav-item pe-lg-4">
+            {/* <li className="nav-item pe-lg-4">
               <Link to="/projects" className="nav-link">
                 <small>Projects</small>
               </Link>
@@ -133,12 +118,12 @@ const IncupadNavBar = () => {
               <a href="#investment" className="nav-link">
                 <small> Investment</small>
               </a>
-            </li>
-            <li className="nav-item pe-lg-4">
+            </li> */}
+            {/* <li className="nav-item pe-lg-4">
               <Link className="nav-link">
                 <small> About us</small>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>

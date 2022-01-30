@@ -29,39 +29,24 @@ export const Navbar = () => {
   let address = window.sessionStorage.getItem("walletAddress");
 
   if (address) {
-    link = (
-      <Link to="/wallet" className="btn btn-outline-primary text-white fw-500">
-        Launch app
-      </Link>
-    );
-    linkmobile = (
-      <Link
-        to="/wallet"
-        className="btn btn-sm btn-outline-primary text-white fw-500"
-      >
-        <small>
-          {" "}
-          <small>Launch app</small>{" "}
-        </small>
-      </Link>
-    );
+
   } else {
     link = (
       <Link
-        onClick={handleShow2}
+        to = "/incupad"
         className="btn btn-outline-primary text-white fw-500"
       >
-        Launch app
+        IncuPad
       </Link>
     );
     linkmobile = (
       <Link
-        onClick={handleShow2}
+        to = "/incupad"
         className="btn btn-sm btn-outline-primary text-white fw-500"
       >
         <small>
           {" "}
-          <small>Launch app</small>{" "}
+          <small>Incupad</small>{" "}
         </small>
       </Link>
     );
@@ -90,7 +75,7 @@ export const Navbar = () => {
                     Services
                   </Link>
                 </li>
-                <li className="nav-item pe-lg-4">
+                {/* <li className="nav-item pe-lg-4">
                   <Link to="/incupad" className="nav-link">
                     Projects
                   </Link>
@@ -102,7 +87,7 @@ export const Navbar = () => {
                 </li>
                 <li className="nav-item pe-lg-4">
                   <Link className="nav-link">About us</Link>
-                </li>
+                </li> */}
                 <li className="nav-item">{link}</li>
               </ul>
             </div>
@@ -123,7 +108,7 @@ export const Navbar = () => {
                 <small>Services</small>
               </Link>
             </li>
-            <li className="nav-item pe-lg-4">
+            {/* <li className="nav-item pe-lg-4">
               <Link to="/projects" className="nav-link">
                 <small>Projects</small>
               </Link>
@@ -138,7 +123,7 @@ export const Navbar = () => {
               <Link className="nav-link">
                 <small> About us</small>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>

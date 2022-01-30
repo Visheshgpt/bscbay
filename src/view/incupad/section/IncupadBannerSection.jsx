@@ -8,11 +8,11 @@ const IncupadBannerSection = () => {
       <Row>
         <Col lg={8} xl={6} >
           <h1>
-            Enter The <span>Gateway Of Blockchain</span> Gaming
+            Enter The <span>Gateway Of Blockchain</span> Innovation
           </h1>
           <p>
-            Bscbay is an Animated Combat NFT Trading Card Game currently
-            playable cross platform from Browser, Google Play & Steam
+          BSCBAY is the next step in the evolution of DEFI. It combines the previous successful instances and features of DEFI 
+          and integrates them to create a new paradigm.<p></p> A Revolution Within An Evolution.
           </p>
           <Button variant="outline-warning" href="#" className="customButton">
             View more <Arrow />

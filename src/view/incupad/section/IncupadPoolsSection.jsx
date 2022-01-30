@@ -19,7 +19,7 @@ const IncupadPoolsSection = () => {
   const activePoolData = poolData.filter((item) => item.status === "active");
 
   const upcommingPoolData = poolData.filter(
-    (item) => item.status === "upcomming"
+    (item) => item.status === "upcoming"
   );
 
   return (
@@ -38,7 +38,7 @@ const IncupadPoolsSection = () => {
                       <Nav.Link eventKey="active">Active Pools</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="upcomming">Upcomming Pools</Nav.Link>
+                      <Nav.Link eventKey="upcomming">Upcoming Pools</Nav.Link>
                     </Nav.Item>
                   </Nav>
                 </Col>
