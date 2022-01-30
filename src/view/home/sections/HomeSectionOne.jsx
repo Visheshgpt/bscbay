@@ -9,9 +9,7 @@ import { ReactComponent as Rocket } from "../../../assets/rocket.svg";
 import CoinGecko from "coingecko-api";
 import Web3 from "web3";
 import BSCBAYabi from "../../../shared/BSCBAYabi.json";
-// import LaunchStepOne from "../../launch-steps/LaunchStepOne";
-// import LaunchStepTwo from "../../launch-steps/LaunchStepTwo";
-// import LaunchStepThree from "../../launch-steps/LaunchStepThree";
+
 
 const HomeSectionOne = () => {
   const [show, setShow] = useState(true);
@@ -41,14 +39,14 @@ const HomeSectionOne = () => {
 
   const boxArr = [
     // { name: "Max Tx Amount", number: "8210" },
-    { name: "BSCB MarketCap", number: "503.400 " },
-    { name: "Per Million BCBS", number: "$1.02" },
-    { name: "Liquidity Pool", number: "$1,291,627" },
+    { name: "BSCB MarketCap", number: "TBA " },
+    { name: "Per Million BCBS", number: "TBA" },
+    { name: "Liquidity Pool", number: "TBA" },
     // { name: "Reward Pool", number: "$13,231" },
     // { name: "Reward Pool Limit", number: "$13,231" },
-    { name: "Total USDT Distributed", number: "$1,291,627" },
-    { name: "Total Buyback", number: "$1,291,627" },
-    { name: "Total Users", number: "$1.02" },
+    { name: "Total USDT Distributed", number: "TBA" },
+    { name: "Total Buyback", number: "TBA" },
+    { name: "Total Users", number: "TBA" },
   ];
 
   const socialMediaArr = [

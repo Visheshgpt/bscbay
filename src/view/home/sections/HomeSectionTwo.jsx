@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ScrollAnimation from "react-animate-on-scroll";
-import video from "../../../assets/Bitcoin.mp4";
+import video from "../../../assets/bscbayvideo.mp4";
 
 const HomeSectionTwo = () => {
   return (
