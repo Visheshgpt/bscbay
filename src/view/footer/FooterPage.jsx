@@ -25,25 +25,13 @@ const FooterPage = () => {
     { link: 'https://google.com' },
   ];
 
-  let address = window.sessionStorage.getItem('walletAddress');
-
-  if (address) {
-    console.log('yes');
-
+  
     link = (
-      <Link className='nav-link' to='/wallet'>
+      <Link className='nav-link' to='/incupad'>
         Launch app
       </Link>
     );
-  } else {
-    console.log('no');
-
-    link = (
-      <Link className='nav-link' to='/wallet/step-two'>
-        Launch app
-      </Link>
-    );
-  }
+  
 
   return (
     <footer className='bg-color-2 text-white py-5'>

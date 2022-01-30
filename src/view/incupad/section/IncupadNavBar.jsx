@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import LaunchStepTwo from "../../launch-steps/LaunchStepTwo";
-import LaunchStepThree from "../../launch-steps/LaunchStepThree";
+
 
 const IncupadNavBar = () => {
-  const [show2, setShow2] = useState(false);
-  const [show3, setShow3] = useState(false);
-
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-
-  const handleClose3 = () => setShow3(false);
-  const handleShow3 = () => (setShow3(true), setShow2(false));
+ 
 
   var link;
   var linkmobile;
@@ -26,11 +18,6 @@ const IncupadNavBar = () => {
     return null;
   }
 
-  let address = window.sessionStorage.getItem("walletAddress");
-
-  if (address) {
-  } 
-  else {
     link = (
       <Link
        to = "/"
@@ -50,12 +37,10 @@ const IncupadNavBar = () => {
         </small>
       </Link>
     );
-  }
+  
 
   return (
     <>
-      <LaunchStepTwo onClick={handleShow3} show={show2} onHide={handleClose2} />
-      <LaunchStepThree show={show3} onHide={handleClose3} />
       <section
         id="navbar"
         className={`position-fixed fixed-top bg-transparent  py-3`}

@@ -60,7 +60,7 @@ const IncupadFeaturedSection = () => {
           </Col>
           <OwlCarousel options={options}>
             {featuredPoolData.map((item, index) => (
-              <Link to={`/incupad/${item.title.replaceAll(" ", "-")}`}>
+              <Link to={`/incupad/${item.title.replaceAll(" ", "-")}`}> 
                 <div className="incupad-upcoming-pool-card">
                   <span className="card-tag">{item.tag}</span>
                   <img src={item.img} alt={item.title} />

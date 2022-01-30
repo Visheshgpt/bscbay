@@ -12,17 +12,6 @@ import BSCBAYabi from "../../../shared/BSCBAYabi.json";
 
 
 const HomeSectionOne = () => {
-  const [show, setShow] = useState(true);
-  const [show2, setShow2] = useState(false);
-  const [show3, setShow3] = useState(false);
-
-  const handleClose = () => setShow(false);
-
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => (setShow2(true), setShow(false));
-
-  const handleClose3 = () => setShow3(false);
-  const handleShow3 = () => (setShow3(true), setShow2(false));
 
   var link;
 
@@ -56,34 +45,6 @@ const HomeSectionOne = () => {
     { link: "https://google.com" },
     { link: "https://google.com" },
   ];
-
-  let address = window.sessionStorage.getItem("walletAddress");
-
-  // if (address) {
-  //   console.log("yes");
-
-  //   link = (
-  //     <Link to="/wallet" className="btn-1 button-1 btn-color w-100">
-  //       <div style={{ height: 45, width: 45 }}>
-  //         <Rocket />
-  //       </div>
-  //       {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
-  //       <span className="text-uppercase fw-bold me-3">Launch App</span>
-  //     </Link>
-  //   );
-  // } else {
-  //   console.log("no");
-
-  //   link = (
-  //     <Link onClick={handleShow2} className="btn-1 button-1 btn-color w-100">
-  //       <div style={{ height: 45, width: 45 }}>
-  //         <Rocket />
-  //       </div>
-  //       {/* <img height={61} src='./assets/rocket.png' alt='rocket' /> */}
-  //       <span className="text-uppercase fw-bold me-3"> Launch App</span>
-  //     </Link>
-  //   );
-  // }
 
   function web3apis() {
     // let address = window.sessionStorage.getItem("walletAddress");
@@ -259,9 +220,7 @@ const HomeSectionOne = () => {
 
   return (
     <section className="bg-color-homepage-section-one text-white">
-      {/* <LaunchStepOne onClick={handleShow2} show={show} onHide={handleClose} /> */}
-      {/* <LaunchStepTwo onClick={handleShow3} show={show2} onHide={handleClose2} /> */}
-      {/* <LaunchStepThree show={show3} onHide={handleClose3} /> */}
+  
       <ScrollAnimation
         animateIn="zoomInDown"
         animateOut="zoomOutUp"
