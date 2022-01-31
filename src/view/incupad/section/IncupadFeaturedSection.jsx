@@ -43,10 +43,10 @@ const IncupadFeaturedSection = () => {
 
   return (
     <Container as="section" fluid="xxl" className="incupad-upcoming-section">
-      <Container>
-        <Row>
+      <Container >
+        <Row className="incupad-card" >
           {upcomingData.map((item, index) => (
-            <Col xs={6} lg={6} key={index}>
+            <Col xs={6} lg={6} key={index} >
               <div className="incupad-upcoming-card">
                 <img src={item.img} alt={item.title} />
                 <span>{item.title}</span>

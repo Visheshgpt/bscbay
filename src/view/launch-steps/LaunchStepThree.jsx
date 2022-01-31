@@ -140,7 +140,7 @@ const LaunchStepThree = ({ show, onHide }) => {
       <section className='flex-fill bg-color-5 text-white d-flex align-items-center justify-content-center position-relative'>
         <div className='bg-secondary rounded-lg-2 px-md-5 px-1 py-4 w-100 text-center'>
           <div className='my-4 d-flex align-items-baseline justify-content-center'>
-            <img src='/assets/wallet.png' alt='...' />
+            <img src='../assets/wallet.png' alt='...' />
           </div>
           <div className='text-primary heading-secondary-2 fw-bold mb-2'>
             Choose Wallet
@@ -156,13 +156,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/e-icon-0.png'
+              src='../assets/e-icon-0.png'
               alt='...'
             />
             <span className='ms-3 text-white-2'>Meta Mask</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -174,13 +174,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/BinanceChainWallet.jpeg'
+              src='../assets/BinanceChainWallet.jpeg'
               alt='...'
             />
             <span className='ms-3 text-white-2'> Binance Chain Wallet</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -192,13 +192,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/trust.png'
+              src='../assets/trust.png'
               alt='...'
             />
             <span className='ms-3 text-white-2'>Trust Wallet</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -210,13 +210,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/safepal.jpg'
+              src='../assets/safepal.jpg'
               alt='...'
             />
             <span className='ms-3 text-white-2'>Safepal Wallet</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -228,13 +228,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/tokenpocket.png'
+              src='../assets/tokenpocket.png'
               alt='...'
             />
             <span className='ms-3 text-white-2'>TokenPocket Wallet</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -246,13 +246,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/MathWallet.jpeg'
+              src='../assets/MathWallet.jpeg'
               alt='...'
             />
             <span className='ms-3 text-white-2'>Math Wallet</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>
@@ -264,13 +264,13 @@ const LaunchStepThree = ({ show, onHide }) => {
             <img
               className='d-block'
               height={45}
-              src='./assets/wc.png'
+              src='../assets/wc.png'
               alt='...'
             />
             <span className='ms-3 text-white-2'>Wallet Connect</span>
             <img
               className='ms-auto shake-horizontal'
-              src='./assets/arrow-1.png'
+              src='../assets/arrow-1.png'
               alt='...'
             />
           </Link>

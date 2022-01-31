@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
-
+import video from "../../../assets/bscbayvideo.mp4";
+import WalletDetails from "../../walletDetails/WalletDetails";
 const IncupadPoolsInformation = ({ activePool }) => {
   return (
     <Container as="section" fluid="xxl" className="pool-information-section">
@@ -67,6 +68,22 @@ const IncupadPoolsInformation = ({ activePool }) => {
             {activePool.about.map((para, index) => (
               <p key={index}>{para}</p>
             ))}
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <div className="videoContainer">
+              <iframe
+                className="d-block rounded-lg-2 cursor-pointer incupad-pool-video responsive-iframe"
+                src="https://www.youtube.com/embed/iYM2zFP3Zn0"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </Col>
+          <Col xs={12}>
+            <WalletDetails/>
           </Col>
         </Row>
       </Container>

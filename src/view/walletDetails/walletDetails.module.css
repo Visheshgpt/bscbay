@@ -1,0 +1,77 @@
+.walletDetailBackground {
+  background: linear-gradient(to right, #f1b90c, #a57e07);
+  width: 400px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 1px 0 30px rgb(0 0 0 / 20%);
+  padding: 20px;
+}
+.upperLeftSide {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.upperLeftSide h6 {
+  font-size: 13px;
+  font-weight: 200;
+}
+.upperLeftSide h5,
+.upperLeftSide h4 {
+  color: #dbd0d0;
+  font-weight: 600;
+}
+.upperLeftSide span {
+  font-weight: 600;
+}
+.upperRightSide {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.upperRightSide h6 {
+  font-size: 13px;
+  font-weight: 200;
+}
+.htag {
+  color: #fff;
+  background-color: #fff;
+  border: 0;
+  opacity: 0.25;
+}
+.lowerLeftSide {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.lowerRightSide {
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.75);
+}
+.lowerRightSide h6,
+.lowerLeftSide h6,
+.progressSection h6 {
+  font-size: 13px;
+  font-weight: 200;
+}
+.progressSection {
+  display: flex;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.75);
+}
+.percentData {
+  font-size: 12px;
+  font-weight: 700;
+}
+.progressBarSection {
+  width: auto;
+  height: 12px;
+  border: 0;
+  opacity: 0.25;
+  border-radius: 8px !important;
+}
+.progressBarSection > div {
+  background: #ffd366;
+}

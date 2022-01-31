@@ -10,9 +10,7 @@ import CoinGecko from "coingecko-api";
 import Web3 from "web3";
 import BSCBAYabi from "../../../shared/BSCBAYabi.json";
 
-
 const HomeSectionOne = () => {
-
   var link;
 
   const [maxTransactionAmount, setmaxTransactionAmount] = useState(0);
@@ -220,7 +218,6 @@ const HomeSectionOne = () => {
 
   return (
     <section className="bg-color-homepage-section-one text-white">
-  
       <ScrollAnimation
         animateIn="zoomInDown"
         animateOut="zoomOutUp"
@@ -233,9 +230,11 @@ const HomeSectionOne = () => {
                 <div className="heading-primary mb-2">
                   The <span className="text-primary">BSC</span> Ecosystem
                 </div>
-                <div className="text-white-2 fw-light heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  Passive Income | Auto USDT Distribution | Incupad | DexPad |
-                  Token Minting | Lockers | Analytics
+                <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
+                  <span>Passive Income</span> |{" "}
+                  <span>Auto USDT Distribution</span> | <span>Incupad</span> |{" "}
+                  <span>DexPad</span> | <span>Token Minting</span> |{" "}
+                  <span>Lockers</span> | <span>Analytics</span>
                 </div>
                 <div className="d-flex flex-column flex-md-row mx-0">
                   <div className="pe-md-2">

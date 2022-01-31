@@ -1,6 +1,14 @@
-import { Container, Row, Col, ProgressBar } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Row, Col, ProgressBar, Button } from "react-bootstrap";
+import LaunchStepThree from "../../launch-steps/LaunchStepThree";
 
 const IncupadPoolsBanner = ({ activePool }) => {
+  const [showConnect, setShowConnect] = useState(false);
+
+  const onHideHandler = () => {
+    setShowConnect(false);
+  };
+
   return (
     <Container as="section" fluid="xxl" className="upcoming-pool-banner">
       <Container>
@@ -16,8 +24,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
               <img src="../assets/instagarm.svg" alt="instagram" />
             </div>
           </Col>
-          <Col lg={5} md={5} className="right-section">
-            <div>
+          <Col lg={5} md={5}>
+            <div className="right-section">
               <div className="upper-right-section">
                 <span>In progress</span>
                 <h3>1 BUSD = 20 CCASH </h3>
@@ -26,13 +34,26 @@ const IncupadPoolsBanner = ({ activePool }) => {
               <div className="lower-right-section">
                 <h5>Total Raise</h5>
                 <h4>0 BUSD</h4>
-                <ProgressBar now={30} className="progress-bar-section" />
+                <ProgressBar
+                  now={30}
+                  className="progress-bar-section"
+                  label={`${30}%`}
+                />
                 <span>Participant : 500/Limited</span>
               </div>
+            </div>
+            <div className="d-flex justify-content-center">
+              <Button
+                className="btn btn-warning connect-btn"
+                onClick={() => setShowConnect(true)}
+              >
+                Connect To Wallet
+              </Button>
             </div>
           </Col>
         </Row>
       </Container>
+      <LaunchStepThree show={showConnect} onHide={onHideHandler} />
     </Container>
   );
 };

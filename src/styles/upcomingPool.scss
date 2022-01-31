@@ -13,7 +13,7 @@
 .upcoming-pool-banner > div > div {
   align-items: center;
 }
-.right-section > div {
+.right-section {
   width: 100%;
   height: auto;
   background: #2f3548;
@@ -99,6 +99,9 @@
 .progress-bar-section > div {
   background: #ffd366;
   border-radius: 5px;
+  color: #2f3548;
+  font-size: 13px;
+  font-weight: 500;
 }
 .lower-right-section > span {
   font-size: 11px;
@@ -107,6 +110,32 @@
   margin-top: 10px;
   display: flex;
   justify-content: right;
+}
+.connect-btn {
+  color: #ffd366;
+  margin-top: 30px;
+  padding: 10px;
+}
+.incupad-pool-video {
+  width: 100%;
+  height: 500px;
+}
+.videoContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 @media (max-width: 575.98px) {
   .upcoming-pool-banner {
