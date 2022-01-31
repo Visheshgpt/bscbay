@@ -22,7 +22,7 @@ export const poolData = [
     instagramLink: "",
     websitelink: "",
     totalUsers: 100,
-    symbol: "CCASH",
+    symbol: "BSCB",
     decimals: 18,
     allocationType: "BUSD",
     totalSupply: 380000,

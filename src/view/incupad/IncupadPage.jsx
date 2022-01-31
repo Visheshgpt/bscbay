@@ -9,7 +9,7 @@ const IncupadPage = () => {
       <IncupadNavBar />
       <IncupadBannerSection />
       <IncupadFeaturedSection />
-      <IncupadPoolsSection />
+      {/* <IncupadPoolsSection /> */}
     </section>
   );
 };
