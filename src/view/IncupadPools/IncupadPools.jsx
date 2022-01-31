@@ -12,6 +12,8 @@ const IncupadPools = () => {
     (item) => item.title.replaceAll(" ", "-") === title
   );
 
+console.log("test");
+
   return activePool !== undefined ? (
     <section>
       <IncupadNavbar />

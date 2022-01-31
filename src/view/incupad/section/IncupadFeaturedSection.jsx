@@ -21,7 +21,7 @@ const IncupadFeaturedSection = () => {
 
   const options = {
     dots: false,
-    loop: true,
+    loop: false,
     autoplay: true,
     margin: 20,
     autoplaySpeed: 1000,
