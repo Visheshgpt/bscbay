@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { poolData } from "../../../data";
 import OwlCarousel from "react-owl-carousel2";
@@ -16,8 +16,7 @@ const IncupadFeaturedSection = () => {
 
   const featuredPoolData = poolData.filter((item) => item.featured === true);
 
-   console.log("featured pool", featuredPoolData);
-   
+  console.log("featured pool", featuredPoolData);
 
   const options = {
     dots: false,
@@ -43,10 +42,10 @@ const IncupadFeaturedSection = () => {
 
   return (
     <Container as="section" fluid="xxl" className="incupad-upcoming-section">
-      <Container >
-        <Row className="incupad-card" >
+      <Container>
+        <Row className="incupad-card">
           {upcomingData.map((item, index) => (
-            <Col xs={6} lg={6} key={index} >
+            <Col xs={6} lg={4} key={index} className="d-flex justify-content-center">
               <div className="incupad-upcoming-card">
                 <img src={item.img} alt={item.title} />
                 <span>{item.title}</span>
@@ -60,7 +59,7 @@ const IncupadFeaturedSection = () => {
           </Col>
           <OwlCarousel options={options}>
             {featuredPoolData.map((item, index) => (
-              <Link to={`/incupad/${item.title.replaceAll(" ", "-")}`}> 
+              <Link to={`/incupad/${item.title.replaceAll(" ", "-")}`}>
                 <div className="incupad-upcoming-pool-card">
                   <span className="card-tag">{item.tag}</span>
                   <img src={item.img} alt={item.title} />
@@ -72,6 +71,12 @@ const IncupadFeaturedSection = () => {
                   </div>
                   <span className="card-time-status">remaining</span>
                   <div className="incupad-upcoming-pool-card-lower">
+                    <ProgressBar
+                      now={30}
+                      className="progress-bar-sectionn"
+                      label={`${30}%`}
+                    />
+
                     <div className="min-allocation">
                       <span className="lower-card-name">Min Allocation</span>
                       <span>{item.minAllocation}</span>

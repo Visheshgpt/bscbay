@@ -27,6 +27,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
           <Col lg={5} md={5}>
             <div className="right-section">
               <div className="upper-right-section">
+                <div className="button-section">
+                <Button className="upper-right-btn-one">BNB</Button>
+                <Button className="upper-right-btn-two">Access Type : private</Button>
+                </div>
                 <span>In progress</span>
                 <h3>1 BUSD = 20 CCASH </h3>
                 <p>0 days | 0 hours | 41 minutes | 48 seconds</p>
@@ -44,7 +48,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
             </div>
             <div className="d-flex justify-content-center">
               <Button
-                className="btn btn-warning connect-btn"
+                className="btn connect-btn"
                 onClick={() => setShowConnect(true)}
               >
                 Connect To Wallet

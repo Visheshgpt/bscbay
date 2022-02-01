@@ -13,8 +13,8 @@ const HomeSectionFour = () => {
         />
         <Container className='py-5 z-10'>
           <ScrollAnimation
-            animateIn='bounceInLeft'
-            animateOut='bounceOutRight'
+            animateIn='fadeInLeft'
+            // animateOut='bounceOutRight'
             scrollableParentSelector='#scrolly-main'
           >
             <div>

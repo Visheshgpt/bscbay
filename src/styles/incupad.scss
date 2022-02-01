@@ -92,7 +92,10 @@
   top: -150px;
   width: 100%;
   left: 0;
-  margin:0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .incupad-upcoming-card {
   display: flex;
@@ -100,7 +103,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 200px;
+  height: 180px;
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   border-radius: 10px;
 }
@@ -182,11 +185,33 @@
   margin-bottom: 20px;
 }
 .incupad-upcoming-pool-card-lower {
+  position: relative;
   width: 100%;
   height: auto;
   background: #212534;
   border-radius: 0px 0px 10px 10px;
   padding: 30px;
+}
+
+.progress-bar-sectionn {
+  position: absolute;
+  top: -17.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  height: 35px;
+  background: #212534;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px #181818;
+}
+.progress-bar-sectionn > div {
+  background: #ffd366;
+  border-radius: 5px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
 }
 .lower-card-name {
   font-weight: 200;

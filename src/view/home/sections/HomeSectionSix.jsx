@@ -8,8 +8,7 @@ const HomeSectionSix = () => {
     <section className='py-5 bg-b-1 bg-color-4 text-white'>
       <Container>
         <ScrollAnimation
-          animateIn='zoomInDown'
-          animateOut='zoomOutDown'
+          animateIn='fadeInUp'
           scrollableParentSelector='#scrolly-main'
         >
           <div className='text-center'>

@@ -219,8 +219,8 @@ const HomeSectionOne = () => {
   return (
     <section className="bg-color-homepage-section-one text-white">
       <ScrollAnimation
-        animateIn="zoomInDown"
-        animateOut="zoomOutUp"
+       animateIn='fadeIn'
+       
         scrollableParentSelector="#scrolly-main"
       >
         <Container fluid="xxl" className="position-relative pt-5">

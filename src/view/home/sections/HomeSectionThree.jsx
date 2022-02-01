@@ -52,8 +52,8 @@ const HomeSectionThree = () => {
             className="px-0 col-xl-10 mx-auto scroll-settings"
           >
             <ScrollAnimation
-              animateIn="bounceInLeft"
-              animateOut="bounceOutRight"
+              animateIn="fadeInLeft"
+              // animateOut="bounceOutRight"
               scrollableParentSelector="#scrolly-main"
             >
               <div className="heading-secondary-3 text-center text-white-2 mb-5">

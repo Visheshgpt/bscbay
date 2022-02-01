@@ -76,7 +76,7 @@ const TieredSystemSection = () => {
         <Container className='py-5 z-10'>
           <ScrollAnimation
             animateIn='zoomInDown'
-            animateOut='zoomOutDown'
+            // animateOut='zoomOutDown'
             scrollableParentSelector='#scrolly-main'
           >
             <div className='text-center'>

@@ -11,8 +11,7 @@ const HomeSectionTwo = () => {
           <Row>
             <Col>
               <ScrollAnimation
-                animateIn="bounceInLeft"
-                animateOut="bounceOutLeft"
+                animateIn="fadeInLeft"
                 scrollableParentSelector="#scrolly-main"
               >
                 <div>
@@ -39,8 +38,7 @@ const HomeSectionTwo = () => {
               className="order-first order-lg-last mb-3 mb-lg-0"
             >
               <ScrollAnimation
-                animateIn="bounceInRight"
-                animateOut="bounceOutRight"
+                animateIn="fadeInRight"
                 scrollableParentSelector="#scrolly-main"
               >
                 <div>

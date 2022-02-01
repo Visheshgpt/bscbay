@@ -36,8 +36,8 @@ const FooterPage = () => {
   return (
     <footer className='bg-color-2 text-white py-5'>
       <ScrollAnimation
-        animateIn='zoomInUp'
-        animateOut='zoomOutDown'
+        animateIn='fadeInUp'
+        animateOut='fadeOutDown'
         scrollableParentSelector='#scrolly-main'
       >
         <Container fluid='xxl' className='px-0 position-relative'>

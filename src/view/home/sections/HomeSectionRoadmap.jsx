@@ -8,8 +8,7 @@ const HomeSectionRoadmap = () => {
       <Container>
         <div className="text-center">
           <ScrollAnimation
-            animateIn="zoomInDown"
-            animateOut="zoomOutDown"
+            animateIn="fadeInDown"
             scrollableParentSelector="#scrolly-main"
           >
             <div className="heading-primary-2">Roadmap</div>
@@ -26,8 +25,7 @@ const HomeSectionRoadmap = () => {
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1 d-none d-md-block">
                 <ScrollAnimation
-                  animateIn="bounceInLeft"
-                  animateOut="bounceOutLeft"
+                  animateIn="fadeInLeft"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-end heading-secondary-2 fw-600">
@@ -46,8 +44,7 @@ const HomeSectionRoadmap = () => {
               </div>
               <div className="col col-md-5 order-md-3">
                 <ScrollAnimation
-                  animateIn="bounceInRight"
-                  animateOut="bounceOutRight"
+                  animateIn="fadeInRight"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
@@ -74,8 +71,7 @@ const HomeSectionRoadmap = () => {
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1">
                 <ScrollAnimation
-                  animateIn="bounceInLeft"
-                  animateOut="bounceOutLeft"
+                  animateIn="fadeInLeft"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
@@ -115,8 +111,7 @@ const HomeSectionRoadmap = () => {
               </div>
               <div className="col col-md-5 order-md-3 d-none d-md-block">
                 <ScrollAnimation
-                  animateIn="bounceInRight"
-                  animateOut="bounceOutRight"
+                  animateIn="fadeInRight"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start heading-secondary-2 fw-600">
@@ -129,8 +124,7 @@ const HomeSectionRoadmap = () => {
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1 d-none d-md-block">
                 <ScrollAnimation
-                  animateIn="bounceInLeft"
-                  animateOut="bounceOutLeft"
+                  animateIn="fadeInLeft"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-end heading-secondary-2 fw-600">
@@ -149,8 +143,7 @@ const HomeSectionRoadmap = () => {
               </div>
               <div className="col col-md-5 order-md-3">
                 <ScrollAnimation
-                  animateIn="bounceInRight"
-                  animateOut="bounceOutRight"
+                  animateIn="fadeInRight"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
@@ -186,8 +179,7 @@ const HomeSectionRoadmap = () => {
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1">
                 <ScrollAnimation
-                  animateIn="bounceInLeft"
-                  animateOut="bounceOutLeft"
+                  animateIn="fadeInLeft"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
@@ -219,8 +211,7 @@ const HomeSectionRoadmap = () => {
               </div>
               <div className="col col-md-5 order-md-3 d-none d-md-block">
                 <ScrollAnimation
-                  animateIn="bounceInRight"
-                  animateOut="bounceOutRight"
+                  animateIn="fadeInRight"
                   scrollableParentSelector="#scrolly-main"
                 >
                   <div className="text-start heading-secondary-2 fw-600">

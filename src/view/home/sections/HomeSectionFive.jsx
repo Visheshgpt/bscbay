@@ -47,8 +47,8 @@ const HomeSectionFive = () => {
             </Col>
             <Col lg={6} className="py-4 py-lg-0">
               <ScrollAnimation
-                animateIn="bounceInRight"
-                animateOut="bounceOutRight"
+                animateIn="fadeInRight"
+                // animateOut="bounceOutRight"
                 scrollableParentSelector="#scrolly-main"
               >
                 <div>
@@ -130,8 +130,8 @@ const HomeSectionFive = () => {
             </Col>
           </Row>
           <ScrollAnimation
-            animateIn="bounceInLeft"
-            animateOut="bounceOutRight"
+            animateIn="fadeInLeft"
+            // animateOut="bounceOutRight"
             scrollableParentSelector="#scrolly-main"
           >
             {/* <div className='py-5 my-lg-5 text-center'>

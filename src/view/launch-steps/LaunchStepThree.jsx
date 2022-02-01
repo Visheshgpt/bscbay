@@ -1,18 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 
-import contractService from '../../shared/LMcontractservice';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import Web3Modal from 'web3modal';
-import Web3 from 'web3';
+import contractService from "../../shared/LMcontractservice";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3Modal from "web3modal";
+import Web3 from "web3";
 
 const LaunchStepThree = ({ show, onHide }) => {
   async function requestAuth() {
     try {
-      console.log('Metamask auth requested');
+      console.log("Metamask auth requested");
 
-      localStorage.setItem('loginType', 'metamask');
+      localStorage.setItem("loginType", "metamask");
 
       const web3 = await contractService.getWeb3Client();
       // const accounts = await web3.eth.getAccounts();
@@ -24,9 +24,9 @@ const LaunchStepThree = ({ show, onHide }) => {
 
   async function requestwalletconnect() {
     try {
-      console.log('walletconnect auth requested');
+      console.log("walletconnect auth requested");
 
-      localStorage.setItem('loginType', 'walletconnect');
+      localStorage.setItem("loginType", "walletconnect");
 
       const web3 = await contractService.getWeb3Client();
 
@@ -38,9 +38,9 @@ const LaunchStepThree = ({ show, onHide }) => {
 
   async function requestAuthBSC() {
     try {
-      console.log('Metamask auth requested');
+      console.log("Metamask auth requested");
 
-      localStorage.setItem('loginType', 'binance');
+      localStorage.setItem("loginType", "binance");
 
       const web3 = await contractService.getWeb3Client();
       // const accounts = await web3.eth.getAccounts();
@@ -123,155 +123,154 @@ const LaunchStepThree = ({ show, onHide }) => {
 
   async function userLogin(web3) {
     const accounts = await web3.eth.getAccounts();
-    const providerName = localStorage.getItem('loginType');
-    let loginType = localStorage.getItem('loginType');
+    const providerName = localStorage.getItem("loginType");
+    let loginType = localStorage.getItem("loginType");
 
     const networkId = await web3.eth.net.getId();
 
-    console.log('User login params => ', accounts, networkId);
-    window.sessionStorage.setItem('walletAddress', accounts[0]);
-    window.sessionStorage.setItem('walletName', providerName);
+    console.log("User login params => ", accounts, networkId);
+    window.sessionStorage.setItem("walletAddress", accounts[0]);
+    window.sessionStorage.setItem("walletName", providerName);
 
-    window.location.assign('/wallet');
+    window.location.assign("/wallet");
   }
 
   return (
-    <Modal centered show={show} onHide={onHide} contentClassName='border-0'>
-      <section className='flex-fill bg-color-5 text-white d-flex align-items-center justify-content-center position-relative'>
-        <div className='bg-secondary rounded-lg-2 px-md-5 px-1 py-4 w-100 text-center'>
-          <div className='my-4 d-flex align-items-baseline justify-content-center'>
-            <img src='../assets/wallet.png' alt='...' />
+    <Modal centered show={show} onHide={onHide} contentClassName="border-0">
+      <section className="flex-fill bg-color-5 text-white d-flex align-items-center justify-content-center position-relative">
+        <div className="bg-secondary rounded-lg-2 px-md-5 px-1 py-4 w-100 text-center">
+          <div className="d-flex align-items-baseline justify-content-center ">
+            <img
+              src="../assets/wallet.png"
+              alt="..."
+              className="launch-step-three-upper-image"
+            />
           </div>
-          <div className='text-primary heading-secondary-2 fw-bold mb-2'>
+          <div className="text-primary heading-secondary-4 fw-bold mb-1">
             Choose Wallet
           </div>
-          <p className='mb-3 fw-light text-white-2'>
+          <p className="mb-2 fw-light text-white-2" style={{fontSize:"15px"}}>
             Safely connect to your existing blockchain wallet and directly stake
             tokens in them
           </p>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/e-icon-0.png'
-              alt='...'
+              className="d-block launch-step-three-image"
+              src="../assets/e-icon-0.png"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>Meta Mask</span>
+            <span className="ms-3 text-white-2">Meta Mask</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestAuthBSC}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/BinanceChainWallet.jpeg'
-              alt='...'
+              className="d-block launch-step-three-image"
+              src="../assets/BinanceChainWallet.jpeg"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'> Binance Chain Wallet</span>
+            <span className="ms-3 text-white-2"> Binance Chain Wallet</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/trust.png'
-              alt='...'
+              className="d-block launch-step-three-image"
+              src="../assets/trust.png"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>Trust Wallet</span>
+            <span className="ms-3 text-white-2">Trust Wallet</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/safepal.jpg'
-              alt='...'
+              className="d-block launch-step-three-image"
+              src="../assets/safepal.jpg"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>Safepal Wallet</span>
+            <span className="ms-3 text-white-2">Safepal Wallet</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/tokenpocket.png'
-              alt='...'
+              className="d-block   launch-step-three-image"
+              src="../assets/tokenpocket.png"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>TokenPocket Wallet</span>
+            <span className="ms-3 text-white-2">TokenPocket Wallet</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/MathWallet.jpeg'
-              alt='...'
+              className="d-block launch-step-three-image"
+              // height={45}
+              src="../assets/MathWallet.jpeg"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>Math Wallet</span>
+            <span className="ms-3 text-white-2">Math Wallet</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
           <br></br>
           <Link
             onClick={requestwalletconnect}
-            className='border border-primary rounded-lg-2 p-3 d-flex align-items-center'
+            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
             <img
-              className='d-block'
-              height={45}
-              src='../assets/wc.png'
-              alt='...'
+              className="d-block launch-step-three-image"
+              // height={45}
+              src="../assets/wc.png"
+              alt="..."
             />
-            <span className='ms-3 text-white-2'>Wallet Connect</span>
+            <span className="ms-3 text-white-2">Wallet Connect</span>
             <img
-              className='ms-auto shake-horizontal'
-              src='../assets/arrow-1.png'
-              alt='...'
+              className="ms-auto shake-horizontal  launch-step-three-image"
+              src="../assets/arrow-1.png"
+              alt="..."
             />
           </Link>
         </div>

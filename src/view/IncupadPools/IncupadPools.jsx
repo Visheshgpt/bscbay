@@ -5,6 +5,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import IncupadPoolsBanner from "./section/IncupadPoolsBanner";
 import IncupadPoolsInformation from "./section/IncupadPoolsInformation";
 import { poolData } from "../../data";
+import WalletDetails from "../walletDetails/WalletDetails";
 
 const IncupadPools = () => {
   const { title } = useParams();
@@ -12,13 +13,14 @@ const IncupadPools = () => {
     (item) => item.title.replaceAll(" ", "-") === title
   );
 
-console.log("test");
+  console.log("test");
 
   return activePool !== undefined ? (
     <section>
       <IncupadNavbar />
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
+      {/* <WalletDetails status="ongoing" /> */}
     </section>
   ) : (
     <PageNotFound />
