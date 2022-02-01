@@ -6,7 +6,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 const HomeSectionThree = () => {
   const dataArr = [
     {
-      title: `Auto USDT Distribution`,
+      title: `Auto $USDT Distribution`,
       text: `Earn USDT through rewards; the powerful investment tokenomics of BSCBay allow investors to automatically get rewards in USDT on their investments every 4 hours.`,
     },
     {
