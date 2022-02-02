@@ -22,9 +22,9 @@ const HomeSectionSix = () => {
               content and make changes to the font.
             </p> */}
             <div className='px-0 col-10 col-md-4 col-lg-3 col-xxl-2 mx-auto'>
-              <Link className='btn-1 button-1 btn-color w-100'>
+              <Link to="/incupad" className='btn-1 button-1 btn-color w-100'>
                 <span className='ms-2 text-uppercase fw-bold text-small'>
-                  GET START NOW
+                  START NOW
                 </span>
                 <img
                   className='ms-2'

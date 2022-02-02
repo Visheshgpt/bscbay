@@ -19,10 +19,9 @@ const FooterPage = () => {
   }
 
   const socialMediaArr = [
-    { link: 'https://google.com' },
-    { link: 'https://google.com' },
-    { link: 'https://google.com' },
-    { link: 'https://google.com' },
+    { link: 'https://twitter.com/bscbayofficial' },
+    { link: 'https://t.me/bscbayofficial' },
+    { link: 'https://www.reddit.com/r/BSCBay/' },
   ];
 
   
@@ -52,25 +51,27 @@ const FooterPage = () => {
             {/* === */}
             <div className='mb-3'>
               <ul className='nav justify-content-center'>
-                <li className='nav-item mx-md-3'>
-                  <Link className='nav-link' to='/'>
-                    Home
-                  </Link>
-                </li>
+               
                 <li className='nav-item mx-md-3'>
                   <Link to='/information' className='nav-link'>
                     Services
                   </Link>
                 </li>
                 <li className='nav-item mx-md-3'>
-                  <a href='#investment' className='nav-link'>
-                    Investment
+                  <a href='https://docs.bscbay.com/' target="_blank" className='nav-link'>
+                    Documentation
                   </a>
                 </li>
                 <li className='nav-item mx-md-3'>
-                  <Link className='nav-link'>About us</Link>
+                  <a href='/incupad' className='nav-link'>
+                    Incupad
+                  </a>
                 </li>
-                <li className='nav-item mx-md-3'>{link}</li>
+
+                {/* <li className='nav-item mx-md-3'>
+                  <Link className='nav-link'>About us</Link>
+                </li> */}
+                {/* <li className='nav-item mx-md-3'>{link}</li> */}
               </ul>
             </div>
             {/* === */}
@@ -80,7 +81,7 @@ const FooterPage = () => {
             </p> */}
             {/* === */}
             <Row className='justify-content-center mb-3' style={{ gap: 0 }}>
-              {socialMediaArr.map((data, i) => (
+             <>  {socialMediaArr.map((data, i) => (
                 <a
                   style={{ width: 30 }}
                   key={i}
@@ -92,11 +93,12 @@ const FooterPage = () => {
                   <img
                     className='d-block icon-hover'
                     height={25}
-                    src={`/assets/icons/sm-icon-${i}.png`}
+                    src={`/assets/icons/b-icon-${i}.svg`}
                     alt='..'
                   />
                 </a>
               ))}
+              </>
             </Row>
             {/* === */}
             <div
@@ -104,14 +106,14 @@ const FooterPage = () => {
               style={{ gap: 18 }}
             >
               <div>
-                <Link className='btn py-2 btn-outline-primary'>Contact us</Link>
+                <Link className='btn py-2 btn-outline-primary'>Contact Us</Link>
               </div>
 
-              <div>
+              {/* <div>
                 <Link className='btn py-2 btn-outline-primary'>
                   Subscribe for newsletter
                 </Link>
-              </div>
+              </div> */}
             </div>
             {/* === */}
             <p className='small text-white text-opacity-75'>

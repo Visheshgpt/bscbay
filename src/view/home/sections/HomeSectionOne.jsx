@@ -39,9 +39,9 @@ const HomeSectionOne = () => {
   const socialMediaArr = [
     { link: "https://twitter.com/bscbayofficial" },
     { link: "https://t.me/bscbayofficial" },
-    { link: "https://google.com" },
-    { link: "https://google.com" },
-    { link: "https://google.com" },
+    // { link: "https://google.com" },
+    // { link: "https://google.com" },
+    { link: "https://www.reddit.com/r/BSCBay/" },
   ];
 
   function web3apis() {

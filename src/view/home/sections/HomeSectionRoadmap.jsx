@@ -86,11 +86,11 @@ const HomeSectionRoadmap = () => {
                     </div>
                     <ul className="ps-3 text-small text-white-3">
                       <li className="my-1">Smart Contract Deployment</li>
-                      <li className="my-1">Platform Launch</li>
+                      <li className="my-1"><b style={{ color: '#D1B000' }}> Platform Launch</b></li>
                       <li className="my-1">External KYC and Audit</li>
                       <li className="my-1">Partnerships Development</li>
                       <li className="my-1">
-                        Marketing Campaigns - (Influencers, Youtubers, Twitter,
+                      <b style={{ color: '#D1B000' }}> Marketing Campaigns </b> (Influencers, Youtubers, Twitter,
                         Poocoin, Telegram, targeted ads, etc)
                       </li>
                       <li className="my-1">Daily Giveaways and Lotteries</li>
@@ -158,15 +158,16 @@ const HomeSectionRoadmap = () => {
                     </div>
                     <ul className="ps-3 text-small text-white-3">
                       <li className="my-1">Listing on CMC and CG</li>
-                      <li className="my-1">Incupad and Dexpad launch</li>
+                      <li className="my-1"><b style={{ color: '#D1B000' }}>Incupad launch</b></li>
                       <li className="my-1">IDO for external projects</li>
+                      <li className="my-1"><b style={{ color: '#D1B000' }}> Dexpad launch</b></li>
                       <li className="my-1">Exclusive NFT mints</li>
                       <li className="my-1">CEX Listings</li>
                       <li className="my-1">
                         Liquidity and Token lockers deployment
                       </li>
                       <li className="my-1">Token minters deployment</li>
-                      <li className="my-1">
+                      <li className="my-1"> 
                         Accelerated Marketing (tie ups with Big influencers (1
                         mil+ following)
                       </li>
@@ -193,8 +194,9 @@ const HomeSectionRoadmap = () => {
                       Growth Mode
                     </div>
                     <ul className="ps-3 text-small text-white-3">
-                      <li className="my-1">Charts and Analytics Launch</li>
+                    <li className="my-1"><b style={{ color: '#D1B000' }}>Play to Earn games</b></li>
                       <li className="my-1">BSC Swap launch</li>
+                      <li className="my-1"><b style={{ color: '#D1B000' }}>Charts and Analytics Launch</b></li>
                       <li className="my-1">Governance Functionality Pools</li>
                     </ul>
                   </div>

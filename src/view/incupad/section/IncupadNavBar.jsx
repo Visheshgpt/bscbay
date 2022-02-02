@@ -14,7 +14,7 @@ const IncupadNavBar = () => {
   const hideHeader =
     location.pathname === "/reports" || location.pathname === "/wallet";
 
-  if (hideHeader) {
+  if (hideHeader) { 
     return null;
   }
 
@@ -55,6 +55,13 @@ const IncupadNavBar = () => {
             </div>
             <div className="ms-auto d-none d-md-flex align-items-center">
               <ul className="nav">
+
+              <li className="nav-item pe-lg-4">
+                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
+                    Documentation
+                </a>  
+              </li>
+
                 <li className="nav-item pe-lg-4">
                   <Link to="/information" className="nav-link">
                     Services
@@ -88,6 +95,13 @@ const IncupadNavBar = () => {
       <section className="bg-secondary py-2 fixed-bottom d-block d-md-none">
         <div>
           <ul className="nav justify-content-around">
+
+          <li className="nav-item pe-lg-4">
+                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
+                  <small>Documentation</small>  
+                </a>  
+            </li>
+
             <li className="nav-item pe-lg-4">
               <Link className="nav-link">
                 <small>Services</small>

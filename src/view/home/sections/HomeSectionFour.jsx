@@ -95,7 +95,7 @@ const HomeSectionFour = () => {
                           alt='..'
                         />
                         <span>
-                          <b>3%</b> goes to liquidity
+                          <b>2%</b> goes to liquidity
                         </span>
                       </li>
                       <li className='py-1'>

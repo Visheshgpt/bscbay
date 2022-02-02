@@ -21,13 +21,18 @@ const HomeSectionTwo = () => {
                   </div>
                   <p className="px-0 col-lg-9">
                     <p></p>
-                    BSCBay is a blockchain innovation hub with a combination of
-                    Incupad and Decentralized Launchpad complimenting Solution
-                    Partner Tools coupled with Passive Income Tokenomics.<p></p>
-                    BSCBAY is the next step in the evolution of DEFI. It
-                    combines the previous successful instances and features of
-                    DEFI and integrates them to create a new paradigm; a
-                    revolution within an evolution.
+                    Earn <b style={{ color: '#D1B000' }}> 4% USDT reflections rewards </b>  every 4 hours automatically into your wallets.<p></p>
+
+                    Unlike volume-based unsustainable projects, we ensure  <b style={{ color: '#D1B000' }}>  Sustainable Passive Income </b>
+                    streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool. <p></p>
+
+                    BSCBay is a blockchain  <b style={{ color: '#D1B000' }}> innovation hub </b> with a combination of Incupad and Decentralized Launchpad. 
+                    It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm;
+                    a revolution within an evolution. <p></p>
+
+                    We will be launching services including  <b style={{ color: '#D1B000' }}> LaunchPad, DexPad, </b> Lockers, Token Minters, KYC, NFTs and Play to Earn 
+                    games to ensure the investor pools never die.
+
                   </p>
                 </div>
               </ScrollAnimation>
