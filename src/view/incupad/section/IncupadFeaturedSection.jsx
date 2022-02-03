@@ -152,7 +152,7 @@ const IncupadFeaturedSection = () => {
           {upcomingData.map((item, index) => (
             <Col xs={6} lg={4} key={index} className="d-flex justify-content-center">
               <div className="incupad-upcoming-card">
-            <a href="https://5ng7uwyv6t3.typeform.com/to/KXjrjX7h?typeform-source=www.google.com" target="_blank" > <img src={item.img} alt={item.title} /> </a>
+            <a href="https://my.forms.app/crptoprojects/bscbaylaunch" target="_blank" > <img src={item.img} alt={item.title} /> </a>
                 <span>{item.title}</span>
               </div>
             </Col>

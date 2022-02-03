@@ -308,7 +308,7 @@ const HomeSectionOne = () => {
                     <a
                       style={{ height: 60 }}
                       className="btn btn-outline-warning px-4 w-100"
-                      href="https://5ng7uwyv6t3.typeform.com/to/QWPopRjV"
+                      href="https://my.forms.app/crptoprojects/bscbaywhitelist"
                       target="_blank"
                     >
                       <span className="text-uppercase">WhiteList Open</span>
