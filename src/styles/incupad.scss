@@ -97,6 +97,10 @@
   align-items: center;
   justify-content: center;
 }
+.incupad-upcoming-card :hover {
+  background: yellow;
+  color: #000;
+}
 .incupad-upcoming-card {
   display: flex;
   flex-direction: column;

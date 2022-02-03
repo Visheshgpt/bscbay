@@ -23,7 +23,7 @@ const HomeSectionOne = () => {
   const [totalreinvested, settotalreinvested] = useState(0);
   const [rewardhardCap, setrewardhardCap] = useState(0);
   const [totalreflectionFees, settotalreflectionFees] = useState(0);
-
+  const [activeColor, setActiveColor] = useState(1);
   const boxArr = [
     // { name: "Max Tx Amount", number: "8210" },
     { name: "BSCB MarketCap", number: "TBA " },
@@ -200,6 +200,21 @@ const HomeSectionOne = () => {
   useEffect(() => {
     web3apis();
   });
+  // useEffect(() => {
+  //   const colorFunction = () => {
+  //     const colorData = Array.from(
+  //       document.getElementsByClassName("colorChange")
+  //     );
+
+  //     colorData.map((item, index) => {
+  //       setInterval(() => {
+  //         setActiveColor(index + 1);
+  //       }, 6000);
+  //       item.style.color = "blue";
+  //     });
+  //   };
+  //   colorFunction();
+  // });
 
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
@@ -219,8 +234,7 @@ const HomeSectionOne = () => {
   return (
     <section className="bg-color-homepage-section-one text-white">
       <ScrollAnimation
-       animateIn='fadeIn'
-       
+        animateIn="fadeIn"
         scrollableParentSelector="#scrolly-main"
       >
         <Container fluid="xxl" className="position-relative pt-5">
@@ -231,10 +245,13 @@ const HomeSectionOne = () => {
                   The <span className="text-primary">BSC</span> Ecosystem
                 </div>
                 <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  <span>Passive Income</span> |{" "}
-                  <span>Auto USDT Distribution</span> | <span>Incupad</span> |{" "}
-                  <span>DexPad</span> | <span>Token Minting</span> |{" "}
-                  <span>Lockers</span> | <span>Analytics</span>
+                  <span className="colorChange">Passive Income</span> |{" "}
+                  <span className="colorChange">Auto USDT Distribution</span> |{" "}
+                  <span className="colorChange">Incupad</span> |{" "}
+                  <span className="colorChange">DexPad</span> |{" "}
+                  <span className="colorChange">Token Minting</span> |{" "}
+                  <span className="colorChange">Lockers</span> |{" "}
+                  <span className="colorChange">Analytics</span>
                 </div>
                 <div className="d-flex flex-column flex-md-row mx-0">
                   <div className="pe-md-2">
@@ -257,18 +274,20 @@ const HomeSectionOne = () => {
                     </Link> */}
                   </div>
                   <div className="ps-md-2 mt-3 mt-md-0">
-                    <Link
+                    <a
                       style={{ height: 60 }}
                       className="btn btn-outline-warning px-4 w-100"
+                      href="https://5ng7uwyv6t3.typeform.com/to/QWPopRjV"
+                      target="_blank"
                     >
-                      <span className="text-uppercase">Buy Now</span>
+                      <span className="text-uppercase">WhiteList Open</span>
                       <i
                         className="ms-3 shake-horizontal"
                         style={{ height: 30, width: 18 }}
                       >
                         <Arrow />
                       </i>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -279,17 +298,14 @@ const HomeSectionOne = () => {
               xl={7}
               className="order-first order-lg-last mb-4 mb-lg-0"
             >
-              <div className="d-md-none z-10 w-100" style={{ height: "100%" }}>
+              {/* <div className="d-md-none z-10 w-100" style={{ height: "100%" }}>
                 <img
                   className="h-100 w-100 d-block"
                   src="./assets/bg-0.gif"
-                  alt=".."
-                />
-              </div>
-              <div
-                className="d-none d-md-block z-10 w-100"
-                style={{ height: "100%" }}
-              >
+                  alt=".."d-none d-md-block
+                /> */}
+              {/* </div> */}
+              <div className=" z-10 w-100" style={{ height: "100%" }}>
                 <img
                   className="h-100 w-100 d-block"
                   src="./assets/home-desktop.svg"
@@ -297,7 +313,7 @@ const HomeSectionOne = () => {
                 />
               </div>
               {/* Start */}
-              <div
+              {/* <div
                 className="position-absolute end-0 bottom-0 d-none d-xl-block"
                 style={{ width: "40%" }}
               >
@@ -308,7 +324,7 @@ const HomeSectionOne = () => {
                 style={{ width: "30%" }}
               >
                 <Ellipse2 />
-              </div>
+              </div> */}
               {/* End */}
             </Col>
           </Row>
@@ -317,6 +333,10 @@ const HomeSectionOne = () => {
               className="justify-content-center text-center z-10 pb-5"
               style={{ gap: 15 }}
             >
+              <h1 className="banner-section-heading">
+                A Launchpad that <span className="banner-span">Rewards</span>{" "}
+                You !
+              </h1>
               {boxArr.map((data, i) => (
                 <div
                   key={i}

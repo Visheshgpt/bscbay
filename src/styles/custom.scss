@@ -445,15 +445,49 @@ a {
 .bg-transparent.customActive {
   background-color: #000 !important;
 }
-.launch-step-three-upper-image{
-  width:40px;
-  height:40px;
+.launch-step-three-upper-image {
+  width: 40px;
+  height: 40px;
 }
-.launch-step-three-image{
-  width:20px;
-  height:20px;
+.launch-step-three-image {
+  width: 20px;
+  height: 20px;
+}
+.banner-section-heading {
+  padding-bottom: 20px;
+  font-size: 27px;
+}
+.banner-section-heading span {
+  color: #f1c342;
 }
 
+@media only screen and (max-width: 600px) {
+  .banner-span {
+    display: block !important;
+  }
+}
+.customButtonOne {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  // width: 160px;
+
+  font-size: 14px;
+}
+.customButtonOne:hover {
+  background-color: #ffd366;
+}
+.customButtonOne > svg {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+.colorChange {
+  color: red;
+}
 // .custom-animation span {
 //   color: red;
 //   animation: AnimationName 2s ease ;

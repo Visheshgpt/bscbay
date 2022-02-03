@@ -7,6 +7,7 @@ import HomeSectionFour from "./sections/HomeSectionFour";
 import HomeSectionFive from "./sections/HomeSectionFive";
 import HomeSectionRoadmap from "./sections/HomeSectionRoadmap";
 import HomeSectionSix from "./sections/HomeSectionSix";
+import HomeSectionSeven from "./sections/HomeSectionSeven";
 import TieredSystemSection from "./sections/TieredSystemSection";
 import { Navbar } from "../navbar/Navbar.jsx";
 
@@ -18,8 +19,9 @@ const HomePage = () => {
       <HomeSectionOne />
       <HomeSectionTwo />
       <HomeSectionThree />
-      {/* <TieredSystemSection /> */} 
+      {/* <TieredSystemSection /> */}
       <HomeSectionFour />
+      <HomeSectionSeven />
       <HomeSectionFive />
       <HomeSectionRoadmap />
       <HomeSectionSix />
