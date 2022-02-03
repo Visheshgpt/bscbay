@@ -12,8 +12,8 @@ const HomeSectionSeven = () => {
           animateIn="fadeInUp"
           scrollableParentSelector="#scrolly-main"
         >
-          <Row className="d-flex align-items-center justify-content-between">
-            <Col xs={4}>
+          <Row className="d-flex  flex-column flex-lg-row align-items-center justify-content-between">
+            <Col xs={12} lg={4}>
               <Button
                 variant="outline-warning"
                 href="#"
@@ -22,8 +22,8 @@ const HomeSectionSeven = () => {
                 KYC CERTIFICATE <Arrow />
               </Button>
             </Col>
-            <Col xs={4}>
-              <div className="text-center">
+            <Col xs={12} lg={4}>
+              <div className="text-center m-3">
                 <img
                   src="./assets/shield_logo.png"
                   width="120px"
@@ -32,7 +32,7 @@ const HomeSectionSeven = () => {
                 ></img>
               </div>
             </Col>
-            <Col xs={4}>
+            <Col xs={12} lg={4}>
               <Button
                 variant="outline-warning"
                 href="#"

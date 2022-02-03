@@ -76,7 +76,7 @@ const HomeSectionThree = () => {
                     />
                     <div className="my-2 heading-secondary-3">{data.title}</div>
                     <div className="scroll-box flex-fill">
-                      <p className="d-block mb-0">{data.text}</p>
+                      <p className="d-block mb-0 homeSection-three-para">{data.text}</p>
                     </div>
                     <div className="text-center pt-3 mt-auto w-100">
                       <img

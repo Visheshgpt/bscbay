@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
-import video from "../../../assets/bscbayvideo.mp4";
-
+// import video from "../../../assets/bscbayvideo.mp4";
+import video from "../../../assets/project-section.mp4";
 const IncupadPoolsInformation = ({ activePool }) => {
   return (
     <Container as="section" fluid="xxl" className="pool-information-section">
@@ -11,7 +11,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
           </Col>
           <Col xs={12} lg={6}>
             <div className="pool-information-card">
-              <div> 
+              <div>
                 <span>TOKEN DISTRIBUTION</span>
                 <span>{activePool.tokenDistribution}</span>
               </div>
@@ -59,7 +59,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
           </Col>
         </Row>
 
-        {/* About The project Section */} 
+        {/* About The project Section */}
         <Row className="mt-5 pt-5">
           <Col xs={12} lg={6} className="about-section">
             <h2>About the Project</h2>
@@ -69,20 +69,19 @@ const IncupadPoolsInformation = ({ activePool }) => {
             ))}
           </Col>
 
-          <Col xs={6} lg={6}>
+          <Col xs={6} lg={6} className="project-video-section">
             <h2>Project Clip</h2>
-
-            <div className="videoContainer mt-2">
+            <div className="videoContainer mt-2 ">
               <iframe
-                className="d-block rounded-lg-2 cursor-pointer incupad-pool-video responsive-iframe"
-                src="https://www.youtube.com/watch?v=Mn4e4w8h6n8"
+                className="incupad-pool-video responsive-iframe rounded-lg-2"
+                src={video}
                 title="YouTube video player"
+                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               ></iframe>
-            
             </div>
-
           </Col>
+
           <Col xs={12}></Col>
         </Row>
       </Container>
