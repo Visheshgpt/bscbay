@@ -63,7 +63,11 @@ export const Navbar = () => {
                     Documentation
                 </a>  
               </li>
-
+              <li className="nav-item pe-lg-4">
+                  <Link to="/dashboard" className="nav-link">
+                    Dashboard
+                  </Link>
+                  </li>
                 <li className="nav-item pe-lg-4">
                   <Link to="/information" className="nav-link">
                     Services
@@ -107,6 +111,11 @@ export const Navbar = () => {
             <li className="nav-item pe-lg-4">
               <Link to="/information" className="nav-link">
                 <small>Services</small>
+              </Link>
+            </li>
+            <li className="nav-item pe-lg-4">
+              <Link to="/dashboard" className="nav-link">
+                <small>Dashboard</small>
               </Link>
             </li>
             {/* <li className="nav-item pe-lg-4">

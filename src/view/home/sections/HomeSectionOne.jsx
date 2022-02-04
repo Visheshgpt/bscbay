@@ -227,7 +227,7 @@ const HomeSectionOne = () => {
         setTimeout(() => {
           colorDataWord.map((item) => (item.style.color = "#fff"));
           item.style.color = "#f1c342";
-        }, 1000 * index);
+        }, 500 * index);
       };
 
       colorDataWord.map((item, index) => {
@@ -236,7 +236,7 @@ const HomeSectionOne = () => {
     };
 
     colorWordFunction();
-    setInterval(() => colorWordFunction(), 1000 * colorDataWord.length);
+    setInterval(() => colorWordFunction(), 500 * colorDataWord.length);
   });
 
 
