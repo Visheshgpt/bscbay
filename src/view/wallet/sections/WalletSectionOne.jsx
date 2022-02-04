@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Dropdown } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+// import { Dropdown } from 'react-bootstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
 import Web3 from 'web3';
 import BSCBAYabi from '../../../shared/BSCBAYabi.json';
@@ -338,7 +338,7 @@ const WalletSectionOne = () => {
   //     text: 'User Claimed BNB',
   //   },
 
-  const poolArr = [{}, {}, {}, {}];
+  // const poolArr = [{}, {}, {}, {}];
 
   return (
     <div>

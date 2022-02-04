@@ -217,6 +217,30 @@ const HomeSectionOne = () => {
     colorFunction();
     setInterval(() => colorFunction(), 1500 * colorData.length);
   });
+  useEffect(() => {
+    const colorDataWord = Array.from(
+      document.getElementsByClassName("changeWord")
+    );
+
+    const colorWordFunction = () => {
+      const changeColorFnn = (item, index) => {
+        setTimeout(() => {
+          colorDataWord.map((item) => (item.style.color = "#fff"));
+          item.style.color = "#f1c342";
+        }, 1000 * index);
+      };
+
+      colorDataWord.map((item, index) => {
+        changeColorFnn(item, index);
+      });
+    };
+
+    colorWordFunction();
+    setInterval(() => colorWordFunction(), 1000 * colorDataWord.length);
+  });
+
+
+
 
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
@@ -244,17 +268,21 @@ const HomeSectionOne = () => {
             <Col md={12} lg={6} xl={5} className="mb-5 mb-xl-0">
               <div className="z-10 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start">
                 <div className="heading-primary mb-2">
-                  The <span className="text-primary">BSC</span> Ecosystem
+                  {/* The <span className="text-primary">BSC</span> Ecosystem */}
+                  First Decentralized{" "}
+                  <span className="text-primary"> Launchpad</span> That{" "}
+                  <div className="text-primary">
+                    <span className="changeWord">R</span>
+                    <span className="changeWord">e</span>
+                    <span className="changeWord">w</span>
+                    <span className="changeWord">a</span>
+                    <span className="changeWord">r</span>
+                    <span className="changeWord">d</span>
+                    <span className="changeWord">s</span>
+                  </div>
+                  You
                 </div>
-                <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  <span className="colorChange">Passive Income</span> |{" "}
-                  <span className="colorChange">Auto USDT Distribution</span> |{" "}
-                  <span className="colorChange">Incupad</span> |{" "}
-                  <span className="colorChange">DexPad</span> |{" "}
-                  <span className="colorChange">Token Minting</span> |{" "}
-                  <span className="colorChange">Lockers</span> |{" "}
-                  <span className="colorChange">Analytics</span>
-                </div>
+
                 <div className="d-flex flex-column flex-md-row mx-0">
                   <div className="pe-md-2">
                     {link}
@@ -273,7 +301,9 @@ const HomeSectionOne = () => {
                         {' '}
                         Launch App
                       </span>
-                    </Link> */}
+                    </Link> 
+                  
+                    */}
                   </div>
                   <div className="ps-md-2 mt-3 mt-md-0">
                     <a
@@ -335,10 +365,19 @@ const HomeSectionOne = () => {
               className="justify-content-center text-center z-10 pb-5"
               style={{ gap: 15 }}
             >
-              <h1 className="banner-section-heading">
-                A Launchpad that <span className="banner-span">Rewards</span>{" "}
-                You !
+              <h1 className="banner-mid-section">
+                {/* A Launchpad that <span className="banner-span">Rewards</span>{" "}
+                You ! */}
+                The <span className="text-primary">BSC</span> Ecosystem
               </h1>
+              <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
+                <span className="colorChange">Auto USDT Distribution</span> |{" "}
+                <span className="colorChange">Incupad</span> |{" "}
+                <span className="colorChange">DexPad</span> |{" "}
+                <span className="colorChange">Token Minting</span> |{" "}
+                <span className="colorChange">Lockers</span> |{" "}
+                <span className="colorChange">Analytics</span>
+              </div>
               {boxArr.map((data, i) => (
                 <div
                   key={i}

@@ -5,7 +5,7 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 import IncupadPoolsBanner from "./section/IncupadPoolsBanner";
 import IncupadPoolsInformation from "./section/IncupadPoolsInformation";
 import { poolData } from "../../data";
-import WalletDetails from "../walletDetails/WalletDetails";
+// import WalletDetails from "../walletDetails/WalletDetails";
 
 const IncupadPools = () => {
   const { title } = useParams();
@@ -18,6 +18,7 @@ const IncupadPools = () => {
       <IncupadNavbar />
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
+
       {/* <WalletDetails status="ongoing" /> */}
     </section>
   ) : (
