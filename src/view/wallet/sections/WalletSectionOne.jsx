@@ -106,7 +106,7 @@ const WalletSectionOne = () => {
     let address = window.sessionStorage.getItem('walletAddress');
 
     // let address = "0x008EB585B4C55fCDd030cfB0eE12cF233c4E88e8";
-
+  if(!address) return;
     const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 

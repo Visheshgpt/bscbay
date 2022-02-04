@@ -49,12 +49,12 @@ export const Sidebar = () => {
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
   var address = window.sessionStorage.getItem("walletAddress");
-
+  
   function web3apis() {
     // let address = window.sessionStorage.getItem("walletAddress");
 
     address = window.sessionStorage.getItem("walletAddress");
-
+     if(!address) return;
     const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
@@ -226,7 +226,7 @@ export const Sidebar = () => {
                   <div className="text-light">Your Address</div>
                   <div className="text-truncate">
                     {" "}
-                    {address.slice(0, 20) + ". . ."}{" "}
+                    {address?(address.slice(0, 20) + ". . ."):""}{" "}
                   </div>
                 </p>
               </li>
