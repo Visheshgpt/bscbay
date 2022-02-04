@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-
 const IncupadNavBar = () => {
- 
-
   var link;
   var linkmobile;
 
@@ -14,30 +11,23 @@ const IncupadNavBar = () => {
   const hideHeader =
     location.pathname === "/reports" || location.pathname === "/wallet";
 
-  if (hideHeader) { 
+  if (hideHeader) {
     return null;
   }
 
-    link = (
-      <Link
-       to = "/"
-        className="btn btn-outline-primary text-white fw-500"
-      >
-        Home
-      </Link>
-    );
-    linkmobile = (
-      <Link
-        to = "/"
-        className="btn btn-sm btn-outline-primary text-white fw-500"
-      >
-        <small>
-          {" "}
-          <small>Home</small>{" "}
-        </small>
-      </Link>
-    );
-  
+  link = (
+    <Link to="/" className="btn btn-outline-primary text-white fw-500">
+      Home
+    </Link>
+  );
+  linkmobile = (
+    <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
+      <small>
+        {" "}
+        <small>Home</small>{" "}
+      </small>
+    </Link>
+  );
 
   return (
     <>
@@ -55,13 +45,20 @@ const IncupadNavBar = () => {
             </div>
             <div className="ms-auto d-none d-md-flex align-items-center">
               <ul className="nav">
-
-              <li className="nav-item pe-lg-4">
-                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
+                <li className="nav-item pe-lg-4">
+                  <a
+                    href="https://docs.bscbay.com/"
+                    target="_blank"
+                    className="nav-link"
+                  >
                     Documentation
-                </a>  
-              </li>
-
+                  </a>
+                </li>
+                <li className="nav-item pe-lg-4">
+                  <Link to="/dashboard" className="nav-link">
+                    Dashboard
+                  </Link>
+                </li>
                 <li className="nav-item pe-lg-4">
                   <Link to="/information" className="nav-link">
                     Services
@@ -95,11 +92,19 @@ const IncupadNavBar = () => {
       <section className="bg-secondary py-2 fixed-bottom d-block d-md-none">
         <div>
           <ul className="nav justify-content-around">
-
-          <li className="nav-item pe-lg-4">
-                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
-                  <small>Documentation</small>  
-                </a>  
+            <li className="nav-item pe-lg-4">
+              <a
+                href="https://docs.bscbay.com/"
+                target="_blank"
+                className="nav-link"
+              >
+                <small>Documentation</small>
+              </a>
+            </li>
+            <li className="nav-item pe-lg-4">
+              <Link to="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
             </li>
 
             <li className="nav-item pe-lg-4">

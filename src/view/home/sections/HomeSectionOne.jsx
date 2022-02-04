@@ -239,9 +239,6 @@ const HomeSectionOne = () => {
     setInterval(() => colorWordFunction(), 500 * colorDataWord.length);
   });
 
-
-
-
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
 
@@ -264,10 +261,10 @@ const HomeSectionOne = () => {
         scrollableParentSelector="#scrolly-main"
       >
         <Container fluid="xxl" className="position-relative pt-5">
-          <Row className="justify-content-xl-between align-items-center">
+          <Row className="justify-content-xl-between">
             <Col md={12} lg={6} xl={5} className="mb-5 mb-xl-0">
               <div className="z-10 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start">
-                <div className="heading-primary mb-2">
+                <div className="heading-primary mb-2 custom-heading-primary">
                   {/* The <span className="text-primary">BSC</span> Ecosystem */}
                   First Decentralized{" "}
                   <span className="text-primary"> Launchpad</span> That{" "}

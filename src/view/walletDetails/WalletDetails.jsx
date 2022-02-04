@@ -4,10 +4,9 @@ import { Col, Container, ProgressBar, Row } from "react-bootstrap";
 const WalletDetails = ({ status }) => {
   return (
     <>
-      <div className="ongoing-section-backDrop"></div>
-      <Container as="section" className="ongoing-section">
-        <Row className="d-flex flex-column justify-content-center">
-          <Col xs={12} lg={5} className="ongoing-upper-card">
+      <Container fluid="xxl" as="section" className="ongoing-section">
+        <Row className="justify-content-center">
+          <Col xs={4} className="ongoing-upper-card">
             <div className="d-flex flex-row justify-content-between">
               <div className="d-flex flex-row align-items-center  justify-content-center ongoing-upper-card-left">
                 <span>BNB</span>
@@ -82,7 +81,9 @@ const WalletDetails = ({ status }) => {
               </div>
             </div>
           </Col>
-          <Col xs={12} lg={5} className="ongoing-lower-card mt-5">
+        </Row>
+        <Row className="justify-content-center">
+          <Col xs={4} className="ongoing-lower-card mt-5">
             {status !== "closed" ? (
               <div className="d-flex flex-column justify-content-between">
                 <div className="d-flex flex-column text-white ">

@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-
 export const Navbar = () => {
-  
-
   var link;
   var linkmobile;
 
@@ -18,31 +15,25 @@ export const Navbar = () => {
     return null;
   }
 
-
-    link = (
-      <Link
-        to = "/incupad"
-        className="btn btn-outline-primary text-white fw-500"
-      >
-        IncuPad
-      </Link>
-    );
-    linkmobile = (
-      <Link
-        to = "/incupad"
-        className="btn btn-sm btn-outline-primary text-white fw-500"
-      >
-        <small>
-          {" "}
-          <small>Incupad</small>{" "}
-        </small>
-      </Link>
-    );
-  
+  link = (
+    <Link to="/incupad" className="btn btn-outline-primary text-white fw-500">
+      IncuPad
+    </Link>
+  );
+  linkmobile = (
+    <Link
+      to="/incupad"
+      className="btn btn-sm btn-outline-primary text-white fw-500"
+    >
+      <small>
+        {" "}
+        <small>Incupad</small>{" "}
+      </small>
+    </Link>
+  );
 
   return (
     <>
-    
       <section
         id="navbar"
         className="position-sticky fixed-top bg-secondary py-3"
@@ -57,17 +48,20 @@ export const Navbar = () => {
             </div>
             <div className="ms-auto d-none d-md-flex align-items-center">
               <ul className="nav">
-              
-              <li className="nav-item pe-lg-4">
-                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
+                <li className="nav-item pe-lg-4">
+                  <a
+                    href="https://docs.bscbay.com/"
+                    target="_blank"
+                    className="nav-link"
+                  >
                     Documentation
-                </a>  
-              </li>
-              <li className="nav-item pe-lg-4">
+                  </a>
+                </li>
+                <li className="nav-item pe-lg-4">
                   <Link to="/dashboard" className="nav-link">
                     Dashboard
                   </Link>
-                  </li>
+                </li>
                 <li className="nav-item pe-lg-4">
                   <Link to="/information" className="nav-link">
                     Services
@@ -101,11 +95,14 @@ export const Navbar = () => {
       <section className="bg-secondary py-2 fixed-bottom d-block d-md-none">
         <div>
           <ul className="nav justify-content-around">
-           
             <li className="nav-item pe-lg-4">
-                <a href="https://docs.bscbay.com/" target="_blank"  className="nav-link">
-                  <small>Documentation</small>  
-                </a>  
+              <a
+                href="https://docs.bscbay.com/"
+                target="_blank"
+                className="nav-link"
+              >
+                <small>Documentation</small>
+              </a>
             </li>
 
             <li className="nav-item pe-lg-4">
