@@ -23,7 +23,7 @@ const HomeSectionOne = () => {
   const [totalreinvested, settotalreinvested] = useState(0);
   const [rewardhardCap, setrewardhardCap] = useState(0);
   const [totalreflectionFees, settotalreflectionFees] = useState(0);
-  const [activeColor, setActiveColor] = useState(0);
+
   const boxArr = [
     // { name: "Max Tx Amount", number: "8210" },
     { name: "BSCB MarketCap", number: "TBA " },
@@ -197,21 +197,27 @@ const HomeSectionOne = () => {
     //   setonebnb(Number(1/pricep));
   }
 
-  // useEffect(() => {
-  //   web3apis();
-  // });
+  useEffect(() => {
+    const colorData = Array.from(
+      document.getElementsByClassName("colorChange")
+    );
 
-  // useEffect(() => {
-  //   colorFunction();
-  // });
+    const colorFunction = () => {
+      const changeColorFn = (item, index) => {
+        setTimeout(() => {
+          colorData.map((item) => (item.style.color = "#fff"));
+          item.style.color = "#f1c342";
+        }, 5000 * index);
+      };
 
-  // const colorFunction = () => {
-  //   // if (activeColor === 7) setActiveColor = -1;
-  //   // setTimeout(() => {
-  //   //   setActiveColor(parseInt(activeColor) + 1);
-  //   //   colorFunction();
-  //   // }, 3000);
-  // };
+      colorData.map((item, index) => {
+        changeColorFn(item, index);
+      });
+    };
+
+    colorFunction();
+    setInterval(() => colorFunction(), 5000 * colorData.length);
+  });
 
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
@@ -242,47 +248,13 @@ const HomeSectionOne = () => {
                   The <span className="text-primary">BSC</span> Ecosystem
                 </div>
                 <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
-                  <span
-                    className={activeColor === 0 ? "colorRed" : "colorChange"}
-                  >
-                    Passive Income
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 1 ? "colorRed" : "colorChange"}
-                  >
-                    Auto USDT Distribution
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 2 ? "colorRed" : "colorChange"}
-                  >
-                    Incupad
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 3 ? "colorRed" : "colorChange"}
-                  >
-                    DexPad
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 4 ? "colorRed" : "colorChange"}
-                  >
-                    Token Minting
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 5 ? "colorRed" : "colorChange"}
-                  >
-                    Lockers
-                  </span>{" "}
-                  |{" "}
-                  <span
-                    className={activeColor === 6 ? "colorRed" : "colorChange"}
-                  >
-                    Analytics
-                  </span>
+                  <span className="colorChange">Passive Income</span> |{" "}
+                  <span className="colorChange">Auto USDT Distribution</span> |{" "}
+                  <span className="colorChange">Incupad</span> |{" "}
+                  <span className="colorChange">DexPad</span> |{" "}
+                  <span className="colorChange">Token Minting</span> |{" "}
+                  <span className="colorChange">Lockers</span> |{" "}
+                  <span className="colorChange">Analytics</span>
                 </div>
                 <div className="d-flex flex-column flex-md-row mx-0">
                   <div className="pe-md-2">
