@@ -24,22 +24,22 @@ const IncupadFeaturedSection = () => {
   const [EndTime, setEndTime] = useState(0);
   const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
+ 
 
   
-  function web3apis() {
-
-  
+  function web3apis() { 
+   
     const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x1E79670d35DB772E3473684cA5cbfa4DD407DC8c';
+    var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
 
     // get BNB balance of ICO
     web3.eth
-      .getBalance('0x1E79670d35DB772E3473684cA5cbfa4DD407DC8c')
+      .getBalance('0xB9D447A70f3B7C0115040760832B960cb29f25b4')
       .then((balance) => {
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();

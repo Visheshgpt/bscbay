@@ -25,7 +25,7 @@ export const poolData = [
     symbol: "BSCB",
     decimals: 18,
     allocationType: "BNB",
-    totalSupply: "TBA",
+    totalSupply: "1000000000",
     accessType: "Public",
     about: ["Earn 4% USDT reflections rewards every 4 hours automatically into your wallets.", 
            "Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool",
@@ -33,7 +33,7 @@ export const poolData = [
            "BSCBay is a blockchain innovation hub with a combination of Incupad and Decentralized Launchpad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution."
           ],
     inputTokenaddress: "TBA",
-    outputTokenaddress: "TBA",
+    outputTokenaddress: "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
     videolink: "../../..//assets/bscbayvideo.mp4"
   },
  
