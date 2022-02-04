@@ -44,7 +44,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
     .tokenPrice()
     .call()
     .then((amount) => {
-      // console.log(amount);
       var tokens = web3.utils.toBN(amount).toString();
       settokenPrice(Number(web3.utils.fromWei(tokens, 'ether')));
     });

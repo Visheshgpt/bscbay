@@ -10,43 +10,35 @@ import Web3 from "web3";
 let selectedAccount;
 
 const LaunchStepThree = ({ show, onHide }) => {
-  
   async function requestAuth() {
     try {
-      
-    let provider = window.ethereum;
+      let provider = window.ethereum;
 
-	if (typeof provider !== 'undefined') {
-		provider
-			.request({ method: 'eth_requestAccounts' })
-			.then((accounts) => {
-				selectedAccount = accounts[0];
-				console.log(`Selected account is ${selectedAccount}`);
-			})
-			.catch((err) => {
-				console.log(err);
-				return;
-			});
+      if (typeof provider !== "undefined") {
+        provider
+          .request({ method: "eth_requestAccounts" })
+          .then((accounts) => {
+            selectedAccount = accounts[0];
+          })
+          .catch((err) => {
+            return;
+          });
 
-		window.ethereum.on('accountsChanged', function (accounts) {
-			selectedAccount = accounts[0];
-			console.log(`Selected account changed to ${selectedAccount}`);
-		});
-    
-    window.ethereum.on('chainChanged', (chainId) => {
-      // Handle the new chain.
-      // Correctly handling chain changes can be complicated.
-      // We recommend reloading the page unless you have good reason not to.
-      window.location.reload();  
-    }); 
+        window.ethereum.on("accountsChanged", function (accounts) {
+          selectedAccount = accounts[0];
+        });
 
-	}
-   
-  const web3 = new Web3(provider);
+        window.ethereum.on("chainChanged", (chainId) => {
+          // Handle the new chain.
+          // Correctly handling chain changes can be complicated.
+          // We recommend reloading the page unless you have good reason not to.
+          window.location.reload();
+        });
+      }
 
-	const networkId = await web3.eth.net.getId();
-  console.log("netid", networkId);
+      const web3 = new Web3(provider);
 
+      const networkId = await web3.eth.net.getId();
 
       // console.log("Metamask auth requested");
 
@@ -55,42 +47,30 @@ const LaunchStepThree = ({ show, onHide }) => {
       // const web3 = await contractService.getWeb3Client();
       // // const accounts = await web3.eth.getAccounts();
       // await this.userLogin(web3);
-
-
-    } catch (e) {
-      console.error(e);
-    }
-  } 
+    } catch (e) {}
+  }
 
   async function requestwalletconnect() {
     try {
-      console.log("walletconnect auth requested");
-
       localStorage.setItem("loginType", "walletconnect");
 
       const web3 = await contractService.getWeb3Client();
 
       // await this.userLogin(web3);
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }
 
   async function requestAuthBSC() {
     try {
-      console.log("Metamask auth requested");
-
       localStorage.setItem("loginType", "binance");
 
       const web3 = await contractService.getWeb3Client();
       // const accounts = await web3.eth.getAccounts();
-      // console.log(accounts[0]);
+
       await this.userLogin(web3);
       // await this.userLogin(web3);
       // window.location.reload();
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }
 
   //  async function requestwalletconnect()
@@ -168,7 +148,6 @@ const LaunchStepThree = ({ show, onHide }) => {
 
     const networkId = await web3.eth.net.getId();
 
-    console.log("User login params => ", accounts, networkId);
     window.sessionStorage.setItem("walletAddress", accounts[0]);
     window.sessionStorage.setItem("walletName", providerName);
 
@@ -189,7 +168,10 @@ const LaunchStepThree = ({ show, onHide }) => {
           <div className="text-primary heading-secondary-4 fw-bold mb-1">
             Choose Wallet
           </div>
-          <p className="mb-2 fw-light text-white-2" style={{fontSize:"15px"}}>
+          <p
+            className="mb-2 fw-light text-white-2"
+            style={{ fontSize: "15px" }}
+          >
             Safely connect to your existing blockchain wallet and directly stake
             tokens in them
           </p>

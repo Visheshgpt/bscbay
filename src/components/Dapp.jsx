@@ -20,9 +20,6 @@ const Dapp = () => {
     comp2 = false;
   }
 
-  console.log("1", comp1);
-  console.log("2", comp2);
-
   return (
     <div>
       {comp1 && (

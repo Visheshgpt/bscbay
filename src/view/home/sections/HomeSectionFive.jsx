@@ -11,14 +11,6 @@ const HomeSectionFive = () => {
     { number: "5", title: "Industry Awards" },
   ];
 
-  const imagesArr = [
-    { key: 0 },
-    { key: 1 },
-    { key: 2 },
-    { key: 3 },
-    { key: 4 },
-  ];
-
   return (
     <section className="bg-color-homepage-section-five text-white py-5">
       <Container fluid="xxl" className="px-0 position-relative">
@@ -152,7 +144,7 @@ const HomeSectionFive = () => {
               </Row>
             </div> */}
           </ScrollAnimation>
-          <div className="border-top border-bottom border-secondary py-4">
+          {/* <div className="border-top border-bottom border-secondary py-4">
             <ScrollAnimation
               animateIn="bounceInLeft"
               animateOut="bounceOutRight"
@@ -173,7 +165,7 @@ const HomeSectionFive = () => {
                 ))}
               </Row>
             </ScrollAnimation>
-          </div>
+          </div> */}
         </Container>
       </Container>
     </section>

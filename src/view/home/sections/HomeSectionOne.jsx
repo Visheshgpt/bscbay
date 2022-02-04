@@ -89,7 +89,6 @@ const HomeSectionOne = () => {
       .totalClaimedBNB()
       .call()
       .then((amount) => {
-        ////console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
         setdistributedBnb(Number(web3.utils.fromWei(tokens, "ether")));
       });
@@ -207,7 +206,7 @@ const HomeSectionOne = () => {
         setTimeout(() => {
           colorData.map((item) => (item.style.color = "#fff"));
           item.style.color = "#f1c342";
-        }, 5000 * index);
+        }, 1500 * index);
       };
 
       colorData.map((item, index) => {
@@ -216,7 +215,7 @@ const HomeSectionOne = () => {
     };
 
     colorFunction();
-    setInterval(() => colorFunction(), 5000 * colorData.length);
+    setInterval(() => colorFunction(), 1500 * colorData.length);
   });
 
   var priceperToken =

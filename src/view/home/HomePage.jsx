@@ -9,6 +9,7 @@ import HomeSectionRoadmap from "./sections/HomeSectionRoadmap";
 import HomeSectionSix from "./sections/HomeSectionSix";
 import HomeSectionSeven from "./sections/HomeSectionSeven";
 import TieredSystemSection from "./sections/TieredSystemSection";
+import HomeSectionPartnership from "./sections/HomeSectionPartnership";
 import { Navbar } from "../navbar/Navbar.jsx";
 
 const HomePage = () => {
@@ -23,6 +24,7 @@ const HomePage = () => {
       <HomeSectionFour />
       <HomeSectionSeven />
       <HomeSectionFive />
+      <HomeSectionPartnership />
       <HomeSectionRoadmap />
       <HomeSectionSix />
     </section>
