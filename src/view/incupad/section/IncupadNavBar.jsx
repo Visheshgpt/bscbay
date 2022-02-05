@@ -7,7 +7,7 @@ const IncupadNavBar = () => {
   var linkmobile;
 
   const location = useLocation();
-
+ 
   const hideHeader =
     location.pathname === "/reports" || location.pathname === "/wallet";
 
@@ -33,9 +33,12 @@ const IncupadNavBar = () => {
     <>
       <section
         id="navbar"
-        className={`position-fixed fixed-top bg-transparent  py-3`}
+        className={`position-fixed fixed-top bg-transparent  py-3 incupad__navbar`}
       >
-        <Container fluid="xxl" className="position-relative">
+        <Container
+          fluid="xxl"
+          className={`position-relative navbar__background`}
+        >
           <div className="bg-testing-1" />
           <div className="d-flex align-items-center z-10">
             <div className="d-flex align-items-end justify-content-center mb-2">

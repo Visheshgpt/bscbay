@@ -11,3 +11,14 @@
 @import "upcomingPool";
 @import "walletDetail";
 @import "loaderSection";
+
+
+.item-social-main {
+    display: flex;
+    flex-direction: row;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}

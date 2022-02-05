@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // import video from "../../../assets/bscbayvideo.mp4";
-import video from "../../../assets/project-section.mp4";
+import video from "../../../assets/video/video.mp4";
 
 import Web3 from "web3";
 import BSCBAYICOabi from "../../../shared/BSCBAYICO.json";

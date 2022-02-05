@@ -1,7 +1,7 @@
-import React from 'react';
-import { Container, Row } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import ScrollAnimation from 'react-animate-on-scroll';
+import React from "react";
+import { Container, Row } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const FooterPage = () => {
   var link;
@@ -9,61 +9,62 @@ const FooterPage = () => {
   const location = useLocation();
 
   const hideFooter =
-    location.pathname === '/wallet/step-one' ||
-    location.pathname === '/wallet/step-two' ||
-    location.pathname === '/wallet/step-three' ||
-    location.pathname === '/wallet';
+    location.pathname === "/wallet/step-one" ||
+    location.pathname === "/wallet/step-two" ||
+    location.pathname === "/wallet/step-three" ||
+    location.pathname === "/wallet";
 
   if (hideFooter) {
     return null;
   }
 
   const socialMediaArr = [
-    { link: 'https://twitter.com/bscbayofficial' },
-    { link: 'https://t.me/bscbayofficial' },
-    { link: 'https://www.reddit.com/r/BSCBay/' },
+    { link: "https://twitter.com/bscbayofficial" },
+    { link: "https://t.me/bscbayofficial" },
+    { link: "https://www.reddit.com/r/BSCBay/" },
   ];
 
-  
-    link = (
-      <Link className='nav-link' to='/incupad'>
-        Launch app
-      </Link>
-    );
-  
+  link = (
+    <Link className="nav-link" to="/incupad">
+      Launch app
+    </Link>
+  );
 
   return (
-    <footer className='bg-color-2 text-white py-5'>
+    <footer className="bg-color-2 text-white py-5">
       <ScrollAnimation
-        animateIn='fadeInUp'
-        animateOut='fadeOutDown'
-        scrollableParentSelector='#scrolly-main'
+        animateIn="fadeInUp"
+        animateOut="fadeOutDown"
+        scrollableParentSelector="#scrolly-main"
       >
-        <Container fluid='xxl' className='px-0 position-relative'>
-          <img className='position-absolute' src='/assets/bg-7.png' alt='..' />
-          <Container className='text-center z-10'>
+        <Container fluid="xxl" className="px-0 position-relative">
+          <img className="position-absolute" src="/assets/bg-7.png" alt=".." />
+          <Container className="text-center z-10">
             {/* === */}
-            <div className='mb-3'>
-              <Link to='/'>
-                <img src='/assets/logo.png' alt='Logo' />
+            <div className="mb-3">
+              <Link to="/">
+                <img src="/assets/logo.png" alt="Logo" />
               </Link>
             </div>
             {/* === */}
-            <div className='mb-3'>
-              <ul className='nav justify-content-center'>
-               
-                <li className='nav-item mx-md-3'>
-                  <Link to='/information' className='nav-link'>
+            <div className="mb-3">
+              <ul className="nav justify-content-center">
+                <li className="nav-item mx-md-3">
+                  <Link to="/information" className="nav-link">
                     Services
                   </Link>
                 </li>
-                <li className='nav-item mx-md-3'>
-                  <a href='https://docs.bscbay.com/' target="_blank" className='nav-link'>
+                <li className="nav-item mx-md-3">
+                  <a
+                    href="https://docs.bscbay.com/"
+                    target="_blank"
+                    className="nav-link"
+                  >
                     Documentation
                   </a>
                 </li>
-                <li className='nav-item mx-md-3'>
-                  <a href='/incupad' className='nav-link'>
+                <li className="nav-item mx-md-3">
+                  <a href="/incupad" className="nav-link">
                     Incupad
                   </a>
                 </li>
@@ -80,33 +81,37 @@ const FooterPage = () => {
               Francisco, CA 94158
             </p> */}
             {/* === */}
-            <Row className='justify-content-center mb-3' style={{ gap: 0 }}>
-             <>  {socialMediaArr.map((data, i) => (
-                <a
-                  style={{ width: 30 }}
-                  key={i}
-                  href={data.link}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='mx-2'
-                >
-                  <img
-                    className='d-block icon-hover'
-                    height={25}
-                    src={`/assets/icons/b-icon-${i}.svg`}
-                    alt='..'
-                  />
-                </a>
-              ))}
+            <div
+              className="justify-content-center mb-3 item-social-main"
+              style={{ gap: 0 }}
+            >
+              <>
+                {" "}
+                {socialMediaArr.map((data, i) => (
+                  <a
+                    key={i}
+                    href={data.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mx-3"
+                  >
+                    <img
+                      className="d-block icon-hover"
+                      height={25}
+                      src={`/assets/icons/b-icon-${i}.svg`}
+                      alt=".."
+                    />
+                  </a>
+                ))}
               </>
-            </Row>
+            </div>
             {/* === */}
             <div
-              className='d-flex flex-column flex-md-row justify-content-center mb-3'
+              className="d-flex flex-column flex-md-row justify-content-center mb-3"
               style={{ gap: 18 }}
             >
               <div>
-                <Link className='btn py-2 btn-outline-primary'>Contact Us</Link>
+                <Link className="btn py-2 btn-outline-primary">Contact Us</Link>
               </div>
 
               {/* <div>
@@ -116,8 +121,8 @@ const FooterPage = () => {
               </div> */}
             </div>
             {/* === */}
-            <p className='small text-white text-opacity-75'>
-              <div className='fw-bold'>Copyright @ bscbay.com</div>
+            <p className="small text-white text-opacity-75">
+              <div className="fw-bold">Copyright @ bscbay.com</div>
               Disclaimer: The information provided shall not in any way
               constitute a recommendation as to whether you should invest in any
               product discussed. BSC-Bay accepts no liability for any loss

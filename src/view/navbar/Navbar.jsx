@@ -36,7 +36,7 @@ export const Navbar = () => {
     <>
       <section
         id="navbar"
-        className="position-sticky fixed-top bg-secondary py-3"
+        className="position-sticky fixed-top bg-secondary py-3 navbar__section"
       >
         <Container fluid="xxl" className="position-relative">
           <div className="bg-testing-1" />

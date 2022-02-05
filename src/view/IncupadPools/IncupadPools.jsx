@@ -23,7 +23,7 @@ const IncupadPools = () => {
       <IncupadNavbar /> 
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
-       { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> }
+       {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
    
     </section>
   ) : (

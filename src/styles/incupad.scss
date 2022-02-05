@@ -337,3 +337,54 @@
     padding: 10px;
   }
 }
+
+// Active Button
+.incupadeButton__active {
+  padding: 10px;
+  line-height: 1.54;
+  border: none;
+  background-color: #ffd366;
+  font-size: 16px;
+  font-weight: 400;
+  margin: auto;
+  margin-top: 10px;
+  color: black;
+}
+
+.invest__wrapper {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 10px;
+
+  .incupadButton_invest {
+    padding: 10px;
+    line-height: 1.54;
+    border: none;
+    background-color: #ffd366;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+  }
+
+  input {
+    margin-right: 10px;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+    border: 1px solid #ffd366;
+    padding: 0px 20px;
+  }
+}
+
+// incupad navbar css
+
+.incupad__navbar {
+  padding-top: 0 !important;
+  .navbar__background {
+    padding-top: 1rem;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+}

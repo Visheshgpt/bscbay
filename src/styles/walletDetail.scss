@@ -8,16 +8,19 @@
   border-radius: 10px;
   padding: 20px;
   height: auto;
+  @media (max-width: 525px) {
+    margin-top: 10px;
+  }
 }
 
 .ongoing-upper-card-left span {
   width: 100%;
   min-height: 20px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   margin-left: 10px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   background-color: #ffd366;
   color: #212534;
 }
@@ -25,17 +28,18 @@
 .ongoing-upper-card-right {
   width: 200px;
   min-height: 20px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   margin-left: 10px;
   text-align: center;
+  font-size: 14px;
   background-color: #111110;
   color: #fff;
 }
 
 .ongoing-lower-card {
   // width: 100%;
-  padding: 50px;
+  padding: 20px !important;
 }
 
 .ongoing-lower-card > span {
