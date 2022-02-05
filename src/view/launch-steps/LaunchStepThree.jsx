@@ -12,42 +12,42 @@ let selectedAccount;
 const LaunchStepThree = ({ show, onHide }) => {
   async function requestAuth() {
     try {
-      let provider = window.ethereum;
+      // let provider = window.ethereum;
 
-      if (typeof provider !== "undefined") {
-        provider
-          .request({ method: "eth_requestAccounts" })
-          .then((accounts) => {
-            selectedAccount = accounts[0];
-          })
-          .catch((err) => {
-            return;
-          });
+      // if (typeof provider !== "undefined") {
+      //   provider
+      //     .request({ method: "eth_requestAccounts" })
+      //     .then((accounts) => {
+      //       selectedAccount = accounts[0];
+      //     })
+      //     .catch((err) => {
+      //       return;
+      //     });
 
-        window.ethereum.on("accountsChanged", function (accounts) {
-          selectedAccount = accounts[0];
-        });
+      //   window.ethereum.on("accountsChanged", function (accounts) {
+      //     selectedAccount = accounts[0];
+      //   });
+ 
+      //   window.ethereum.on("chainChanged", (chainId) => {
+      //     // Handle the new chain.
+      //     // Correctly handling chain changes can be complicated.
+      //     // We recommend reloading the page unless you have good reason not to.
+      //     window.location.reload();
+      //   });
+      // }
 
-        window.ethereum.on("chainChanged", (chainId) => {
-          // Handle the new chain.
-          // Correctly handling chain changes can be complicated.
-          // We recommend reloading the page unless you have good reason not to.
-          window.location.reload();
-        });
-      }
+      // const web3 = new Web3(provider);
 
-      const web3 = new Web3(provider);
+      // const networkId = await web3.eth.net.getId();
 
-      const networkId = await web3.eth.net.getId();
+      console.log("Metamask auth requested");
+      localStorage.setItem("loginType", "metamask");
+      const web3 = await contractService.getWeb3Client();
+      // const accounts = await web3.eth.getAccounts();
+      await userLogin(web3);
 
-      // console.log("Metamask auth requested");
-
-      // localStorage.setItem("loginType", "metamask");
-
-      // const web3 = await contractService.getWeb3Client();
-      // // const accounts = await web3.eth.getAccounts();
-      // await this.userLogin(web3);
-    } catch (e) {}
+    } 
+    catch (e) {}
   }
 
   async function requestwalletconnect() {
@@ -56,9 +56,10 @@ const LaunchStepThree = ({ show, onHide }) => {
 
       const web3 = await contractService.getWeb3Client();
 
-      // await this.userLogin(web3);
+      await userLogin(web3);
     } catch (e) {}
   }
+
 
   async function requestAuthBSC() {
     try {
@@ -67,7 +68,7 @@ const LaunchStepThree = ({ show, onHide }) => {
       const web3 = await contractService.getWeb3Client();
       // const accounts = await web3.eth.getAccounts();
 
-      await this.userLogin(web3);
+      await userLogin(web3);
       // await this.userLogin(web3);
       // window.location.reload();
     } catch (e) {}
@@ -151,7 +152,8 @@ const LaunchStepThree = ({ show, onHide }) => {
     window.sessionStorage.setItem("walletAddress", accounts[0]);
     window.sessionStorage.setItem("walletName", providerName);
 
-    window.location.assign("/wallet");
+    // window.location.assign("/wallet");
+    window.location.reload();
   }
 
   return (

@@ -517,3 +517,27 @@ homeSection-four-para {
     font-size: 38px;
   }
 }
+
+
+// Upwork Edits
+.sample-data {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  
+  @media (max-width: 1266px) {
+    
+  }
+
+  @media (max-width: 575px) {
+   
+  }
+
+  .block__wrapper{
+    
+    margin-bottom: 20px;
+  }
+ 
+}

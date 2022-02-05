@@ -33,7 +33,7 @@ export const poolData = [
            "BSCBay is a blockchain innovation hub with a combination of Incupad and Decentralized Launchpad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution."
           ],
     inputTokenaddress: "TBA",
-    outputTokenaddress: "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
+    outputTokenaddress: "0x2F39D4AdEf5Cc232a735C9a86e7A613C337f18A0",
     videolink: "../../..//assets/bscbayvideo.mp4"
   },
  

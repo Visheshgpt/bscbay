@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, ProgressBar, Button } from "react-bootstrap";
 import LaunchStepThree from "../../launch-steps/LaunchStepThree";
 
+import WalletDetails from "../../walletDetails/WalletDetails";
+
 import Web3 from 'web3';
 import BSCBAYICOabi from '../../../shared/BSCBAYICO.json';
+
+
+
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
@@ -11,17 +16,23 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const onHideHandler = () => {
     setShowConnect(false);
   };
+
+  let address = window.sessionStorage.getItem("walletAddress");
+  console.log("add",address);
+
+  let status = "ongoing"
+  let userTokenalance = 1;
+  let userBNBbalance = 2;
   
   const [raisedBNB, setraisedBNB] = useState(0);
-  const [tokenPrice, settokenPrice] = useState(0);
+  const [tokenPrice, settokenPrice] = useState(0); 
   const [totalUsers, settotalUsers] = useState(0);
   const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
  
  
   function web3apis() {
-  
-  
+   
     const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
@@ -94,7 +105,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
   return (
     <Container as="section" fluid="xxl" className="upcoming-pool-banner">
       <Container>
-        <Row>
+           
+       <Row>
           <Col lg={7} md={7} className="left-section">
             <img src={`../../${activePool.img}`} alt={activePool.title} />
             <h2>{activePool.title}</h2>
@@ -106,7 +118,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
               {/* <img src="../assets/instagarm.svg" alt="instagram" /> */}
             </div>
           </Col>
-          <Col lg={5} md={5}>
+        
+      { address ?  
+        <Col lg={5} md={5}>
             <div className="right-section">
               <div className="upper-right-section">
                 <div className="button-section">
@@ -134,11 +148,144 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 className="btn connect-btn"
                 onClick={() => setShowConnect(true)}
               >
-                Connect To Wallet
+                Connect To Wallet 
               </Button>
+             
+            </div>
+            {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
+          </Col> 
+   
+          :  
+        <div className='col-lg-5 col-md-5'>
+          <Col xs={12} className="ongoing-upper-card">
+            <div className="d-flex flex-row justify-content-between">
+              <div className="d-flex flex-row align-items-center  justify-content-center ongoing-upper-card-left">
+                <span>{activePool.allocationType}</span>
+                <span style={{ textTransform: "capitalize" }}>{status}</span>
+              </div>
+              <span className="ongoing-upper-card-right">
+                1 BUSD = 100 BSCBay
+              </span>
+            </div>
+            <div className="d-flex flex-row justify-content-center">
+              <div className="ongoing-lower-card text-white">
+                <div className="d-flex justify-content-center">
+                  <span className="text-white">
+                    {status !== "closed" ? (
+                      status === "ongoing" ? (
+                        "End in : 0 Days 10 Hours 20 Mins 30 Seconds"
+                      ) : (
+                        "Start in : 0 Days 10 Hours 20 Mins 30 Seconds"
+                      )
+                    ) : (
+                      <div className="d-flex flex-column justify-content-center align-items-center  text-white">
+                        <span>Closed</span>
+                        <span>Total Raised: 500 BNB</span>
+                      </div>
+                    )}
+                  </span>
+                </div>
+                <div>
+                  {status !== "closed" ? (
+                    status === "ongoing" ? (
+                      <ProgressBar
+                        now={5}
+                        className="pro-bar-section"
+                        label={`${5}%`}
+                      />
+                    ) : (
+                      <ProgressBar
+                        now={30}
+                        className="pro-bar-section"
+                        label={`${30}%`}
+                      />
+                    )
+                  ) : (
+                    <ProgressBar
+                      now={100}
+                      className="pro-bar-section"
+                      label={`${100}%`}
+                    />
+                  )}
+                </div>
+                <div>
+                  {status !== "closed" ? (
+                    status === "upcomming" ? (
+                      <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
+                        <span>Swap Progress</span>
+                        <span>Total Raised :150/500 BNB</span>
+                        <span>Participants : 240</span>
+                      </div>
+                    ) : (
+                      <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
+                        <span>Swap Progress</span>
+                        <span>Participants : TBA</span>
+                      </div>
+                    )
+                  ) : (
+                    <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
+                      <span>Swap Progress</span>
+                      <span>Participants : 3240</span>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </Col>
-        </Row>
+
+          <Col xs={12} className="ongoing-lower-card mt-5">
+            {status !== "closed" ? (
+              <div className="d-flex flex-column justify-content-between">
+                <div className="d-flex flex-column text-white ">
+                  <span className="pb-2">Wallet Address: {address}</span>
+                  <span className="pb-2">BSCB Balance: {userTokenalance.toFixed(2)} BSCB</span>
+                </div>
+                <div className="d-flex flex-row justify-content-between text-white">
+                  <span>
+                    {" "}
+                    Current Tier:{" "}
+                    <span className="text-warning ms-1">GOLD(i)</span>
+                  </span>
+                  <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
+                </div>
+              </div>
+            ) : (
+              <div className="d-flex flex-row justify-content-between">
+                <div className="d-flex flex-column text-white ">
+                  <span className="pb-2">Wallet Address:0X12….12Ab1</span>
+                  <span className="pb-2">BSCB Balance: {userTokenalance.toFixed(2)} BSCB</span>
+                  <span>
+                    Current Tier:
+                    <span className="text-warning ms-1">GOLD(i)</span>
+                  </span>
+                </div>
+                <div className="d-flex flex-column justify-content-between text-white">
+                  <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
+                  <span>Your Participation: 2 BNB</span>
+                  <span className="claim-section">Claim</span>
+                </div>
+              </div>
+            )}
+
+            <div className="ongoing-lower-card-last-section">
+              <span>Wallet Eligible to Participate: Yes / No</span>
+              <span>Check Eligibility Criterea</span>
+            </div>
+          </Col>
+           
+    
+       
+          </div>
+
+      } 
+        
+        </Row> 
+     
+
+        // <WalletDetails activePool={activePool} /> 
+
+       
+
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} /> 
     </Container>

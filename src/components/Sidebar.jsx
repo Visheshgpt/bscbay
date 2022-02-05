@@ -31,19 +31,19 @@ export const Sidebar = () => {
   const [show, setShow] = React.useState(false);
   const linksArr = [
     { link: "/", icon: <Icon0 />, name: "Homepage" },
-    { icon: <Icon1 />, name: "Wallet", className: "active" },
-    { icon: <Icon2 />, name: "Documentation" },
-    { icon: <Icon3 />, name: "Contract" },
-    { icon: <Icon4 />, name: "Reports & Charts" },
-    { icon: <Icon5 />, name: "Disclaimeer" },
+    { link: "/dashboard", icon: <Icon1 />, name: "Wallet", className: "active" },
+    { link: "/dashboard", icon: <Icon2 />, name: "Documentation" },
+    { link: "/dashboard", icon: <Icon3 />, name: "Contract" },
+    { link: "/dashboard", icon: <Icon4 />, name: "Reports & Charts" },
+    { link: "/dashboard", icon: <Icon5 />, name: "Disclaimer" },
   ];
 
   const socialMediaArr = [
-    { link: "https://google.com" },
-    { link: "https://google.com" },
-    { link: "https://google.com" },
-    { link: "https://google.com" },
-    { link: "https://google.com" },
+    // { link: "https://google.com" },
+    // { link: "https://google.com" },
+    // { link: "https://google.com" },
+    // { link: "https://google.com" },
+    // { link: "https://google.com" },
   ];
 
   var priceperToken =
@@ -217,7 +217,7 @@ export const Sidebar = () => {
                     Your Balance
                   </div>
                   <div className="title-small fw-normal">
-                    BSCB {LMBalanceuser.toFixed(2)}
+                    BSCB: TBA
                   </div>
                 </div>
               </li>
@@ -226,7 +226,8 @@ export const Sidebar = () => {
                   <div className="text-light">Your Address</div>
                   <div className="text-truncate">
                     {" "}
-                    {address?(address.slice(0, 20) + ". . ."):""}{" "}
+                    {/* {address?(address.slice(0, 20) + ". . ."):""}{" "} */}
+                    TBA
                   </div>
                 </p>
               </li>
@@ -238,7 +239,7 @@ export const Sidebar = () => {
                   <div className="text-uppercase title-small-1">Buy bcsb</div>
                 </Link>
                 <div className="text-white-2 text-small-1 mt-2">
-                  5% Fee on Reward Extraction
+                  {/* 5% Fee on Reward Extraction */}
                 </div>
               </li>
             </ul>

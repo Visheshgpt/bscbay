@@ -64,7 +64,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
   useEffect(() => {
     web3apis();
   });
-
+ 
   return (
     <Container as="section" fluid="xxl" className="pool-information-section">
       <Container>

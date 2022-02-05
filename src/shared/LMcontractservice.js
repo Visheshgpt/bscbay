@@ -24,13 +24,15 @@ const getWeb3Client = async () => {
       window.web3 = web3Client;
       //await window.ethereum.enable();
       await web3Client.eth.requestAccounts();
+
       var id = await web3Client.eth.net.getId();
 
       // return web3Client;
       if (id == 56) {
         return web3Client;
       } else {
-        swal("Change Network to Binance Mainet");
+        alert("Change Network to Binance Mainet");
+        window.location.reload();
       }
     } else if (loginType === "binance") {
       if (window.BinanceChain) {

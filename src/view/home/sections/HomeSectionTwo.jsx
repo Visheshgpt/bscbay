@@ -1,7 +1,9 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ScrollAnimation from "react-animate-on-scroll";
-import video from "../../../assets/bscbayvideo.mp4";
+// import video from "../../../assets/bscbayvideo.mp4";
+import video from "../../../Videos/bscbayvideo.mp4";
+
 
 const HomeSectionTwo = () => {
   return (
@@ -53,6 +55,9 @@ const HomeSectionTwo = () => {
                     controls
                     poster="./assets/bg-2.png"
                   />
+                  {/* <video controls width='750' height='750' >
+                     <source src="https://www.youtube.com/watch?v=Ykt2Wqt6pBQ" type="video/mp4"/>
+                  </video> */}
                 </div>
               </ScrollAnimation>
             </Col>

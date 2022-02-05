@@ -357,7 +357,7 @@ const HomeSectionOne = () => {
               {/* End */}
             </Col>
           </Row>
-          <div className="px-0 col-lg-8 mx-auto mt-5">
+          <div className="px-0 col-lg-10 mx-auto mt-5">
             <Row
               className="justify-content-center text-center z-10 pb-5"
               style={{ gap: 15 }}
@@ -375,7 +375,13 @@ const HomeSectionOne = () => {
                 <span className="colorChange">Lockers</span> |{" "}
                 <span className="colorChange">Analytics</span>
               </div>
+             
+             <div className="sample-data">
+               
+            
               {boxArr.map((data, i) => (
+                <div className="block__wrapper">
+             
                 <div
                   key={i}
                   className="box-1 bg-color-homepage-section-one-box text-small icon-hover"
@@ -391,7 +397,8 @@ const HomeSectionOne = () => {
                   </span>
                   <span className="text-white">{data.number}</span>
                 </div>
-              ))}
+               </div>
+              ))}  </div>
             </Row>
             <Row
               className="justify-content-center z-10 pb-5"

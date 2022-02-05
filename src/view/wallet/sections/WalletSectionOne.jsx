@@ -11,65 +11,65 @@ const WalletSectionOne = () => {
 
   const boxArr = [
     {
-      title: 'Reward Pool',
-      subTitle: '12.87374',
-      valueText: '$18980 USD',
+      title: 'USDT Reward Pool',
+      subTitle: 'TBA',
+      // valueText: 'TBA',
     },
     {
-      title: 'BNB Reward Limit',
-      subTitle: '12.87374',
-      valueText: '102mn BSCB',
+      title: 'USDT Reward Limit',
+      subTitle: 'TBA',
+      // valueText: 'TBA',
     },
 
     {
       title: 'Current 1 million BSBAY Price ($)',
-      subTitle: 'BNB 12.312 ',
+      subTitle: 'TBA',
     },
 
     {
-      title: 'Max. Transaction Limit',
-      subTitle: '100,000,000,00',
+      title: 'Total Buyback',
+      subTitle: 'TBA',
     },
 
     {
       title: 'Total Liquidity Pool ($)',
-      subTitle: '$1,910,7373',
+      subTitle: 'TBA',
     },
 
     {
-      title: 'BNB Liquidity Pool',
-      subTitle: 'BNB 3,12323',
+      title: 'Total Holders',
+      subTitle: 'TBA',
     },
   ];
 
   const totalArr = [
-    {
-      key: 0,
-      title: 'BNB Earned',
-      subTitle: '15.3256',
-      text: 'User Claimed BNB',
-    },
+    // {
+    //   key: 0,
+    //   title: 'USDT Earned',
+    //   subTitle: '15.3256',
+    //   text: 'User Claimed BNB',
+    // },
 
-    {
-      key: 1,
-      title: 'BSCBAY Earned',
-      subTitle: '205.56',
-      text: 'User Reinvestment',
-    },
+    // {
+    //   key: 1,
+    //   title: 'Users Earning',
+    //   subTitle: '205.56',
+    //   text: 'User Reinvestment',
+    // },
 
-    {
-      key: 0,
-      title: 'Total BNB Distributed',
-      subTitle: '3568 23',
-      text: 'Total BNB Claimed',
-    },
+    // {
+    //   key: 0,
+    //   title: 'Total USDT Distributed',
+    //   subTitle: '3568 23',
+    //   text: 'Total BNB Claimed',
+    // },
 
-    {
-      key: 1,
-      title: 'Total BNB Reinvest',
-      subTitle: '32659',
-      text: 'Total Reinvestment',
-    },
+    // {
+    //   key: 1,
+    //   title: 'Total BNB Reinvest',
+    //   subTitle: '32659',
+    //   text: 'Total Reinvestment',
+    // },
   ];
 
   const [maxTransactionAmount, setmaxTransactionAmount] = useState(0);
@@ -92,14 +92,7 @@ const WalletSectionOne = () => {
   const [rewardhardCap, setrewardhardCap] = useState(0);
   //  const [reinvesttokens,setreinvesttokens] = useState(0);
 
-  var rewardshare = (
-    (Number(bnbreward) / Number(TotalbnbinrewardPool)) *
-    100
-  ).toFixed(3);
-  var priceperToken =
-    (((Number(1000000) * Number(LPbnb)) / Number(LMbalanceLPpool)) *
-      oneBNBprice) /
-    Number(1000000);
+  var rewardshare = 0;
   //  console.log("pricepertoken",priceperToken)
 
   function web3apis() {
@@ -310,25 +303,25 @@ const WalletSectionOne = () => {
   }
 
   useEffect(() => {
-    web3apis();
+    // web3apis();
   });
 
-  boxArr[0].subTitle = TotalbnbinrewardPool.toFixed(2);
-  boxArr[0].valueText =
-    '$' + (oneBNBprice * TotalbnbinrewardPool).toFixed(2) + ' USD';
-  boxArr[1].subTitle = rewardhardCap.toFixed(2);
-  boxArr[1].valueText = '$' + (oneBNBprice * rewardhardCap).toFixed(2) + ' USD';
-  boxArr[3].subTitle = maxTransactionAmount;
-  boxArr[4].subTitle = (oneBNBprice * LPbnb * 2).toFixed(2);
-  boxArr[5].subTitle = LPbnb.toFixed(2);
-  boxArr[2].subTitle = ((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice;
+  // boxArr[0].subTitle = TotalbnbinrewardPool.toFixed(2);
+  // boxArr[0].valueText =
+  //   '$' + (oneBNBprice * TotalbnbinrewardPool).toFixed(2) + ' USD';
+  // boxArr[1].subTitle = rewardhardCap.toFixed(2);
+  // boxArr[1].valueText = '$' + (oneBNBprice * rewardhardCap).toFixed(2) + ' USD';
+  // boxArr[3].subTitle = maxTransactionAmount;
+  // boxArr[4].subTitle = (oneBNBprice * LPbnb * 2).toFixed(2);
+  // boxArr[5].subTitle = LPbnb.toFixed(2);
+  // boxArr[2].subTitle = ((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice;
 
-  totalArr[0].subTitle = userclaimBnb.toFixed(2) + ' BNB';
-  totalArr[1].subTitle = userreinvested.toFixed(2) + ' BSCBAY';
-  totalArr[2].subTitle = totaldistributedBnb.toFixed(2) + ' BNB';
-  totalArr[3].subTitle = totalreinvested.toFixed(2) + ' BSCBAY';
+  // totalArr[0].subTitle = userclaimBnb.toFixed(2) + ' BNB';
+  // totalArr[1].subTitle = userreinvested.toFixed(2) + ' BSCBAY';
+  // totalArr[2].subTitle = totaldistributedBnb.toFixed(2) + ' BNB';
+  // totalArr[3].subTitle = totalreinvested.toFixed(2) + ' BSCBAY';
 
-  var rewardshare = ((bnbreward / TotalbnbinrewardPool) * 100).toFixed(3);
+  // var rewardshare = ((bnbreward / TotalbnbinrewardPool) * 100).toFixed(3);
 
   // const totalArr = [
   //   {
@@ -347,17 +340,16 @@ const WalletSectionOne = () => {
         <div className='d-flex flex-wrap'>
           <div className='me-auto'>
             <div className='text-primary title-small fw-normal'>
-              Your Reward Share Percentage
+              {/* Total USDT distributed */}
             </div>
-            <div className='text-small'>{rewardshare} % </div>
+            {/* <div className='text-small'>TBA </div> */}
           </div>
-          {/* === */}
           <div className='text-sm-end'>
             <div className='text-small text-white-2'>
-              Today BCBS <b>$1.02</b>/Million{' '}
+              Today BCBS <b>TBA</b>/Million{' '}
             </div>
             <div className='text-small'>
-              Claim Date: Monday. 15th June, 2021{' '}
+              {/* Claim Date: Monday. 15th June, 2021{' '} */}
             </div>
           </div>
         </div>
@@ -370,27 +362,27 @@ const WalletSectionOne = () => {
           <div className='bg-secondary p-3 rounded-lg-2 mb-1'>
             <div className='d-flex'>
               <div className='d-flex'>
-                <div className='heading-secondary-2 text-white-2 fw-500 me-2'>
-                  <span className='text-primary'>BNB</span> Reward
+                <div className='heading-secondary-2 text-white-2 fw-500 me-2 dashboard' >
+                  Total <span className='text-primary'>USDT</span> Distributed
                 </div>
-                <img height={60} src='./assets/w-icon-big-0.png' alt='..' />
+                {/* <img height={60} src='./assets/w-icon-big-1.png' alt='..' /> */}
               </div>
-              <div className='d-flex ms-auto'>
+              {/* <div className='d-flex ms-auto'>
                 <img height={60} src='./assets/w-icon-big-1.png' alt='..' />
                 <div className='heading-secondary-2 text-white-2 fw-500 ms-2'>
                   ReInvest
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div>
+            {/* <div>
               <RangeSlider
                 variant='warning'
                 value={valueSlider}
                 onChange={(e) => setValueSlider(e.target.valueSlider)}
                 tooltip='off'
               />
-            </div>
-            <div className='d-flex'>
+            </div> */}
+            {/* <div className='d-flex'>
               <div className='d-flex'>
                 <div className='title-small text-white-2 fw-500 me-2'>
                   {valueSlider}% <span className='text-primary'>BNB</span>{' '}
@@ -402,18 +394,72 @@ const WalletSectionOne = () => {
                   {valueSlider}% Re-Invest
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className='px-0 col-12 col-md-5 col-lg-4 col-xl-3 mx-auto mt-3'>
               <button
                 type='button'
                 className='px-3 py-2 w-100 btn-color border-warning'
               >
                 <span className='text-uppercase title-small-1'>
-                  Claim reward
+                 TBA
                 </span>
               </button>
             </div>
           </div>
+
+
+          <div className='bg-secondary p-3 rounded-lg-2 mb-1'>
+            <div className='d-flex'>
+              <div className='d-flex'>
+                <div className='heading-secondary-2 text-white-2 fw-500 me-2 dashboard' >
+                  Your <span className='text-primary'>USDT</span> Earnings
+                </div>
+                {/* <img height={60} src='./assets/w-icon-big-1.png' alt='..' /> */}
+              </div>
+              {/* <div className='d-flex ms-auto'>
+                <img height={60} src='./assets/w-icon-big-1.png' alt='..' />
+                <div className='heading-secondary-2 text-white-2 fw-500 ms-2'>
+                  ReInvest
+                </div>
+              </div> */}
+            </div>
+            {/* <div>
+              <RangeSlider
+                variant='warning'
+                value={valueSlider}
+                onChange={(e) => setValueSlider(e.target.valueSlider)}
+                tooltip='off'
+              />
+            </div> */}
+            {/* <div className='d-flex'>
+              <div className='d-flex'>
+                <div className='title-small text-white-2 fw-500 me-2'>
+                  {valueSlider}% <span className='text-primary'>BNB</span>{' '}
+                  Reward
+                </div>
+              </div>
+              <div className='d-flex ms-auto'>
+                <div className='title-small text-white-2 fw-500 ms-2'>
+                  {valueSlider}% Re-Invest
+                </div>
+              </div>
+            </div> */}
+            <div className='px-0 col-12 col-md-5 col-lg-4 col-xl-3 mx-auto mt-3'>
+              <button
+                type='button'
+                className='px-3 py-2 w-100 btn-color border-warning'
+              >
+                <span className='text-uppercase title-small-1'>
+                 TBA
+                </span>
+              </button>
+            </div>
+          </div>
+
+
+
+
+
           {/* Slider End */}
           <div className='d-flex flex-wrap'>
             {boxArr.map((data, i) => (
@@ -434,7 +480,8 @@ const WalletSectionOne = () => {
                         {data.title}
                       </div>{' '}
                       <div className='mb-1 text-white-2'>
-                        {new Intl.NumberFormat().format(data.subTitle)}
+                        {/* {new Intl.NumberFormat().format(data.subTitle)} */}
+                        {data.subTitle}
                       </div>{' '}
                       <div className='mb-1 text-white-3'>{data.valueText}</div>
                     </div>
@@ -446,7 +493,7 @@ const WalletSectionOne = () => {
           </div>
         </div>
         {/* ==== */}
-        <div className='px-2 col-xxl-2 col-xl-3 col-12 my-4 my-xl-0 d-flex flex-column'>
+        {/* <div className='px-2 col-xxl-2 col-xl-3 col-12 my-4 my-xl-0 d-flex flex-column'>
           <div className='title-small text-primary opacity-8 fw-500 mb-2'>
             Total Earning
           </div>
@@ -469,7 +516,7 @@ const WalletSectionOne = () => {
               <div className='text-white-2 text-small-1'>{data.text}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </section>
       {/* Main End */}
       {/* Table Start */}

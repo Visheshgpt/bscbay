@@ -8,18 +8,23 @@ import { poolData } from "../../data";
 import WalletDetails from "../walletDetails/WalletDetails";
 
 const IncupadPools = () => {
-  const { title } = useParams();
+
+  let address = window.sessionStorage.getItem("walletAddress");
+
+     
+
+  const { title } = useParams();  
   const activePool = poolData.find(
     (item) => item.title.replaceAll(" ", "-") === title
-  );
+  );   
 
   return activePool !== undefined ? (
     <section>
-      <IncupadNavbar />
+      <IncupadNavbar /> 
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
-
-      <WalletDetails status="ongoing" />
+       { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> }
+   
     </section>
   ) : (
     <PageNotFound />
