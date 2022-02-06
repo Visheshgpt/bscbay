@@ -9,6 +9,8 @@ import CoinGecko from 'coingecko-api';
 const WalletSectionOne = () => {
   const [valueSlider, setValueSlider] = React.useState(50);
 
+  
+
   const boxArr = [
     {
       title: 'USDT Reward Pool',
@@ -70,7 +72,7 @@ const WalletSectionOne = () => {
     //   subTitle: '32659',
     //   text: 'Total Reinvestment',
     // },
-  ];
+  ]; 
 
   const [maxTransactionAmount, setmaxTransactionAmount] = useState(0);
   const [TotalbnbinrewardPool, setTotalbnbinrewardPool] = useState(0);
