@@ -6,28 +6,32 @@ import WalletDetails from "../../walletDetails/WalletDetails";
 
 import Web3 from "web3";
 import BSCBAYICOabi from "../../../shared/BSCBAYICO.json";
+import ERC20abi from "../../../shared/BSCBAYabi.json";
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
   const [activate, setActivate] = useState(false);
+  
 
   const onHideHandler = () => {
     setShowConnect(false);
   };
 
-  let address = window.sessionStorage.getItem("walletAddress");
+  let address = window.sessionStorage.getItem("walletAddress"); 
   console.log("add", address);
-
-  let status = "ongoing";
-  let userTokenalance = 1;
-  let userBNBbalance = 2;
+  let selectedAccount;
+  let status = activePool.status;
 
   const [raisedBNB, setraisedBNB] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
   const [totalUsers, settotalUsers] = useState(0);
   const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
+  const [userBNBbalance, setuserBNBbalance] = useState(0);
+  const [userTokenalance, setuserTokenalance] = useState(0);
+  
+
 
   function web3apis() {
     const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
@@ -83,11 +87,62 @@ const IncupadPoolsBanner = ({ activePool }) => {
         var tokens = web3.utils.toBN(amount).toString();
         setallocatedToken(Number(web3.utils.fromWei(tokens, "ether")));
       });
+
+   if (address) { 
+    var contractTokenABI = ERC20abi;
+    var contractTokenAddress = activePool.outputTokenaddress;
+    var Tokencontract = new web3.eth.Contract(contractTokenABI, contractTokenAddress);
+
+
+    // get USER TOKENS
+    Tokencontract.methods
+      .balanceOf(address)
+      .call()
+      .then((amount) => {
+        console.log("ii",amount);
+        var tokens = web3.utils.toBN(amount).toString();
+        setuserTokenalance(Number(web3.utils.fromWei(tokens, "ether")));
+      });
+
+    // get User BNB balance
+    web3.eth
+      .getBalance(address)
+      .then((balance) => {
+       ////console.log(balance);
+       var tokens = web3.utils.toBN(balance).toString();
+       setuserBNBbalance(Number(web3.utils.fromWei(tokens, 'ether')));
+   });     
   }
 
+  }
+
+
   useEffect(() => {
+
+    let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
+
+     if (typeof provider !== "undefined" && address) {
+      
+        window.ethereum.on("accountsChanged", function (accounts) {
+          selectedAccount =  accounts[0];
+          address = selectedAccount;
+          console.log("acc",selectedAccount);
+          window.sessionStorage.setItem("walletAddress", selectedAccount);
+
+          window.location.reload();
+        });
+    
+        window.ethereum.on("chainChanged", (chainId) => {
+          // Handle the new chain.
+          // Correctly handling chain changes can be complicated.
+          // We recommend reloading the page unless you have good reason not to.
+          window.location.reload();
+        });
+      }
+
     web3apis();
-  });
+
+  },[address]);
 
   const ICOcompletePercentage = (
     (allocatedToken / MaxDistributedTokens) *
@@ -117,7 +172,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
             </div>
           </Col>
 
-          {address ? (
+          { !address ? (
             <Col lg={5} md={5}>
               <div className="right-section">
                 <div className="upper-right-section">
@@ -172,7 +227,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className="ongoing-upper-card-right">
-                    1 BUSD = 100 BSCBay
+                    1 {activePool.allocationType} = {oneBNBprice} {" "}
+                    {activePool.symbol}{" "}
                   </span>
                 </div>
                 <div className="d-flex flex-row justify-content-center">
@@ -181,9 +237,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span className="text-white">
                         {status !== "closed" ? (
                           status === "ongoing" ? (
-                            "End in : 0 Days 10 Hours 20 Mins 30 Seconds"
+                            "End in : 0 Days 0 Hours 0 Mins 0 Seconds"
                           ) : (
-                            "Start in : 0 Days 10 Hours 20 Mins 30 Seconds"
+                            "Start in : 0 Days 0 Hours 0 Mins 0 Seconds"
                           )
                         ) : (
                           <div className="d-flex flex-column justify-content-center align-items-center  text-white">
@@ -197,22 +253,22 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       {status !== "closed" ? (
                         status === "ongoing" ? (
                           <ProgressBar
-                            now={5}
+                            now={ICOcompletePercentage}
                             className="pro-bar-section"
-                            label={`${5}%`}
+                            label={`${Math.round(ICOcompletePercentage)}%`}
                           />
                         ) : (
                           <ProgressBar
-                            now={30}
+                            now={ICOcompletePercentage}
                             className="pro-bar-section"
-                            label={`${30}%`}
+                            label={`${Math.round(ICOcompletePercentage)}%`}
                           />
                         )
                       ) : (
                         <ProgressBar
-                          now={100}
+                          now={ICOcompletePercentage}
                           className="pro-bar-section"
-                          label={`${100}%`}
+                          label={`${Math.round(ICOcompletePercentage)}%`}
                         />
                       )}
                     </div>
@@ -222,18 +278,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
                             <span>Total Raised :150/500 BNB</span>
-                            <span>Participants : 240</span>
+                            <span>Participants : {totalUsers}</span>
                           </div>
                         ) : (
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
-                            <span>Participants : TBA</span>
+                            <span>Participants : {totalUsers}</span>
                           </div>
                         )
                       ) : (
                         <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                           <span>Swap Progress</span>
-                          <span>Participants : 3240</span>
+                          <span>Participants : {totalUsers}</span>
                         </div>
                       )}
                     </div>
@@ -287,7 +343,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
               </Col>
 
               {/* Button Ater Second Banner */}
-              {activate ? (
+              {/* {activate ? (
                 <div className="invest__wrapper">
                   <input type="text" placeholder="Enter Amount"/>
                   <button
@@ -306,11 +362,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     Approve Wallet
                   </button>
                 </>
-              )}
+              )} */}
             </div>
           )}
         </Row>
-        // <WalletDetails activePool={activePool} />
+        {/* // <WalletDetails activePool={activePool} /> */}
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
     </Container>

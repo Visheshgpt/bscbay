@@ -10,8 +10,8 @@ const HomeSectionThree = () => {
       text: `Earn USDT through rewards; the powerful investment tokenomics of BSCBay allow investors to automatically get rewards in USDT on their investments every 4 hours.`,
     },
     {
-      title: `IncuPad`,
-      text: `IncuPad allows New Projects to showcase new crypto products and attract investors. Each projects launched on the IncuPad would be KYCd & Liquidity Locked. We would help the project in various steps including - Audit, Marketing, Investments & Future Course of Actions to ensure its success.
+      title: `LaunchPad`,
+      text: `LaunchPad allows New Projects to showcase new crypto products and attract investors. Each projects launched on the LaunchPad would be KYCd & Liquidity Locked. We would help the project in various steps including - Audit, Marketing, Investments & Future Course of Actions to ensure its success.
       `,
     },
     {
@@ -93,10 +93,12 @@ const HomeSectionThree = () => {
                 <div className="px-0 col-10 col-lg-12 col-xxl-11 mx-auto">
                   <Row className="row-cols-md-2 row-cols-lg-3 justify-content-center">
                     <div className="p-2">
-                      <Link className="btn-1 button-1 btn-color w-100">
+                  
+                      <a href = "https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf" target="_blank" className="btn-1 button-1 btn-color w-100">
+                        
                         <img height={20} src="./assets/file-0.png" alt="file" />
                         <span className="ms-2 text-uppercase fw-bold text-small">
-                          Audit Reports
+                            Audit Reports 
                         </span>
                         <img
                           className="ms-2"
@@ -104,7 +106,8 @@ const HomeSectionThree = () => {
                           src="./assets/arrow-2.png"
                           alt="arrow"
                         />
-                      </Link>
+                      </a>
+                   
                     </div>
                     <div className="p-2">
                       <Link

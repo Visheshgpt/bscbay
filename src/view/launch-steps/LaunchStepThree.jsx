@@ -194,7 +194,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             />
           </Link>
           <br></br>
-          <Link
+          {/* <Link
             onClick={requestAuthBSC}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
@@ -209,8 +209,8 @@ const LaunchStepThree = ({ show, onHide }) => {
               src="../assets/arrow-1.png"
               alt="..."
             />
-          </Link>
-          <br></br>
+          </Link> */}
+          {/* <br></br> */}
           <Link
             onClick={requestAuth}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
@@ -262,7 +262,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             />
           </Link>
           <br></br>
-          <Link
+          {/* <Link
             onClick={requestAuth}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
@@ -278,9 +278,9 @@ const LaunchStepThree = ({ show, onHide }) => {
               src="../assets/arrow-1.png"
               alt="..."
             />
-          </Link>
+          </Link> */}
           <br></br>
-          <Link
+          {/* <Link
             onClick={requestwalletconnect}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
@@ -296,7 +296,7 @@ const LaunchStepThree = ({ show, onHide }) => {
               src="../assets/arrow-1.png"
               alt="..."
             />
-          </Link>
+          </Link> */}
         </div>
       </section>
     </Modal>

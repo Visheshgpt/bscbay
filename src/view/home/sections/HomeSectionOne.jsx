@@ -306,10 +306,10 @@ const HomeSectionOne = () => {
                     <a
                       style={{ height: 60 }}
                       className="btn btn-outline-warning px-4 w-100"
-                      href="https://my.forms.app/crptoprojects/bscbaywhitelist"
+                      href="https://docs.bscbay.com/"
                       target="_blank"
                     >
-                      <span className="text-uppercase">WhiteList Open</span>
+                      <span className="text-uppercase">Whitepaper</span>
                       <i
                         className="ms-3 shake-horizontal"
                         style={{ height: 30, width: 18 }}
@@ -369,7 +369,7 @@ const HomeSectionOne = () => {
               </h1>
               <div className="text-white-2 fw-light custom-animation heading-secondary-3 px-0 col-md-7 col-lg-11 col-xl-11 col-xxl-9 mb-4">
                 <span className="colorChange">Auto USDT Distribution</span> |{" "}
-                <span className="colorChange">Incupad</span> |{" "}
+                <span className="colorChange">LaunchPad</span> |{" "}
                 <span className="colorChange">DexPad</span> |{" "}
                 <span className="colorChange">Token Minting</span> |{" "}
                 <span className="colorChange">Lockers</span> |{" "}

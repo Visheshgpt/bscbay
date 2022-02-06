@@ -16,7 +16,7 @@ const HomeSectionSeven = () => {
             <Col xs={12} lg={4}>
               <Button
                 variant="outline-warning"
-                href="#"
+                href="https://github.com/solidproof/projects/blob/main/BSCBay/KYC_Certificate_BSCBay.png"
                 className="customButtonOne m-auto"
               >
                 KYC CERTIFICATE <Arrow />
@@ -35,7 +35,7 @@ const HomeSectionSeven = () => {
             <Col xs={12} lg={4}>
               <Button
                 variant="outline-warning"
-                href="#"
+                href="https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf"
                 className="customButtonOne m-auto"
               >
                 Audit Certificate <Arrow />

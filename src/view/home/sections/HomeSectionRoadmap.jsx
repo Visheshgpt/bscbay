@@ -158,7 +158,7 @@ const HomeSectionRoadmap = () => {
                     </div>
                     <ul className="ps-3 text-small text-white-3">
                       <li className="my-1">Listing on CMC and CG</li>
-                      <li className="my-1"><b style={{ color: '#D1B000' }}>Incupad launch</b></li>
+                      <li className="my-1"><b style={{ color: '#D1B000' }}>LaunchPad launch</b></li>
                       <li className="my-1">IDO for external projects</li>
                       <li className="my-1"><b style={{ color: '#D1B000' }}> Dexpad launch</b></li>
                       <li className="my-1">Exclusive NFT mints</li>

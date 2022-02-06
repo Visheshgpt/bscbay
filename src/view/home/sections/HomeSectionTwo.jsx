@@ -17,8 +17,8 @@ const HomeSectionTwo = () => {
               >
                 <div>
                   <div className="heading-primary-2">
-                    <div className="text-light"> DECENTRALIZED</div>
-                    <div>PROTOCOLS & SERVICES</div>
+                    {/* <div className="text-light"> Why BSCBay?</div> */}
+                    <div>Why BSCBay?</div>
                   </div>
                   <p className="px-0 col-lg-9">
                     <p></p>
@@ -37,7 +37,7 @@ const HomeSectionTwo = () => {
                     income directly flows into investor rewards pool. <p></p>
                     BSCBay is a blockchain{" "}
                     <b style={{ color: "#D1B000" }}> innovation hub </b> with a
-                    combination of Incupad and Decentralized Launchpad. It
+                    combination of LaunchPad and Decentralized Launchpad. It
                     combines the previous successful instances and features of
                     DEFI and integrates them to create a new paradigm; a
                     revolution within an evolution. <p></p>

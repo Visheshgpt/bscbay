@@ -25,7 +25,7 @@ const FooterPage = () => {
   ];
 
   link = (
-    <Link className="nav-link" to="/incupad">
+    <Link className="nav-link" to="/launchpad">
       Launch app
     </Link>
   );
@@ -64,8 +64,8 @@ const FooterPage = () => {
                   </a>
                 </li>
                 <li className="nav-item mx-md-3">
-                  <a href="/incupad" className="nav-link">
-                    Incupad
+                  <a href="/launchpad" className="nav-link">
+                    LaunchPad
                   </a>
                 </li>
 

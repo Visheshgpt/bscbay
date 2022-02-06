@@ -16,18 +16,18 @@ export const Navbar = () => {
   }
 
   link = (
-    <Link to="/incupad" className="btn btn-outline-primary text-white fw-500">
-      IncuPad
+    <Link to="/launchpad" className="btn btn-outline-primary text-white fw-500">
+      LaunchPad
     </Link>
   );
   linkmobile = (
     <Link
-      to="/incupad"
+      to="/launchpad"
       className="btn btn-sm btn-outline-primary text-white fw-500"
     >
       <small>
         {" "}
-        <small>Incupad</small>{" "}
+        <small>LaunchPad</small>{" "}
       </small>
     </Link>
   );
@@ -48,6 +48,19 @@ export const Navbar = () => {
             </div>
             <div className="ms-auto d-none d-md-flex align-items-center">
               <ul className="nav">
+
+              <li className="nav-item pe-lg-4">
+                  <Link to="/dashboard" className="nav-link">
+                    Dashboard
+                  </Link>
+                </li>
+
+                <li className="nav-item pe-lg-4">
+                  <Link to="/information" className="nav-link">
+                    Services
+                  </Link>
+                </li>
+
                 <li className="nav-item pe-lg-4">
                   <a
                     href="https://docs.bscbay.com/"
@@ -57,18 +70,10 @@ export const Navbar = () => {
                     Documentation
                   </a>
                 </li>
-                <li className="nav-item pe-lg-4">
-                  <Link to="/dashboard" className="nav-link">
-                    Dashboard
-                  </Link>
-                </li>
-                <li className="nav-item pe-lg-4">
-                  <Link to="/information" className="nav-link">
-                    Services
-                  </Link>
-                </li>
+              
+              
                 {/* <li className="nav-item pe-lg-4">
-                  <Link to="/incupad" className="nav-link">
+                  <Link to="/LaunchPad" className="nav-link">
                     Projects
                   </Link>
                 </li>
@@ -95,6 +100,18 @@ export const Navbar = () => {
       <section className="bg-secondary py-2 fixed-bottom d-block d-md-none">
         <div>
           <ul className="nav justify-content-around">
+
+          <li className="nav-item pe-lg-4">
+              <Link to="/dashboard" className="nav-link">
+                <small>Dashboard</small>
+              </Link>
+            </li>
+
+            <li className="nav-item pe-lg-4">
+              <Link to="/information" className="nav-link">
+                <small>Services</small>
+              </Link>
+            </li>
             <li className="nav-item pe-lg-4">
               <a
                 href="https://docs.bscbay.com/"
@@ -105,16 +122,8 @@ export const Navbar = () => {
               </a>
             </li>
 
-            <li className="nav-item pe-lg-4">
-              <Link to="/information" className="nav-link">
-                <small>Services</small>
-              </Link>
-            </li>
-            <li className="nav-item pe-lg-4">
-              <Link to="/dashboard" className="nav-link">
-                <small>Dashboard</small>
-              </Link>
-            </li>
+          
+         
             {/* <li className="nav-item pe-lg-4">
               <Link to="/projects" className="nav-link">
                 <small>Projects</small>

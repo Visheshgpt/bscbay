@@ -76,7 +76,7 @@ const IncupadPoolsSection = () => {
                         {completedPoolData.map((item, index) => (
                           <Col md={6} lg={4} key={index}>
                             <Link
-                              to={`/incupad/${item.title.replaceAll(" ", "-")}`}
+                              to={`/launchpad/${item.title.replaceAll(" ", "-")}`}
                             >
                               <div className="incupad-completed-pool-card">
                                 <span className="card-tag">{item.tag}</span>
@@ -134,7 +134,7 @@ const IncupadPoolsSection = () => {
                         {activePoolData.map((item, index) => (
                           <Col md={6} lg={4} key={index}>
                             <Link
-                              to={`/incupad/${item.title.replaceAll(" ", "-")}`}
+                              to={`/launchpad/${item.title.replaceAll(" ", "-")}`}
                             >
                               <div className="incupad-completed-pool-card">
                                 <span className="card-tag">{item.tag}</span>
@@ -192,7 +192,7 @@ const IncupadPoolsSection = () => {
                         {upcommingPoolData.map((item, index) => (
                           <Col md={6} lg={4} key={index}>
                             <Link
-                              to={`/incupad/${item.title.replaceAll(" ", "-")}`}
+                              to={`/launchpad/${item.title.replaceAll(" ", "-")}`}
                             >
                               <div className="incupad-completed-pool-card">
                                 <span className="card-tag">{item.tag}</span>

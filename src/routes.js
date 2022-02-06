@@ -16,8 +16,10 @@ const Routes = () => {
         <Route exact path="/" component={HomePage} />
         <Route path="/dashboard" component={WalletPage} />
         <Route path="/information" component={InformationPage} />
-        <Route exact path="/incupad" component={IncupadPage} />
+        <Route exact path="/incupad" component={IncupadPage} />  
+        <Route exact path="/launchpad" component={IncupadPage} />  
         <Route path="/incupad/:title" component={IncupadPools} />
+        <Route path="/launchpad/:title" component={IncupadPools} />
         <Route exact path="*" component={PageNotFound} />
       </Switch>
     </>

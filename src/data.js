@@ -26,11 +26,11 @@ export const poolData = [
     decimals: 18,
     allocationType: "BNB",
     totalSupply: "1000000000",
-    accessType: "Public",
+    accessType: "TBA",
     about: ["Earn 4% USDT reflections rewards every 4 hours automatically into your wallets.", 
            "Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool",
             "We will be launching services including LaunchPad, DexPad, Lockers, Token Minters, KYC, NFTs and Play to Earn games to ensure the investor pools never die.",
-           "BSCBay is a blockchain innovation hub with a combination of Incupad and Decentralized Launchpad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution."
+           "BSCBay is a blockchain innovation hub with a combination of LaunchPad and DexPad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution."
           ],
     inputTokenaddress: "TBA",
     outputTokenaddress: "0x2F39D4AdEf5Cc232a735C9a86e7A613C337f18A0",

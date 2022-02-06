@@ -30,7 +30,7 @@ const HomeSectionFour = () => {
                 <ul className="ps-3 homeSection-four-para">
                   <li>
                     <b>$BSCB powers</b> the complete <b>BSCBay's ecosystem</b>{" "}
-                    designer to strengthen the BSC network & various ongoing &
+                    designed to strengthen the BSC network & various ongoing &
                     upcoming projects
                   </li>
                   <li>
