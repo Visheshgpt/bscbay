@@ -13,13 +13,12 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
   const [activate, setActivate] = useState(false);
-  
 
   const onHideHandler = () => {
     setShowConnect(false);
   };
 
-  let address = window.sessionStorage.getItem("walletAddress"); 
+  let address = window.sessionStorage.getItem("walletAddress");
   console.log("add", address);
   let selectedAccount;
   let status = activePool.status;
@@ -34,11 +33,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [eligibility, seteligibility] = useState(false);
   const [walletapproved, setwalletapproved] = useState(false);
   const [value, setvalue] = useState(0);
-  
 
   function web3apis() {
-
-    const web3 = new Web3( new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider(
+        "https://data-seed-prebsc-1-s1.binance.org:8545"
+      )
+    );
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
@@ -92,137 +93,129 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setallocatedToken(Number(web3.utils.fromWei(tokens, "ether")));
       });
 
-   if (address) { 
-    var contractTokenABI = ERC20abi;
-    var contractTokenAddress = activePool.outputTokenaddress;
-    var Tokencontract = new web3.eth.Contract(contractTokenABI, contractTokenAddress);
+    if (address) {
+      var contractTokenABI = ERC20abi;
+      var contractTokenAddress = activePool.outputTokenaddress;
+      var Tokencontract = new web3.eth.Contract(
+        contractTokenABI,
+        contractTokenAddress
+      );
 
+      // get USER TOKENS
+      Tokencontract.methods
+        .balanceOf(address)
+        .call()
+        .then((amount) => {
+          // console.log("ii",amount);
+          var tokens = web3.utils.toBN(amount).toString();
+          setuserTokenalance(Number(web3.utils.fromWei(tokens, "ether")));
+        });
 
-    // get USER TOKENS
-    Tokencontract.methods
-      .balanceOf(address)
-      .call()
-      .then((amount) => {
-        // console.log("ii",amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setuserTokenalance(Number(web3.utils.fromWei(tokens, "ether")));
+      // check eligibility
+      contract.methods
+        .checkWhitelisted(address)
+        .call()
+        .then((value) => {
+          // console.log("eli",value);
+          seteligibility(value);
+        });
+
+      // check wallet approved or not
+      contract.methods
+        .existingUser(address)
+        .call()
+        .then((value) => {
+          console.log("approved", value);
+          setwalletapproved(value);
+        });
+
+      // get User BNB balance
+      web3.eth.getBalance(address).then((balance) => {
+        ////console.log(balance);
+        var tokens = web3.utils.toBN(balance).toString();
+        setuserBNBbalance(Number(web3.utils.fromWei(tokens, "ether")));
       });
-
-    
-    // check eligibility
-    contract.methods
-      .checkWhitelisted(address)
-      .call()
-      .then((value) => {
-        // console.log("eli",value);
-        seteligibility(value);
-      });  
-
-
-     // check wallet approved or not
-     contract.methods
-     .existingUser(address)
-     .call()
-     .then((value) => {
-       console.log("approved",value);
-       setwalletapproved(value);
-     });    
-
-
-    // get User BNB balance
-    web3.eth
-      .getBalance(address)
-      .then((balance) => {
-       ////console.log(balance);
-       var tokens = web3.utils.toBN(balance).toString();
-       setuserBNBbalance(Number(web3.utils.fromWei(tokens, 'ether')));
-
-   });     
-  }
+    }
   }
 
   const handleAllowance = async () => {
-    
     const web3 = await contractService.getWeb3Client();
- 
+
     var contractTokenABI = ERC20abi;
     var contractTokenAddress = activePool.outputTokenaddress;
-    var Tokencontract = new web3.eth.Contract(contractTokenABI, contractTokenAddress);
+    var Tokencontract = new web3.eth.Contract(
+      contractTokenABI,
+      contractTokenAddress
+    );
 
     console.log("tokencontract", Tokencontract);
 
-     Tokencontract.methods.approve("0xB9D447A70f3B7C0115040760832B960cb29f25b4", ("20000000000000000000000000000000").toString()).send({ from: address }).then(function(receipt){
-      // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-      console.log(receipt);
-      setwalletapproved(true)
-  
-    });
-}
+    Tokencontract.methods
+      .approve(
+        "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
+        "20000000000000000000000000000000".toString()
+      )
+      .send({ from: address })
+      .then(function (receipt) {
+        // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+        console.log(receipt);
+        setwalletapproved(true);
+      });
+  };
 
-  
-const invest = async () => {
-    
-  const web3 = await contractService.getWeb3Client();
-   
-  if (value == "" || value == 0) {
-   alert("Please enter Value");
-  } 
-  else {
-    if (web3) {
-      try {
-        var contractABI = BSCBAYICOabi;
-        var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
-        var contract = new web3.eth.Contract(contractABI, contractAddress);
+  const invest = async () => {
+    const web3 = await contractService.getWeb3Client();
 
-        let amnt = web3.utils.toHex(web3.utils.toWei(value,"ether"))
-        console.log("amnt", amnt);
-      
-        contract.methods.Invest().send({ from: address, value: amnt }).then(function(receipt){
-          // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-          console.log(receipt);
-          alert("Tx Done")
-        });    
-      } 
-      catch {
-        alert("Transaction Failed!");
+    if (value == "" || value == 0) {
+      alert("Please enter Value");
+    } else {
+      if (web3) {
+        try {
+          var contractABI = BSCBAYICOabi;
+          var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+          var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+          let amnt = web3.utils.toHex(web3.utils.toWei(value, "ether"));
+          console.log("amnt", amnt);
+
+          contract.methods
+            .Invest()
+            .send({ from: address, value: amnt })
+            .then(function (receipt) {
+              // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+              console.log(receipt);
+              alert("Tx Done");
+            });
+        } catch {
+          alert("Transaction Failed!");
+        }
+      } else {
+        alert("Change network to binance");
       }
-    } 
-    else {
-       alert("Change network to binance");
     }
-  }
-}
-
-
-
-
-
-
+  };
 
   useEffect(() => {
-
     let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
 
-     if (typeof provider !== "undefined" && address) {
-      
-        window.ethereum.on("accountsChanged", function (accounts) {
-          selectedAccount =  accounts[0];
-          address = selectedAccount;
-        //  window.ethereum.eth.requestAccounts();  
-          console.log("acc",selectedAccount);
-          window.sessionStorage.setItem("walletAddress", selectedAccount);
+    if (typeof provider !== "undefined" && address) {
+      window.ethereum.on("accountsChanged", function (accounts) {
+        selectedAccount = accounts[0];
+        address = selectedAccount;
+        //  window.ethereum.eth.requestAccounts();
+        console.log("acc", selectedAccount);
+        window.sessionStorage.setItem("walletAddress", selectedAccount);
 
-          window.location.reload();
-        });
-    
-        window.ethereum.on("chainChanged", (chainId) => {
-          window.location.reload();
-        });
-      }
+        window.location.reload();
+      });
+
+      window.ethereum.on("chainChanged", (chainId) => {
+        window.location.reload();
+      });
+    }
 
     web3apis();
-
-  },[address]);
+  }, [address]);
 
   const ICOcompletePercentage = (
     (allocatedToken / MaxDistributedTokens) *
@@ -232,14 +225,17 @@ const invest = async () => {
 
   const oneBNBprice = 1 / tokenPrice;
   // console.log("oneBNBprice", oneBNBprice);
-  
 
   return (
     <Container as="section" fluid="xxl" className="upcoming-pool-banner">
       <Container>
         <Row>
           <Col lg={7} md={7} className="left-section">
-            <img src={`../../${activePool.img}`} alt={activePool.title} />
+            <div className="icon-box-incupad">
+              <span className="icon-box-incupad-span">
+                <img src={`../../${activePool.img}`} alt={activePool.title}  height="55px"/>
+              </span>
+            </div>
             <h2>{activePool.title}</h2>
             <p>{activePool.description}</p>
             <div>
@@ -253,7 +249,7 @@ const invest = async () => {
             </div>
           </Col>
 
-          { !address ? (
+          {!address ? (
             <Col lg={5} md={5}>
               <div className="right-section">
                 <div className="upper-right-section">
@@ -308,7 +304,7 @@ const invest = async () => {
                     </span>
                   </div>
                   <span className="ongoing-upper-card-right">
-                    1 {activePool.allocationType} = {oneBNBprice} {" "}
+                    1 {activePool.allocationType} = {oneBNBprice}{" "}
                     {activePool.symbol}{" "}
                   </span>
                 </div>
@@ -416,19 +412,26 @@ const invest = async () => {
                     </div>
                   </div>
                 )}
-              
+
                 <div className="ongoing-lower-card-last-section">
-         { eligibility ? (<span>Wallet Eligible to Participate: Yes</span>) : (<span>Wallet Eligible to Participate: No</span>) }
-               
-               <span>Check Eligibility Criterea</span>
+                  {eligibility ? (
+                    <span>Wallet Eligible to Participate: Yes</span>
+                  ) : (
+                    <span>Wallet Eligible to Participate: No</span>
+                  )}
+
+                  <span>Check Eligibility Criterea</span>
                 </div>
               </Col>
 
-           
               {/* Button Ater Second Banner */}
-               {walletapproved ? (
+              {walletapproved ? (
                 <div className="invest__wrapper">
-                  <input type="text" placeholder="Enter Amount" onChange={(e)=> setvalue(e.target.value)} />   
+                  <input
+                    type="text"
+                    placeholder="Enter Amount"
+                    onChange={(e) => setvalue(e.target.value)}
+                  />
                   <button
                     className="incupadButton_invest"
                     onClick={() => invest()}
@@ -445,7 +448,7 @@ const invest = async () => {
                     Approve Wallet
                   </button>
                 </>
-              )}          
+              )}
             </div>
           )}
         </Row>

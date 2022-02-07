@@ -4,7 +4,7 @@ import { ReactComponent as Arrow } from "../../../assets/next.svg";
 
 const IncupadBannerSection = () => {
   return (
-    <Container as="section" fluid="xxl" className="incupad-banner-section">
+    <Container as="section" fluid="xxl"  className="incupad-banner-section">
       <Row>
         <Col lg={8} xl={6} >
           <h1>

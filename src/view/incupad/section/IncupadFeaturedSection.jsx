@@ -87,7 +87,7 @@ const IncupadFeaturedSection = () => {
       .startTimestamp()
       .call()
       .then((time) => {
-        // console.log(time);
+       // console.log(time);
         setStartTime(time);
       });
 
@@ -96,9 +96,17 @@ const IncupadFeaturedSection = () => {
       .finishTimestamp()
       .call()
       .then((time) => {
+         //console.log(time);
         setEndTime(time);
       });
   }
+  //////////Time section
+  const differceTime = EndTime - StartTime;
+  console.log(differceTime);
+  let currentTime = new Date();
+  // console.log(currentTime)
+  let currentTimeData = Date.parse(currentTime) / 1000;
+  // console.log(currentTimeData);
 
   useEffect(() => {
     web3apis();
@@ -166,14 +174,33 @@ const IncupadFeaturedSection = () => {
               <Link to={`/launchpad/${item.title.replaceAll(" ", "-")}`}>
                 <div className="incupad-upcoming-pool-card">
                   <span className="card-tag">{item.tag}</span>
-                  <img src={item.img} alt={item.title} />
+
+                  <div class="icon-box-incupad">
+                    <span>
+                      <img src={item.img} alt={item.title} />
+                    </span>
+                  </div>
                   <span className="card-title">{item.title}</span>
                   <p className="card-description">{item.description}</p>
                   <div className="card-time">
                     <img src="./assets/is-time-1.svg" alt="time icon" />
-                    <span>{item.time}</span>
                   </div>
-                  <span className="card-time-status">remaining</span>
+                  {currentTimeData < StartTime ? (
+                    <span className="card-time-status">Upcomming</span>
+                  ) : differceTime <= 0 ? (
+                    <>
+                      <span>{differceTime}</span>
+                      <span className="card-time-status">closed</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{differceTime}</span>
+                      <span className="card-time-status">remaining</span>
+                    </>
+                  )}
+                  {/* <span>{item.time}</span>
+                  </div>
+                  <span className="card-time-status">Upcomming</span> */}
                   <div className="incupad-upcoming-pool-card-lower">
                     <ProgressBar
                       now={ICOcompletePercentage}

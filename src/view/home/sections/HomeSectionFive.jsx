@@ -26,6 +26,7 @@ const HomeSectionFive = () => {
                 animateIn="bounceInLeft"
                 animateOut="bounceOutLeft"
                 scrollableParentSelector="#scrolly-main"
+                
               >
                 <div className="position-relative">
                   <div className="bg-testing-2" />

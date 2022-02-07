@@ -2,6 +2,7 @@ import IncupadNavBar from "./section/IncupadNavBar";
 import IncupadBannerSection from "./section/IncupadBannerSection";
 import IncupadFeaturedSection from "./section/IncupadFeaturedSection";
 import IncupadPoolsSection from "./section/IncupadPoolsSection";
+import ScrollToTopOnMount from"../../components/ScrollToTopOnMount";
 import { useEffect } from "react";
 
 const IncupadPage = () => {
@@ -11,6 +12,7 @@ const IncupadPage = () => {
 
   return (
     <section className="incupad-outer">
+      <ScrollToTopOnMount/>
       <IncupadNavBar />
       <IncupadBannerSection />
       <IncupadFeaturedSection />

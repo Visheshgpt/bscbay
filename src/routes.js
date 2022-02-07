@@ -12,7 +12,7 @@ import PageNotFound from "./view/PageNotFound/PageNotFound";
 const Routes = () => {
   return (
     <>
-      <Switch>
+      <Switch >
         <Route exact path="/" component={HomePage} />
         <Route path="/dashboard" component={WalletPage} />
         <Route path="/information" component={InformationPage} />
