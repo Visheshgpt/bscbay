@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, ProgressBar, Button } from "react-bootstrap";
 import LaunchStepThree from "../../launch-steps/LaunchStepThree";
 
-import WalletDetails from "../../walletDetails/WalletDetails";
+// import WalletDetails from "../../walletDetails/WalletDetails";
 
+import contractService from "../../../shared/LMcontractservice";
 import Web3 from "web3";
 import BSCBAYICOabi from "../../../shared/BSCBAYICO.json";
 import ERC20abi from "../../../shared/BSCBAYabi.json";
@@ -30,11 +31,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [allocatedToken, setallocatedToken] = useState(0);
   const [userBNBbalance, setuserBNBbalance] = useState(0);
   const [userTokenalance, setuserTokenalance] = useState(0);
+  const [eligibility, seteligibility] = useState(false);
+  const [walletapproved, setwalletapproved] = useState(false);
+  const [value, setvalue] = useState(0);
   
 
-
   function web3apis() {
-    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+
+    const web3 = new Web3( new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
@@ -99,10 +103,31 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .balanceOf(address)
       .call()
       .then((amount) => {
-        console.log("ii",amount);
+        // console.log("ii",amount);
         var tokens = web3.utils.toBN(amount).toString();
         setuserTokenalance(Number(web3.utils.fromWei(tokens, "ether")));
       });
+
+    
+    // check eligibility
+    contract.methods
+      .checkWhitelisted(address)
+      .call()
+      .then((value) => {
+        // console.log("eli",value);
+        seteligibility(value);
+      });  
+
+
+     // check wallet approved or not
+     contract.methods
+     .existingUser(address)
+     .call()
+     .then((value) => {
+       console.log("approved",value);
+       setwalletapproved(value);
+     });    
+
 
     // get User BNB balance
     web3.eth
@@ -111,10 +136,67 @@ const IncupadPoolsBanner = ({ activePool }) => {
        ////console.log(balance);
        var tokens = web3.utils.toBN(balance).toString();
        setuserBNBbalance(Number(web3.utils.fromWei(tokens, 'ether')));
+
    });     
   }
-
   }
+
+  const handleAllowance = async () => {
+    
+    const web3 = await contractService.getWeb3Client();
+ 
+    var contractTokenABI = ERC20abi;
+    var contractTokenAddress = activePool.outputTokenaddress;
+    var Tokencontract = new web3.eth.Contract(contractTokenABI, contractTokenAddress);
+
+    console.log("tokencontract", Tokencontract);
+
+     Tokencontract.methods.approve("0xB9D447A70f3B7C0115040760832B960cb29f25b4", ("20000000000000000000000000000000").toString()).send({ from: address }).then(function(receipt){
+      // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+      console.log(receipt);
+      setwalletapproved(true)
+  
+    });
+}
+
+  
+const invest = async () => {
+    
+  const web3 = await contractService.getWeb3Client();
+   
+  if (value == "" || value == 0) {
+   alert("Please enter Value");
+  } 
+  else {
+    if (web3) {
+      try {
+        var contractABI = BSCBAYICOabi;
+        var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+        var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        let amnt = web3.utils.toHex(web3.utils.toWei(value,"ether"))
+        console.log("amnt", amnt);
+      
+        contract.methods.Invest().send({ from: address, value: amnt }).then(function(receipt){
+          // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
+          console.log(receipt);
+          alert("Tx Done")
+        });    
+      } 
+      catch {
+        alert("Transaction Failed!");
+      }
+    } 
+    else {
+       alert("Change network to binance");
+    }
+  }
+}
+
+
+
+
+
 
 
   useEffect(() => {
@@ -126,6 +208,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         window.ethereum.on("accountsChanged", function (accounts) {
           selectedAccount =  accounts[0];
           address = selectedAccount;
+        //  window.ethereum.eth.requestAccounts();  
           console.log("acc",selectedAccount);
           window.sessionStorage.setItem("walletAddress", selectedAccount);
 
@@ -133,9 +216,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
         });
     
         window.ethereum.on("chainChanged", (chainId) => {
-          // Handle the new chain.
-          // Correctly handling chain changes can be complicated.
-          // We recommend reloading the page unless you have good reason not to.
           window.location.reload();
         });
       }
@@ -152,6 +232,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   const oneBNBprice = 1 / tokenPrice;
   // console.log("oneBNBprice", oneBNBprice);
+  
 
   return (
     <Container as="section" fluid="xxl" className="upcoming-pool-banner">
@@ -335,20 +416,22 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </div>
                   </div>
                 )}
-
+              
                 <div className="ongoing-lower-card-last-section">
-                  <span>Wallet Eligible to Participate: Yes / No</span>
-                  <span>Check Eligibility Criterea</span>
+         { eligibility ? (<span>Wallet Eligible to Participate: Yes</span>) : (<span>Wallet Eligible to Participate: No</span>) }
+               
+               <span>Check Eligibility Criterea</span>
                 </div>
               </Col>
 
+           
               {/* Button Ater Second Banner */}
-              {/* {activate ? (
+               {walletapproved ? (
                 <div className="invest__wrapper">
-                  <input type="text" placeholder="Enter Amount"/>
+                  <input type="text" placeholder="Enter Amount" onChange={(e)=> setvalue(e.target.value)} />   
                   <button
                     className="incupadButton_invest"
-                    onClick={() => setActivate(!activate)}
+                    onClick={() => invest()}
                   >
                     Invest
                   </button>
@@ -356,17 +439,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
               ) : (
                 <>
                   <button
-                    onClick={() => setActivate(!activate)}
+                    onClick={() => handleAllowance()}
                     className="incupadeButton__active"
                   >
                     Approve Wallet
                   </button>
                 </>
-              )} */}
+              )}          
             </div>
           )}
         </Row>
-        {/* // <WalletDetails activePool={activePool} /> */}
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
     </Container>

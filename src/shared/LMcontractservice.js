@@ -23,12 +23,16 @@ const getWeb3Client = async () => {
 
       window.web3 = web3Client;
       //await window.ethereum.enable();
-      await web3Client.eth.requestAccounts();
+      await web3Client.eth.requestAccounts(); 
+      // const accounts = await web3Client.eth.getAccounts();
+      // console.log("accounts conn", accounts[0]); 
+      // await web3Client.request({ method: 'eth_requestAccounts' });
 
       var id = await web3Client.eth.net.getId();
+      console.log("id", id);
 
       // return web3Client;
-      if (id == 56) {
+      if (id == 97) {
         return web3Client;
       } else {
         alert("Change Network to Binance Mainet");
@@ -44,7 +48,7 @@ const getWeb3Client = async () => {
         var id = await web3Client.eth.net.getId();
 
         // return web3Client;
-        if (id == 56) {
+        if (id == 97) {
           return web3Client;
         } else {
           swal("Change Network to Binance Mainet");
@@ -180,7 +184,7 @@ const reInvest = async (web3) => {
       .on("transactionHash", (hash, err) => {
         if (!err) {
           //resolve(hash);
-        } else {
+        } else { 
           reject(err);
         }
       })
