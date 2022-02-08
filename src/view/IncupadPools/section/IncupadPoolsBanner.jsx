@@ -304,11 +304,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className="ongoing-upper-card-right">
-<<<<<<< HEAD
                     1 {activePool.allocationType} = {oneBNBprice}{" "}
-=======
-                    1 {activePool.allocationType} = TBA {" "}
->>>>>>> 2624801219b1a079bb3651d3f8816fb202dfc2fa
                     {activePool.symbol}{" "}
                   </span>
                 </div>
