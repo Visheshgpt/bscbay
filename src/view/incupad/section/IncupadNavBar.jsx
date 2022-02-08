@@ -5,15 +5,47 @@ import { Link, useLocation } from "react-router-dom";
 const IncupadNavBar = () => {
   var link;
   var linkmobile;
+  var linklogout;
+  var linkmobilelogout;
+
+  let address = window.sessionStorage.getItem("walletAddress");
 
   const location = useLocation();
  
-  const hideHeader =
-    location.pathname === "/reports" || location.pathname === "/wallet";
+  
 
-  if (hideHeader) {
-    return null;
-  }
+  
+ if (address) {
+  linklogout = (
+    <Link to="/" className="btn btn-outline-primary text-white fw-500">
+     {address.slice(0,6)}...{address.slice(-4)} | Logout
+    </Link>
+  );
+  linkmobilelogout = (
+    <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
+      <small>
+        {" "} 
+        {address.slice(0,6)}...{address.slice(-4)} | Logout
+      </small>
+    </Link>
+  );
+ }
+ else {
+  linklogout = (
+    <Link to="/" className="btn btn-outline-primary text-white fw-500">
+    Home
+    </Link>
+  );
+  linkmobilelogout = (
+    <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
+      <small>
+        {" "}
+        <small>Home</small>{" "}
+      </small>
+    </Link>
+  );
+ }
+
 
   link = (
     <Link to="/" className="btn btn-outline-primary text-white fw-500">
@@ -80,12 +112,13 @@ const IncupadNavBar = () => {
                 <li className="nav-item pe-lg-4">
                   <Link className="nav-link">About us</Link>
                 </li> */}
-                <li className="nav-item">{link}</li>
+                {/* <li className="nav-item">{link}</li> */}
+                <li className="nav-item">{linklogout}</li>
               </ul>
             </div>
             {/* Mobile button */}
             <div className="ms-auto d-flex d-md-none align-items-center">
-              {linkmobile}
+              {linkmobilelogout}
             </div>
             {/* Mobile button */}
           </div>
