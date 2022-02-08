@@ -263,7 +263,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   </div>
                   <span>{activePool.status}</span>
                   <h3>
-                    1 {activePool.allocationType} = {oneBNBprice}{" "}
+                    1 {activePool.allocationType} = TBA {" "}
                     {activePool.symbol}{" "}
                   </h3>
                   <b style={{ color: "white" }}>Starts In:</b>
@@ -272,14 +272,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className="lower-right-section">
                   <h5>Total Raise</h5>
                   <h4>
-                    {raisedBNB} {activePool.allocationType}
+                    TBA {activePool.allocationType}
                   </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
                     className="progress-bar-section"
                     label={`${Math.round(ICOcompletePercentage)}%`}
                   />
-                  <span>Participant : {totalUsers}</span>
+                  <span>Participant : TBA</span>
                 </div>
               </div>
               <div className="d-flex justify-content-center">
@@ -304,7 +304,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className="ongoing-upper-card-right">
+<<<<<<< HEAD
                     1 {activePool.allocationType} = {oneBNBprice}{" "}
+=======
+                    1 {activePool.allocationType} = TBA {" "}
+>>>>>>> 2624801219b1a079bb3651d3f8816fb202dfc2fa
                     {activePool.symbol}{" "}
                   </span>
                 </div>
@@ -355,18 +359,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
                             <span>Total Raised :150/500 BNB</span>
-                            <span>Participants : {totalUsers}</span>
+                            <span>Participants : TBA</span>
                           </div>
                         ) : (
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
-                            <span>Participants : {totalUsers}</span>
+                            <span>Participants : TBA</span>
                           </div>
                         )
                       ) : (
                         <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                           <span>Swap Progress</span>
-                          <span>Participants : {totalUsers}</span>
+                          <span>Participants : TBA</span>
                         </div>
                       )}
                     </div>
@@ -388,7 +392,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span>
                         {" "}
                         Current Tier:{" "}
-                        <span className="text-warning ms-1">GOLD(i)</span>
+                        <span className="text-warning ms-1">TBA</span>
                       </span>
                       <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
                     </div>
@@ -402,7 +406,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       </span>
                       <span>
                         Current Tier:
-                        <span className="text-warning ms-1">GOLD(i)</span>
+                        <span className="text-warning ms-1">TBA</span>
                       </span>
                     </div>
                     <div className="d-flex flex-column justify-content-between text-white">

@@ -23,6 +23,10 @@ import { ReactComponent as Icon4 } from "../assets/sidebar-icons/icon-4.svg";
 import { ReactComponent as Icon5 } from "../assets/sidebar-icons/icon-5.svg";
 
 export const Sidebar = () => {
+ 
+  let address = window.sessionStorage.getItem("walletAddress"); 
+
+
   const [LMBalanceuser, setLMBalanceuser] = useState(0);
   const [oneBNBprice, setoneBNBprice] = useState(0);
   const [LPbnb, setLPbnb] = useState(0);
@@ -48,8 +52,8 @@ export const Sidebar = () => {
 
   var priceperToken =
     (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
-  var address = window.sessionStorage.getItem("walletAddress");
-  
+   
+
   function web3apis() {
     // let address = window.sessionStorage.getItem("walletAddress");
 
@@ -124,7 +128,7 @@ export const Sidebar = () => {
   }
 
   useEffect(() => {
-    web3apis();
+    // web3apis();
   });
 
   async function logoutUser() {
@@ -185,11 +189,11 @@ export const Sidebar = () => {
         className={`sidebar-width  ${show ? "sidebar-show" : "sidebar-hide"}`}
       >
         {/* Logo */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <Link to="/">
             <img height={45} src="./assets/logo.png" alt="Logo" />
           </Link>
-        </div>
+        </div> */}
         {/* Sidebar */}
         <div className="sidebar-container text-white p-4 text-truncate">
           <div>
@@ -226,8 +230,8 @@ export const Sidebar = () => {
                   <div className="text-light">Your Address</div>
                   <div className="text-truncate">
                     {" "}
-                    {/* {address?(address.slice(0, 20) + ". . ."):""}{" "} */}
-                    TBA
+                    {address?(address.slice(0, 20) + ". . ."):""}{" "}
+                    {/* TBA */}
                   </div>
                 </p>
               </li>

@@ -210,11 +210,13 @@ const IncupadFeaturedSection = () => {
 
                     <div className="min-allocation">
                       <span className="lower-card-name">Min Allocation</span>
-                      <span>{Minallocation}</span>
+                      {/* <span>{Minallocation}</span> */}
+                      <span>TBA</span>
                     </div>
                     <div className="min-allocation">
                       <span className="lower-card-name">Max Allocation</span>
-                      <span>{Maxallocation}</span>
+                      {/* <span>{Maxallocation}</span> */}
+                       <span>TBA</span>
                     </div>
                     <div className="min-allocation">
                       <span className="lower-card-name">Access Type</span>

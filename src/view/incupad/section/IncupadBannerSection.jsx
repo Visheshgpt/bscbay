@@ -14,9 +14,9 @@ const IncupadBannerSection = () => {
           BSCBAY is the next step in the evolution of DEFI. It combines the previous successful instances and features of DEFI 
           and integrates them to create a new paradigm.<p></p> A Revolution Within An Evolution.
           </p>
-          <Button variant="outline-warning" href="#" className="customButton">
+          {/* <Button variant="outline-warning" href="#" className="customButton">
             View more <Arrow />
-          </Button>
+          </Button> */}
         </Col>
       </Row>
     </Container>
