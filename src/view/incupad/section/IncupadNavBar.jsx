@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
 const IncupadNavBar = () => {
-  var link;
-  var linkmobile;
+  // var link;
+  // var linkmobile;
   var linklogout;
   var linkmobilelogout;
 
@@ -17,12 +17,12 @@ const IncupadNavBar = () => {
   
  if (address) {
   linklogout = (
-    <Link to="/" className="btn btn-outline-primary text-white fw-500">
+    <Link onClick={logoutUser} className="btn btn-outline-primary text-white fw-500">
      {address.slice(0,6)}...{address.slice(-4)} | Logout
     </Link>
   );
   linkmobilelogout = (
-    <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
+    <Link onClick={logoutUser} className="btn btn-sm btn-outline-primary text-white fw-500">
       <small>
         {" "} 
         {address.slice(0,6)}...{address.slice(-4)} | Logout
@@ -47,19 +47,46 @@ const IncupadNavBar = () => {
  }
 
 
-  link = (
-    <Link to="/" className="btn btn-outline-primary text-white fw-500">
-      Home
-    </Link>
-  );
-  linkmobile = (
-    <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
-      <small>
-        {" "}
-        <small>Home</small>{" "}
-      </small>
-    </Link>
-  );
+
+ async function logoutUser() {
+  if (window.sessionStorage.getItem("walletName") == "walletconnect") {
+    //   ---------------working code ------------------
+    // const provider = new WalletConnectProvider({
+    //   rpc: {
+    //     1: "https://bsc-dataseed.binance.org/",
+    //     56: "https://bsc-dataseed.binance.org/",
+    //     97: "https://data-seed-prebsc-1-s1.binance.org:8545",
+    //   },
+    // });
+
+    // await provider.disconnect();
+    /// --------------------------------------------
+  }
+
+  localStorage.removeItem("provider");
+  window.sessionStorage.removeItem("walletAddress");
+  window.sessionStorage.removeItem("walletName");
+  window.location.reload();
+}
+
+
+ 
+
+
+
+  // link = (
+  //   <Link to="/" className="btn btn-outline-primary text-white fw-500">
+  //     Home
+  //   </Link>
+  // );
+  // linkmobile = (
+  //   <Link to="/" className="btn btn-sm btn-outline-primary text-white fw-500">
+  //     <small>
+  //       {" "}
+  //       <small>Home</small>{" "}
+  //     </small>
+  //   </Link>
+  // );
 
   return (
     <>
