@@ -10,13 +10,7 @@ import Web3 from "web3";
 import BSCBAYICOabi from "../../../shared/BSCBAYICO.json";
 
 const IncupadFeaturedSection = () => {
-  const upcomingData = [
-    { title: "Apply as a project", img: "./assets/is-1.svg" },
-    { title: "Buy on Pancakeswap", img: "./assets/is-2.svg" },
-    // { title: "Buy on Kucoin", img: "./assets/is-3.svg" },
-    // { title: "Buy on Gate.io", img: "./assets/is-4.svg" },
-  ];
-
+  
   const [receivedBNB, setreceivedBNB] = useState(0);
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
@@ -144,29 +138,8 @@ const IncupadFeaturedSection = () => {
   return (
     <Container as="section" fluid="xxl" className="incupad-upcoming-section">
       <Container>
-        <Row className="incupad-card">
-          {upcomingData.map((item, index) => (
-            <Col
-              xs={6}
-              lg={4}
-              key={index}
-              className="d-flex justify-content-center"
-            >
-              <div className="incupad-upcoming-card">
-                <a
-                  href="https://my.forms.app/crptoprojects/bscbaylaunch"
-                  target="_blank"
-                >
-                  {" "}
-                  <img src={item.img} alt={item.title} />{" "}
-                </a>
-                <span>{item.title}</span>
-              </div>
-            </Col>
-          ))}
-        </Row>
         <Row>
-          <Col xs={12} className="p-5 mt-5">
+          <Col xs={12} className="p-2">
             <h2 className="text-white text-center">Featured Pools</h2>
           </Col>
           <OwlCarousel options={options}>

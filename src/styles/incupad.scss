@@ -6,7 +6,7 @@
   background: url("../assets/upcomming-bg.png") no-repeat center;
   background-size: cover;
   width: 100%;
-  height: 115vh;
+  height: 100vh;
 }
 .incupad-banner-section > div {
   height: 100%;
@@ -88,38 +88,38 @@
   position: relative;
 }
 .incupad-card {
-  position: absolute;
-  top: -150px;
-  width: 100%;
-  left: 0;
-  margin: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  margin-top: 30px;
 }
 .incupad-upcoming-card:hover {
   background: #3d3d3c;
 }
 .incupad-upcoming-card {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 180px;
+  width: 220px;
+  height: 70px;
+  padding: 9px;
+  margin-bottom: 30px;
+  margin-right: 40px;
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   border-radius: 10px;
+  box-shadow: 0 0 18px 0 #afa9df6e;
 }
 .incupad-upcoming-card img {
   width: 30px;
   height: 30px;
   margin-bottom: 10px;
+  margin-right: 10px;
 }
 .incupad-upcoming-card span {
-  color: white;
+  color: #ffd366;
   text-align: center;
   font-weight: 400;
   font-size: 13px;
+  text-transform: capitalize;
 }
 .incupad-upcoming-pool-card {
   display: flex;
@@ -227,8 +227,8 @@
   color: white;
 }
 @media (max-width: 575.98px) {
-  .incupad-upcoming-card {
-    height: 150px;
+  .incupad-card {
+    flex-direction: column;
   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -387,4 +387,175 @@
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
   }
+}
+///////////////Incupad Bar Section
+.incupad-bar-section {
+  background-color: #212534;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar-section span {
+  margin-right: 40px;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 300;
+}
+@media (max-width: 575.98px) {
+  .bar-section span {
+    margin-right: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 300;
+  }
+}
+///////////////////Incupad About Section
+.incupad-about-section {
+  background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
+  width: 100%;
+  height: auto;
+  color: #fff;
+}
+.about-section-key-feature {
+  margin-top: 70px;
+}
+.about-section-key-feature > h1 {
+  padding: 30px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 50px;
+}
+.about-section-key-feature > h5 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 100px;
+}
+.key-features {
+  padding: 20px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.key-features img {
+  width: 60px;
+  height: 70px;
+  margin-bottom: 40px;
+}
+
+.about-section-cross-chain {
+  background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
+  width: 100%;
+  height: auto;
+  color: #fff;
+}
+.about-section-cross-chain h1 {
+  padding: 30px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 50px;
+}
+.about-section-cross-chain h5 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 100px;
+}
+.cross-img-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.cross-img-section img {
+  width: 150px;
+}
+@media (max-width: 575.98px) {
+  .key-features {
+    font-size: 15px;
+  }
+}
+/////////////About Partner Section
+.about-partner-section > div > h1 {
+  font-size: 50px;
+  font-weight: 300;
+}
+.partner-img-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.partner-img-section img {
+  width: 200px;
+}
+.partner-img-section img:nth-child(2) {
+  width: 100px;
+}
+///////// Incupad Level Section
+.levels-section {
+  background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
+  width: 100%;
+  height: auto;
+  color: #ffffff;
+}
+.levels-section > h1 {
+  padding-top: 70px;
+  font-size: 50px;
+  font-weight: 400;
+  text-align: center;
+}
+.lottery-card {
+  background-color: #212534;
+  width: auto;
+   padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lottery-card > h1 {
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: 300;
+}
+.lottery-staking {
+  background-color: #020214;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lottery-staking > span {
+  font-size: 13px;
+  padding: 10px 0;
+  font-weight: 300;
+}
+
+.lottery-staking > div > span:nth-child(1) {
+  font-size: 40px;
+}
+.lottery-staking > div > span:nth-child(2) {
+  font-size: 12px;
+  padding: 20px 10px;
+}
+.lottery-card span:nth-child(3) {
+  padding-top: 30px;
+  font-size: 12px;
+}
+.lottery-card span:nth-child(4) {
+  padding-top: 10px;
+  font-size: 40px;
+}
+.lottery-card span:nth-child(5) {
+  padding-top: 20px;
+  font-size: 12px;
+}
+.lottery-card span:nth-child(6) {
+  padding: 10px 0;
+  font-size: 18px;
 }

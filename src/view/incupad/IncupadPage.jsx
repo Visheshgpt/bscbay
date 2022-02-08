@@ -4,7 +4,9 @@ import IncupadFeaturedSection from "./section/IncupadFeaturedSection";
 import IncupadPoolsSection from "./section/IncupadPoolsSection";
 import ScrollToTopOnMount from"../../components/ScrollToTopOnMount";
 import { useEffect } from "react";
-
+import IncupadBarSection from "./section/IncupadBarSection";
+import IncupadAboutSection from "../incupadAbout/IncupadAboutSection"
+import IncupadLevels from "../incupadLevels/IncupadLevels";
 const IncupadPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,10 +14,13 @@ const IncupadPage = () => {
 
   return (
     <section className="incupad-outer">
-      <ScrollToTopOnMount/>
+      {/* <ScrollToTopOnMount/> */}
       <IncupadNavBar />
       <IncupadBannerSection />
-      <IncupadFeaturedSection />
+      <IncupadBarSection/>
+      {/* <IncupadAboutSection/> */}
+      {/* <IncupadLevels/> */}
+       <IncupadFeaturedSection /> 
       {/* <IncupadPoolsSection /> */}
     </section>
   );
