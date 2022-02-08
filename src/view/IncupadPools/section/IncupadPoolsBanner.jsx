@@ -32,7 +32,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [userTokenalance, setuserTokenalance] = useState(0);
   const [eligibility, seteligibility] = useState(false);
   const [walletapproved, setwalletapproved] = useState(false);
+  const [claimenabled, setclaimenabled] = useState(false);
   const [value, setvalue] = useState(0);
+
 
   function web3apis() {
     const web3 = new Web3(
@@ -119,6 +121,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
           // console.log("eli",value);
           seteligibility(value);
         });
+ 
+      
+       // check claim enabled or not
+       contract.methods
+       .Claimenabled()
+       .call()
+       .then((value) => {
+         // console.log("eli",value);
+         setclaimenabled(value);
+       });  
+
+         
 
       // check wallet approved or not
       contract.methods
@@ -137,6 +151,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
       });
     }
   }
+
+
 
   const handleAllowance = async () => {
     const web3 = await contractService.getWeb3Client();
@@ -157,9 +173,15 @@ const IncupadPoolsBanner = ({ activePool }) => {
       )
       .send({ from: address })
       .then(function (receipt) {
-        // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
-        console.log(receipt);
+        console.log(receipt);      
+        if (receipt.status) {
         setwalletapproved(true);
+        }
+       else {
+        alert("Transaction Failed");
+       }
+      }).catch((e) => {
+        alert("Transaction Failed!");
       });
   };
 
@@ -182,10 +204,21 @@ const IncupadPoolsBanner = ({ activePool }) => {
             .Invest()
             .send({ from: address, value: amnt })
             .then(function (receipt) {
-              // receipt can also be a new contract instance, when coming from a "contract.deploy({...}).send()"
               console.log(receipt);
-              alert("Tx Done");
-            });
+
+              if (receipt.status) {
+                alert("Transaction Success");
+                }
+              else {
+                alert("Transaction Failed");
+                }
+
+            }).catch((e) => {
+               console.log("error is", e);
+               alert("Transaction Failed!");
+               window.location.reload();
+            }                  
+            );
         } catch {
           alert("Transaction Failed!");
         }
@@ -378,11 +411,19 @@ const IncupadPoolsBanner = ({ activePool }) => {
               <Col xs={12} className="ongoing-lower-card mt-2">
                 {status !== "closed" ? (
                   <div className="d-flex flex-column justify-content-between">
-                    <div className="d-flex flex-column text-white ">
-                      <span className="pb-2">Wallet Address: {address}</span>
+                    <div className="d-flex flex-row justify-content-between text-white">
+                      {/* <span className="pb-2">Wallet Address: {address}</span> */}
                       <span className="pb-2">
                         BSCB Balance: {userTokenalance.toFixed(2)} BSCB
                       </span>
+                      <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
+                    </div>
+                    <div className="d-flex flex-row justify-content-between text-white">
+                      {/* <span className="pb-2">Wallet Address: {address}</span> */}
+                      <span className="pb-2">
+                        User Invested: {userTokenalance.toFixed(2)} BNB
+                      </span>
+                      <span> Remaining allocation: {userBNBbalance.toFixed(2)} BNB</span>
                     </div>
                     <div className="d-flex flex-row justify-content-between text-white">
                       <span>
@@ -390,8 +431,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         Current Tier:{" "}
                         <span className="text-warning ms-1">TBA</span>
                       </span>
-                      <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
                     </div>
+                    <br></br>
+                    <div className="d-flex flex-row justify-content-between text-white">
+                      <span>
+                        {" "}
+                        Claimable Tokens:{" "}
+                        <span className="text-warning ms-1">TBA BSCBay</span>
+                      </span>
+                    </div>
+                    
                   </div>
                 ) : (
                   <div className="d-flex flex-row justify-content-between">
@@ -403,6 +452,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span>
                         Current Tier:
                         <span className="text-warning ms-1">TBA</span>
+                      </span>
+                      <span>
+                        User Invested:
+                        <span className="text-warning ms-1">TBA BNB</span>
                       </span>
                     </div>
                     <div className="d-flex flex-column justify-content-between text-white">
@@ -425,30 +478,35 @@ const IncupadPoolsBanner = ({ activePool }) => {
               </Col>
 
               {/* Button Ater Second Banner */}
-              {walletapproved ? (
-                <div className="invest__wrapper">
-                  <input
-                    type="text"
-                    placeholder="Enter Amount"
-                    onChange={(e) => setvalue(e.target.value)}
-                  />
-                  <button
-                    className="incupadButton_invest"
-                    onClick={() => invest()}
-                  >
-                    Invest
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <button
-                    onClick={() => handleAllowance()}
-                    className="incupadeButton__active"
-                  >
-                    Approve Wallet
-                  </button>
-                </>
-              )}
+        
+        {
+
+        (claimenabled) 
+          
+        ?    <button
+        onClick={() => handleAllowance()}
+        className="incupadeButton__active"
+      >
+       Claim Tokens
+      </button>    
+       
+       :   
+         (
+        <div className="invest__wrapper">
+          <input
+            type="text"
+            placeholder="Enter Amount"
+            onChange={(e) => setvalue(e.target.value)}
+          />
+          <button
+            className="incupadButton_invest"
+            onClick={() => invest()}
+          >
+            Invest
+          </button>
+        </div>
+      )}  
+
             </div>
           )}
         </Row>

@@ -202,3 +202,38 @@
 // };
 
 // export default WalletDetails;
+
+
+
+
+
+
+
+
+
+{/* 
+              {walletapproved ? (
+                <div className="invest__wrapper">
+                  <input
+                    type="text"
+                    placeholder="Enter Amount"
+                    onChange={(e) => setvalue(e.target.value)}
+                  />
+                  <button
+                    className="incupadButton_invest"
+                    onClick={() => invest()}
+                  >
+                    Invest
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <button
+                    onClick={() => handleAllowance()}
+                    className="incupadeButton__active"
+                  >
+                    Approve Wallet
+                  </button>
+                </>
+              )}   
+ */}
