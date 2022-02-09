@@ -31,7 +31,7 @@ const LotteryLevels = () => {
             <h1 className="text-center mt-5 pb-5">Lottery Levels</h1>
           </Col>
           {levelData.map((item, index) => (
-            <Col lg={4} xs={12} >
+            <Col lg={4} xs={12} className="mt-5">
               <div key={index} className="lottery-card">
                 <h1>{item.title}</h1>
                 <div className="lottery-staking">
@@ -49,7 +49,7 @@ const LotteryLevels = () => {
               </div>
             </Col>
           ))}
-          <div className="mb-5 pb-5"></div>
+          <div className="mb-5 "></div>
         </Row>
       </Container>
     </section>

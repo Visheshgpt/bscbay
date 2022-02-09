@@ -510,13 +510,17 @@
   text-align: center;
 }
 .lottery-card {
-  background-color: #212534;
+  background-color: #020214;
   width: auto;
-   padding: 30px 0;
+  border-radius: 10px;
+  padding: 30px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.lottery-card:hover {
+  background-color: #212534;
 }
 .lottery-card > h1 {
   padding: 20px 0;
@@ -524,7 +528,7 @@
   font-weight: 300;
 }
 .lottery-staking {
-  background-color: #020214;
+  background-color: #000;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -558,4 +562,116 @@
 .lottery-card span:nth-child(6) {
   padding: 10px 0;
   font-size: 18px;
+}
+//////////////Guaranted Levels
+.guaranteed-card {
+  background-color: #020214;
+  width: auto;
+  border-radius: 10px;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.guaranteed-card:hover {
+  background-color: #212534;
+}
+.guaranteed-card > h1 {
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: 300;
+}
+.guaranteed-staking {
+  background-color: #000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.guaranteed-staking > span {
+  font-size: 13px;
+  padding: 10px 0;
+  font-weight: 300;
+}
+.guaranteed-staking > div > span:nth-child(1) {
+  font-size: 40px;
+}
+.guaranteed-staking > div > span:nth-child(2) {
+  font-size: 12px;
+  padding: 20px 10px;
+}
+.guaranteed-card span:nth-child(3) {
+  padding-top: 30px;
+  font-size: 12px;
+}
+.guaranteed-card span:nth-child(4) {
+  padding-top: 10px;
+  font-size: 40px;
+}
+.guaranteed-card span:nth-child(5) {
+  padding-top: 20px;
+  font-size: 12px;
+}
+.allocation-change{
+  font-size: 18px;
+  padding: 10px 5px;
+  
+}
+.allocation-change img {
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+ 
+}
+.private-guaranteed-card{
+  background-color: #000;
+  width: auto;
+  border-radius: 10px;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.private-guaranteed-card:hover {
+  background-color: #212534;
+}
+.private-guaranteed-card > h1 {
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: 300;
+}
+.private-guaranteed-staking {
+  background-color:#020214 ;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.private-guaranteed-staking > span {
+  font-size: 13px;
+  padding: 10px 0;
+  font-weight: 300;
+}
+.private-guaranteed-staking > div > span:nth-child(1) {
+  font-size: 40px;
+}
+.private-guaranteed-staking > div > span:nth-child(2) {
+  font-size: 12px;
+  padding: 20px 10px;
+}
+.private-guaranteed-card span:nth-child(3) {
+  padding-top: 30px;
+  font-size: 12px;
+}
+.private-guaranteed-card span:nth-child(4) {
+  padding-top: 10px;
+  font-size: 40px;
+}
+.private-guaranteed-card span:nth-child(5) {
+  padding-top: 20px;
+  font-size: 12px;
 }
