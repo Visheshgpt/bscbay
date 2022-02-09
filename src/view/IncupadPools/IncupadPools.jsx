@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useParams } from "react-router-dom";
 import IncupadNavbar from "../incupad/section/IncupadNavBar";
 import PageNotFound from "../PageNotFound/PageNotFound";
@@ -11,8 +11,7 @@ const IncupadPools = () => {
 
   let address = window.sessionStorage.getItem("walletAddress");
 
-     
-
+ 
   const { title } = useParams();  
   const activePool = poolData.find(
     (item) => item.title.replaceAll(" ", "-") === title

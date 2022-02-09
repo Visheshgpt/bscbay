@@ -3,14 +3,14 @@ import IncupadBannerSection from "./section/IncupadBannerSection";
 import IncupadFeaturedSection from "./section/IncupadFeaturedSection";
 import IncupadPoolsSection from "./section/IncupadPoolsSection";
 import { useEffect } from "react";
+import ScrollToTop from '../../components/ScrollToTop'
 
 const IncupadPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  
 
   return (
     <section className="incupad-outer">
+      <ScrollToTop />
       <IncupadNavBar />
       <IncupadBannerSection />
       <IncupadFeaturedSection />
