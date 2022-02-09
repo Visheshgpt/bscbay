@@ -20,8 +20,8 @@ const IncupadPage = () => {
       <IncupadBarSection/>
       {/* <IncupadAboutSection/> */}
       <IncupadLevels/>
-      {/* <IncupadFeaturedSection />  */}
-      {/* <IncupadPoolsSection /> */}
+       <IncupadFeaturedSection />  
+      <IncupadPoolsSection /> 
     </section>
   );
 };

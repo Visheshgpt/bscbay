@@ -8,11 +8,13 @@ import contractService from "../../../shared/LMcontractservice";
 import Web3 from "web3";
 import BSCBAYICOabi from "../../../shared/BSCBAYICO.json";
 import ERC20abi from "../../../shared/BSCBAYabi.json";
+import AlertModal from "../../../components/AlertModal";
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
   const [activate, setActivate] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const onHideHandler = () => {
     setShowConnect(false);
@@ -322,6 +324,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 >
                   Connect To Wallet
                 </Button>
+
+                <Button
+                  className="btn connect-btn"
+                  onClick={() => setModalShow(true)}
+                >
+                  New Modal
+                </Button>
               </div>
               {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
             </Col>
@@ -512,6 +521,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         </Row>
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
+      <AlertModal show={modalShow} onHide={() => setModalShow(false)} message="Transaction Failed" />
     </Container>
   );
 };
