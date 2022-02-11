@@ -1,0 +1,25 @@
+@import "colors";
+@import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "rocket";
+@import "sidebar";
+@import "scrollbar";
+@import "fonts";
+@import "custom";
+@import "animation";
+@import "incupad";
+@import "upcomingPool";
+@import "walletDetail";
+@import "loaderSection";
+@import "alertmodal";
+
+
+.item-social-main {
+    display: flex;
+    flex-direction: row;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}

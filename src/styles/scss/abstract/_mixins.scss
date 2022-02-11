@@ -1,0 +1,32 @@
+
+@mixin respond($breakpoint) {
+    @if ($breakpoint== 'sm-phone') {
+        @media only screen and (max-width: 480px) {
+          @content;
+        }
+    }
+    
+      @if ($breakpoint == 'phone') {
+        @media only screen and (max-width: 575px) {
+          @content;
+        }
+      }
+    
+      @if ($breakpoint == 'lg-phone') {
+        @media only screen and (max-width: 640px) {
+          @content;
+        }
+      }
+    
+      @if ($breakpoint == 'tablet') {
+        @media only screen and (max-width: 768px) {
+          @content;
+        }
+      }
+    @if ($breakpoint == 'desktop') {
+        @media only screen and (min-width: 1400px) {
+            @content;
+        }
+    }
+
+}

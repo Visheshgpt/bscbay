@@ -75,7 +75,12 @@ const InformationPage = () => {
 
   return (
     <>
-      <Navbar />
+    {
+      /*
+           <Navbar />
+      */
+    }
+ 
       <section className="flex-fill bg-color-2 text-white py-5 position-relative">
         <Head title="Information" />
 

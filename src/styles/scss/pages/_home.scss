@@ -1,0 +1,95 @@
+.home {
+    &_banner {
+        padding-top: 125px !important;
+    }
+        /*
+        background: $background-gradient;
+        &_content {
+            padding-top: 20px;
+            h1 {
+                font-size: $h1-primary;
+                line-height: $h1-primary-line-height;
+                font-family: $font-poppins;
+                font-weight: 700;
+            }
+            .extra-large{
+                color: $color-primary;
+                font-size: 70px;
+                line-height: 80px;
+                font-weight: 700;
+            }
+        }
+
+        &_img {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        &_button {
+            width: 210px;
+            margin-top: 80px;
+            .btn{
+                padding: 10px;
+            }
+            span{
+                letter-spacing: 1.5px;
+            }
+        
+            i{
+                width: 18px;
+                height: 30px;
+            }
+        }
+
+        &_midsection {
+            margin-top: 40px;
+            h3 {
+                font-size: 40px;
+                line-height: 50px;
+                color: $color-offwhite;
+            }
+           
+        }
+
+        .ecosystem_data {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1%;
+        }
+
+        .social_img {
+            width: 30px;
+        }
+
+        @include respond('phone') {
+            &_content { 
+                padding-top: 25px;
+                h1 {
+                    font-size: 40px;
+                    line-height: 50px;
+                }
+                .extra-large{
+                    font-size: 50px;
+                    line-height: 60px;
+                }
+                .you {
+                    display: block;
+                }
+               
+            }
+
+            &_img {
+                margin-top: -55px;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+
+            &_button {
+                margin-top: 25px;
+                padding: 12px 8px;
+            }
+        }
+    }
+    */
+}

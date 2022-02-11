@@ -1,17 +1,4 @@
-* {
-  scroll-behavior: smooth;
-}
 
-html {
-  height: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-}
 
 .main-container {
   overflow-x: hidden !important;
@@ -21,14 +8,7 @@ body {
   overflow-x: auto;
 }
 
-a:focus,
-button:focus,
-.btn:focus,
-.form-select:focus,
-input {
-  box-shadow: unset !important;
-  outline: 0 !important;
-}
+
 
 .form-select {
   background-image: url(../assets/arrow-down-1.png);
@@ -101,6 +81,7 @@ input {
 }
 
 // ===
+
 .container-xxl {
   max-width: 100%;
   padding: 0 30px;
@@ -112,6 +93,7 @@ input {
     max-width: 1500px;
   }
 }
+
 
 .box-1 {
   display: flex;
@@ -161,17 +143,7 @@ input {
   }
 }
 
-button,
-.btn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
-  background-color: transparent;
-  border-width: 1.6px;
-  border-radius: 8px;
-}
 
 a {
   text-decoration: none;
@@ -546,16 +518,29 @@ homeSection-four-para {
 }
 .icon-box-incupad::before {
   content: "";
-  background-image: url(../assets/choose-icon-bg.png);
+  background-image: url(../assets/p/14.png);
   background-position: center center;
   background-size: cover;
-  width: 90px;
-  height: 90px;
+  width: 115px;
+  height: 115px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transform-origin: center center;
+}
+
+.icon-box-incupad-1::before{
+  background-image: url(../assets/p/11.png);
+}
+.icon-box-incupad-2::before{
+  background-image: url(../assets/p/12.png);
+}
+.icon-box-incupad-3::before{
+  background-image: url(../assets/p/13.png);
+}
+.icon-box-incupad-4::before{
+  background-image: url(../assets/p/14.png);
 }
 icon-box-incupad-span {
   display: flex;

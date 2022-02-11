@@ -1,0 +1,115 @@
+.card {
+    &-1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 12px 8px;
+        width: 155px;
+        height: 110px;
+        box-shadow: 0px 8px 0px #383a41;
+        border-radius: 10px;
+        background: $background-gradient;
+
+        &_img{
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &_levels {
+        background-color: #020214;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 35px 0px;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+        background-color: #212534;
+        }
+
+        &_staking {
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .content{
+                h2, h6 {
+                    line-height: 1;
+                }
+                h6 {
+                    margin-bottom: 2px;
+                }
+            }
+           
+        }
+
+        &_content {
+            display: flex;
+            flex-direction: column;
+            span{
+                &:nth-child(1), &:nth-child(3) {
+                    font-size: 14px;
+                    padding: 20px 0px 5px;
+                }
+                &:nth-child(2) {
+                    font-size: 40px;
+                }
+                &:nth-child(4) {
+                    font-size: 1.1rem;
+                    img {
+                        width: 15px;
+                        height: 15px;
+                        margin-left: 10px;
+
+                    }
+                }
+               
+            }
+           
+        }
+    }
+
+    &_pool {
+        background: $background-gradient;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0px;
+
+        &_tag {
+            margin-top: 20px;
+            padding: 5px;
+            text-align: center;
+            width: 139px;
+            height: 30px;
+            color: #ffd366;
+            background: #212534;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+
+        &_icon {
+            width: 90px;
+            height: 90px;
+            padding: 18px;
+            border-radius: 50%;
+            overflow: hidden;
+            object-fit: cover;
+            position: relative;
+            &::before {
+                animation: rotate-in-center 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+
+
+            }
+        }
+    }
+}

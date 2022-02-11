@@ -1,0 +1,115 @@
+.ongoing-section {
+  background-color: #111110;
+  padding: 50px;
+}
+
+.ongoing-upper-card {
+  background-color: #2b3146;
+  border-radius: 10px;
+  padding: 20px;
+  height: auto;
+  @media (max-width: 525px) {
+    margin-top: 10px;
+  }
+}
+
+.ongoing-upper-card-left span {
+  width: 100%;
+  min-height: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #ffd366;
+  color: #212534;
+}
+
+.ongoing-upper-card-right {
+  width: 200px;
+  min-height: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 14px;
+  background-color: #111110;
+  color: #fff;
+}
+
+.ongoing-lower-card {
+  // width: 100%;
+  padding: 20px !important;
+}
+
+.ongoing-lower-card > span {
+  font-weight: 200;
+}
+
+.pro-bar-section {
+  margin-top: 20px;
+  width: 100%;
+  height: 35px;
+  background: #212534;
+
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px #181818;
+}
+
+.pro-bar-section > div {
+  background: #ffd366;
+  border-radius: 5px;
+  color: rgb(29, 28, 28);
+  font-size: 12px;
+  font-weight: 500;
+}
+.ongoing-upper-last-section span {
+  font-size: 10px;
+  font-weight: 200;
+}
+
+.ongoing-upper-last-section span:nth-child(2) {
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.ongoing-upper-last-section span:nth-child(3) {
+  font-size: 10px;
+  font-weight: 200;
+}
+
+.ongoing-lower-card {
+  background-color: #2b3146;
+  border-radius: 10px;
+  padding: 40px;
+  height: auto;
+  font-size: 14px;
+  font-weight: 300;
+}
+.ongoing-lower-card-last-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding-top: 40px;
+}
+
+.ongoing-lower-card-last-section span:nth-child(2) {
+  font-size: 10px;
+  padding-top: 8px;
+  border-bottom: 1px solid white;
+}
+.claim-section {
+  background-color: #ffd366;
+  color: #212534;
+  font-weight: 600;
+  width: 70px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-top: 5px;
+  box-shadow: 0 0 5px 2px #181818;
+}

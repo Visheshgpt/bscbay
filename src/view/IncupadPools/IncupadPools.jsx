@@ -20,7 +20,8 @@ const IncupadPools = () => {
 
   return activePool !== undefined ? (
     <section>
-      <IncupadNavbar /> 
+      {/*     <IncupadNavbar /> */}
+  
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
        {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
