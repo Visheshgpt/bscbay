@@ -38,6 +38,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [value, setvalue] = useState(0);
 
 
+   useEffect(() => {
+     
+   },[walletapproved]);
+
   function web3apis() {
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
@@ -134,8 +138,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
          setclaimenabled(value);
        });  
 
-         
-
+        
       // check wallet approved or not
       contract.methods
         .existingUser(address)
@@ -158,7 +161,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   const handleAllowance = async () => {
     const web3 = await contractService.getWeb3Client();
-
     var contractTokenABI = ERC20abi;
     var contractTokenAddress = activePool.outputTokenaddress;
     var Tokencontract = new web3.eth.Contract(
@@ -177,7 +179,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .then(function (receipt) {
         console.log(receipt);      
         if (receipt.status) {
-        setwalletapproved(true);
+          setwalletapproved(true);
         }
        else {
         alert("Transaction Failed");
@@ -286,15 +288,20 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
           {!address ? (
             <Col lg={5} md={5}>
-              <div className="right-section">
+              <div className="right-section card_pools">
                 <div className="upper-right-section">
                   <div className="button-section">
-                    <Button className="upper-right-btn-one">
+                    {
+                      /*
+  <Button className="upper-right-btn-one">
                       {activePool.allocationType}
                     </Button>
                     <Button className="upper-right-btn-two">
                       Access Type : {activePool.accessType}
                     </Button>
+                      */
+                    }
+                  
                   </div>
                   <span>{activePool.status}</span>
                   <h3>
@@ -323,13 +330,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   onClick={() => setShowConnect(true)}
                 >
                   Connect To Wallet
-                </Button>
-
-                <Button
-                  className="btn connect-btn"
-                  onClick={() => setModalShow(true)}
-                >
-                  New Modal
                 </Button>
               </div>
               {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
