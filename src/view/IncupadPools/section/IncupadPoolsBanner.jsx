@@ -36,7 +36,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [walletapproved, setwalletapproved] = useState(false);
   const [claimenabled, setclaimenabled] = useState(false);
   const [value, setvalue] = useState(0);
-
+  const [userInvested, setuserInvested] = useState(0);
+  const [claimableTokens, setclaimableTokens] = useState(0);
+  const [Maxallocation, setMaxallocation] = useState(0);
+  
+  const [txMessage, settxMessage] = useState("");
+  
+  const remainingallocation = Maxallocation - userInvested;
 
    useEffect(() => {
      
@@ -80,6 +86,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .then((totalusers) => {
         settotalUsers(totalusers);
       });
+
+    
+     // user MAX allocation
+     contract.methods
+     .maxInvestment()
+     .call()
+     .then((amount) => {
+       //  console.log(amount);
+       var tokens = web3.utils.toBN(amount).toString();
+       setMaxallocation(Number(web3.utils.fromWei(tokens, "ether")));
+     });  
+
 
     // get MAX DISTRIBUTED TOKENS
     contract.methods
@@ -137,8 +155,23 @@ const IncupadPoolsBanner = ({ activePool }) => {
          // console.log("eli",value);
          setclaimenabled(value);
        });  
+      
+      
+       // get user info
+       contract.methods
+       .userInfo(address)
+       .call()
+       .then((obj) => {
+         console.log("User Info",obj.debt);
 
-        
+         var claimabletokens = web3.utils.toBN(obj.debt).toString();
+         setclaimableTokens(Number(web3.utils.fromWei(claimabletokens, "ether")));
+         
+         var userinvested = web3.utils.toBN(obj.totalInvestedETH).toString();
+         setuserInvested(Number(web3.utils.fromWei(userinvested, "ether")));
+       });   
+              
+
       // check wallet approved or not
       contract.methods
         .existingUser(address)
@@ -158,36 +191,36 @@ const IncupadPoolsBanner = ({ activePool }) => {
   }
 
 
+  // const handleAllowance = async () => {
+  //   const web3 = await contractService.getWeb3Client();
 
-  const handleAllowance = async () => {
-    const web3 = await contractService.getWeb3Client();
-    var contractTokenABI = ERC20abi;
-    var contractTokenAddress = activePool.outputTokenaddress;
-    var Tokencontract = new web3.eth.Contract(
-      contractTokenABI,
-      contractTokenAddress
-    );
+  //   var contractTokenABI = ERC20abi;
+  //   var contractTokenAddress = activePool.outputTokenaddress;
+  //   var Tokencontract = new web3.eth.Contract(
+  //     contractTokenABI,
+  //     contractTokenAddress
+  //   );
 
-    console.log("tokencontract", Tokencontract);
+  //   console.log("tokencontract", Tokencontract);
 
-    Tokencontract.methods
-      .approve(
-        "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
-        "20000000000000000000000000000000".toString()
-      )
-      .send({ from: address })
-      .then(function (receipt) {
-        console.log(receipt);      
-        if (receipt.status) {
-          setwalletapproved(true);
-        }
-       else {
-        alert("Transaction Failed");
-       }
-      }).catch((e) => {
-        alert("Transaction Failed!");
-      });
-  };
+  //   Tokencontract.methods
+  //     .approve(
+  //       "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
+  //       "20000000000000000000000000000000".toString()
+  //     )
+  //     .send({ from: address })
+  //     .then(function (receipt) {
+  //       console.log(receipt);      
+  //       if (receipt.status) {
+  //       setwalletapproved(true);
+  //       }
+  //      else {
+  //       alert("Transaction Failed");
+  //      }
+  //     }).catch((e) => {
+  //       alert("Transaction Failed!");
+  //     });
+  // };
 
   const invest = async () => {
     const web3 = await contractService.getWeb3Client();
@@ -211,26 +244,95 @@ const IncupadPoolsBanner = ({ activePool }) => {
               console.log(receipt);
 
               if (receipt.status) {
-                alert("Transaction Success");
+
+                settxMessage("Transaction Success")
+                setModalShow(true)
+                // alert("Transaction Success");
                 }
               else {
-                alert("Transaction Failed");
-                }
+
+                settxMessage("Transaction Failed")
+                setModalShow(true)
+                // alert("Transaction Failed");
+                
+              }
 
             }).catch((e) => {
                console.log("error is", e);
-               alert("Transaction Failed!");
-               window.location.reload();
+
+               settxMessage("Transaction Failed!")
+               setModalShow(true)
+              //  alert("Transaction Failed!");
+              //  window.location.reload();
             }                  
             );
         } catch {
-          alert("Transaction Failed!");
+          settxMessage("Transaction Failed!")
+          setModalShow(true)
+          // alert("Transaction Failed!");
         }
       } else {
-        alert("Change network to binance");
+        settxMessage("Change network to binance")
+        setModalShow(true)  
+        // alert("Change network to binance");
       }
     }
   };
+
+
+  const claim = async () => {
+    const web3 = await contractService.getWeb3Client();
+
+      if (web3) {
+        try {
+          var contractABI = BSCBAYICOabi;
+          var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+          var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+          console.log("Claim called ==>");
+
+          contract.methods
+            .claim()
+            .send({ from: address })
+            .then(function (receipt) {
+              console.log(receipt);
+
+              if (receipt.status) {
+                setclaimableTokens(0)
+                settxMessage("Transaction Success")
+                setModalShow(true)
+                // alert("Transaction Success");
+                }
+              else {
+
+                settxMessage("Transaction Failed")
+                setModalShow(true)
+                // alert("Transaction Failed");
+                
+              }
+
+            }).catch((e) => {
+               console.log("error is", e);
+
+               settxMessage("Transaction Failed!")
+               setModalShow(true)
+              //  alert("Transaction Failed!");
+              //  window.location.reload();
+            }                  
+            );
+        } catch {
+          settxMessage("Transaction Failed!")
+          setModalShow(true)
+          // alert("Transaction Failed!");
+        }
+      } else {
+        settxMessage("Change network to binance")
+        setModalShow(true)  
+        // alert("Change network to binance");
+      }
+  };
+
+
 
   useEffect(() => {
     let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
@@ -397,18 +499,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
                             <span>Total Raised :150/500 BNB</span>
-                            <span>Participants : TBA</span>
+                            <span>Participants : {totalUsers}</span>
                           </div>
                         ) : (
                           <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                             <span>Swap Progress</span>
-                            <span>Participants : TBA</span>
+                            <span>Participants : {totalUsers}</span>
                           </div>
                         )
                       ) : (
                         <div className="d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section ">
                           <span>Swap Progress</span>
-                          <span>Participants : TBA</span>
+                          <span>Participants : {totalUsers}</span>
                         </div>
                       )}
                     </div>
@@ -430,9 +532,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     <div className="d-flex flex-row justify-content-between text-white">
                       {/* <span className="pb-2">Wallet Address: {address}</span> */}
                       <span className="pb-2">
-                        User Invested: {userTokenalance.toFixed(2)} BNB
+                        User Invested: {userInvested.toFixed(2)} BNB
                       </span>
-                      <span> Remaining allocation: {userBNBbalance.toFixed(2)} BNB</span>
+                      <span> Remaining allocation: {remainingallocation.toFixed(2)} BNB</span>
                     </div>
                     <div className="d-flex flex-row justify-content-between text-white">
                       <span>
@@ -442,14 +544,28 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       </span>
                     </div>
                     <br></br>
-                    <div className="d-flex flex-row justify-content-between text-white">
+
+          { (userInvested > 0 && claimableTokens==0)  
+                     ? 
+                     <div className="d-flex flex-row justify-content-between text-white">
                       <span>
                         {" "}
-                        Claimable Tokens:{" "}
-                        <span className="text-warning ms-1">TBA BSCBay</span>
+                        {/* Claimable Tokens:{" "} */}
+                        <span className="text-warning ms-1"> Tokens Claimed: {userInvested / tokenPrice}</span>
                       </span>
                     </div>
-                    
+                    :
+                    <div className="d-flex flex-row justify-content-between text-white">
+                    <span>
+                      {" "}
+                      Claimable Tokens:{" "}
+                      <span className="text-warning ms-1">{claimableTokens} BSCBay</span>
+                    </span>
+                  </div>
+          
+                  }
+
+
                   </div>
                 ) : (
                   <div className="d-flex flex-row justify-content-between">
@@ -488,12 +604,12 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
               {/* Button Ater Second Banner */}
         
-        {
+        {/* {
 
         (claimenabled) 
           
         ?    <button
-        onClick={() => handleAllowance()}
+        onClick={() => claim()}
         className="incupadeButton__active"
       >
        Claim Tokens
@@ -514,14 +630,64 @@ const IncupadPoolsBanner = ({ activePool }) => {
             Invest
           </button>
         </div>
-      )}  
+      )}   */}
+
+
+
+
+
+{
+
+(!claimenabled) 
+  
+? 
+  
+<div className="invest__wrapper">
+  <input
+    type="text"
+    placeholder="Enter Amount"
+    onChange={(e) => setvalue(e.target.value)}
+  />
+  <button
+    className="incupadButton_invest"
+    onClick={() => invest()}
+  >
+    Invest
+  </button>
+</div>
+ 
+:    
+ ( (claimableTokens > 0) ?
+    
+  <button
+  onClick={() => claim()}
+  className="incupadeButton__active"
+  >
+  Claim Tokens
+  </button> 
+  
+  :  
+   
+  <div></div>
+
+)}  
+
+
+
+
+
+
+
+
+
+
 
             </div>
           )}
         </Row>
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
-      <AlertModal show={modalShow} onHide={() => setModalShow(false)} message="Transaction Failed" />
+      <AlertModal show={modalShow} onHide={() => setModalShow(false)} message={txMessage} />
     </Container>
   );
 };
