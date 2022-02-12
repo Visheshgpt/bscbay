@@ -3,7 +3,8 @@ import Footer from './Footer';
 import { useState } from 'react';
 
 function Layout(props) {
-  console.log('use props = ', props);
+  console.log('use props = ', props); 
+  console.log('use props = ', props.walletapproved);  
   return (
     <>
       <Header walletapprove={props.walletapprove} />
@@ -14,3 +15,4 @@ function Layout(props) {
 }
 
 export default Layout;
+ 

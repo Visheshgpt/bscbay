@@ -21,6 +21,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   };
 
   let address = window.sessionStorage.getItem("walletAddress");
+  // window.sessionStorage.setItem("userBNB", userBNBbalance);
   console.log("add", address);
   let selectedAccount;
   let status = activePool.status;
@@ -44,9 +45,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
   
   const remainingallocation = Maxallocation - userInvested;
 
-   useEffect(() => {
+  //  useEffect(() => {
      
-   },[walletapproved]);
+  //  },[walletapproved]);
 
   function web3apis() {
     const web3 = new Web3(
@@ -135,6 +136,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           // console.log("ii",amount);
           var tokens = web3.utils.toBN(amount).toString();
           setuserTokenalance(Number(web3.utils.fromWei(tokens, "ether")));
+          window.sessionStorage.setItem("userBSCB", web3.utils.fromWei(tokens, "ether"));
         });
 
       // check eligibility
@@ -185,10 +187,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
       web3.eth.getBalance(address).then((balance) => {
         ////console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
-        setuserBNBbalance(Number(web3.utils.fromWei(tokens, "ether")));
+        setuserBNBbalance(Number(web3.utils.fromWei(tokens, "ether"))); 
+        window.sessionStorage.setItem("userBNB", web3.utils.fromWei(tokens, "ether"));
+        
       });
     }
   }
+
 
 
   // const handleAllowance = async () => {
@@ -328,7 +333,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       } else {
         settxMessage("Change network to binance")
         setModalShow(true)  
-        // alert("Change network to binance");
+        // alert("Change network to binance"); 
       }
   };
 
@@ -338,7 +343,19 @@ const IncupadPoolsBanner = ({ activePool }) => {
     let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
 
     if (typeof provider !== "undefined" && address) {
-      window.ethereum.on("accountsChanged", function (accounts) {
+      window.ethereum.on("accountsChanged", async function (accounts) {
+
+      
+        const web3 = new Web3(
+          new Web3.providers.HttpProvider(
+            "https://data-seed-prebsc-1-s1.binance.org:8545"
+          )
+        );
+        
+      //  var balance = await web3.eth.getBalance(accounts[0]);
+      //  var tokens = web3.utils.toBN(balance).toString();
+      //  window.sessionStorage.setItem("userBNB", web3.utils.fromWei(tokens, "ether")); 
+
         selectedAccount = accounts[0];
         address = selectedAccount;
         //  window.ethereum.eth.requestAccounts();
@@ -352,8 +369,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
         window.location.reload();
       });
     }
-
+   
     web3apis();
+
+    // return () => {
+    //   window.ethereum.removeAllListeners('block')
+    // }
+
+    
   }, [address]);
 
   const ICOcompletePercentage = (
@@ -372,7 +395,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           <Col lg={7} md={7} className="left-section">
             <div className="icon-box-incupad">
               <span className="icon-box-incupad-span">
-                <img src={`../../${activePool.img}`} alt={activePool.title}  height="55px"/>
+                <img src={`../../${activePool.img}`} alt={activePool.title}  height="55px"/> 
               </span>
             </div>
             <h2>{activePool.title}</h2>
@@ -671,15 +694,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
   <div></div>
 
 )}  
-
-
-
-
-
-
-
-
-
 
 
             </div>
