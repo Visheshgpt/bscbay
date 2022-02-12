@@ -21,11 +21,21 @@ h1, h2 {
 .fw-100 {
   font-weight: 100 !important; }
 
+.pointer {
+  cursor: pointer; }
+
 .bg-b-1 {
   background-image: url(../../assets/bg-4.png) !important; }
 
 .bg_white {
   background: url(../../assets/bg-4.png) !important; }
+
+.social_icons {
+  cursor: pointer; }
+  .social_icons img {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px; }
 
 .btn {
   display: flex;
@@ -34,7 +44,18 @@ h1, h2 {
   align-items: center;
   background-color: transparent;
   border-width: 1.6px;
-  border-radius: 8px; }
+  border-radius: 8px;
+  cursor: pointer; }
+  .btn_round {
+    border-radius: 8px; }
+  .btn_primary {
+    padding: 10px 15px;
+    border: none;
+    background-color: #ffd366;
+    font-size: 16px;
+    line-height: 1.54;
+    font-weight: 500;
+    color: #242837; }
   .btn_header {
     position: relative;
     margin-left: 25px; }
@@ -46,7 +67,12 @@ h1, h2 {
       gap: 2%;
       border: 2px solid #ffd366;
       border-radius: 10px;
-      width: 285px; }
+      width: 285px;
+      padding: 2px 10px; }
+      .btn_header_content .icons img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer; }
     .btn_header .date {
       position: absolute;
       right: 0px;
@@ -61,6 +87,11 @@ h1, h2 {
       cursor: pointer; }
       .btn_header .btn_rounded svg {
         margin-left: 2px; }
+    .btn_header_mobile {
+      border: 0px;
+      width: 100px;
+      padding: 0px;
+      margin-right: 12px; }
   .btn_outline_primary {
     border-color: #ffd366;
     color: #ffd366; }
@@ -78,6 +109,10 @@ h1, h2 {
       background: #242837; }
   .btn-primary {
     background: #ffd366; }
+  @media only screen and (max-width: 575px) {
+    .btn_header .date {
+      font-size: 0.65rem;
+      right: 20px; } }
 
 .card-1 {
   display: flex;
@@ -168,13 +203,61 @@ h1, h2 {
     .containers {
       width: 95%; } }
 
+.input {
+  margin-right: 10px;
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+  border: 1px solid #ffd366;
+  padding: 10px 15px; }
+
+label {
+  font-size: 16px;
+  line-height: 1.5; }
+
+.modal-content {
+  border: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #282a33; }
+
+.alert_modal {
+  position: relative;
+  background: #282a33;
+  border-radius: 10px;
+  border: 1px solid #ffd366 !important;
+  width: 100%; }
+  .alert_modal .close_btn {
+    position: absolute;
+    right: 1px;
+    top: 2px; }
+    .alert_modal .close_btn button {
+      border: 0px;
+      font-size: 35px;
+      color: #ffd366;
+      background: #282a33;
+      cursor: pointer;
+      font-weight: 300; }
+      .alert_modal .close_btn button:hover {
+        background-color: #282a33; }
+  .alert_modal .content {
+    color: #b0b3bd;
+    padding: 30px 50px 10px; }
+    .alert_modal .content p {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      text-align: center; }
+
+.wallet_modal_section {
+  padding: 25px; }
+
 footer {
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   color: #fff; }
   footer .item-social-main {
     cursor: pointer; }
 
-.header_bg {
+.header_background {
   background: rgba(0, 0, 0, 0.75); }
 
 #bavbar .nav {
@@ -359,5 +442,12 @@ footer {
     text-align: center; }
   .incupad_tabs_levels .level_gurantee {
     margin-top: 75px; }
+
+.incupad_search {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; }
+  .incupad_search input {
+    width: 100%; }
 
 /*# sourceMappingURL=global.css.map */

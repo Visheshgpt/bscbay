@@ -14,9 +14,7 @@ function AlertModal(props) {
           </Button>
         </div>
         <div className='content'>
-          <p>
-           {props.message}
-          </p>
+          {props.children} 
         </div>
       </div>
     </Modal>

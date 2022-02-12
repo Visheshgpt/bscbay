@@ -26,6 +26,9 @@ h1, h2 {
   font-weight: 100 !important;
 }
 
+.pointer {
+  cursor: pointer;
+}
 
 
 .bg-b-1 {
@@ -34,4 +37,13 @@ h1, h2 {
 
 .bg_white {
   background: url(../../assets/bg-4.png) !important;
+}
+
+.social_icons {
+  cursor: pointer;
+  img {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+  }
 }

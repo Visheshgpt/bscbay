@@ -21,7 +21,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "sweetalert": "^2.1.2",
-    "use-scroll-position": "^0.0.4",
     "web-vitals": "^1.0.1",
     "web3": "^1.4.0",
     "web3modal": "^1.9.3"

@@ -151,6 +151,19 @@ export const poolData = [
 
 export const dataArr = [
   {
+    title: `4% redistributed in USDT`,
+    text: `4% of every transaction is redistributed to all holders. Hold $BSCB tokens, earn USDT. A minimum of 200,000 tokens is required in order to receive rewards.
+    `,
+  },
+  {
+    title: `2% Auto Liquidity Pool`,
+    text: `2% of every transaction contributes towards generating liquidity that goes automatically into PancakeSwap.`,
+  },
+  {
+    title: 'Auto Buy-Back and Burn',
+    text: 'BSCB is a deflationary token and 1% will be used to buyback the token and burn the supply. The is will continuously reduce the supply and improve the over health of the ecosystem. ',
+  },
+  {
     title: `Auto $USDT Distribution`,
     text: `Earn USDT through rewards; the powerful investment tokenomics of BSCBay allow investors to automatically get rewards in USDT on their investments every 4 hours.`,
   },
@@ -171,9 +184,5 @@ export const dataArr = [
   {
     title: `Token Mint Factory`,
     text: `Bscbay Token Factory will enable users to use this services where there will be No code requirement to launch their own token, simply navigate through the terminal, design token and launch with just a few clicks.  We will offer standard and custom token development services.`,
-  },
-  {
-    title: `Charts & Analytics`,
-    text: `Charts for every token launched via BSC network available on your fingertips. These open up the avenues for Promotions, Marketing & opportunities to invest`,
   },
 ];

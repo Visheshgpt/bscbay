@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 
-import IncupadAboutSection from './IncupadAbout/IncupadAboutSection';
+//import IncupadAboutSection from './IncupadAbout/IncupadAboutSection';
 import IncupadFeature from './IncupadFeature';
 import IncupadLevelSection from './IncupadLevel/IncupadLevelSection';
 

@@ -16,18 +16,16 @@ const HomeSectionThree = () => {
           src="../assets/bg-6.png"
           alt=".."
         />
-        <Container className="py-5 z-10">
+        <Container fluid="xx;" className="py-5 z-10">
           <div
             id="investment"
-            className="px-0 col-xl-10 mx-auto scroll-settings"
+            className="px-0 col-xl-12 mx-auto scroll-settings"
           >
               <div className="heading-secondary-3 text-center text-white-2 mb-5">
-                <span className="text-primary mx-1">Strengthen</span>your
-                project and
-                <span className="text-primary mx-1">Reward</span>your
-                communities using our services.
+                <span className="text-primary mx-1"> 4% redistributed in USDT</span>
               </div>
-              <Row className="justify-content-center" style={{ gap: 20 }}>
+              <Row className="justify-content-center" style={{ gap: 25 }}>
+                
                 {dataArr.map((data, i) => (
                   <div
                     key={i}

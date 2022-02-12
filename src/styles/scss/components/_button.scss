@@ -6,6 +6,21 @@
     background-color: transparent;
     border-width: 1.6px;
     border-radius: 8px;
+    cursor: pointer;
+    &_round {
+        border-radius: 8px;
+    }
+
+    &_primary {
+        padding: 10px 15px;  
+        border: none;
+        background-color: #ffd366;
+        font-size: 16px;
+        line-height: 1.54;
+        font-weight: 500;
+        color: $color-dark;
+    }
+
 
     &_header{
         position: relative;
@@ -19,6 +34,15 @@
             border: 2px solid $color-primary;
             border-radius: 10px;
             width: 285px;
+            padding: 2px 10px;
+
+            .icons {
+                img {
+                    width: 24px;
+                    height: 24px;
+                    cursor: pointer;
+                }
+            }
         }
         .date {
             position: absolute;
@@ -37,6 +61,13 @@
            svg {
                margin-left: 2px;
            }
+        }
+
+        &_mobile {
+            border: 0px;
+            width: 100px;
+            padding: 0px;
+           margin-right: 12px;
         }
     }
 
@@ -65,6 +96,15 @@
 
     &-primary {
         background: $color-primary;
+    }
+
+    @include respond('phone') {
+        &_header{ 
+            .date {
+                font-size: 0.65rem;
+                right:20px;
+            }
+        }
     }
 
 }
