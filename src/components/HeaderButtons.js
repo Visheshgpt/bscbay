@@ -1,22 +1,24 @@
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
   let address = window.sessionStorage.getItem('walletAddress');
   let bnbbalance = window.sessionStorage.getItem('userBNB');
   let bscbbalance = window.sessionStorage.getItem('userBSCB');
 
   async function logoutUser() {
+
     if (window.sessionStorage.getItem('walletName') === 'walletconnect') {
       //   ---------------working code ------------------
-      // const provider = new WalletConnectProvider({
-      //   rpc: {
-      //     1: "https://bsc-dataseed.binance.org/",
-      //     56: "https://bsc-dataseed.binance.org/",
-      //     97: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      //   },
-      // });
-      // await provider.disconnect();
+      const provider = new WalletConnectProvider({
+        rpc: {
+          // 1: "https://bsc-dataseed.binance.org/",
+          56: "https://bsc-dataseed.binance.org/",
+          97: "https://data-seed-prebsc-1-s1.binance.org:8545",
+        },
+      });
+      await provider.disconnect();
       /// --------------------------------------------
     }
-
     localStorage.removeItem('provider');
     window.sessionStorage.removeItem('walletAddress');
     window.sessionStorage.removeItem('walletName');
@@ -24,6 +26,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
     window.sessionStorage.removeItem('userBSCB');
     window.location.reload();
   }
+
 
   return (
     <div className='btn_header'>

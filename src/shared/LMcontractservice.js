@@ -43,89 +43,124 @@ const getWeb3Client = async () => {
         
         // window.location.reload();
       }
-    } else if (loginType === "binance") {
-      if (window.BinanceChain) {
-        const web3Client = new Web3(window.BinanceChain);
-        // window.web3 = web3Client;
-
-        await web3Client.eth.requestAccounts();
-
-        var id = await web3Client.eth.net.getId();
-
-        // return web3Client;
-        if (id == 97) {
-          return web3Client;
-        } else {
-          swal("Change Network to Binance Mainet");
-        }
-      } else {
-        await swal("Please Install Binance Wallet!!");
-        window.location.reload();
-      }
-    } else if (loginType === "walletconnect") {
-      // const providerOptions = {
-      //   walletconnect: {
-      //     package: WalletConnectProvider, // required
-      //     options: {
-      //       infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
-      //     }
-      //   }
-      // };
-
-      // const web3Modal = new Web3Modal({
-      //   network: "mainnet", // optional
-      //   cacheProvider: true, // optional
-      //   providerOptions // required
-      // });
-
-      // const provider = await web3Modal.connect();
-
-      // const web3 = new Web3(provider);
-      //   return web3;
-
-      // -------------------------- running code -----------------------
-
-      //  Create WalletConnect Provider
-      const provider = new WalletConnectProvider({
-        rpc: {
-          1: "https://bsc-dataseed.binance.org/",
-          56: "https://bsc-dataseed.binance.org/",
-          97: "https://data-seed-prebsc-1-s1.binance.org:8545",
-        },
-        //             infuraId: "27e484dcd9e3efcfd25a83a78777cdf1"
-      });
-
-      //   //  Enable session (triggers QR Code modal)
-      await provider.enable();
-      const web3Client = new Web3(provider);
-      var id = await web3Client.eth.net.getId();
+    } 
+   
+    else if (loginType === "binance")
+     
+    {
+      if (window.BinanceChain) {    
+      
+      const web3Client = new Web3(window.BinanceChain);
+     // window.web3 = web3Client;
+       
+       await web3Client.eth.requestAccounts();
+      
+    //  console.log(acc[0]);
+     
+     var id = await web3Client.eth.net.getId();
+      console.log("ID",id);
+        
+    // return web3Client; 
+     if (id == 97){
       return web3Client;
-      //  if (id == 56 ){
-      //   return web3Client;
-      //  }
-      //  else{
-      //   swal("Change Network to Binance Mainet");
-      //  }
-      // ---------------------------------------------------
+     }
+     else {
+       swal("Change Network to Binance Mainet");
+     }
+       
     }
-  } else {
-    window.addEventListener("ethereum#initialized", handleEthereum, {
+
+    else {
+
+     await swal("Please Install Binance Wallet!!");
+      window.location.reload();
+    }
+     }
+
+     
+     else if (loginType === "walletconnect")
+     
+     {   
+
+// ------------------------- running code -----------------------
+        
+         //  Create WalletConnect Provider
+            const provider = new WalletConnectProvider({
+
+              rpc: {
+               56 : "https://bsc-dataseed.binance.org/" ,
+               1 : "https://bsc-dataseed.binance.org/",
+              // 56: "https://bsc-dataseed.binance.org/",
+              97: "https://data-seed-prebsc-1-s1.binance.org:8545"
+             },
+             chainId:97
+          //   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
+            //  qrcode: true,
+          });
+            
+        // console.log("Provider", provider);
+
+           //   //  Enable session (triggers QR Code modal)
+         await provider.enable();
+         const web3Client = new Web3(provider);
+         var id = await web3Client.eth.net.getId();
+         console.log("netid", id);
+        //  return web3Client;
+         if (id == 97 ){
+          console.log("id",id);
+          return web3Client;
+         }
+         else
+         {
+         await provider.disconnect();
+         alert("Change Network to Binance Mainet");
+         window.location.reload();
+         }
+// ---------------------------------------------------
+         
+    } 
+
+    }
+    
+
+
+  else {
+
+    window.addEventListener('ethereum#initialized', handleEthereum, {
       once: true,
     });
-
+  
     setTimeout(handleEthereum, 3000); // 3 seconds
+ 
   }
+
 };
 
-async function handleEthereum() {
-  const provider = await detectEthereumProvider();
+
+async function  handleEthereum() {
+  const provider= await detectEthereumProvider();
   if (provider) {
     getWeb3Client();
-  } else {
+  }
+  else {
     await swal("Please Install Wallet!");
-    window.location.reload();
+    window.location.reload()
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Claim BNB API
 
