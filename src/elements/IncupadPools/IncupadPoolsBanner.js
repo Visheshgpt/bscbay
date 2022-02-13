@@ -351,8 +351,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   useEffect(() => {
     let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
-
+ 
     if (typeof provider !== 'undefined' && address) {
+      
       window.ethereum.on('accountsChanged', async function (accounts) {
         const web3 = new Web3(
           new Web3.providers.HttpProvider(

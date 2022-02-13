@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
 import contractService from '../../shared/LMcontractservice';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import Web3Modal from 'web3modal';
-import Web3 from 'web3';
+// import WalletConnectProvider from '@walletconnect/web3-provider';
+// import Web3Modal from 'web3modal';
+// import Web3 from 'web3';
 
 let selectedAccount;
 
@@ -142,7 +142,7 @@ const LaunchStepThree = ({ show, onHide }) => {
   async function userLogin(web3) {
     const accounts = await web3.eth.getAccounts();
     const providerName = localStorage.getItem('loginType');
-    let loginType = localStorage.getItem('loginType');
+    // let loginType = localStorage.getItem('loginType');
 
     const networkId = await web3.eth.net.getId();
 
@@ -189,7 +189,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             />
           </Link>
 
-          {/* <Link
+          <Link
             onClick={requestAuthBSC}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
@@ -204,8 +204,8 @@ const LaunchStepThree = ({ show, onHide }) => {
               src="../assets/arrow-1.png"
               alt="..."
             />
-          </Link> */}
-          {/* <br></br> */}
+          </Link>
+          <br></br>
           <Link
             onClick={requestAuth}
             className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
@@ -269,7 +269,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             />
           </Link> */}
           <br></br>
-          {/* <Link
+          <Link
             onClick={requestwalletconnect}
             className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
           >
@@ -285,7 +285,7 @@ const LaunchStepThree = ({ show, onHide }) => {
               src="../assets/arrow-1.png"
               alt="..."
             />
-          </Link> */}
+          </Link>
         </div>
       </section>
     </Modal>
