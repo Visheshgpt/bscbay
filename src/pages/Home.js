@@ -1,8 +1,8 @@
 import { Head } from '../components/Head';
 import HomeBanner from '../elements/HomeSections/HomeBanner';
 import HomeSectionTwo from '../elements/HomeSections/HomeSectionTwo';
-import HomeSectionFour from '../elements/HomeSections/HomeSectionFour';
-import HomeSectionThree from '../elements/HomeSections/HomeSectionThree';
+import HomeTokenomicsSection from '../elements/HomeSections/HomeTokenomics/HomeTokenomicsSection';
+import HomeFeatureSection from '../elements/HomeSections/HomeFeatureSection';
 import HomeSectionSeven from '../elements/HomeSections/HomeSectionSeven';
 import HomeSectionFive from '../elements/HomeSections/HomeSectionFive';
 import HomeSectionPartnership from '../elements/HomeSections/HomeSectionPartnership';
@@ -15,8 +15,8 @@ function Home() {
       <Head title='Home' />
       <HomeBanner />
       <HomeSectionTwo />
-      <HomeSectionThree />
-      <HomeSectionFour />
+      <HomeFeatureSection />
+      <HomeTokenomicsSection />
       <HomeSectionSeven />
       <HomeSectionFive />
       <HomeSectionPartnership />

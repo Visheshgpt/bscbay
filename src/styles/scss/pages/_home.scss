@@ -1,95 +1,64 @@
-.home {
-    &_banner {
-        padding-top: 125px !important;
+.tokenomics_box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 15px 20px;
+    margin: 10px 0px;
+    text-align: center;
+
+    &::before{
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        border: 1px solid $color-dark;
+        width: 45px;
+        height: 100%;
+        border-right: 0px;
+        transition: all .4s;
+        border-radius: 5px;
     }
-        /*
-        background: $background-gradient;
-        &_content {
-            padding-top: 20px;
-            h1 {
-                font-size: $h1-primary;
-                line-height: $h1-primary-line-height;
-                font-family: $font-poppins;
-                font-weight: 700;
-            }
-            .extra-large{
-                color: $color-primary;
-                font-size: 70px;
-                line-height: 80px;
-                font-weight: 700;
-            }
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        right:0;
+        height: 100%;
+        width: 45px;
+        border: 1px solid $color-dark;
+        transition: all .4s;
+        border-left: 0px;
+        border-radius: 5px;
+    }
+
+
+    &_active {
+        position: relative;
+        .name {
+            color: $color-primary;
+            font-weight: 700;
         }
 
-        &_img {
-            margin-left: 0px;
-            margin-right: 0px;
+        &::before{ 
+            border: 2px solid $color-primary;
+            border-right: 0px;
+            transition: all .4s;
         }
 
-        &_button {
-            width: 210px;
-            margin-top: 80px;
-            .btn{
-                padding: 10px;
-            }
-            span{
-                letter-spacing: 1.5px;
-            }
-        
-            i{
-                width: 18px;
-                height: 30px;
-            }
-        }
-
-        &_midsection {
-            margin-top: 40px;
-            h3 {
-                font-size: 40px;
-                line-height: 50px;
-                color: $color-offwhite;
-            }
-           
-        }
-
-        .ecosystem_data {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1%;
-        }
-
-        .social_img {
-            width: 30px;
-        }
-
-        @include respond('phone') {
-            &_content { 
-                padding-top: 25px;
-                h1 {
-                    font-size: 40px;
-                    line-height: 50px;
-                }
-                .extra-large{
-                    font-size: 50px;
-                    line-height: 60px;
-                }
-                .you {
-                    display: block;
-                }
-               
-            }
-
-            &_img {
-                margin-top: -55px;
-                margin-left: 0px;
-                margin-right: 0px;
-            }
-
-            &_button {
-                margin-top: 25px;
-                padding: 12px 8px;
-            }
+        &::after {
+            border: 2px solid $color-primary;
+            border-left: 0px;
+            transition: all .4s;
         }
     }
-    */
+
+    .name {
+        font-size: 1.1rem;
+    }
+
+    .value{
+        font-weight: bold;
+    }
+
 }

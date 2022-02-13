@@ -1,5 +1,5 @@
 import LotteryLevel from './LotteryLevel';
-import GuaranteedLevels from './GuaranteedLevels';
+// import GuaranteedLevels from './GuaranteedLevels';
 function IncupadLevelSection() {
   return (
     <div className='incupad_tabs_levels levels'>
@@ -8,7 +8,7 @@ function IncupadLevelSection() {
           <span className='text-primary'>BSC</span>Bay Levels
         </h1>
         <LotteryLevel />
-        <GuaranteedLevels />
+        {/* <GuaranteedLevels /> */}
       </div>
     </div>
   );

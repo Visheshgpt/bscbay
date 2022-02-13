@@ -8,10 +8,10 @@ function GuaranteedLevels() {
       <h2 className='my-3 mt-5'>Guaranteed Levels</h2>
       <Row>
         {GuarantedlevelData.map((item, index) => (
-          <CardLevel data={item} img={true} />
+          <CardLevel data={item} />
         ))}
         {privateGuarantedData.map((item, index) => (
-          <CardLevel data={item} img={true} />
+          <CardLevel data={item} />
         ))}
       </Row>
     </section>

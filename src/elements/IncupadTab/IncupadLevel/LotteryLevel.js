@@ -5,7 +5,8 @@ import CardLevel from '../../../components/CardLevel';
 function LotteryLevel() {
   return (
     <section className='level_lottery'>
-      <h2 className='my-3'>Lottery Levels</h2>
+      {/*   <h2 className='my-3'>Lottery Levels</h2> */}
+
       <Row>
         {levelData.map((item, index) => (
           <CardLevel data={item} />

@@ -6,10 +6,10 @@ import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
 function Search({ show, onHide }) {
   const [value, setValue] = useState('');
- 
-  const [message, setMessage] = useState('')
 
- async function checkWhitelist() {
+  const [message, setMessage] = useState('');
+
+  async function checkWhitelist() {
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
         'https://data-seed-prebsc-1-s1.binance.org:8545'
@@ -20,20 +20,19 @@ function Search({ show, onHide }) {
     var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
-     // check eligibility
-    const iswhitelisted = await contract.methods.checkWhitelisted(value).call(); 
-    console.log("check ====>", iswhitelisted);
-    
-    if(iswhitelisted) {
+    // check eligibility
+    const iswhitelisted = await contract.methods.checkWhitelisted(value).call();
+    console.log('check ====>', iswhitelisted);
+
+    if (iswhitelisted) {
       setMessage(`Congratulations !\n Your Wallet is Whitelisted !`);
+    } else {
+      setMessage(
+        `Oops, The Wallet is Not Whitelisted! Please Check Wallet Eligibility Criteria. `
+      );
     }
-    else {
-      setMessage(`Oops, The Wallet is Not Whitelisted! Please Check Wallet Eligibility Criteria. `);
-    } 
   }
 
-  
-  
   return (
     <AlertModal show={show} onHide={onHide}>
       <div className='incupad_search'>
@@ -46,7 +45,7 @@ function Search({ show, onHide }) {
             placeholder='Enter Wallet Address'
             onChange={(e) => setValue(e.target.value)}
           />
-          <div className='mb-2'>{message}</div>
+          <div className='my-2'>{message}</div>
         </div>
         <div className='d-flex justify-content-center'>
           <button className='btn btn_primary mt-2' onClick={checkWhitelist}>

@@ -46,7 +46,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [EndTime, setEndTime] = useState(0);
 
   const remainingallocation = Maxallocation - userInvested;
- 
 
   function web3apis() {
     const web3 = new Web3(
@@ -118,11 +117,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
       });
 
     // ICO start Time
-      contract.methods
+    contract.methods
       .startTimestamp()
       .call()
       .then((time) => {
-      // console.log(time);
+        // console.log(time);
         setStartTime(time);
       });
 
@@ -258,7 +257,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
           let amnt = web3.utils.toHex(web3.utils.toWei(value, 'ether'));
           console.log('amnt', amnt);
-        
 
           contract.methods
             .Invest()
@@ -267,8 +265,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
               console.log(receipt);
 
               if (receipt.status) {
-
-              let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${Number(value)/Number(tokenPrice)} BSCB .`   
+                let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${
+                  Number(value) / Number(tokenPrice)
+                } BSCB .`;
                 settxMessage(msg);
                 setModalShow(true);
                 // alert("Transaction Success");
@@ -279,7 +278,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
               }
             })
             .catch((e) => {
-              console.log('error is', e) 
+              console.log('error is', e);
               settxMessage('Transaction Failed!');
               setModalShow(true);
               //  alert("Transaction Failed!");
@@ -308,7 +307,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         var contract = new web3.eth.Contract(contractABI, contractAddress);
 
         console.log('Claim called ==>');
-        
+
         let redeemedtokens = claimableTokens;
 
         contract.methods
@@ -322,7 +321,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
               settxMessage('');
               setModalShow(true);
               // alert("Transaction Success");
-              settxMessage(`Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`)
+              settxMessage(
+                `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
+              );
             } else {
               settxMessage('Transaction Failed');
               setModalShow(true);
@@ -330,7 +331,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
             }
           })
           .catch((e) => {
-
             console.log('error is', e);
             settxMessage('Transaction Failed!');
             setModalShow(true);
@@ -374,20 +374,15 @@ const IncupadPoolsBanner = ({ activePool }) => {
       });
 
       window.ethereum.on('chainChanged', (chainId) => {
-       
-        console.log("chainId", chainId);
-        console.log("type of chainId",typeof chainId);
+        console.log('chainId', chainId);
+        console.log('type of chainId', typeof chainId);
 
-       if (chainId != "0x61") {
-       
-        settxMessage('Please Connect to "Binance Smart Chain Network"');
-        setModalShow(true);  
-       } 
-       
-       else {
-        window.location.reload();
-       } 
-      
+        if (chainId != '0x61') {
+          settxMessage('Please Connect to "Binance Smart Chain Network"');
+          setModalShow(true);
+        } else {
+          window.location.reload();
+        }
       });
     }
 
@@ -407,24 +402,29 @@ const IncupadPoolsBanner = ({ activePool }) => {
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
-if (currentTimeData < StartTime) {
-  activePool.status = "upcoming"
-}
-else if (currentTimeData < EndTime) {
-  activePool.status = '\xa0\xa0' + "ongoing"
-}
-else if (currentTimeData > EndTime) {
-  activePool.status = '\xa0\xa0\xa0' + "ongoing"
-}
+  if (currentTimeData < StartTime) {
+    activePool.status = 'upcoming';
+  } else if (currentTimeData < EndTime) {
+    activePool.status = '\xa0\xa0' + 'ongoing';
+  } else if (currentTimeData > EndTime) {
+    activePool.status = '\xa0\xa0\xa0' + 'ongoing';
+  }
 
-var returnElapsedTime = function(epoch) {
-  //We are assuming that the epoch is in seconds
-  var hours = epoch / 3600,
+  var returnElapsedTime = function (epoch) {
+    //We are assuming that the epoch is in seconds
+    var hours = epoch / 3600,
       minutes = (hours % 1) * 60,
       seconds = (minutes % 1) * 60;
-  return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes, " + Math.round(seconds) + " seconds";
-  // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
-}
+    return (
+      Math.floor(hours) +
+      ' hours, ' +
+      Math.floor(minutes) +
+      ' minutes, ' +
+      Math.round(seconds) +
+      ' seconds'
+    );
+    // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
+  };
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -511,44 +511,42 @@ var returnElapsedTime = function(epoch) {
               <div className='right-section card_pools'>
                 <div className='upper-right-section'>
                   <div className='button-section'>
-                    
-                {/* <Button className="upper-right-btn-one">
+                    {/* <Button className="upper-right-btn-one">
                       {activePool.allocationType}
                     </Button>
                     <Button className="upper-right-btn-two">
                       Access Type : {activePool.accessType}
                     </Button> */}
-                     
                   </div>
                   <span>{activePool.status}</span>
                   <h3>
                     1 {activePool.allocationType} = TBA {activePool.symbol}{' '}
                   </h3>
-                 
+
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
                   <p>TBA</p> */}
-                 
+
                   {currentTimeData < StartTime ? (
                     <>
-                     <b style={{ color: 'white' }}>Starts In:</b>
-                    <p>{returnElapsedTime(StartTime-currentTimeData)}</p>
-    
+                      <b style={{ color: 'white' }}>Starts In:</b>
+                      <p>{returnElapsedTime(StartTime - currentTimeData)}</p>
                     </>
                   ) : currentTimeData < EndTime ? (
                     <>
                       <b style={{ color: 'white' }}>Remaining:</b>
-                      <p>{returnElapsedTime(EndTime-currentTimeData)}</p>
+                      <p>{returnElapsedTime(EndTime - currentTimeData)}</p>
                     </>
                   ) : (
                     <>
                       <b style={{ color: 'white' }}>Closed</b>
                     </>
                   )}
-
                 </div>
                 <div className='lower-right-section'>
                   <h5>Total Raise</h5>
-                  <h4>{raisedBNB} {activePool.allocationType}</h4>
+                  <h4>
+                    {raisedBNB} {activePool.allocationType}
+                  </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
                     className='progress-bar-section'
@@ -583,42 +581,47 @@ var returnElapsedTime = function(epoch) {
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
-                  <div className='ongoing-lower-card text-white'>
+                  <div className='ongoing-lower-card text-white w-100'>
                     <div className='d-flex justify-content-center'>
-                      
                       <span className='text-white'>
-                    
                         {currentTimeData < StartTime ? (
                           <>
-                        <span> Start in: {returnElapsedTime(StartTime-currentTimeData)}</span>  
+                            <span>
+                              {' '}
+                              Start in:{' '}
+                              {returnElapsedTime(StartTime - currentTimeData)}
+                            </span>
                           </>
                         ) : currentTimeData < EndTime ? (
                           <>
-                          <span> Remaining: {returnElapsedTime(EndTime-currentTimeData)} </span> 
+                            <span>
+                              {' '}
+                              Remaining:{' '}
+                              {returnElapsedTime(
+                                EndTime - currentTimeData
+                              )}{' '}
+                            </span>
                           </>
                         ) : (
                           <>
-                          <span> Closed</span> 
+                            <span> Closed</span>
                           </>
-                        )}  
+                        )}
                       </span>
-
                     </div>
                     <div>
-                        <ProgressBar
-                          now={ICOcompletePercentage}
-                          className='pro-bar-section'
-                          label={`${Math.round(ICOcompletePercentage)}%`}
-                        />
+                      <ProgressBar
+                        now={ICOcompletePercentage}
+                        className='pro-bar-section'
+                        label={`${Math.round(ICOcompletePercentage)}%`}
+                      />
                     </div>
                     <div>
-                
-                          <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
-                            <span>Swap Progress</span>
-                            {/* <span>Total Raised :150/500 BNB</span> */}
-                            <span>Participants : {totalUsers}</span>
-                          </div>
-          
+                      <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
+                        <span>Swap Progress</span>
+                        {/* <span>Total Raised :150/500 BNB</span> */}
+                        <span>Participants : {totalUsers}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -627,55 +630,52 @@ var returnElapsedTime = function(epoch) {
               {/* Second Banner on BSCBay */}
               <Col xs={12} className='ongoing-lower-card mt-2'>
                 {/* {status !== 'closed' ? ( */}
-                  <div className='d-flex flex-column justify-content-between'>
-                    <div className='d-flex flex-row justify-content-between text-white'>
-                      <span className='pb-2'>
-                        BSCB Balance: {userTokenalance.toFixed(2)} BSCB
-                      </span>
-                      <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
-                    </div>
-                    <div className='d-flex flex-row justify-content-between text-white'>
-                      {/* <span className="pb-2">Wallet Address: {address}</span> */}
-                      <span className='pb-2'>
-                        User Invested: {userInvested.toFixed(2)} BNB
-                      </span>
-                      <span>
-                        {' '}
-                        Remaining allocation: {remainingallocation.toFixed(
-                          2
-                        )}{' '}
-                        BNB
-                      </span>
-                    </div>
-                    <div className='d-flex flex-row justify-content-between text-white'>
-                      <span>
-                        {' '}
-                        Current Tier:{' '}
-                        <span className='text-warning ms-1'>TBA</span>
-                      </span>
-                    </div>
-                    <br></br>
-                    {userInvested > 0 && claimableTokens === 0 ? (
-                      <div className='d-flex flex-row justify-content-between text-white'>
-                        <span>
-                          <span className='text-warning ms-1'>
-                            {' '}
-                            Tokens Claimed: {userInvested / tokenPrice}
-                          </span>
-                        </span>
-                      </div>
-                    ) : (
-                      <div className='d-flex flex-row justify-content-between text-white'>
-                        <span>
-                          {' '}
-                          Claimable Tokens:{' '}
-                          <span className='text-warning ms-1'>
-                            {claimableTokens} BSCBay
-                          </span>
-                        </span>
-                      </div>
-                    )}
+                <div className='d-flex flex-column justify-content-between'>
+                  <div className='d-flex flex-row justify-content-between text-white'>
+                    <span className='pb-2'>
+                      BSCB Balance: {userTokenalance.toFixed(2)} BSCB
+                    </span>
+                    <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
                   </div>
+                  <div className='d-flex flex-row justify-content-between text-white'>
+                    {/* <span className="pb-2">Wallet Address: {address}</span> */}
+                    <span className='pb-2'>
+                      User Invested: {userInvested.toFixed(2)} BNB
+                    </span>
+                    <span>
+                      {' '}
+                      Remaining allocation: {remainingallocation.toFixed(2)} BNB
+                    </span>
+                  </div>
+                  <div className='d-flex flex-row justify-content-between text-white'>
+                    <span>
+                      {' '}
+                      Current Tier:{' '}
+                      <span className='text-warning ms-1'>TBA</span>
+                    </span>
+                  </div>
+                  <br></br>
+                  {userInvested > 0 && claimableTokens === 0 ? (
+                    <div className='d-flex flex-row justify-content-between text-white'>
+                      <span>
+                        <span className='text-warning ms-1'>
+                          {' '}
+                          Tokens Claimed: {userInvested / tokenPrice}
+                        </span>
+                      </span>
+                    </div>
+                  ) : (
+                    <div className='d-flex flex-row justify-content-between text-white'>
+                      <span>
+                        {' '}
+                        Claimable Tokens:{' '}
+                        <span className='text-warning ms-1'>
+                          {claimableTokens} BSCBay
+                        </span>
+                      </span>
+                    </div>
+                  )}
+                </div>
 
                 <div className='ongoing-lower-card-last-section'>
                   {eligibility ? (
@@ -721,10 +721,13 @@ var returnElapsedTime = function(epoch) {
       <AlertModal show={modalShow} onHide={() => setModalShow(false)}>
         <p>{txMessage}</p>
       </AlertModal>
-      <SearchPool show={search} onHide={() => {
-        console.log("search on hide click ==>");
-        setSearch(false)
-      }} />
+      <SearchPool
+        show={search}
+        onHide={() => {
+          console.log('search on hide click ==>');
+          setSearch(false);
+        }}
+      />
     </Container>
   );
 };

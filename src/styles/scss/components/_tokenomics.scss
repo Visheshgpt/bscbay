@@ -1,0 +1,29 @@
+.tokenomics_tabs {
+
+    .nav{
+        
+        height: 70px;
+        justify-content: center;
+        align-items: center;
+       
+        &-tabs {
+            border:0px;
+        }
+        &-link {
+            width: 150px;
+            font-size: 1.1rem;
+            margin-left: 15px;
+            color: $color-dark;
+            background: transparent;
+            border: 2px solid $color-primary;
+            text-align: center;
+            border-radius: 10px;
+        }
+        &-link.active{
+            color: $color-dark;
+            border:0px;
+            border:1px solid $color-primary;
+            background: $color-primary;
+        }
+    }
+}

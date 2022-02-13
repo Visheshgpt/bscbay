@@ -24,22 +24,28 @@ export const upcomingData = [
 
 export const levelData = [
   {
-    title: 'CHANCE',
-    stakingRequirement: '3000',
-    poolWeight: '1x',
-    allocationType: 'Lottery (20%)',
+    title: 'BRONZE',
+    stakingRequirement: '200,000',
+    poolWeight: '10%',
+    allocationType: 'Guaranteed',
   },
   {
-    title: 'PROSPECT',
-    stakingRequirement: '6000',
-    poolWeight: '2x',
-    allocationType: 'Lottery (30%)',
+    title: 'SILVER',
+    stakingRequirement: '400,000',
+    poolWeight: '20%',
+    allocationType: 'Guaranteed',
   },
   {
-    title: 'AFFILIATE',
-    stakingRequirement: '10000',
-    poolWeight: '2x',
-    allocationType: 'Lottery (50%)',
+    title: 'GOLD',
+    stakingRequirement: '600,000',
+    poolWeight: '30%',
+    allocationType: 'Guaranteed',
+  },
+  {
+    title: 'PLATINUM',
+    stakingRequirement: '1,000,000',
+    poolWeight: '40%',
+    allocationType: 'Guaranteed',
   },
 ];
 

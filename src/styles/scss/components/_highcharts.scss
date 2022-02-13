@@ -1,0 +1,14 @@
+.mobile_charts {
+    display: none;
+}
+
+@include respond('phone') {
+    .mobile_charts {
+        display: block !important;
+        margin-left: -30px;
+    }
+
+    .desktop_highcharts {
+        display: none;
+    }
+}

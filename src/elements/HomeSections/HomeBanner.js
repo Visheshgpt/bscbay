@@ -6,7 +6,9 @@ import { ReactComponent as Arrow } from '../../assets/next.svg';
 function HomeBanner() {
   return (
     <section className='bg-color-homepage-section-one text-white'>
-      <Container fluid='xxl' className='position-relative pt-5 home_banner'>
+      <Container
+        fluid='xxl'
+        className='position-relative pt-5 mt-5 home_banner'>
         <Row className='justify-content-xl-between'>
           <Col md={12} lg={6} xl={5} className='mb-5 mb-xl-0'>
             <div className='z-10 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start'>

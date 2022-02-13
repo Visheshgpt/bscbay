@@ -6,7 +6,7 @@ import IncupadFeature from './IncupadFeature';
 import IncupadLevelSection from './IncupadLevel/IncupadLevelSection';
 
 function IncupadTabSection() {
-  const [key, setKey] = useState('pools');
+  const [key, setKey] = useState('levels');
   return (
     <section className='incupad_tabs'>
       <Tabs
