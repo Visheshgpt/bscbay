@@ -2,6 +2,8 @@ import Web3 from "web3";
 import swal from "sweetalert";
 import Web3Modal from "web3modal";
 
+import AlertModal from '../components/AlertModal';
+
 import abi from "./BSCBAYabi.json";
 // import POOLabi from './POOLabi.json'
 
@@ -35,8 +37,11 @@ const getWeb3Client = async () => {
       if (id == 97) {
         return web3Client;
       } else {
+
+        console.log("wront network message");
         alert("Change Network to Binance Mainet");
-        window.location.reload();
+        
+        // window.location.reload();
       }
     } else if (loginType === "binance") {
       if (window.BinanceChain) {

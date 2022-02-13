@@ -42,12 +42,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [Maxallocation, setMaxallocation] = useState(0);
   const [txMessage, settxMessage] = useState('');
   const [search, setSearch] = useState(false);
+  const [StartTime, setStartTime] = useState(0);
+  const [EndTime, setEndTime] = useState(0);
 
   const remainingallocation = Maxallocation - userInvested;
-
-  //  useEffect(() => {
-
-  //  },[walletapproved]);
+ 
 
   function web3apis() {
     const web3 = new Web3(
@@ -116,6 +115,24 @@ const IncupadPoolsBanner = ({ activePool }) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
         setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
+
+    // ICO start Time
+      contract.methods
+      .startTimestamp()
+      .call()
+      .then((time) => {
+      // console.log(time);
+        setStartTime(time);
+      });
+
+    // ICO End Time
+    contract.methods
+      .finishTimestamp()
+      .call()
+      .then((time) => {
+        //  console.log("endtime",time);
+        setEndTime(time);
       });
 
     if (address) {
@@ -241,6 +258,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
           let amnt = web3.utils.toHex(web3.utils.toWei(value, 'ether'));
           console.log('amnt', amnt);
+        
 
           contract.methods
             .Invest()
@@ -249,7 +267,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
               console.log(receipt);
 
               if (receipt.status) {
-                settxMessage('Transaction Success');
+
+              let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${Number(value)/Number(tokenPrice)} BSCB .`   
+                settxMessage(msg);
                 setModalShow(true);
                 // alert("Transaction Success");
               } else {
@@ -259,8 +279,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
               }
             })
             .catch((e) => {
-              console.log('error is', e);
-
+              console.log('error is', e) 
               settxMessage('Transaction Failed!');
               setModalShow(true);
               //  alert("Transaction Failed!");
@@ -289,6 +308,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
         var contract = new web3.eth.Contract(contractABI, contractAddress);
 
         console.log('Claim called ==>');
+        
+        let redeemedtokens = claimableTokens;
 
         contract.methods
           .claim()
@@ -298,9 +319,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
             if (receipt.status) {
               setclaimableTokens(0);
-              settxMessage('Transaction Success');
+              settxMessage('');
               setModalShow(true);
               // alert("Transaction Success");
+              settxMessage(`Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`)
             } else {
               settxMessage('Transaction Failed');
               setModalShow(true);
@@ -308,8 +330,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
             }
           })
           .catch((e) => {
-            console.log('error is', e);
 
+            console.log('error is', e);
             settxMessage('Transaction Failed!');
             setModalShow(true);
             //  alert("Transaction Failed!");
@@ -352,15 +374,24 @@ const IncupadPoolsBanner = ({ activePool }) => {
       });
 
       window.ethereum.on('chainChanged', (chainId) => {
+       
+        console.log("chainId", chainId);
+        console.log("type of chainId",typeof chainId);
+
+       if (chainId != "0x61") {
+       
+        settxMessage('Please Connect to "Binance Smart Chain Network"');
+        setModalShow(true);  
+       } 
+       
+       else {
         window.location.reload();
+       } 
+      
       });
     }
 
     web3apis();
-
-    // return () => {
-    //   window.ethereum.removeAllListeners('block')
-    // }
   }, [address]);
 
   const ICOcompletePercentage = (
@@ -371,6 +402,29 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   const oneBNBprice = 1 / tokenPrice;
   // console.log("oneBNBprice", oneBNBprice);
+
+  //time
+  let currentTime = new Date();
+  let currentTimeData = Number(Date.parse(currentTime) / 1000);
+
+if (currentTimeData < StartTime) {
+  activePool.status = "upcoming"
+}
+else if (currentTimeData < EndTime) {
+  activePool.status = '\xa0\xa0' + "ongoing"
+}
+else if (currentTimeData > EndTime) {
+  activePool.status = '\xa0\xa0\xa0' + "ongoing"
+}
+
+var returnElapsedTime = function(epoch) {
+  //We are assuming that the epoch is in seconds
+  var hours = epoch / 3600,
+      minutes = (hours % 1) * 60,
+      seconds = (minutes % 1) * 60;
+  return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes, " + Math.round(seconds) + " seconds";
+  // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
+}
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -457,38 +511,57 @@ const IncupadPoolsBanner = ({ activePool }) => {
               <div className='right-section card_pools'>
                 <div className='upper-right-section'>
                   <div className='button-section'>
-                    {/*
-  <Button className="upper-right-btn-one">
+                    
+                {/* <Button className="upper-right-btn-one">
                       {activePool.allocationType}
                     </Button>
                     <Button className="upper-right-btn-two">
                       Access Type : {activePool.accessType}
-                    </Button>
-                      */}
+                    </Button> */}
+                     
                   </div>
                   <span>{activePool.status}</span>
                   <h3>
                     1 {activePool.allocationType} = TBA {activePool.symbol}{' '}
                   </h3>
-                  <b style={{ color: 'white' }}>Starts In:</b>
-                  <p>TBA</p>
+                 
+                  {/* <b style={{ color: 'white' }}>Starts In:</b>
+                  <p>TBA</p> */}
+                 
+                  {currentTimeData < StartTime ? (
+                    <>
+                     <b style={{ color: 'white' }}>Starts In:</b>
+                    <p>{returnElapsedTime(StartTime-currentTimeData)}</p>
+    
+                    </>
+                  ) : currentTimeData < EndTime ? (
+                    <>
+                      <b style={{ color: 'white' }}>Remaining:</b>
+                      <p>{returnElapsedTime(EndTime-currentTimeData)}</p>
+                    </>
+                  ) : (
+                    <>
+                      <b style={{ color: 'white' }}>Closed</b>
+                    </>
+                  )}
+
                 </div>
                 <div className='lower-right-section'>
                   <h5>Total Raise</h5>
-                  <h4>TBA {activePool.allocationType}</h4>
+                  <h4>{raisedBNB} {activePool.allocationType}</h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
                     className='progress-bar-section'
                     label={`${Math.round(ICOcompletePercentage)}%`}
                   />
-                  <span>Participant : TBA</span>
+                  <span>Participant : {totalUsers}</span>
                 </div>
               </div>
               <div className='d-flex justify-content-center'>
                 <Button
                   className='btn connect-btn'
                   onClick={() => setShowConnect(true)}>
-                  Connect To Wallet
+                  Connect Wallet
                 </Button>
               </div>
               {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
@@ -512,64 +585,40 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='d-flex flex-row justify-content-center'>
                   <div className='ongoing-lower-card text-white'>
                     <div className='d-flex justify-content-center'>
+                      
                       <span className='text-white'>
-                        {status !== 'closed' ? (
-                          status === 'ongoing' ? (
-                            'End in : 0 Days 0 Hours 0 Mins 0 Seconds'
-                          ) : (
-                            'Start in : 0 Days 0 Hours 0 Mins 0 Seconds'
-                          )
+                    
+                        {currentTimeData < StartTime ? (
+                          <>
+                        <span> Start in: {returnElapsedTime(StartTime-currentTimeData)}</span>  
+                          </>
+                        ) : currentTimeData < EndTime ? (
+                          <>
+                          <span> Remaining: {returnElapsedTime(EndTime-currentTimeData)} </span> 
+                          </>
                         ) : (
-                          <div className='d-flex flex-column justify-content-center align-items-center  text-white'>
-                            <span>Closed</span>
-                            <span>Total Raised: 500 BNB</span>
-                          </div>
-                        )}
+                          <>
+                          <span> Closed</span> 
+                          </>
+                        )}  
                       </span>
+
                     </div>
                     <div>
-                      {status !== 'closed' ? (
-                        status === 'ongoing' ? (
-                          <ProgressBar
-                            now={ICOcompletePercentage}
-                            className='pro-bar-section'
-                            label={`${Math.round(ICOcompletePercentage)}%`}
-                          />
-                        ) : (
-                          <ProgressBar
-                            now={ICOcompletePercentage}
-                            className='pro-bar-section'
-                            label={`${Math.round(ICOcompletePercentage)}%`}
-                          />
-                        )
-                      ) : (
                         <ProgressBar
                           now={ICOcompletePercentage}
                           className='pro-bar-section'
                           label={`${Math.round(ICOcompletePercentage)}%`}
                         />
-                      )}
                     </div>
                     <div>
-                      {status !== 'closed' ? (
-                        status === 'upcomming' ? (
+                
                           <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
                             <span>Swap Progress</span>
-                            <span>Total Raised :150/500 BNB</span>
+                            {/* <span>Total Raised :150/500 BNB</span> */}
                             <span>Participants : {totalUsers}</span>
                           </div>
-                        ) : (
-                          <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
-                            <span>Swap Progress</span>
-                            <span>Participants : {totalUsers}</span>
-                          </div>
-                        )
-                      ) : (
-                        <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
-                          <span>Swap Progress</span>
-                          <span>Participants : {totalUsers}</span>
-                        </div>
-                      )}
+          
                     </div>
                   </div>
                 </div>
@@ -577,10 +626,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
               {/* Second Banner on BSCBay */}
               <Col xs={12} className='ongoing-lower-card mt-2'>
-                {status !== 'closed' ? (
+                {/* {status !== 'closed' ? ( */}
                   <div className='d-flex flex-column justify-content-between'>
                     <div className='d-flex flex-row justify-content-between text-white'>
-                      {/* <span className="pb-2">Wallet Address: {address}</span> */}
                       <span className='pb-2'>
                         BSCB Balance: {userTokenalance.toFixed(2)} BSCB
                       </span>
@@ -610,7 +658,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     {userInvested > 0 && claimableTokens === 0 ? (
                       <div className='d-flex flex-row justify-content-between text-white'>
                         <span>
-                          {/* Claimable Tokens:{" "} */}
                           <span className='text-warning ms-1'>
                             {' '}
                             Tokens Claimed: {userInvested / tokenPrice}
@@ -629,29 +676,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       </div>
                     )}
                   </div>
-                ) : (
-                  <div className='d-flex flex-row justify-content-between'>
-                    <div className='d-flex flex-column text-white '>
-                      <span className='pb-2'>Wallet Address:0X12….12Ab1</span>
-                      <span className='pb-2'>
-                        BSCB Balance: {userTokenalance.toFixed(2)} BSCB
-                      </span>
-                      <span>
-                        Current Tier:
-                        <span className='text-warning ms-1'>TBA</span>
-                      </span>
-                      <span>
-                        User Invested:
-                        <span className='text-warning ms-1'>TBA BNB</span>
-                      </span>
-                    </div>
-                    <div className='d-flex flex-column justify-content-between text-white'>
-                      <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
-                      <span>Your Participation: 2 BNB</span>
-                      <span className='claim-section'>Claim</span>
-                    </div>
-                  </div>
-                )}
 
                 <div className='ongoing-lower-card-last-section'>
                   {eligibility ? (
@@ -679,7 +703,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   </button>
                 </div>
               ) : (
-                claimableTokens === 0 && (
+                claimableTokens > 0 && (
                   <div className='d-flex justify-content-center mt-3'>
                     <button
                       onClick={() => claim()}
@@ -695,9 +719,12 @@ const IncupadPoolsBanner = ({ activePool }) => {
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
       <AlertModal show={modalShow} onHide={() => setModalShow(false)}>
-        <p>Tansaction Failed</p>
+        <p>{txMessage}</p>
       </AlertModal>
-      <SearchPool show={search} onHide={() => setSearch(false)} />
+      <SearchPool show={search} onHide={() => {
+        console.log("search on hide click ==>");
+        setSearch(false)
+      }} />
     </Container>
   );
 };
