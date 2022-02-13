@@ -25,7 +25,7 @@ function Search({ show, onHide }) {
     console.log("check ====>", iswhitelisted);
     
     if(iswhitelisted) {
-      setMessage(`Congratulations ! Your Wallet is Whitelisted !`);
+      setMessage(`Congratulations !\n Your Wallet is Whitelisted !`);
     }
     else {
       setMessage(`Oops, The Wallet is Not Whitelisted! Please Check Wallet Eligibility Criteria. `);
