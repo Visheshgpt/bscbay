@@ -106,7 +106,9 @@ function Header() {
                 <Link
                   to='/'
                   className='btn btn-sm btn_outline_primary text-white fw-500'>
-                  Home
+                  <small>
+                    <small>Home</small>
+                  </small>
                 </Link>
               )
             )}

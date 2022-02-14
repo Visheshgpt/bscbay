@@ -1,8 +1,48 @@
+import { useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { ecosystemData, socialLinks } from '../Constants';
 import { ReactComponent as Arrow } from '../../assets/next.svg';
 
 function HomeBanner() {
+  useEffect(() => {
+    const colorDataWord = Array.from(
+      document.getElementsByClassName('changeWord')
+    );
+
+    const colorData = Array.from(
+      document.getElementsByClassName('colorChange')
+    );
+
+    const colorFunction = () => {
+      const changeColorFn = (item, index) => {
+        setTimeout(() => {
+          colorData.map((item) => (item.style.color = '#fff'));
+          item.style.color = '#f1c342';
+        }, 1500 * index);
+      };
+
+      colorData.map((item, index) => {
+        changeColorFn(item, index);
+      });
+    };
+
+    const colorWordFunction = () => {
+      const changeColorFnn = (item, index) => {
+        setTimeout(() => {
+          colorDataWord.map((item) => (item.style.color = '#fff'));
+          item.style.color = '#f1c342';
+        }, 500 * index);
+      };
+
+      colorDataWord.map((item, index) => changeColorFnn(item, index));
+    };
+
+    colorFunction();
+    setInterval(() => colorFunction(), 1500 * colorData.length);
+
+    colorWordFunction();
+    setInterval(() => colorWordFunction(), 500 * colorDataWord.length);
+  });
   return (
     <section className='bg-color-homepage-section-one text-white'>
       <Container
@@ -13,8 +53,8 @@ function HomeBanner() {
             <div className='z-10 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start'>
               <div className='heading-primary mb-2 custom-heading-primary'>
                 {/* The <span className="text-primary">BSC</span> Ecosystem */}
-                First Decentralized{' '}
-                <span className='text-primary'> Launchpad</span> That{' '}
+                First Decentralized
+                <span className='text-primary'> Launchpad</span> That
                 <div className='text-primary'>
                   <span className='changeWord'>R</span>
                   <span className='changeWord'>e</span>
@@ -27,22 +67,23 @@ function HomeBanner() {
                 You
               </div>
 
-              <div className='d-flex flex-column flex-md-row mx-0'>
-                <div className='ps-md-2 mt-3 mt-md-0'>
+              <div className='d-flex aling-items-center z-10 py-4'>
+                {socialLinks.map((data, i) => (
                   <a
-                    style={{ height: 60 }}
-                    className='btn btn-outline-warning px-4 w-100'
-                    href='https://docs.bscbay.com/'
+                    style={{ width: 30 }}
+                    key={i}
+                    href={data.link}
                     target='_blank'
-                    rel='noreferrer'>
-                    <span className='text-uppercase'>Whitepaper</span>
-                    <i
-                      className='ms-3 shake-horizontal'
-                      style={{ height: 30, width: 18 }}>
-                      <Arrow />
-                    </i>
+                    rel='noreferrer'
+                    className='mx-1 mx-sm-3'>
+                    <img
+                      className='d-block icon-hover'
+                      height={25}
+                      src={`/assets/icons/b-icon-${i}.svg`}
+                      alt='..'
+                    />
                   </a>
-                </div>
+                ))}
               </div>
             </div>
           </Col>
@@ -62,7 +103,7 @@ function HomeBanner() {
         </Row>
         <div className='px-0 col-lg-10 mx-auto mt-5'>
           <Row
-            className='justify-content-center text-center z-10 pb-5'
+            className='justify-content-center text-center z-10 pb-3'
             style={{ gap: 15 }}>
             <h1 className='banner-mid-section'>
               The <span className='text-primary'>BSC</span> Ecosystem
@@ -80,7 +121,7 @@ function HomeBanner() {
               {ecosystemData.map((data, i) => (
                 <div
                   key={i}
-                  className='box-1 bg-color-homepage-section-one-box text-small icon-hover'>
+                  className='box-1 bg-color-homepage-section-one-box text-small icon-hover mb-4'>
                   <img
                     className='d-block mb-1'
                     height={24}
@@ -92,26 +133,25 @@ function HomeBanner() {
                   </span>
                   <span className='text-white'>{data.number}</span>
                 </div>
-              ))}{' '}
+              ))}
             </div>
           </Row>
-          <Row className='justify-content-center z-10 pb-5' style={{ gap: 10 }}>
-            {socialLinks.map((data, i) => (
+          <Row className='justify-content-center'>
+            <div className='whitepaper_btn mb-4'>
               <a
-                style={{ width: 30 }}
-                key={i}
-                href={data.link}
+                style={{ height: 60 }}
+                className='btn btn-outline-warning px-4 w-100'
+                href='https://docs.bscbay.com/'
                 target='_blank'
-                rel='noreferrer'
-                className='mx-1 mx-sm-3'>
-                <img
-                  className='d-block icon-hover'
-                  height={25}
-                  src={`/assets/icons/b-icon-${i}.svg`}
-                  alt='..'
-                />
+                rel='noreferrer'>
+                <span className='text-uppercase'>Whitepaper</span>
+                <i
+                  className='ms-3 shake-horizontal'
+                  style={{ height: 30, width: 18 }}>
+                  <Arrow />
+                </i>
               </a>
-            ))}
+            </div>
           </Row>
         </div>
       </Container>

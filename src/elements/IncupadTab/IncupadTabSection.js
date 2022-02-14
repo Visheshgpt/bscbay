@@ -6,9 +6,9 @@ import IncupadFeature from './IncupadFeature';
 import IncupadLevelSection from './IncupadLevel/IncupadLevelSection';
 
 function IncupadTabSection() {
-  const [key, setKey] = useState('levels');
+  const [key, setKey] = useState('pools');
   return (
-    <section className='incupad_tabs'>
+    <section className='incupad_tabs' id='pools'>
       <Tabs
         id='controlled-tab-example'
         activeKey={key}

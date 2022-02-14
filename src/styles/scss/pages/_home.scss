@@ -66,8 +66,7 @@
     padding-top: 150px !important;
 }
 
-@include respond('phone') {
-    .home_banner {
-        padding-top: 60px !important;
-    }
+.raised {
+    font-size: 0.75rem;
 }
+

@@ -6,7 +6,7 @@ const HomeSectionTwo = () => {
   return (
     <section className='bg_white'>
       <Container fluid='xxl' className='px-0'>
-        <Container className='py-5 z-10'>
+        <Container className='py-5 z-10 video_section'>
           <Row>
             <Col>
               <div>
@@ -15,13 +15,15 @@ const HomeSectionTwo = () => {
                 </div>
                 <p className='px-0 col-lg-9'>
                   <p></p>
-                  Earn
+                  Earn{' '}
                   <b style={{ color: '#D1B000' }}>
                     4% USDT reflections rewards{' '}
                   </b>
                   every 4 hours automatically into your wallets.<p></p>
                   Unlike volume-based unsustainable projects, we ensure{' '}
-                  <b style={{ color: '#D1B000' }}>Sustainable Passive Income</b>
+                  <b style={{ color: '#D1B000' }}>
+                    Sustainable Passive Income
+                  </b>{' '}
                   streams through Launchpad, DexPad and supporting tools whose
                   income directly flows into investor rewards pool. <p></p>
                   BSCBay is a blockchain

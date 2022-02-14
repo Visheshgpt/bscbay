@@ -351,9 +351,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   useEffect(() => {
     let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
- 
+
     if (typeof provider !== 'undefined' && address) {
-      
       window.ethereum.on('accountsChanged', async function (accounts) {
         const web3 = new Web3(
           new Web3.providers.HttpProvider(
@@ -512,14 +511,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
               <div className='right-section card_pools'>
                 <div className='upper-right-section'>
                   <div className='button-section'>
-                    {/* <Button className="upper-right-btn-one">
+                    <div className='upper-right-btn-one d-flex align-items-center justify-content-center fw-400'>
                       {activePool.allocationType}
-                    </Button>
-                    <Button className="upper-right-btn-two">
+                    </div>
+                    <div className='upper-right-btn-two d-flex align-items-center justify-content-center fw-400 mobile_hide'>
                       Access Type : {activePool.accessType}
-                    </Button> */}
+                    </div>
                   </div>
-                  <span>{activePool.status}</span>
+                  <span className='d-flex align-items-center justify-content-center '>
+                    {activePool.status}
+                  </span>
                   <h3>
                     1 {activePool.allocationType} = TBA {activePool.symbol}{' '}
                   </h3>
@@ -570,7 +571,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
             <div className='col-lg-5 col-md-5 mt-5'>
               <Col xs={12} className='ongoing-upper-card'>
                 <div className='d-flex flex-row justify-content-between'>
-                  <div className='d-flex flex-row align-items-center  justify-content-center ongoing-upper-card-left'>
+                  <div className='d-flex flex-row align-items-center justify-content-center ongoing-upper-card-left'>
                     <span>{activePool.allocationType}</span>
                     <span style={{ textTransform: 'capitalize' }}>
                       {status}
@@ -610,6 +611,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         )}
                       </span>
                     </div>
+                    <div className='d-flex align-items-center justify-content-end raised'>
+                      <span className='text-primary'>
+                        Raised: 100 BNB / 250 BNB
+                      </span>
+                    </div>
                     <div>
                       <ProgressBar
                         now={ICOcompletePercentage}
@@ -618,7 +624,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       />
                     </div>
                     <div>
-                      <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section '>
+                      <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : {totalUsers}</span>

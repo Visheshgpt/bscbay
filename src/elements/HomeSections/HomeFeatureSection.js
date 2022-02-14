@@ -31,7 +31,9 @@ const HomeFeatureSection = () => {
                 FEATURES
               </span>
             </div>
-            <Row className='justify-content-center' style={{ gap: 25 }}>
+            <Row
+              className='justify-content-center feature_container'
+              style={{ gap: 25 }}>
               {dataArr.map((data, i) => (
                 <div
                   key={i}

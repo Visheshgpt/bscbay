@@ -428,6 +428,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     }
                   
                   </div>
+           
                   <span>{activePool.status}</span>
                   <h3>
                     1 {activePool.allocationType} = TBA {" "}

@@ -50,6 +50,22 @@ ul {
   margin-bottom: 0;
   list-style: none; }
 
+.show_mobile {
+  display: none; }
+
+.accordion .card-header {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #ffd366;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer; }
+
+.accordion_haader {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #ffd366; }
+
 .btn {
   display: flex;
   flex-direction: row;
@@ -126,6 +142,10 @@ ul {
     .btn_header .date {
       font-size: 0.65rem;
       right: 20px; } }
+
+.whitepaper_btn {
+  width: 220px;
+  color: #ffd366; }
 
 .card-1 {
   display: flex;
@@ -208,6 +228,10 @@ ul {
     position: relative; }
     .card_pool_icon::before {
       animation: rotate-in-center 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both; }
+
+@media only screen and (max-width: 575px) {
+  .heading-secondary-3 {
+    margin-bottom: 15px; } }
 
 .containers {
   width: 95%;
@@ -295,6 +319,20 @@ label {
     border: 1px solid #ffd366;
     background: #ffd366; }
 
+@media only screen and (max-width: 575px) {
+  .home_banner {
+    padding-top: 85px !important; }
+  .video_section {
+    padding-top: 22px !important; }
+    .video_section video {
+      margin-bottom: 10px !important; }
+  .box-2 {
+    width: 300px; }
+  .mobile_hide {
+    display: none !important; }
+  .show_mobile {
+    display: inline-block; } }
+
 footer {
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   color: #fff; }
@@ -357,9 +395,8 @@ footer {
 .home_banner {
   padding-top: 150px !important; }
 
-@media only screen and (max-width: 575px) {
-  .home_banner {
-    padding-top: 60px !important; } }
+.raised {
+  font-size: 0.75rem; }
 
 .incupad_banner {
   background: url("../../assets/upcomming-bg.png") no-repeat center;

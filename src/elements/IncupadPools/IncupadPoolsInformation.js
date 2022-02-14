@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import Web3 from "web3";
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Web3 from 'web3';
 
 // import video from "../../../assets/bscbayvideo.mp4";
-import video from "../../assets/video/video.mp4";
-import BSCBAYICOabi from "../../shared/BSCBAYICO.json";
+import video from '../../assets/video/video.mp4';
+import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
 const IncupadPoolsInformation = ({ activePool }) => {
   const [Minallocation, setMinallocation] = useState(0);
@@ -13,11 +13,11 @@ const IncupadPoolsInformation = ({ activePool }) => {
   const [allocatedToken, setallocatedToken] = useState(0);
 
   function web3apis() {
-    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+    var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get DISTRIBUTED TOKENS
@@ -27,7 +27,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setallocatedToken(Number(web3.utils.fromWei(tokens, "ether")));
+        setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // user MIN allocation
@@ -37,7 +37,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMinallocation(Number(web3.utils.fromWei(tokens, "ether")));
+        setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // user MAX allocation
@@ -47,7 +47,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
       .then((amount) => {
         //  console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMaxallocation(Number(web3.utils.fromWei(tokens, "ether")));
+        setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // token Price
@@ -57,23 +57,23 @@ const IncupadPoolsInformation = ({ activePool }) => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        settokenPrice(Number(web3.utils.fromWei(tokens, "ether")));
+        settokenPrice(Number(web3.utils.fromWei(tokens, 'ether')));
       });
   }
 
   useEffect(() => {
     web3apis();
   });
- 
+
   return (
-    <Container as="section" fluid="xxl" className="pool-information-section">
+    <Container as='section' fluid='xxl' className='pool-information-section'>
       <Container>
         <Row>
           <Col xs={12}>
             <h2>Pools Information</h2>
           </Col>
           <Col xs={12} lg={6}>
-            <div className="pool-information-card">
+            <div className='pool-information-card'>
               <div>
                 <span>DISTRIBUTION DATE</span>
                 <span>TBA</span>
@@ -101,7 +101,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
             </div>
           </Col>
           <Col xs={12} lg={6}>
-            <div className="pool-information-card">
+            <div className='pool-information-card'>
               <div>
                 <span>NAME</span>
                 <span>{activePool.title}</span>
@@ -129,8 +129,8 @@ const IncupadPoolsInformation = ({ activePool }) => {
         </Row>
 
         {/* About The project Section */}
-        <Row className="mt-5 pt-5">
-          <Col xs={12} lg={6} className="about-section">
+        <Row className='mt-2 pt-2'>
+          <Col xs={12} lg={6} className='about-section'>
             <h2>About the Project</h2>
 
             {activePool.about.map((para, index) => (
@@ -138,11 +138,11 @@ const IncupadPoolsInformation = ({ activePool }) => {
             ))}
           </Col>
 
-          <Col xs={6} lg={6} className="project-video-section">
-            <h2>Project Clip</h2>
-            <div className="videoContainer mt-2 ">
+          <Col xs={6} lg={6} className='project-video-section'>
+            <h2 className='mb-3'>Project Clip</h2>
+            <div className='videoContainer mt-2 '>
               <video
-                className="incupad-pool-video responsive-iframe "
+                className='incupad-pool-video responsive-iframe '
                 src={video}
                 controls
                 // frameborder="0"

@@ -11,16 +11,14 @@ function IncupadBanner() {
           </h1>
           <div className='incupad-card'>
             {upcomingData.map((item, index) => (
-              <div key={index} className='d-flex justify-content-center '>
-                <div className='incupad-upcoming-card'>
-                  <a
-                    href='https://my.forms.app/crptoprojects/bscbaylaunch'
-                    target='_blank'
-                    rel='noreferrer'>
-                    <img src={item.img} alt={item.title} />
-                  </a>
-                  <span>{item.title}</span>
-                </div>
+              <div key={index} className='incupad-upcoming-card'>
+                <a
+                  href='https://my.forms.app/crptoprojects/bscbaylaunch'
+                  target='_blank'
+                  rel='noreferrer'>
+                  <img src={item.img} alt={item.title} />
+                </a>
+                <span>{item.title}</span>
               </div>
             ))}
           </div>

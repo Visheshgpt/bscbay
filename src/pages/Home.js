@@ -8,6 +8,7 @@ import HomeSectionFive from '../elements/HomeSections/HomeSectionFive';
 import HomeSectionPartnership from '../elements/HomeSections/HomeSectionPartnership';
 import HomeSectionRoadmap from '../elements/HomeSections/HomeSectionRoadmap';
 import HomeSectionSix from '../elements/HomeSections/HomeSectionSix';
+import HomeFaqSection from '../elements/HomeSections/HomeFaqSection';
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
       <HomeFeatureSection />
       <HomeTokenomicsSection />
       <HomeSectionSeven />
+      <HomeFaqSection />
       <HomeSectionFive />
       <HomeSectionPartnership />
       <HomeSectionRoadmap />

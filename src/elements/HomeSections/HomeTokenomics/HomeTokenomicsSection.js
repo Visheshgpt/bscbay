@@ -3,7 +3,7 @@ import { Container, ProgressBar, Tabs, Tab } from 'react-bootstrap';
 import HomeTokenomicsChart from './HomeTokenomicsChart';
 
 const HomeTokenomicsSection = () => {
-  const [key, setKey] = useState('tokenomics');
+  const [key, setKey] = useState('rewards');
   return (
     <section className='bg-b-1'>
       <Container
@@ -16,16 +16,13 @@ const HomeTokenomicsSection = () => {
           id='controlled-tab-example'
           activeKey={key}
           onSelect={(k) => setKey(k)}>
-          <Tab eventKey='tokenomics' title='Tokenomics'>
-            <HomeTokenomicsChart />
-          </Tab>
           <Tab eventKey='rewards' title='Rewards'>
             <img
               className='position-absolute bottom-0 end-0 w-auto-sm-100 height-1'
               src='./assets/bg-3.gif'
               alt='..'
             />
-            <Container className='py-5 z-10'>
+            <Container className='py-2 z-10'>
               <div>
                 {/* Heading Start */}
                 <div className='mb-4'>
@@ -199,6 +196,9 @@ const HomeTokenomicsSection = () => {
                 </div>
               </div>
             </Container>
+          </Tab>
+          <Tab eventKey='tokenomics' title='Tokenomics'>
+            <HomeTokenomicsChart />
           </Tab>
         </Tabs>
       </Container>

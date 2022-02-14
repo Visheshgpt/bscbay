@@ -1,0 +1,23 @@
+@include respond('phone') {
+    .home_banner {
+        padding-top: 85px !important;
+    }
+    .video_section{
+        padding-top: 22px !important;
+      video {
+        margin-bottom: 10px !important;
+      }
+    }
+    .box-2 {
+       width: 300px;
+    }
+    .mobile_hide {
+        display: none !important;
+    }
+  
+    .show_mobile {
+        display: inline-block;
+    }
+
+   
+}

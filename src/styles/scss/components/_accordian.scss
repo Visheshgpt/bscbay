@@ -1,0 +1,27 @@
+.accordion {
+
+    .card {
+        &-header{
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid $color-primary;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+    &_item {
+       
+     
+    }
+    &_haader {
+        width: 100%;
+        border-radius: 10px;
+        border: 2px solid $color-primary;
+    }
+
+    &_body {
+
+    }
+   
+}
