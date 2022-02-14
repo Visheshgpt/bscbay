@@ -10,6 +10,8 @@ import ERC20abi from '../../shared/BSCBAYabi.json';
 import AlertModal from '../../components/AlertModal';
 import SearchPool from './SearchPool';
 
+import { chainRpcs } from '../../chainRPCs'
+
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
@@ -40,23 +42,27 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [userInvested, setuserInvested] = useState(0);
   const [claimableTokens, setclaimableTokens] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
+  const [Minallocation, setMinallocation] = useState(0);
   const [txMessage, settxMessage] = useState('');
   const [search, setSearch] = useState(false);
   const [StartTime, setStartTime] = useState(0);
   const [EndTime, setEndTime] = useState(0);
+  const [round, setround] = useState(0);
 
   const remainingallocation = Maxallocation - userInvested;
 
   function web3apis() {
+   
+    
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
-        'https://data-seed-prebsc-1-s1.binance.org:8545'
+        chainRpcs['bsct'][0] || chainRpcs['bsct'][1] || chainRpcs['bsct'][2] || chainRpcs['bsct'][3] || chainRpcs['bsct'][4] || chainRpcs['bsct'][5] || chainRpcs['bsct'][6]
       )
     );
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
+    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
@@ -96,6 +102,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
+     // user MIN allocation
+     contract.methods
+     .minInvestment()
+     .call()
+     .then((amount) => {
+       // console.log(amount);
+       var tokens = web3.utils.toBN(amount).toString();
+       setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+     });  
+
     // get MAX DISTRIBUTED TOKENS
     contract.methods
       .maxDistributedTokenAmount()
@@ -133,6 +149,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
         //  console.log("endtime",time);
         setEndTime(time);
       });
+
+     // get pre-sale round
+     contract.methods
+     .round()
+     .call()
+     .then((round) => {
+       //  console.log("endtime",time);
+       setround(Number(round));
+     });
+
 
     if (address) {
       var contractTokenABI = ERC20abi;
@@ -226,7 +252,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   //   Tokencontract.methods
   //     .approve(
-  //       "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
+  //       "0x32f1cf65767228e95bedfF347c2B0F3D78973F83",
   //       "20000000000000000000000000000000".toString()
   //     )
   //     .send({ from: address })
@@ -248,11 +274,28 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
     if (value == '' || value == 0) {
       alert('Please enter Value');
-    } else {
+    }
+   
+    else if (Number(value) < Minallocation && remainingallocation == Maxallocation) {
+                let msg = `Enter Value Greater than Minimum Investment Amount`  
+                settxMessage(msg);
+                setModalShow(true);
+    }
+    else if (Number(value) > Maxallocation) {
+                let msg = `Enter Value less than Maximum Investment Amount`  
+                settxMessage(msg);
+                setModalShow(true);
+    }
+    else if (round == 0 && eligibility == false) {
+                let msg = `You are not Whitelisted`  
+                settxMessage(msg);
+                setModalShow(true);
+    }
+    else {
       if (web3) {
         try {
           var contractABI = BSCBAYICOabi;
-          var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
+          var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
           var contract = new web3.eth.Contract(contractABI, contractAddress);
 
           let amnt = web3.utils.toHex(web3.utils.toWei(value, 'ether'));
@@ -303,7 +346,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
     if (web3) {
       try {
         var contractABI = BSCBAYICOabi;
-        var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
+        var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
         var contract = new web3.eth.Contract(contractABI, contractAddress);
 
         console.log('Claim called ==>');
@@ -356,7 +399,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       window.ethereum.on('accountsChanged', async function (accounts) {
         const web3 = new Web3(
           new Web3.providers.HttpProvider(
-            'https://data-seed-prebsc-1-s1.binance.org:8545'
+            'https://data-seed-prebsc-2-s1.binance.org:8545/'
           )
         );
 
@@ -403,11 +446,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   if (currentTimeData < StartTime) {
-    activePool.status = 'upcoming';
+    activePool.status = 'Upcoming';
   } else if (currentTimeData < EndTime) {
-    activePool.status = '\xa0\xa0' + 'ongoing';
+    activePool.status = 'Ongoing';
   } else if (currentTimeData > EndTime) {
-    activePool.status = '\xa0\xa0\xa0' + 'closed';
+    activePool.status =  'Closed';
   }
 
   var returnElapsedTime = function (epoch) {
@@ -522,7 +565,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     {activePool.status}
                   </span>
                   <h3>
-                    1 {activePool.allocationType} = TBA {activePool.symbol}{' '}
+                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)} {activePool.symbol}{' '}
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -545,9 +588,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   )}
                 </div>
                 <div className='lower-right-section'>
-                  <h5>Total Raise</h5>
+                  <h5>Raised</h5>
                   <h4>
-                    {raisedBNB} {activePool.allocationType}
+                    {raisedBNB} / {MaxDistributedTokens * tokenPrice} {activePool.allocationType}
                   </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
@@ -578,7 +621,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className='ongoing-upper-card-right'>
-                    1 {activePool.allocationType} = {oneBNBprice}{' '}
+                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
                     {activePool.symbol}{' '}
                   </span>
                 </div>
@@ -613,7 +656,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised'>
                       <span className='text-primary'>
-                        Raised: 100 BNB / 250 BNB
+                        Raised: {raisedBNB} BNB / {MaxDistributedTokens*tokenPrice} BNB
                       </span>
                     </div>
                     <div>
@@ -640,7 +683,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='d-flex flex-column justify-content-between'>
                   <div className='d-flex flex-row justify-content-between text-white'>
                     <span className='pb-2'>
-                      BSCB Balance: {userTokenalance.toFixed(2)} BSCB
+                      BSCB Balance: {userTokenalance.toFixed(0)} BSCB
                     </span>
                     <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
                   </div>
@@ -684,17 +727,17 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   )}
                 </div>
 
-                <div className='ongoing-lower-card-last-section'>
+           { (currentTime > EndTime && round ==0)   &&    <div className='ongoing-lower-card-last-section'>
                   {eligibility ? (
-                    <span>Wallet Eligible to Participate: Yes</span>
+                    <span>Wallet Whitelisted: Yes</span>
                   ) : (
-                    <span>Wallet Eligible to Participate: No</span>
+                    <span>Wallet Whitelisted: No</span>
                   )}
 
                   <span className='pointer' onClick={() => setSearch(true)}>
                     Check Other Wallets For Whitelist
                   </span>
-                </div>
+                </div> }
               </Col>
               {!claimenabled ? (
                 <div className='invest__wrapper'>

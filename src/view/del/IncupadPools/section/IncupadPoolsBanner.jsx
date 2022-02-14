@@ -58,7 +58,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+    var contractAddress = "0x32f1cf65767228e95bedfF347c2B0F3D78973F83";
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
@@ -210,7 +210,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   //   Tokencontract.methods
   //     .approve(
-  //       "0xB9D447A70f3B7C0115040760832B960cb29f25b4",
+  //       "0x32f1cf65767228e95bedfF347c2B0F3D78973F83",
   //       "20000000000000000000000000000000".toString()
   //     )
   //     .send({ from: address })
@@ -236,7 +236,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       if (web3) {
         try {
           var contractABI = BSCBAYICOabi;
-          var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+          var contractAddress = "0x32f1cf65767228e95bedfF347c2B0F3D78973F83";
           var contract = new web3.eth.Contract(contractABI, contractAddress);
 
           let amnt = web3.utils.toHex(web3.utils.toWei(value, "ether"));
@@ -291,7 +291,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       if (web3) {
         try {
           var contractABI = BSCBAYICOabi;
-          var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+          var contractAddress = "0x32f1cf65767228e95bedfF347c2B0F3D78973F83";
           var contract = new web3.eth.Contract(contractABI, contractAddress);
 
           console.log("Claim called ==>");

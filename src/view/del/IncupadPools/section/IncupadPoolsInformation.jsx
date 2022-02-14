@@ -17,7 +17,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = "0xB9D447A70f3B7C0115040760832B960cb29f25b4";
+    var contractAddress = "0x32f1cf65767228e95bedfF347c2B0F3D78973F83";
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get DISTRIBUTED TOKENS

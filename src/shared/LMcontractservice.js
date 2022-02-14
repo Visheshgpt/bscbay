@@ -30,12 +30,12 @@ const getWeb3Client = async () => {
 
       // return web3Client;
       if (id == 97) {
-        return web3Client;
+        return web3Client; 
       } else {
         console.log('wront network message');
         alert('Change Network to Binance Mainet');
 
-        // window.location.reload();
+        window.location.reload();
       }
     } else if (loginType === 'binance') {
       if (window.BinanceChain) {

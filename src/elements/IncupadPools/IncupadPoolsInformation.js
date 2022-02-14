@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Web3 from 'web3';
 
+import { chainRpcs } from '../../chainRPCs'
+
 // import video from "../../../assets/bscbayvideo.mp4";
 import video from '../../assets/video/video.mp4';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
@@ -12,12 +14,17 @@ const IncupadPoolsInformation = ({ activePool }) => {
   const [tokenPrice, settokenPrice] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
 
+  
   function web3apis() {
-    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+  
+    const web3 = new Web3(
+      new Web3.providers.HttpProvider(
+        chainRpcs['bsct'][0] || chainRpcs['bsct'][1] || chainRpcs['bsct'][2] || chainRpcs['bsct'][3] || chainRpcs['bsct'][4] || chainRpcs['bsct'][5] || chainRpcs['bsct'][6]
+      )
+    );
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0xB9D447A70f3B7C0115040760832B960cb29f25b4';
+    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get DISTRIBUTED TOKENS
@@ -80,23 +87,23 @@ const IncupadPoolsInformation = ({ activePool }) => {
               </div>
               <div>
                 <span>MIN. ALLOCATION</span>
-                {/* <span>{Minallocation}</span> */}
-                <span>TBA</span>
+                <span>{Minallocation}</span>
+                {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>MAX. ALLOCATION</span>
-                {/* <span>{Maxallocation}</span> */}
-                <span>TBA</span>
+                <span>{Maxallocation}</span>
+                {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>TOKEN PRICE</span>
-                {/* <span>{tokenPrice}</span> */}
-                <span>TBA</span>
+                <span>{tokenPrice}</span>
+                {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>ACCESS TYPE</span>
-                {/* <span>{activePool.accessType}</span> */}
-                <span>TBA</span>
+                <span>{activePool.accessType}</span>
+                {/* <span>TBA</span> */}
               </div>
             </div>
           </Col>
@@ -116,13 +123,13 @@ const IncupadPoolsInformation = ({ activePool }) => {
               </div>
               <div>
                 <span>TOTAL SUPPLY</span>
-                {/* <span>{activePool.totalSupply}</span> */}
-                <span>TBA</span>
+                <span>{activePool.totalSupply}</span>
+                {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>ADDRESS</span>
-                {/* <span>{activePool.outputTokenaddress}</span> */}
-                <span>TBA</span>
+                <span>{activePool.outputTokenaddress}</span>
+                {/* <span>TBA</span> */}
               </div>
             </div>
           </Col>
