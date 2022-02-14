@@ -8,9 +8,9 @@ import 'react-owl-carousel2/src/owl.theme.default.css';
 
 import { poolData } from '../Constants';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
+import Timer from '../../components/Timer';
 
 const IncupadFeature = () => {
-  
   const [receivedBNB, setreceivedBNB] = useState(0);
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
@@ -20,20 +20,20 @@ const IncupadFeature = () => {
   const [allocatedToken, setallocatedToken] = useState(0);
 
   function web3apis() {
-    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = "0x32f1cf65767228e95bedfF347c2B0F3D78973F83";
+    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
     web3.eth
-      .getBalance("0x32f1cf65767228e95bedfF347c2B0F3D78973F83")
+      .getBalance('0x32f1cf65767228e95bedfF347c2B0F3D78973F83')
       .then((balance) => {
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
-        setreceivedBNB(Number(web3.utils.fromWei(tokens, "ether")));
+        setreceivedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // get MAX DISTRIBUTED TOKENS
@@ -43,7 +43,7 @@ const IncupadFeature = () => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, "ether")));
+        setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // get DISTRIBUTED TOKENS
@@ -53,7 +53,7 @@ const IncupadFeature = () => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setallocatedToken(Number(web3.utils.fromWei(tokens, "ether")));
+        setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // user MIN allocation
@@ -63,7 +63,7 @@ const IncupadFeature = () => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMinallocation(Number(web3.utils.fromWei(tokens, "ether")));
+        setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // user MAX allocation
@@ -73,7 +73,7 @@ const IncupadFeature = () => {
       .then((amount) => {
         //  console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMaxallocation(Number(web3.utils.fromWei(tokens, "ether")));
+        setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
     // ICO start Time
@@ -81,7 +81,7 @@ const IncupadFeature = () => {
       .startTimestamp()
       .call()
       .then((time) => {
-       // console.log(time);
+        // console.log(time);
         setStartTime(time);
       });
 
@@ -135,52 +135,56 @@ const IncupadFeature = () => {
     },
   };
 
+  // if (currentTimeData < StartTime) {
+  //   console.log("1");
+  // }
+  // else if (currentTimeData < EndTime) {
+  //   console.log("2");
+  // }
+  // else if (currentTimeData > EndTime) {
+  //   console.log("3");
+  //   console.log("startTime", StartTime);
+  //   console.log("Type",typeof StartTime);
+  //   console.log("endTime", EndTime);
+  //   console.log("Type",typeof EndTime);
+  //   console.log("currTime", currentTimeData);
+  //   console.log("Type",typeof currentTimeData);
+  // }
+  // else {
+  //   console.log("4");
+  // }
 
-// if (currentTimeData < StartTime) {
-//   console.log("1");
-// }
-// else if (currentTimeData < EndTime) {
-//   console.log("2");
-// }
-// else if (currentTimeData > EndTime) {
-//   console.log("3");
-//   console.log("startTime", StartTime);
-//   console.log("Type",typeof StartTime);
-//   console.log("endTime", EndTime);
-//   console.log("Type",typeof EndTime);
-//   console.log("currTime", currentTimeData);
-//   console.log("Type",typeof currentTimeData);
-// }
-// else {
-//   console.log("4");
-// }
-
-
-var returnElapsedTime = function(epoch) {
-  //We are assuming that the epoch is in seconds
-  var hours = epoch / 3600,
+  var returnElapsedTime = function (epoch) {
+    //We are assuming that the epoch is in seconds
+    console.log('seconds = ', epoch);
+    var hours = epoch / 3600,
       minutes = (hours % 1) * 60,
       seconds = (minutes % 1) * 60;
-  // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes, " + Math.round(seconds) + " seconds";
-  return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
-}
-
-
+    return (
+      Math.floor(hours) +
+      ' hours, ' +
+      Math.floor(minutes) +
+      ' minutes, ' +
+      Math.round(seconds) +
+      ' seconds'
+    );
+    // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
+  };
 
   return (
-    <Container as="section" fluid="xxl" className="incupad-upcoming-section">
+    <Container as='section' fluid='xxl' className='incupad-upcoming-section'>
       <Container>
         <Row>
-          <Col xs={12} className="p-2">
-            <h2 className="text-white text-center">Featured Pools</h2>
+          <Col xs={12} className='p-2'>
+            <h2 className='text-white text-center'>Featured Pools</h2>
           </Col>
           <OwlCarousel options={options}>
             {featuredPoolData.map((item) => (
-              <Link to={`/launchpad/${item.title.replaceAll(" ", "-")}`}>
-                <div className="incupad-upcoming-pool-card">
-                  <span className="card-tag">{item.tag}</span>
+              <Link to={`/launchpad/${item.title.replaceAll(' ', '-')}`}>
+                <div className='incupad-upcoming-pool-card'>
+                  <span className='card-tag'>{item.tag}</span>
 
-                  <div class="icon-box-incupad">
+                  <div class='icon-box-incupad'>
                     <span>
                       <img src={item.img} alt={item.title} />
                     </span>
@@ -205,50 +209,56 @@ var returnElapsedTime = function(epoch) {
                       <img src={item.img} alt={item.title} />
                     </span>
                   </div> */}
-                
-                  <span className="card-title">{item.title}</span>
-                  <p className="card-description">{item.description}</p>
-                  <div className="card-time">
-                    <img src="./assets/is-time-1.svg" alt="time icon" />
+
+                  <span className='card-title'>{item.title}</span>
+                  <p className='card-description'>{item.description}</p>
+                  <div className='card-time'>
+                    <img src='./assets/is-time-1.svg' alt='time icon' />
                   </div>
                   {currentTimeData < StartTime ? (
                     <>
-                    <span>{returnElapsedTime(StartTime-currentTimeData)}</span>
-                    <span className="card-time-status">Starts in</span>
+                      <span>
+                        <Timer initialcount={StartTime - currentTimeData} />
+                      </span>
+
+                      <span className='card-time-status'>Starts in</span>
                     </>
                   ) : currentTimeData < EndTime ? (
                     <>
-                      <span>{returnElapsedTime(EndTime-currentTimeData)}</span>
-                      <span className="card-time-status">Remaining</span>
+                      <span>
+                        <Timer initialcount={EndTime - currentTimeData} />
+                      </span>
+
+                      <span className='card-time-status'>Remaining</span>
                     </>
                   ) : (
                     <>
                       {/* <span>{differceTime}</span> */}
-                      <span className="card-time-status">Closed</span>
+                      <span className='card-time-status'>Closed</span>
                     </>
                   )}
                   {/* <span>{item.time}</span>
                   </div>
                   <span className="card-time-status">Upcomming</span> */}
-                  <div className="incupad-upcoming-pool-card-lower">
+                  <div className='incupad-upcoming-pool-card-lower'>
                     <ProgressBar
                       now={ICOcompletePercentage}
-                      className="progress-bar-sectionn"
+                      className='progress-bar-sectionn'
                       label={`${Math.round(ICOcompletePercentage)}%`}
                     />
 
-                    <div className="min-allocation">
-                      <span className="lower-card-name">Min Allocation</span>
+                    <div className='min-allocation'>
+                      <span className='lower-card-name'>Min Allocation</span>
                       {/* <span>{Minallocation}</span> */}
                       <span>TBA</span>
                     </div>
-                    <div className="min-allocation">
-                      <span className="lower-card-name">Max Allocation</span>
+                    <div className='min-allocation'>
+                      <span className='lower-card-name'>Max Allocation</span>
                       {/* <span>{Maxallocation}</span> */}
-                       <span>TBA</span>
+                      <span>TBA</span>
                     </div>
-                    <div className="min-allocation">
-                      <span className="lower-card-name">Access Type</span>
+                    <div className='min-allocation'>
+                      <span className='lower-card-name'>Access Type</span>
                       <span>{item.accessType}</span>
                     </div>
                   </div>

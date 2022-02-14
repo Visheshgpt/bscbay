@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  ProgressBar,
+  Button,
+  Spinner,
+} from 'react-bootstrap';
 import Web3 from 'web3';
 
 import LaunchStepThree from '../launch-steps/LaunchStepThree';
@@ -9,8 +16,9 @@ import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import ERC20abi from '../../shared/BSCBAYabi.json';
 import AlertModal from '../../components/AlertModal';
 import SearchPool from './SearchPool';
+import Timer from '../../components/Timer';
 
-import { chainRpcs } from '../../chainRPCs'
+import { chainRpcs } from '../../chainRPCs';
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
@@ -48,15 +56,20 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [StartTime, setStartTime] = useState(0);
   const [EndTime, setEndTime] = useState(0);
   const [round, setround] = useState(0);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const remainingallocation = Maxallocation - userInvested;
 
   function web3apis() {
-   
-    
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
-        chainRpcs['bsct'][0] || chainRpcs['bsct'][1] || chainRpcs['bsct'][2] || chainRpcs['bsct'][3] || chainRpcs['bsct'][4] || chainRpcs['bsct'][5] || chainRpcs['bsct'][6]
+        chainRpcs['bsct'][0] ||
+          chainRpcs['bsct'][1] ||
+          chainRpcs['bsct'][2] ||
+          chainRpcs['bsct'][3] ||
+          chainRpcs['bsct'][4] ||
+          chainRpcs['bsct'][5] ||
+          chainRpcs['bsct'][6]
       )
     );
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
@@ -102,15 +115,15 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
-     // user MIN allocation
-     contract.methods
-     .minInvestment()
-     .call()
-     .then((amount) => {
-       // console.log(amount);
-       var tokens = web3.utils.toBN(amount).toString();
-       setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
-     });  
+    // user MIN allocation
+    contract.methods
+      .minInvestment()
+      .call()
+      .then((amount) => {
+        // console.log(amount);
+        var tokens = web3.utils.toBN(amount).toString();
+        setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
 
     // get MAX DISTRIBUTED TOKENS
     contract.methods
@@ -150,15 +163,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setEndTime(time);
       });
 
-     // get pre-sale round
-     contract.methods
-     .round()
-     .call()
-     .then((round) => {
-       //  console.log("endtime",time);
-       setround(Number(round));
-     });
-
+    // get pre-sale round
+    contract.methods
+      .round()
+      .call()
+      .then((round) => {
+        //  console.log("endtime",time);
+        setround(Number(round));
+      });
 
     if (address) {
       var contractTokenABI = ERC20abi;
@@ -270,28 +282,27 @@ const IncupadPoolsBanner = ({ activePool }) => {
   // };
 
   const invest = async () => {
+    setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
 
     if (value == '' || value == 0) {
       alert('Please enter Value');
-    }
-   
-    else if (Number(value) < Minallocation && remainingallocation == Maxallocation) {
-                let msg = `Enter Value Greater than Minimum Investment Amount`  
-                settxMessage(msg);
-                setModalShow(true);
-    }
-    else if (Number(value) > Maxallocation) {
-                let msg = `Enter Value less than Maximum Investment Amount`  
-                settxMessage(msg);
-                setModalShow(true);
-    }
-    else if (round == 0 && eligibility == false) {
-                let msg = `You are not Whitelisted`  
-                settxMessage(msg);
-                setModalShow(true);
-    }
-    else {
+    } else if (
+      Number(value) < Minallocation &&
+      remainingallocation == Maxallocation
+    ) {
+      let msg = `Enter Value Greater than Minimum Investment Amount`;
+      settxMessage(msg);
+      setModalShow(true);
+    } else if (Number(value) > Maxallocation) {
+      let msg = `Enter Value less than Maximum Investment Amount`;
+      settxMessage(msg);
+      setModalShow(true);
+    } else if (round == 0 && eligibility == false) {
+      let msg = `You are not Whitelisted`;
+      settxMessage(msg);
+      setModalShow(true);
+    } else {
       if (web3) {
         try {
           var contractABI = BSCBAYICOabi;
@@ -338,6 +349,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         // alert("Change network to binance");
       }
     }
+    setButtonLoading(false);
   };
 
   const claim = async () => {
@@ -450,24 +462,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
   } else if (currentTimeData < EndTime) {
     activePool.status = 'Ongoing';
   } else if (currentTimeData > EndTime) {
-    activePool.status =  'Closed';
+    activePool.status = 'Closed';
   }
-
-  var returnElapsedTime = function (epoch) {
-    //We are assuming that the epoch is in seconds
-    var hours = epoch / 3600,
-      minutes = (hours % 1) * 60,
-      seconds = (minutes % 1) * 60;
-    return (
-      Math.floor(hours) +
-      ' hours, ' +
-      Math.floor(minutes) +
-      ' minutes, ' +
-      Math.round(seconds) +
-      ' seconds'
-    );
-    // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
-  };
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -565,7 +561,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     {activePool.status}
                   </span>
                   <h3>
-                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)} {activePool.symbol}{' '}
+                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    {activePool.symbol}{' '}
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -574,12 +571,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   {currentTimeData < StartTime ? (
                     <>
                       <b style={{ color: 'white' }}>Starts In:</b>
-                      <p>{returnElapsedTime(StartTime - currentTimeData)}</p>
+                      <p>
+                        <Timer initialcount={StartTime - currentTimeData} />
+                      </p>
                     </>
                   ) : currentTimeData < EndTime ? (
                     <>
                       <b style={{ color: 'white' }}>Closes in:</b>
-                      <p>{returnElapsedTime(EndTime - currentTimeData)}</p>
+                      <p>
+                        <Timer initialcount={EndTime - currentTimeData} />
+                      </p>
                     </>
                   ) : (
                     <>
@@ -590,7 +591,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB} / {MaxDistributedTokens * tokenPrice} {activePool.allocationType}
+                    {raisedBNB} / {MaxDistributedTokens * tokenPrice}{' '}
+                    {activePool.allocationType}
                   </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
@@ -628,35 +630,28 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='d-flex flex-row justify-content-center'>
                   <div className='ongoing-lower-card text-white w-100'>
                     <div className='d-flex justify-content-center'>
-                      <span className='text-white'>
+                      <div className='text-white d-flex align-items-center flex-row'>
                         {currentTimeData < StartTime ? (
                           <>
-                            <span>
-                              {' '}
-                              Start in:{' '}
-                              {returnElapsedTime(StartTime - currentTimeData)}
-                            </span>
+                            <span> Start in: </span>{' '}
+                            <Timer initialcount={StartTime - currentTimeData} />
                           </>
                         ) : currentTimeData < EndTime ? (
                           <>
-                            <span>
-                              {' '}
-                              Closes in:{' '}
-                              {returnElapsedTime(
-                                EndTime - currentTimeData
-                              )}{' '}
-                            </span>
+                            <span className='mx-1'> Closes in: </span>
+                            <Timer initialcount={EndTime - currentTimeData} />
                           </>
                         ) : (
                           <>
                             <span> Closed</span>
                           </>
                         )}
-                      </span>
+                      </div>
                     </div>
-                    <div className='d-flex align-items-center justify-content-end raised'>
+                    <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
-                        Raised: {raisedBNB} BNB / {MaxDistributedTokens*tokenPrice} BNB
+                        Raised: {raisedBNB} BNB /{' '}
+                        {MaxDistributedTokens * tokenPrice} BNB
                       </span>
                     </div>
                     <div>
@@ -727,17 +722,19 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   )}
                 </div>
 
-           { (currentTime > EndTime && round ==0)   &&    <div className='ongoing-lower-card-last-section'>
-                  {eligibility ? (
-                    <span>Wallet Whitelisted: Yes</span>
-                  ) : (
-                    <span>Wallet Whitelisted: No</span>
-                  )}
+                {currentTime > EndTime && round == 0 && (
+                  <div className='ongoing-lower-card-last-section'>
+                    {eligibility ? (
+                      <span>Wallet Whitelisted: Yes</span>
+                    ) : (
+                      <span>Wallet Whitelisted: No</span>
+                    )}
 
-                  <span className='pointer' onClick={() => setSearch(true)}>
-                    Check Other Wallets For Whitelist
-                  </span>
-                </div> }
+                    <span className='pointer' onClick={() => setSearch(true)}>
+                      Check Other Wallets For Whitelist
+                    </span>
+                  </div>
+                )}
               </Col>
               {!claimenabled ? (
                 <div className='invest__wrapper'>
@@ -746,11 +743,27 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     placeholder='Enter Amount'
                     onChange={(e) => setvalue(e.target.value)}
                   />
-                  <button
-                    className='incupadButton_invest btn_round'
-                    onClick={invest}>
-                    Invest
-                  </button>
+                  {buttonLoading ? (
+                    <button
+                      className='incupadButton_invest btn_round'
+                      variant='primary'
+                      disabled>
+                      <Spinner
+                        as='span'
+                        animation='border'
+                        size='sm'
+                        role='status'
+                        aria-hidden='true'
+                      />
+                      <span className='visually-hidden'>Invest...</span>
+                    </button>
+                  ) : (
+                    <button
+                      className='incupadButton_invest btn_round'
+                      onClick={invest}>
+                      Invest
+                    </button>
+                  )}
                 </div>
               ) : (
                 claimableTokens > 0 && (
