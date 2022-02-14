@@ -408,7 +408,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   } else if (currentTimeData < EndTime) {
     activePool.status = '\xa0\xa0' + 'ongoing';
   } else if (currentTimeData > EndTime) {
-    activePool.status = '\xa0\xa0\xa0' + 'ongoing';
+    activePool.status = '\xa0\xa0\xa0' + 'closed';
   }
 
   var returnElapsedTime = function (epoch) {
@@ -534,7 +534,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </>
                   ) : currentTimeData < EndTime ? (
                     <>
-                      <b style={{ color: 'white' }}>Remaining:</b>
+                      <b style={{ color: 'white' }}>Closes in:</b>
                       <p>{returnElapsedTime(EndTime - currentTimeData)}</p>
                     </>
                   ) : (
@@ -597,7 +597,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                           <>
                             <span>
                               {' '}
-                              Remaining:{' '}
+                              Closes in:{' '}
                               {returnElapsedTime(
                                 EndTime - currentTimeData
                               )}{' '}
