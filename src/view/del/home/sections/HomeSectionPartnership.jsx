@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionPartnership = () => {
   const imagesArr = [{ key: 0 }, { key: 1 }, { key: 2 }];
@@ -11,11 +10,7 @@ const HomeSectionPartnership = () => {
         <Row>
           <Col lg={12}>
             <div className="border-secondary py-4">
-              <ScrollAnimation
-                animateIn="bounceInLeft"
-                animateOut="bounceOutRight"
-                scrollableParentSelector="#scrolly-main"
-              >
+            
                 <Row
                   className="justify-content-center align-items-center"
                   style={{ gap: 30 }}
@@ -31,7 +26,7 @@ const HomeSectionPartnership = () => {
                     </div>
                   ))}
                 </Row>
-              </ScrollAnimation>
+           
             </div>
           </Col>
         </Row>

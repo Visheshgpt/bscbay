@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Container, ProgressBar, Tabs, Tab } from 'react-bootstrap';
-//import ScrollAnimation from 'react-animate-on-scroll';
 import HomeTokenomicsChart from './HomeTokenomicsChart';
 
 const HomeTokenomicsSection = () => {
@@ -27,12 +26,6 @@ const HomeTokenomicsSection = () => {
               alt='..'
             />
             <Container className='py-5 z-10'>
-              {/*}
-              <ScrollAnimation
-                animateIn='fadeInLeft'
-                // animateOut='bounceOutRight'
-                scrollableParentSelector='#scrolly-main'>
-  */}
               <div>
                 {/* Heading Start */}
                 <div className='mb-4'>
@@ -205,7 +198,6 @@ const HomeTokenomicsSection = () => {
                   </div>
                 </div>
               </div>
-              {/*</ScrollAnimation>*/}
             </Container>
           </Tab>
         </Tabs>

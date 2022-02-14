@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
 import { ecosystemData, socialLinks } from '../Constants';
 import { ReactComponent as Arrow } from '../../assets/next.svg';

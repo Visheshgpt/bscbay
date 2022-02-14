@@ -2,16 +2,12 @@ import React from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ReactComponent as Arrow } from "../../../assets/next.svg";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionSeven = () => {
   return (
     <section className="py-3 bg-b-1 bg-color-4 text-white">
       <Container fluid="xxl">
-        <ScrollAnimation
-          animateIn="fadeInUp"
-          scrollableParentSelector="#scrolly-main"
-        >
+       
           <Row className="d-flex  flex-column flex-lg-row align-items-center justify-content-between">
             <Col xs={12} lg={4}>
               <Button
@@ -62,7 +58,7 @@ const HomeSectionSeven = () => {
               </Link>
             </div>
           </div> */}
-        </ScrollAnimation>
+
       </Container>
     </section>
   );

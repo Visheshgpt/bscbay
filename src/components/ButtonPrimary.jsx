@@ -1,9 +1,7 @@
-import React from 'react';
-import ScrollAnimation from 'react-animate-on-scroll';
+
 
 const ButtonPrimary = ({ className = 'btn-primary' }) => {
   return (
-    <ScrollAnimation animateIn='zoomIn' animateOut='zoomOut'>
       <a
         href='mailto:shabablaltaf1994@gmail.com'
         className={`btn py-2 rounded-lg-1 ${className}`}
@@ -16,7 +14,6 @@ const ButtonPrimary = ({ className = 'btn-primary' }) => {
           alt='button'
         />
       </a>
-    </ScrollAnimation>
   );
 };
 

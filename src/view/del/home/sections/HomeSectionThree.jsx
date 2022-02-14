@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionThree = () => {
   const dataArr = [
@@ -51,11 +50,7 @@ const HomeSectionThree = () => {
             id="investment"
             className="px-0 col-xl-10 mx-auto scroll-settings"
           >
-            <ScrollAnimation
-              animateIn="fadeInLeft"
-              // animateOut="bounceOutRight"
-              scrollableParentSelector="#scrolly-main"
-            >
+           
               <div className="heading-secondary-3 text-center text-white-2 mb-5">
                 <span className="text-primary mx-1">Strengthen</span>your
                 project and
@@ -145,7 +140,7 @@ const HomeSectionThree = () => {
                   </Row>
                 </div>
               </div>
-            </ScrollAnimation>
+           
           </div>
         </Container>
       </Container>

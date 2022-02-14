@@ -173,7 +173,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             Safely connect to your existing blockchain wallet and directly stake
             tokens in them
           </p>
-          <Link
+          <div
             onClick={requestAuth}
             className='border border-primary rounded-lg-2 p-2 my-3 d-flex align-items-center'>
             <img
@@ -187,24 +187,23 @@ const LaunchStepThree = ({ show, onHide }) => {
               src='../assets/arrow-1.png'
               alt='...'
             />
-          </Link>
+          </div>
 
-          <Link
+          <div
             onClick={requestAuthBSC}
-            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
-          >
+            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
             <img
-              className="d-block launch-step-three-image"
-              src="../assets/BinanceChainWallet.jpeg"
-              alt="..."
+              className='d-block launch-step-three-image'
+              src='../assets/BinanceChainWallet.jpeg'
+              alt='...'
             />
-            <span className="ms-3 text-white-2"> Binance Chain Wallet</span>
+            <span className='ms-3 text-white-2'> Binance Chain Wallet</span>
             <img
-              className="ms-auto shake-horizontal launch-step-three-image"
-              src="../assets/arrow-1.png"
-              alt="..."
+              className='ms-auto shake-horizontal launch-step-three-image'
+              src='../assets/arrow-1.png'
+              alt='...'
             />
-          </Link>
+          </div>
           <br></br>
           <Link
             onClick={requestAuth}
@@ -271,19 +270,18 @@ const LaunchStepThree = ({ show, onHide }) => {
           <br></br>
           <Link
             onClick={requestwalletconnect}
-            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
-          >
+            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
             <img
-              className="d-block launch-step-three-image"
+              className='d-block launch-step-three-image'
               // height={45}
-              src="../assets/wc.png"
-              alt="..."
+              src='../assets/wc.png'
+              alt='...'
             />
-            <span className="ms-3 text-white-2">Wallet Connect</span>
+            <span className='ms-3 text-white-2'>Wallet Connect</span>
             <img
-              className="ms-auto shake-horizontal  launch-step-three-image"
-              src="../assets/arrow-1.png"
-              alt="..."
+              className='ms-auto shake-horizontal  launch-step-three-image'
+              src='../assets/arrow-1.png'
+              alt='...'
             />
           </Link>
         </div>

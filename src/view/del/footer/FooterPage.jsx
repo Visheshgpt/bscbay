@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const FooterPage = () => {
   var link;
@@ -32,11 +31,7 @@ const FooterPage = () => {
 
   return (
     <footer className="bg-color-2 text-white py-5">
-      <ScrollAnimation
-        animateIn="fadeInUp"
-        animateOut="fadeOutDown"
-        scrollableParentSelector="#scrolly-main"
-      >
+     
         <Container fluid="xxl" className="px-0 position-relative">
           <img className="position-absolute" src="/assets/bg-7.png" alt=".." />
           <Container className="text-center z-10">
@@ -132,7 +127,7 @@ const FooterPage = () => {
             </p>
           </Container>
         </Container>
-      </ScrollAnimation>
+ 
     </footer>
   );
 };

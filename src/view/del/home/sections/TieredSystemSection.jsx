@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import ScrollAnimation from 'react-animate-on-scroll';
 
 const TieredSystemSection = () => {
   const list = [
@@ -74,11 +73,7 @@ const TieredSystemSection = () => {
           alt='..'
         />
         <Container className='py-5 z-10'>
-          <ScrollAnimation
-            animateIn='zoomInDown'
-            // animateOut='zoomOutDown'
-            scrollableParentSelector='#scrolly-main'
-          >
+         
             <div className='text-center'>
               <div className='heading-primary-2'>
                 THE <span className='text-primary'>BSCBAY</span> TIERED SYSTEM
@@ -92,14 +87,10 @@ const TieredSystemSection = () => {
                 soon!
               </p>
             </div>
-          </ScrollAnimation>
+
           <div className='px-0 col-xl-9 mx-auto'>
             <div className='mb-5'>
-              <ScrollAnimation
-                animateIn='bounceInRight'
-                animateOut='bounceOutLeft'
-                scrollableParentSelector='#scrolly-main'
-              >
+             
                 <div className='heading-secondary text-center mb-4'>
                   ROUND 1 - ALLOCATION ROUND
                 </div>
@@ -178,15 +169,11 @@ const TieredSystemSection = () => {
                   In the first round, called the “Allocation Round”, users can
                   purchase the amount allotted to them based on their tier.
                 </div>
-              </ScrollAnimation>
+
             </div>
 
             <div>
-              <ScrollAnimation
-                animateIn='bounceInLeft'
-                animateOut='bounceOutRight'
-                scrollableParentSelector='#scrolly-main'
-              >
+             
                 <div className='heading-secondary text-center mb-4'>
                   ROUND 2 - FCFS ROUND
                 </div>
@@ -245,8 +232,7 @@ const TieredSystemSection = () => {
                       </li>
                     </ul>
                   </div>
-                </div>
-              </ScrollAnimation>
+                </div>       
             </div>
           </div>
         </Container>

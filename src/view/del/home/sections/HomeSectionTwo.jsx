@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ScrollAnimation from "react-animate-on-scroll";
 // import video from "../../../assets/bscbayvideo.mp4";
 import video from "../../../assets/video/video.mp4";
 
@@ -11,10 +10,7 @@ const HomeSectionTwo = () => {
         <Container className="py-5 z-10">
           <Row>
             <Col>
-              <ScrollAnimation
-                animateIn="fadeInLeft"
-                scrollableParentSelector="#scrolly-main"
-              >
+             
                 <div>
                   <div className="heading-primary-2">
                     {/* <div className="text-light"> Why BSCBay?</div> */}
@@ -50,17 +46,13 @@ const HomeSectionTwo = () => {
                     ensure the investor pools never die.
                   </p>
                 </div>
-              </ScrollAnimation>
+            
             </Col>
             <Col
               xs={12}
               lg={6}
               className="order-first order-lg-last mb-3 mb-lg-0"
             >
-              <ScrollAnimation
-                animateIn="fadeInRight"
-                scrollableParentSelector="#scrolly-main"
-              >
                 <div>
                   <video
                     className="d-block w-100 h-100 rounded-lg-2 cursor-pointer"
@@ -68,9 +60,7 @@ const HomeSectionTwo = () => {
                     controls
                     poster="./assets/bg-2.png"
                   />
-                  
                 </div>
-              </ScrollAnimation>
             </Col>
           </Row>
         </Container>

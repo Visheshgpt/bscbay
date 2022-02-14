@@ -1,16 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionSix = () => {
   return (
     <section className="py-5 bg-b-1 bg-color-4 text-white">
       <Container>
-        <ScrollAnimation
-          animateIn="fadeInUp"
-          scrollableParentSelector="#scrolly-main"
-        >
+       
           <div className="text-center">
             <div className="heading-primary-2 fw-normal">
               <span className="text-white-2">Are You Ready to</span> <br />{" "}
@@ -35,7 +31,7 @@ const HomeSectionSix = () => {
               </Link>
             </div>
           </div>
-        </ScrollAnimation>
+     
       </Container>
     </section>
   );

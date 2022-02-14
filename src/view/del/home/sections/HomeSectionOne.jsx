@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ScrollAnimation from "react-animate-on-scroll";
 import { ReactComponent as Ellipse1 } from "../../../assets/Ellipse-1.svg";
 import { ReactComponent as Ellipse2 } from "../../../assets/Ellipse-2.svg";
 import { ReactComponent as Arrow } from "../../../assets/next.svg";
@@ -256,10 +255,7 @@ const HomeSectionOne = () => {
 
   return (
     <section className="bg-color-homepage-section-one text-white">
-      <ScrollAnimation
-        animateIn="fadeIn"
-        scrollableParentSelector="#scrolly-main"
-      >
+     
         <Container fluid="xxl" className="position-relative pt-5">
           <Row className="justify-content-xl-between">
             <Col md={12} lg={6} xl={5} className="mb-5 mb-xl-0">
@@ -407,7 +403,7 @@ const HomeSectionOne = () => {
             </Row>
           </div>
         </Container>
-      </ScrollAnimation>
+
     </section>
   );
 };

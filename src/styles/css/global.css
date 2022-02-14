@@ -354,6 +354,13 @@ footer {
   .tokenomics_box .value {
     font-weight: bold; }
 
+.home_banner {
+  padding-top: 150px !important; }
+
+@media only screen and (max-width: 575px) {
+  .home_banner {
+    padding-top: 60px !important; } }
+
 .incupad_banner {
   background: url("../../assets/upcomming-bg.png") no-repeat center;
   background-size: cover;

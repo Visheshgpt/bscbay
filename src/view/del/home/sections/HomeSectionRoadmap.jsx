@@ -1,16 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionRoadmap = () => {
   return (
     <section className="py-5 bg-b-1">
       <Container>
         <div className="text-center">
-          <ScrollAnimation
-            animateIn="fadeInDown"
-            scrollableParentSelector="#scrolly-main"
-          >
+        
             <div className="heading-primary-2">Roadmap</div>
             <p className="mt-3 mb-4 px-0 col-md-11 col-lg-10 mx-auto">
               We at BSCBay are building a suite of tools designed to help
@@ -19,19 +15,16 @@ const HomeSectionRoadmap = () => {
               charities. Plus look out for community events, merchandise, and
               more coming your way soon!
             </p>
-          </ScrollAnimation>
+
           <div className="px-0 col-lg-10 mx-auto mb-5 pb-md-5">
             {/* Box-1 */}
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1 d-none d-md-block">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  scrollableParentSelector="#scrolly-main"
-                >
+              
                   <div className="text-end heading-secondary-2 fw-600">
                     Q4 2021
                   </div>
-                </ScrollAnimation>
+             
               </div>
               <div className="col-2 px-0 order-first order-md-2 col-md-1 position-relative">
                 <div>
@@ -43,10 +36,7 @@ const HomeSectionRoadmap = () => {
                 />
               </div>
               <div className="col col-md-5 order-md-3">
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
                     Q4 2021
                   </div>
@@ -64,16 +54,13 @@ const HomeSectionRoadmap = () => {
                       <li className="my-1">Whitepaper</li>
                     </ul>
                   </div>
-                </ScrollAnimation>
+        
               </div>
             </div>
             {/* Box-2 */}
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  scrollableParentSelector="#scrolly-main"
-                >
+              
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
                     Jan- Feb 2022
                   </div>
@@ -98,7 +85,7 @@ const HomeSectionRoadmap = () => {
                       <li className="my-1">Dev Team Expansion</li>
                     </ul>
                   </div>
-                </ScrollAnimation>
+        
               </div>
               <div className="col-2 px-0 order-first order-md-2 col-md-1 position-relative">
                 <div>
@@ -110,27 +97,21 @@ const HomeSectionRoadmap = () => {
                 />
               </div>
               <div className="col col-md-5 order-md-3 d-none d-md-block">
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-start heading-secondary-2 fw-600">
                     Jan- Feb 2022
                   </div>
-                </ScrollAnimation>
+           
               </div>
             </div>
             {/* Box-3 */}
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1 d-none d-md-block">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-end heading-secondary-2 fw-600">
                     Feb-Apr 2022
                   </div>
-                </ScrollAnimation>
+     
               </div>
               <div className="col-2 px-0 order-first order-md-2 col-md-1 position-relative ">
                 <div>
@@ -142,10 +123,7 @@ const HomeSectionRoadmap = () => {
                 />
               </div>
               <div className="col col-md-5 order-md-3">
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
                     Feb-Apr 2022
                   </div>
@@ -173,16 +151,13 @@ const HomeSectionRoadmap = () => {
                       </li>
                     </ul>
                   </div>
-                </ScrollAnimation>
+          
               </div>
             </div>
             {/* Box-4 */}
             <div className="row justify-content-center pt-4">
               <div className="col col-md-5 order-md-1">
-                <ScrollAnimation
-                  animateIn="fadeInLeft"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-start mb-3 heading-secondary-2 fw-600 mb d-md-none">
                     Apr-June 2022
                   </div>
@@ -200,7 +175,7 @@ const HomeSectionRoadmap = () => {
                       <li className="my-1">Governance Functionality Pools</li>
                     </ul>
                   </div>
-                </ScrollAnimation>
+       
               </div>
               <div className="col-2 px-0 order-first order-md-2 col-md-1 position-relative">
                 <div>
@@ -212,14 +187,11 @@ const HomeSectionRoadmap = () => {
                 />
               </div>
               <div className="col col-md-5 order-md-3 d-none d-md-block">
-                <ScrollAnimation
-                  animateIn="fadeInRight"
-                  scrollableParentSelector="#scrolly-main"
-                >
+               
                   <div className="text-start heading-secondary-2 fw-600">
                     Apr-June 2022
                   </div>
-                </ScrollAnimation>
+            
               </div>
             </div>
           </div>

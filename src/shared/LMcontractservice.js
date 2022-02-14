@@ -1,172 +1,122 @@
-import Web3 from "web3";
-import swal from "sweetalert";
-import Web3Modal from "web3modal";
-
-import AlertModal from '../components/AlertModal';
-
-import abi from "./BSCBAYabi.json";
+import Web3 from 'web3';
+import swal from 'sweetalert';
+import abi from './BSCBAYabi.json';
 // import POOLabi from './POOLabi.json'
 
-import WalletConnectProvider from "@walletconnect/web3-provider";
-// import { BscConnector } from '@binance-chain/bsc-connector'
-import detectEthereumProvider from "@metamask/detect-provider";
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import detectEthereumProvider from '@metamask/detect-provider';
 
 const getWeb3Client = async () => {
-  const loginType = localStorage.getItem("loginType");
+  const loginType = localStorage.getItem('loginType');
 
   if (
     window.ethereum ||
     window.BinanceChain ||
     Web3.givenProvider ||
-    loginType == "walletconnect"
+    loginType === 'walletconnect'
   ) {
-    if (loginType === "metamask") {
+    if (loginType === 'metamask') {
       const web3Client = new Web3(window.ethereum || Web3.givenProvider);
 
       window.web3 = web3Client;
       //await window.ethereum.enable();
-      await web3Client.eth.requestAccounts(); 
+      await web3Client.eth.requestAccounts();
       // const accounts = await web3Client.eth.getAccounts();
-      // console.log("accounts conn", accounts[0]); 
+      // console.log("accounts conn", accounts[0]);
       // await web3Client.request({ method: 'eth_requestAccounts' });
 
       var id = await web3Client.eth.net.getId();
-      console.log("id", id);
+      console.log('id', id);
 
       // return web3Client;
       if (id == 97) {
         return web3Client;
       } else {
+        console.log('wront network message');
+        alert('Change Network to Binance Mainet');
 
-        console.log("wront network message");
-        alert("Change Network to Binance Mainet");
-        
         // window.location.reload();
       }
-    } 
-   
-    else if (loginType === "binance")
-     
-    {
-      if (window.BinanceChain) {    
-      
-      const web3Client = new Web3(window.BinanceChain);
-     // window.web3 = web3Client;
-       
-       await web3Client.eth.requestAccounts();
-      
-    //  console.log(acc[0]);
-     
-     var id = await web3Client.eth.net.getId();
-      console.log("ID",id);
-        
-    // return web3Client; 
-     if (id == 97){
-      return web3Client;
-     }
-     else {
-       swal("Change Network to Binance Mainet");
-     }
-       
-    }
+    } else if (loginType === 'binance') {
+      if (window.BinanceChain) {
+        const web3Client = new Web3(window.BinanceChain);
+        // window.web3 = web3Client;
 
-    else {
+        await web3Client.eth.requestAccounts();
 
-     await swal("Please Install Binance Wallet!!");
-      window.location.reload();
-    }
-     }
+        //  console.log(acc[0]);
 
-     
-     else if (loginType === "walletconnect")
-     
-     {   
+        var id = await web3Client.eth.net.getId();
+        console.log('ID', id);
 
-// ------------------------- running code -----------------------
-        
-         //  Create WalletConnect Provider
-            const provider = new WalletConnectProvider({
-
-              rpc: {
-               56 : "https://bsc-dataseed.binance.org/" ,
-               1 : "https://bsc-dataseed.binance.org/",
-              // 56: "https://bsc-dataseed.binance.org/",
-              97: "https://data-seed-prebsc-1-s1.binance.org:8545"
-             },
-             chainId:97
-          //   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
-            //  qrcode: true,
-          });
-            
-        // console.log("Provider", provider);
-
-           //   //  Enable session (triggers QR Code modal)
-         await provider.enable();
-         const web3Client = new Web3(provider);
-         var id = await web3Client.eth.net.getId();
-         console.log("netid", id);
-        //  return web3Client;
-         if (id == 97 ){
-          console.log("id",id);
+        // return web3Client;
+        if (id == 97) {
           return web3Client;
-         }
-         else
-         {
-         await provider.disconnect();
-         alert("Change Network to Binance Mainet");
-         window.location.reload();
-         }
-// ---------------------------------------------------
-         
-    } 
+        } else {
+          swal('Change Network to Binance Mainet');
+        }
+      } else {
+        await swal('Please Install Binance Wallet!!');
+        window.location.reload();
+      }
+    } else if (loginType === 'walletconnect') {
+      // ------------------------- running code -----------------------
 
+      //  Create WalletConnect Provider
+      const provider = new WalletConnectProvider({
+        rpc: {
+          56: 'https://bsc-dataseed.binance.org/',
+          1: 'https://bsc-dataseed.binance.org/',
+          // 56: "https://bsc-dataseed.binance.org/",
+          97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+        },
+        chainId: 97,
+        //   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
+        //  qrcode: true,
+      });
+
+      // console.log("Provider", provider);
+
+      //   //  Enable session (triggers QR Code modal)
+      await provider.enable();
+      const web3Client = new Web3(provider);
+      var id = await web3Client.eth.net.getId();
+      console.log('netid', id);
+      //  return web3Client;
+      if (id == 97) {
+        console.log('id', id);
+        return web3Client;
+      } else {
+        await provider.disconnect();
+        alert('Change Network to Binance Mainet');
+        window.location.reload();
+      }
+      // ---------------------------------------------------
     }
-    
-
-
-  else {
-
+  } else {
     window.addEventListener('ethereum#initialized', handleEthereum, {
       once: true,
     });
-  
-    setTimeout(handleEthereum, 3000); // 3 seconds
- 
-  }
 
+    setTimeout(handleEthereum, 3000); // 3 seconds
+  }
 };
 
-
-async function  handleEthereum() {
-  const provider= await detectEthereumProvider();
+async function handleEthereum() {
+  const provider = await detectEthereumProvider();
   if (provider) {
     getWeb3Client();
-  }
-  else {
-    await swal("Please Install Wallet!");
-    window.location.reload()
+  } else {
+    await swal('Please Install Wallet!');
+    window.location.reload();
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Claim BNB API
 
 const claimBNB = async (web3) => {
   var contractABI = abi;
-  var contractAddress = "0xbbe269f421dE7B8b90509486fe5889Cd7567056A";
+  var contractAddress = '0xbbe269f421dE7B8b90509486fe5889Cd7567056A';
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 
   const data = contract.methods.claimBNBReward();
@@ -183,17 +133,17 @@ const claimBNB = async (web3) => {
   return new Promise((resolve, reject) => {
     web3.eth
       .sendTransaction(tx)
-      .on("transactionHash", (hash, err) => {
+      .on('transactionHash', (hash, err) => {
         if (!err) {
           //resolve(hash);
         } else {
           reject(err);
         }
       })
-      .on("confirmation", function (confirmationNumber, receipt) {
+      .on('confirmation', function (confirmationNumber, receipt) {
         resolve(receipt);
       })
-      .on("error", function (err) {
+      .on('error', function (err) {
         reject(err);
       });
   });
@@ -204,7 +154,7 @@ const claimBNB = async (web3) => {
 
 const reInvest = async (web3) => {
   var contractABI = abi;
-  var contractAddress = "0xbbe269f421dE7B8b90509486fe5889Cd7567056A";
+  var contractAddress = '0xbbe269f421dE7B8b90509486fe5889Cd7567056A';
   const contract = new web3.eth.Contract(contractABI, contractAddress);
 
   const data = contract.methods.reInvest();
@@ -221,17 +171,17 @@ const reInvest = async (web3) => {
   return new Promise((resolve, reject) => {
     web3.eth
       .sendTransaction(tx)
-      .on("transactionHash", (hash, err) => {
+      .on('transactionHash', (hash, err) => {
         if (!err) {
           //resolve(hash);
-        } else { 
+        } else {
           reject(err);
         }
       })
-      .on("confirmation", function (confirmationNumber, receipt) {
+      .on('confirmation', function (confirmationNumber, receipt) {
         resolve(receipt);
       })
-      .on("error", function (err) {
+      .on('error', function (err) {
         reject(err);
       });
   });

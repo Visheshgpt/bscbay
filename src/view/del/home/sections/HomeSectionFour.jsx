@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, ProgressBar } from "react-bootstrap";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionFour = () => {
   return (
@@ -12,11 +11,7 @@ const HomeSectionFour = () => {
           alt=".."
         />
         <Container className="py-5 z-10">
-          <ScrollAnimation
-            animateIn="fadeInLeft"
-            // animateOut='bounceOutRight'
-            scrollableParentSelector="#scrolly-main"
-          >
+         
             <div>
               {/* Heading Start */}
               <div className="mb-4">
@@ -188,7 +183,7 @@ const HomeSectionFour = () => {
                 </div>
               </div>
             </div>
-          </ScrollAnimation>
+        
         </Container>
       </Container>
     </section>

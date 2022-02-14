@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ScrollAnimation from "react-animate-on-scroll";
 
 const HomeSectionFive = () => {
   const dataArr = [
@@ -22,12 +21,7 @@ const HomeSectionFive = () => {
         <Container className="pt-lg-5">
           <Row className="border-bottom border-secondary pb-5">
             <Col>
-              <ScrollAnimation
-                animateIn="bounceInLeft"
-                animateOut="bounceOutLeft"
-                scrollableParentSelector="#scrolly-main"
-                
-              >
+            
                 <div className="position-relative">
                   <div className="bg-testing-2" />
                   <img
@@ -36,14 +30,10 @@ const HomeSectionFive = () => {
                     alt=".."
                   />
                 </div>
-              </ScrollAnimation>
+          
             </Col>
             <Col lg={6} className="py-4 py-lg-0">
-              <ScrollAnimation
-                animateIn="fadeInRight"
-                // animateOut="bounceOutRight"
-                scrollableParentSelector="#scrolly-main"
-              >
+            
                 <div>
                   <div className="heading-primary-2 mb-2">
                     The <span className="text-primary">BSC</span> Ecosystem
@@ -119,14 +109,10 @@ const HomeSectionFive = () => {
                     </ul>
                   </p>
                 </div>
-              </ScrollAnimation>
+      
             </Col>
           </Row>
-          <ScrollAnimation
-            animateIn="fadeInLeft"
-            // animateOut="bounceOutRight"
-            scrollableParentSelector="#scrolly-main"
-          >
+        
             {/* <div className='py-5 my-lg-5 text-center'>
               <div className='heading-secondary mb-4'>
                 We Take Pride in Our Numbers
@@ -143,14 +129,10 @@ const HomeSectionFive = () => {
                   </div>
                 ))}
               </Row>
-            </div> */}
-          </ScrollAnimation>
+            </div>
+
           {/* <div className="border-top border-bottom border-secondary py-4">
-            <ScrollAnimation
-              animateIn="bounceInLeft"
-              animateOut="bounceOutRight"
-              scrollableParentSelector="#scrolly-main"
-            >
+           
               <Row
                 className="justify-content-center align-items-center"
                 style={{ gap: 30 }}
@@ -165,7 +147,7 @@ const HomeSectionFive = () => {
                   </div>
                 ))}
               </Row>
-            </ScrollAnimation>
+     
           </div> */}
         </Container>
       </Container>
