@@ -57,6 +57,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [EndTime, setEndTime] = useState(0);
   const [round, setround] = useState(0);
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [successPageReload, setSuccessPageReload] = useState('');
 
   const remainingallocation = Maxallocation - userInvested;
 
@@ -328,6 +329,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 settxMessage(msg);
                 setModalShow(true);
                 setButtonLoading(false);
+                setSuccessPageReload('sucess');
+
                 // alert("Transaction Success");
               } else {
                 settxMessage('Transaction Failed');
@@ -819,7 +822,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
         </Row>
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />
-      <AlertModal show={modalShow} onHide={() => setModalShow(false)}>
+      <AlertModal
+        show={modalShow}
+        onHide={setModalShow}
+        successpagereload={successPageReload}>
         <p>{txMessage}</p>
       </AlertModal>
       <SearchPool

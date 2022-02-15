@@ -1,6 +1,15 @@
 import { Button, Modal } from 'react-bootstrap';
 
 function AlertModal(props) {
+
+  const handleClose = () => {
+    if(props.successpagereload === "success") {
+     window.location.reload();
+    } else {
+      props.onHide(false);
+    }
+
+  }
   return (
     <Modal {...props} aria-labelledby='contained-modal-title-vcenter' centered>
       <div className='alert_modal'>
@@ -9,7 +18,7 @@ function AlertModal(props) {
             type='button'
             class='close mybutton'
             aria-label='Close'
-            onClick={props.onHide}>
+            onClick={handleClose}>
             <span aria-hidden='true'>&times;</span>
           </Button>
         </div>
