@@ -391,6 +391,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
               settxMessage(
                 `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
               );
+              setSuccessPageReload('sucess');
               setButtonLoading(false);
             } else {
               settxMessage('Transaction Failed');
