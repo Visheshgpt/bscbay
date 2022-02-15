@@ -46,7 +46,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [eligibility, seteligibility] = useState(false);
   const [walletapproved, setwalletapproved] = useState(false);
   const [claimenabled, setclaimenabled] = useState(false);
-  const [value, setvalue] = useState(0);
+  const [value, setvalue] = useState();
   const [userInvested, setuserInvested] = useState(0);
   const [claimableTokens, setclaimableTokens] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
@@ -61,7 +61,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const remainingallocation = Maxallocation - userInvested;
 
   function web3apis() {
-    
     // const web3 = new Web3(
     //     'https://data-seed-prebsc-1-s1.binance.org:8545/'
     // );
@@ -291,8 +290,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       settxMessage(msg);
       setModalShow(true);
       setButtonLoading(false);
-    } 
-    else if (Number(value) > remainingallocation) {
+    } else if (Number(value) > remainingallocation) {
       let msg = `Enter Value less than Maximum Investment Amount`;
       settxMessage(msg);
       setModalShow(true);
@@ -315,7 +313,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
           contract.methods
             .Invest()
-            .send({ from: address, value: amnt,  gasPrice: web3.utils.toHex(gasPrice*1.6) })
+            .send({
+              from: address,
+              value: amnt,
+              gasPrice: web3.utils.toHex(gasPrice * 1.6),
+            })
             .then(function (receipt) {
               console.log(receipt);
 
@@ -355,7 +357,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
         // alert("Change network to binance");
       }
     }
-   
   };
 
   const claim = async () => {
@@ -375,7 +376,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
         contract.methods
           .claim()
-          .send({ from: address, gasPrice: web3.utils.toHex(gasPrice*1.6) })
+          .send({ from: address, gasPrice: web3.utils.toHex(gasPrice * 1.6) })
           .then(function (receipt) {
             console.log(receipt);
 
@@ -600,7 +601,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB} / {(MaxDistributedTokens * tokenPrice).toFixed(3)}{' '}
+                    {raisedBNB} /{' '}
+                    {(MaxDistributedTokens * tokenPrice).toFixed(3)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -747,11 +749,20 @@ const IncupadPoolsBanner = ({ activePool }) => {
               </Col>
               {!claimenabled ? (
                 <div className='invest__wrapper'>
-                  <input
-                    type='text'
-                    placeholder='Enter Amount'
-                    onChange={(e) => setvalue(e.target.value)}
-                  />
+                  <div className='invest_input'>
+                    <input
+                      type='text'
+                      placeholder='Enter Amount'
+                      value={value}
+                      onChange={(e) => setvalue(e.target.value)}
+                    />
+                    <div
+                      className='invest_max'
+                      onClick={() => setvalue(remainingallocation)}>
+                      Max
+                    </div>
+                  </div>
+
                   {buttonLoading ? (
                     <button
                       className='incupadButton_invest btn_round'
@@ -767,23 +778,19 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span className='visually-hidden'>Invest...</span>
                     </button>
                   ) : (
-                    <> 
-                    <button
-                      className='incupadButton_invest btn_round'
-                      onClick={invest}>
-                      Invest
-                    </button>
-
+                    <>
+                      <button
+                        className='incupadButton_invest btn_round'
+                        onClick={invest}>
+                        Invest
+                      </button>
                     </>
                   )}
                 </div>
-              ) :
-               
-              (
-               
-                buttonLoading ? (
+              ) : buttonLoading ? (
+                <div className='d-flex justify-content-center mt-2'>
                   <button
-                    className='incupadButton_invest btn_round'
+                    className='incupadButton_invest btn_primary btn_round'
                     variant='primary'
                     disabled>
                     <Spinner
@@ -795,9 +802,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     />
                     <span className='visually-hidden'>Claim...</span>
                   </button>
-                ) 
-                : 
-                 claimableTokens > 0 && (
+                </div>
+              ) : (
+                claimableTokens > 0 && (
                   <div className='d-flex justify-content-center mt-3'>
                     <button
                       onClick={() => claim()}
@@ -806,10 +813,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </button>
                   </div>
                 )
-              )
-              
-              
-              }
+              )}
             </div>
           )}
         </Row>

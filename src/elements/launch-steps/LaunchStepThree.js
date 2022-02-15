@@ -175,7 +175,7 @@ const LaunchStepThree = ({ show, onHide }) => {
           </p>
           <div
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-2 my-3 d-flex align-items-center'>
+            className='border border-primary rounded-lg-2 p-2 my-3 d-flex align-items-center popwallet'>
             <img
               className='d-block launch-step-three-image'
               src='../assets/e-icon-0.png'
@@ -191,7 +191,7 @@ const LaunchStepThree = ({ show, onHide }) => {
 
           <div
             onClick={requestAuthBSC}
-            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
+            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>
             <img
               className='d-block launch-step-three-image'
               src='../assets/BinanceChainWallet.jpeg'
@@ -207,7 +207,7 @@ const LaunchStepThree = ({ show, onHide }) => {
           <br></br>
           <Link
             onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
+            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>
             <img
               className='d-block launch-step-three-image'
               src='../assets/trust.png'
@@ -270,7 +270,7 @@ const LaunchStepThree = ({ show, onHide }) => {
           <br></br>
           <Link
             onClick={requestwalletconnect}
-            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
+            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>
             <img
               className='d-block launch-step-three-image'
               // height={45}
