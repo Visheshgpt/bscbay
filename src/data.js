@@ -36,7 +36,8 @@ export const poolData = [
       'BSCBay is a blockchain innovation hub with a combination of LaunchPad and DexPad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution.',
     ],
     inputTokenaddress: 'TBA',
-    outputTokenaddress: '0xADC09B003B19d49999a545C8c3F90d22E45c6Dec',
+    outputTokenaddress: '0x8D64b9E09688f16592522b0C98F17F1aD8488937',
     videolink: '../../..//assets/bscbayvideo.mp4',
+    contractAddress: '0xF944C1438C2903e593200d54885204DF181DBBf3'
   },
 ];

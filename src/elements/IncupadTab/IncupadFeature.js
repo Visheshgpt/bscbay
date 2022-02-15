@@ -20,17 +20,17 @@ const IncupadFeature = () => {
   const [allocatedToken, setallocatedToken] = useState(0);
 
   function web3apis() {
-    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    // const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+    var contractAddress = '0xF944C1438C2903e593200d54885204DF181DBBf3';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
     web3.eth
-      .getBalance('0x32f1cf65767228e95bedfF347c2B0F3D78973F83')
-      .then((balance) => {
+      .getBalance('0xF944C1438C2903e593200d54885204DF181DBBf3')
+      .then((balance) => { 
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
         setreceivedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
@@ -229,7 +229,7 @@ const IncupadFeature = () => {
                         <Timer initialcount={EndTime - currentTimeData} />
                       </span>
 
-                      <span className='card-time-status'>Remaining</span>
+                      <span className='card-time-status'>Closes in</span>
                     </>
                   ) : (
                     <>

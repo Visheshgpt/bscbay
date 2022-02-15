@@ -13,11 +13,11 @@ function Search({ show, onHide }) {
     const web3 = new Web3(
       new Web3.providers.HttpProvider(
         'https://data-seed-prebsc-1-s1.binance.org:8545'
-      )
+      ) 
     );
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+    var contractAddress = '0xF944C1438C2903e593200d54885204DF181DBBf3';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // check eligibility

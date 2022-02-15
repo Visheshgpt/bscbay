@@ -17,14 +17,15 @@ const IncupadPoolsInformation = ({ activePool }) => {
   
   function web3apis() {
   
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        chainRpcs['bsct'][0] || chainRpcs['bsct'][1] || chainRpcs['bsct'][2] || chainRpcs['bsct'][3] || chainRpcs['bsct'][4] || chainRpcs['bsct'][5] || chainRpcs['bsct'][6]
-      )
-    );
-
+    // const web3 = new Web3(
+    //   new Web3.providers.HttpProvider(
+    //     chainRpcs['bsc'][0]
+    //   )
+    // );
+    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+     
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+    var contractAddress = activePool.contractAddress;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get DISTRIBUTED TOKENS

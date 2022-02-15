@@ -29,7 +29,7 @@ const getWeb3Client = async () => {
       console.log('id', id);
 
       // return web3Client;
-      if (id == 97) {
+      if (id == 56) {
         return web3Client; 
       } else {
         console.log('wront network message');
@@ -50,7 +50,7 @@ const getWeb3Client = async () => {
         console.log('ID', id);
 
         // return web3Client;
-        if (id == 97) {
+        if (id == 56) {
           return web3Client;
         } else {
           swal('Change Network to Binance Mainet');
@@ -70,7 +70,7 @@ const getWeb3Client = async () => {
           // 56: "https://bsc-dataseed.binance.org/",
           97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
         },
-        chainId: 97,
+        chainId: 56,
         //   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
         //  qrcode: true,
       });
@@ -83,7 +83,7 @@ const getWeb3Client = async () => {
       var id = await web3Client.eth.net.getId();
       console.log('netid', id);
       //  return web3Client;
-      if (id == 97) {
+      if (id == 56) {
         console.log('id', id);
         return web3Client;
       } else {

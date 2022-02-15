@@ -1,5 +1,5 @@
 export const chainRpcs = {
-    bsc: process.env.BSC_RPC || 'https://bsc-dataseed.binance.org/',
+    bsc: ['https://bsc-dataseed.binance.org/'],
     bsct: ['https://data-seed-prebsc-1-s1.binance.org:8545/', 'https://data-seed-prebsc-2-s1.binance.org:8545/', 'https://data-seed-prebsc-1-s2.binance.org:8545/', 'https://data-seed-prebsc-2-s2.binance.org:8545/', 'https://data-seed-prebsc-1-s3.binance.org:8545/', 'https://data-seed-prebsc-2-s3.binance.org:8545/'], 
     heco: process.env.HECO_RPC || 'https://http-mainnet.hecochain.com',
     avax: process.env.AVAX_RPC || 'https://api.avax.network/ext/bc/C/rpc',

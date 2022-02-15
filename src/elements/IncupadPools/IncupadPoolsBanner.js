@@ -61,21 +61,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const remainingallocation = Maxallocation - userInvested;
 
   function web3apis() {
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        chainRpcs['bsct'][0] ||
-          chainRpcs['bsct'][1] ||
-          chainRpcs['bsct'][2] ||
-          chainRpcs['bsct'][3] ||
-          chainRpcs['bsct'][4] ||
-          chainRpcs['bsct'][5] ||
-          chainRpcs['bsct'][6]
-      )
-    );
-    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    
+    // const web3 = new Web3(
+    //     'https://data-seed-prebsc-1-s1.binance.org:8545/'
+    // );
+    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+    var contractAddress = activePool.contractAddress;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
@@ -286,7 +279,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
     const web3 = await contractService.getWeb3Client();
 
     if (value == '' || value == 0) {
-      alert('Please enter Value');
+      let msg = `Please Enter Value`;
+      settxMessage(msg);
+      setModalShow(true);
+      setButtonLoading(false);
     } else if (
       Number(value) < Minallocation &&
       remainingallocation == Maxallocation
@@ -294,27 +290,32 @@ const IncupadPoolsBanner = ({ activePool }) => {
       let msg = `Enter Value Greater than Minimum Investment Amount`;
       settxMessage(msg);
       setModalShow(true);
-    } else if (Number(value) > Maxallocation) {
+      setButtonLoading(false);
+    } 
+    else if (Number(value) > remainingallocation) {
       let msg = `Enter Value less than Maximum Investment Amount`;
       settxMessage(msg);
       setModalShow(true);
+      setButtonLoading(false);
     } else if (round == 0 && eligibility == false) {
       let msg = `You are not Whitelisted`;
       settxMessage(msg);
       setModalShow(true);
+      setButtonLoading(false);
     } else {
       if (web3) {
         try {
           var contractABI = BSCBAYICOabi;
-          var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+          var contractAddress = activePool.contractAddress;
           var contract = new web3.eth.Contract(contractABI, contractAddress);
+          const gasPrice = await web3.eth.getGasPrice();
 
           let amnt = web3.utils.toHex(web3.utils.toWei(value, 'ether'));
           console.log('amnt', amnt);
 
           contract.methods
             .Invest()
-            .send({ from: address, value: amnt })
+            .send({ from: address, value: amnt,  gasPrice: web3.utils.toHex(gasPrice*1.6) })
             .then(function (receipt) {
               console.log(receipt);
 
@@ -324,10 +325,12 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 } BSCB .`;
                 settxMessage(msg);
                 setModalShow(true);
+                setButtonLoading(false);
                 // alert("Transaction Success");
               } else {
                 settxMessage('Transaction Failed');
                 setModalShow(true);
+                setButtonLoading(false);
                 // alert("Transaction Failed");
               }
             })
@@ -335,31 +338,36 @@ const IncupadPoolsBanner = ({ activePool }) => {
               console.log('error is', e);
               settxMessage('Transaction Failed!');
               setModalShow(true);
+              setButtonLoading(false);
               //  alert("Transaction Failed!");
               //  window.location.reload();
             });
         } catch {
           settxMessage('Transaction Failed!');
           setModalShow(true);
+          setButtonLoading(false);
           // alert("Transaction Failed!");
         }
       } else {
         settxMessage('Change network to binance');
         setModalShow(true);
+        setButtonLoading(false);
         // alert("Change network to binance");
       }
     }
-    setButtonLoading(false);
+   
   };
 
   const claim = async () => {
+    setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
 
     if (web3) {
       try {
         var contractABI = BSCBAYICOabi;
-        var contractAddress = '0x32f1cf65767228e95bedfF347c2B0F3D78973F83';
+        var contractAddress = activePool.contractAddress;
         var contract = new web3.eth.Contract(contractABI, contractAddress);
+        const gasPrice = await web3.eth.getGasPrice();
 
         console.log('Claim called ==>');
 
@@ -367,7 +375,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
         contract.methods
           .claim()
-          .send({ from: address })
+          .send({ from: address, gasPrice: web3.utils.toHex(gasPrice*1.6) })
           .then(function (receipt) {
             console.log(receipt);
 
@@ -379,27 +387,32 @@ const IncupadPoolsBanner = ({ activePool }) => {
               settxMessage(
                 `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
               );
+              setButtonLoading(false);
             } else {
               settxMessage('Transaction Failed');
               setModalShow(true);
               // alert("Transaction Failed");
+              setButtonLoading(false);
             }
           })
           .catch((e) => {
             console.log('error is', e);
             settxMessage('Transaction Failed!');
             setModalShow(true);
+            setButtonLoading(false);
             //  alert("Transaction Failed!");
             //  window.location.reload();
           });
       } catch {
         settxMessage('Transaction Failed!');
         setModalShow(true);
+        setButtonLoading(false);
         // alert("Transaction Failed!");
       }
     } else {
       settxMessage('Change network to binance');
       setModalShow(true);
+      setButtonLoading(false);
       // alert("Change network to binance");
     }
   };
@@ -414,10 +427,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
             'https://data-seed-prebsc-2-s1.binance.org:8545/'
           )
         );
-
-        //  var balance = await web3.eth.getBalance(accounts[0]);
-        //  var tokens = web3.utils.toBN(balance).toString();
-        //  window.sessionStorage.setItem("userBNB", web3.utils.fromWei(tokens, "ether"));
 
         selectedAccount = accounts[0];
         address = selectedAccount;
@@ -591,7 +600,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB} / {MaxDistributedTokens * tokenPrice}{' '}
+                    {raisedBNB} / {(MaxDistributedTokens * tokenPrice).toFixed(3)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -651,7 +660,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
                         Raised: {raisedBNB} BNB /{' '}
-                        {MaxDistributedTokens * tokenPrice} BNB
+                        {(MaxDistributedTokens * tokenPrice).toFixed(3)} BNB
                       </span>
                     </div>
                     <div>
@@ -685,11 +694,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   <div className='d-flex flex-row justify-content-between text-white'>
                     {/* <span className="pb-2">Wallet Address: {address}</span> */}
                     <span className='pb-2'>
-                      User Invested: {userInvested.toFixed(2)} BNB
+                      User Invested: {userInvested.toFixed(4)} BNB
                     </span>
                     <span>
                       {' '}
-                      Remaining allocation: {remainingallocation.toFixed(2)} BNB
+                      Remaining allocation: {remainingallocation.toFixed(4)} BNB
                     </span>
                   </div>
                   <div className='d-flex flex-row justify-content-between text-white'>
@@ -758,15 +767,37 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span className='visually-hidden'>Invest...</span>
                     </button>
                   ) : (
+                    <> 
                     <button
                       className='incupadButton_invest btn_round'
                       onClick={invest}>
                       Invest
                     </button>
+
+                    </>
                   )}
                 </div>
-              ) : (
-                claimableTokens > 0 && (
+              ) :
+               
+              (
+               
+                buttonLoading ? (
+                  <button
+                    className='incupadButton_invest btn_round'
+                    variant='primary'
+                    disabled>
+                    <Spinner
+                      as='span'
+                      animation='border'
+                      size='sm'
+                      role='status'
+                      aria-hidden='true'
+                    />
+                    <span className='visually-hidden'>Claim...</span>
+                  </button>
+                ) 
+                : 
+                 claimableTokens > 0 && (
                   <div className='d-flex justify-content-center mt-3'>
                     <button
                       onClick={() => claim()}
@@ -775,7 +806,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </button>
                   </div>
                 )
-              )}
+              )
+              
+              
+              }
             </div>
           )}
         </Row>

@@ -178,14 +178,21 @@
 
 @media (max-width: 575.98px) {
   .upcoming-pool-banner {
-    height: 100vh;
-    padding: 0;
+    height: auto;
+    padding: 20px 0px;
     padding-top: 100px;
   }
   .upcoming-pool-banner > div > div {
     flex-direction: column;
+    height: auto;
   
   }
+  
+  .upcoming-pool-banner > div {
+    // flex-direction: column;
+    height: auto;
+  }
+
   .upper-right-section {
     margin-top: 30px;
   }
