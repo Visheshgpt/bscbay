@@ -49,9 +49,9 @@ const LaunchStepThree = ({ show, onHide }) => {
   }
 
   async function requestwalletconnect() {
+    
     try {
       localStorage.setItem('loginType', 'walletconnect');
-
       const web3 = await contractService.getWeb3Client();
 
       await userLogin(web3);
@@ -220,55 +220,9 @@ const LaunchStepThree = ({ show, onHide }) => {
               alt='...'
             />
           </Link>
-          {/*   <Link
-            onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
-            <img
-              className='d-block launch-step-three-image'
-              src='../assets/safepal.jpg'
-              alt='...'
-            />
-            <span className='ms-3 text-white-2'>Safepal Wallet</span>
-            <img
-              className='ms-auto shake-horizontal launch-step-three-image'
-              src='../assets/arrow-1.png'
-              alt='...'
-            />
-          </Link>
-     
-          <Link
-            onClick={requestAuth}
-            className='border border-primary rounded-lg-2 p-2 d-flex align-items-center'>
-            <img
-              className='d-block   launch-step-three-image'
-              src='../assets/tokenpocket.png'
-              alt='...'
-            />
-            <span className='ms-3 text-white-2'>TokenPocket Wallet</span>
-            <img
-              className='ms-auto shake-horizontal launch-step-three-image'
-              src='../assets/arrow-1.png'
-              alt='...'
-            />
-          </Link>  <Link
-            onClick={requestAuth}
-            className="border border-primary rounded-lg-2 p-2 d-flex align-items-center"
-          >
-            <img
-              className="d-block launch-step-three-image"
-              // height={45}
-              src="../assets/MathWallet.jpeg"
-              alt="..."
-            />
-            <span className="ms-3 text-white-2">Math Wallet</span>
-            <img
-              className="ms-auto shake-horizontal launch-step-three-image"
-              src="../assets/arrow-1.png"
-              alt="..."
-            />
-          </Link> */}
           <br></br>
           <Link
+           to="#"
             onClick={requestwalletconnect}
             className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>
             <img

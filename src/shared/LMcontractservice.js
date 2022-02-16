@@ -54,7 +54,7 @@ const getWeb3Client = async () => {
           return web3Client;
         } else {
           swal('Change Network to Binance Mainet');
-        }
+        } 
       } else {
         await swal('Please Install Binance Wallet!!');
         window.location.reload();
@@ -70,7 +70,7 @@ const getWeb3Client = async () => {
           // 56: "https://bsc-dataseed.binance.org/",
           97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
         },
-        chainId: 56,
+        chainId: 56, 
         //   bridge: 'https://pancakeswap.bridge.walletconnect.org/',
         //  qrcode: true,
       });

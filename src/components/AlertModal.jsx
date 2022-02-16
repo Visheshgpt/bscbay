@@ -3,7 +3,8 @@ import { Button, Modal } from 'react-bootstrap';
 function AlertModal(props) {
 
   const handleClose = () => {
-    if(props.successpagereload === "success") {
+    if(props.successpagereload === "sucess") {
+
      window.location.reload();
     } else {
       props.onHide(false);

@@ -19,6 +19,7 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 
 import { chainRpcs } from '../../chainRPCs';
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
@@ -46,7 +47,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [eligibility, seteligibility] = useState(false);
   const [walletapproved, setwalletapproved] = useState(false);
   const [claimenabled, setclaimenabled] = useState(false);
-  const [value, setvalue] = useState();
+  const [value, setvalue] = useState('');
   const [userInvested, setuserInvested] = useState(0);
   const [claimableTokens, setclaimableTokens] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
@@ -277,7 +278,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const invest = async () => {
     setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
-
+   
     if (value == '' || value == 0) {
       let msg = `Please Enter Value`;
       settxMessage(msg);
@@ -304,12 +305,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
     } else {
       if (web3) {
         try {
+
           var contractABI = BSCBAYICOabi;
           var contractAddress = activePool.contractAddress;
           var contract = new web3.eth.Contract(contractABI, contractAddress);
           const gasPrice = await web3.eth.getGasPrice();
 
-          let amnt = web3.utils.toHex(web3.utils.toWei(value, 'ether'));
+          let amnt = web3.utils.toHex(web3.utils.toWei(value.toString(), 'ether'));
           console.log('amnt', amnt);
 
           contract.methods
@@ -326,10 +328,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${
                   Number(value) / Number(tokenPrice)
                 } BSCB .`;
+                setSuccessPageReload('sucess');
                 settxMessage(msg);
                 setModalShow(true);
                 setButtonLoading(false);
-                setSuccessPageReload('sucess');
+               
 
                 // alert("Transaction Success");
               } else {
@@ -347,7 +350,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
               //  alert("Transaction Failed!");
               //  window.location.reload();
             });
-        } catch {
+        } catch (err) {
+          // console.log("err",err);
           settxMessage('Transaction Failed!');
           setModalShow(true);
           setButtonLoading(false);
@@ -384,6 +388,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
             console.log(receipt);
 
             if (receipt.status) {
+              setSuccessPageReload('sucess');
               setclaimableTokens(0);
               settxMessage('');
               setModalShow(true);
@@ -391,7 +396,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
               settxMessage(
                 `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
               );
-              setSuccessPageReload('sucess');
               setButtonLoading(false);
             } else {
               settxMessage('Transaction Failed');
@@ -423,9 +427,36 @@ const IncupadPoolsBanner = ({ activePool }) => {
   };
 
   useEffect(() => {
-    let provider = window.ethereum || window.BinanceChain || Web3.givenProvider;
+
+    const loginType = localStorage.getItem('loginType');
+    let provider = window.ethereum || window.BinanceChain || Web3.givenProvider || loginType;
 
     if (typeof provider !== 'undefined' && address) {
+
+     if (loginType === 'walletconnect') {
+      
+      console.log("acc");
+
+      const wprovider = new WalletConnectProvider({
+        rpc: {
+          56: "https://bsc-dataseed.binance.org/",
+          97: "https://data-seed-prebsc-1-s1.binance.org:8545",
+        },
+      });
+ 
+      wprovider.on("accountsChanged", async function (accounts) {
+        selectedAccount = accounts[0];
+        address = selectedAccount;
+        //  window.ethereum.eth.requestAccounts();
+        console.log('acc', selectedAccount);
+        window.sessionStorage.setItem('walletAddress', selectedAccount);
+
+        window.location.reload();
+      });
+     } 
+
+    else {
+
       window.ethereum.on('accountsChanged', async function (accounts) {
         const web3 = new Web3(
           new Web3.providers.HttpProvider(
@@ -453,6 +484,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
           window.location.reload();
         }
       });
+    
+    }
+
+
+
     }
 
     web3apis();
@@ -478,6 +514,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   } else if (currentTimeData > EndTime) {
     activePool.status = 'Closed';
   }
+
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -751,7 +788,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   </div>
                 )}
               </Col>
-              {!claimenabled ? (
+
+
+              {(!claimenabled  &&  currentTimeData <  EndTime) && (
                 <div className='invest__wrapper'>
                   <div className='invest_input'>
                     <input
@@ -791,7 +830,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </>
                   )}
                 </div>
-              ) : buttonLoading ? (
+              )}
+
+
+          { claimenabled   &&     
+            ( buttonLoading ? (
                 <div className='d-flex justify-content-center mt-2'>
                   <button
                     className='incupadButton_invest btn_primary btn_round'
@@ -817,7 +860,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </button>
                   </div>
                 )
-              )}
+              ))}
+
+            
             </div>
           )}
         </Row>
