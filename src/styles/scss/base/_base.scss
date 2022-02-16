@@ -66,25 +66,7 @@ ul {
   display: none;
 }
 
-/* input invest */
 
-.invest_input {
-  position: relative;
-  z-index: 100;
-  border: 1px solid #ffd366;
-  border-radius: 10px;
-  margin-right: 15px;
-  width: 45%;
-}
-
-.invest_max {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  color: white;
-}
 
 .popwallet {
   cursor: pointer;
@@ -92,4 +74,48 @@ ul {
   &:hover {
     transform: scale(1.024);
   }
+}
+
+.timer_upcoming {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.card-time-status-1 {
+  font-size: 1rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.arrow_containter {
+  flex-direction: column;
+  margin-top: 15px;
+  content: '';
+  position: absolute;
+  bottom: 0px; 
+  p{
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+    margin:0px;
+  }
+}
+
+.arrow_down {
+  margin-top:8px;
+  border-color:transparent;
+  border-style:solid;
+  border-width:1em;
+  display:block;
+  height:0;
+  opacity:0.4;
+  text-indent:-9999px;
+  transform-origin: 50% 50%;
+  width: 0;
+  animation: downarrow 0.6s infinite alternate ease-in-out;
+  -webkit-animation: downarrow 0.6s infinite alternate ease-in-out;
+  border-top:1em solid $color-primary;
+  cursor: pointer;
 }

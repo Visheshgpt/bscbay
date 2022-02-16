@@ -147,9 +147,9 @@ function HomeFaqSection() {
                     <p className='text-muted'>
                       Both! BSCBay will have two types of launchpad
                       <br />
-                      1) Incupad and
+                      1) Incupad
                       <br />
-                      2) Dexpad Incupad
+                      2) Dexpad
                       <br /> Incupad will list projects which are vetted by the
                       team internally after passing thorough checks. These
                       projects will be guided by us in every step of their

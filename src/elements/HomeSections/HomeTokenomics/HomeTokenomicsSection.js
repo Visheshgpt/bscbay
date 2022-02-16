@@ -91,7 +91,7 @@ const HomeTokenomicsSection = () => {
                             alt='..'
                           />
                           <span>
-                            <b>4%</b> goes as auto $USDT rewards
+                            <b>5%</b> goes as auto $USDT rewards
                           </span>
                         </li>
                         <li className='py-1'>
@@ -102,7 +102,7 @@ const HomeTokenomicsSection = () => {
                             alt='..'
                           />
                           <span>
-                            <b>2%</b> goes to liquidity
+                            <b>1%</b> goes to liquidity
                           </span>
                         </li>
                         <li className='py-1'>
@@ -164,7 +164,7 @@ const HomeTokenomicsSection = () => {
                       <ul className='navs flex-column'>
                         <li className='py-2'>
                           <div className='mb-1'>
-                            ​<b>40%</b> Earnings from every project launched
+                            ​<b>50%</b> Earnings from every project launched
                             will be distributed to investors
                           </div>
                           <ProgressBar variant='warning' now={50} />

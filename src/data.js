@@ -30,7 +30,7 @@ export const poolData = [
     totalSupply: '1000000000',
     accessType: 'TBA',
     about: [
-      'Earn 4% USDT reflections rewards every 4 hours automatically into your wallets.',
+      'Earn 5% USDT reflections rewards every 4 hours automatically into your wallets.',
       'Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool',
       'We will be launching services including LaunchPad, DexPad, Lockers, Token Minters, KYC, NFTs and Play to Earn games to ensure the investor pools never die.',
       'BSCBay is a blockchain innovation hub with a combination of LaunchPad and DexPad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution.',
@@ -38,6 +38,6 @@ export const poolData = [
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0x8D64b9E09688f16592522b0C98F17F1aD8488937',
     videolink: '../../..//assets/bscbayvideo.mp4',
-    contractAddress: '0xF944C1438C2903e593200d54885204DF181DBBf3'
+    contractAddress: '0xF944C1438C2903e593200d54885204DF181DBBf3',
   },
 ];

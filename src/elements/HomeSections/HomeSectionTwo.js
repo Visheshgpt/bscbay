@@ -17,7 +17,7 @@ const HomeSectionTwo = () => {
                   <p></p>
                   Earn{' '}
                   <b style={{ color: '#D1B000' }}>
-                    4% USDT reflections rewards{' '}
+                    5% USDT reflections rewards{' '}
                   </b>
                   every 4 hours automatically into your wallets.<p></p>
                   Unlike volume-based unsustainable projects, we ensure{' '}

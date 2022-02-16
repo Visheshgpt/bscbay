@@ -158,12 +158,12 @@ export const poolData = [
 export const dataArr = [
   {
     title: `Redistributed in USDT`,
-    text: `4% of every transaction is redistributed to all holders. Hold $BSCB tokens, earn USDT. A minimum of 200,000 tokens is required in order to receive rewards.
+    text: `5% of every transaction is redistributed to all holders. Hold $BSCB tokens, earn USDT. A minimum of 200,000 tokens is required in order to receive rewards.
     `,
   },
   {
     title: `Auto Liquidity Pool`,
-    text: `2% of every transaction contributes towards generating liquidity that goes automatically into PancakeSwap.`,
+    text: `1% of every transaction contributes towards generating liquidity that goes automatically into PancakeSwap.`,
   },
   {
     title: 'Auto Buy-Back and Burn',

@@ -19,7 +19,7 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 
 import { chainRpcs } from '../../chainRPCs';
-import WalletConnectProvider from "@walletconnect/web3-provider";
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
@@ -278,7 +278,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const invest = async () => {
     setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
-   
+
     if (value == '' || value == 0) {
       let msg = `Please Enter Value`;
       settxMessage(msg);
@@ -305,13 +305,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
     } else {
       if (web3) {
         try {
-
           var contractABI = BSCBAYICOabi;
           var contractAddress = activePool.contractAddress;
           var contract = new web3.eth.Contract(contractABI, contractAddress);
           const gasPrice = await web3.eth.getGasPrice();
 
-          let amnt = web3.utils.toHex(web3.utils.toWei(value.toString(), 'ether'));
+          let amnt = web3.utils.toHex(
+            web3.utils.toWei(value.toString(), 'ether')
+          );
           console.log('amnt', amnt);
 
           contract.methods
@@ -332,7 +333,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 settxMessage(msg);
                 setModalShow(true);
                 setButtonLoading(false);
-               
 
                 // alert("Transaction Success");
               } else {
@@ -427,68 +427,59 @@ const IncupadPoolsBanner = ({ activePool }) => {
   };
 
   useEffect(() => {
-
     const loginType = localStorage.getItem('loginType');
-    let provider = window.ethereum || window.BinanceChain || Web3.givenProvider || loginType;
+    let provider =
+      window.ethereum || window.BinanceChain || Web3.givenProvider || loginType;
 
     if (typeof provider !== 'undefined' && address) {
+      if (loginType === 'walletconnect') {
+        console.log('acc');
 
-     if (loginType === 'walletconnect') {
-      
-      console.log("acc");
+        const wprovider = new WalletConnectProvider({
+          rpc: {
+            56: 'https://bsc-dataseed.binance.org/',
+            97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+          },
+        });
 
-      const wprovider = new WalletConnectProvider({
-        rpc: {
-          56: "https://bsc-dataseed.binance.org/",
-          97: "https://data-seed-prebsc-1-s1.binance.org:8545",
-        },
-      });
- 
-      wprovider.on("accountsChanged", async function (accounts) {
-        selectedAccount = accounts[0];
-        address = selectedAccount;
-        //  window.ethereum.eth.requestAccounts();
-        console.log('acc', selectedAccount);
-        window.sessionStorage.setItem('walletAddress', selectedAccount);
+        wprovider.on('accountsChanged', async function (accounts) {
+          selectedAccount = accounts[0];
+          address = selectedAccount;
+          //  window.ethereum.eth.requestAccounts();
+          console.log('acc', selectedAccount);
+          window.sessionStorage.setItem('walletAddress', selectedAccount);
 
-        window.location.reload();
-      });
-     } 
-
-    else {
-
-      window.ethereum.on('accountsChanged', async function (accounts) {
-        const web3 = new Web3(
-          new Web3.providers.HttpProvider(
-            'https://data-seed-prebsc-2-s1.binance.org:8545/'
-          )
-        );
-
-        selectedAccount = accounts[0];
-        address = selectedAccount;
-        //  window.ethereum.eth.requestAccounts();
-        console.log('acc', selectedAccount);
-        window.sessionStorage.setItem('walletAddress', selectedAccount);
-
-        window.location.reload();
-      });
-
-      window.ethereum.on('chainChanged', (chainId) => {
-        console.log('chainId', chainId);
-        console.log('type of chainId', typeof chainId);
-
-        if (chainId != '0x61') {
-          settxMessage('Please Connect to "Binance Smart Chain Network"');
-          setModalShow(true);
-        } else {
           window.location.reload();
-        }
-      });
-    
-    }
+        });
+      } else {
+        window.ethereum.on('accountsChanged', async function (accounts) {
+          const web3 = new Web3(
+            new Web3.providers.HttpProvider(
+              'https://data-seed-prebsc-2-s1.binance.org:8545/'
+            )
+          );
 
+          selectedAccount = accounts[0];
+          address = selectedAccount;
+          //  window.ethereum.eth.requestAccounts();
+          console.log('acc', selectedAccount);
+          window.sessionStorage.setItem('walletAddress', selectedAccount);
 
+          window.location.reload();
+        });
 
+        window.ethereum.on('chainChanged', (chainId) => {
+          console.log('chainId', chainId);
+          console.log('type of chainId', typeof chainId);
+
+          if (chainId != '0x61') {
+            settxMessage('Please Connect to "Binance Smart Chain Network"');
+            setModalShow(true);
+          } else {
+            window.location.reload();
+          }
+        });
+      }
     }
 
     web3apis();
@@ -515,11 +506,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
     activePool.status = 'Closed';
   }
 
-
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
       <Container>
-        <Row>
+        <Row className='relative'>
           <Col lg={7} md={7} className='left-section'>
             <div className='icon-box-incupad'>
               <span className='icon-box-incupad-span'>
@@ -789,8 +779,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 )}
               </Col>
 
-
-              {(!claimenabled  &&  currentTimeData <  EndTime) && (
+              {!claimenabled && currentTimeData < EndTime && (
                 <div className='invest__wrapper'>
                   <div className='invest_input'>
                     <input
@@ -832,39 +821,45 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 </div>
               )}
 
-
-          { claimenabled   &&     
-            ( buttonLoading ? (
-                <div className='d-flex justify-content-center mt-2'>
-                  <button
-                    className='incupadButton_invest btn_primary btn_round'
-                    variant='primary'
-                    disabled>
-                    <Spinner
-                      as='span'
-                      animation='border'
-                      size='sm'
-                      role='status'
-                      aria-hidden='true'
-                    />
-                    <span className='visually-hidden'>Claim...</span>
-                  </button>
-                </div>
-              ) : (
-                claimableTokens > 0 && (
-                  <div className='d-flex justify-content-center mt-3'>
+              {claimenabled &&
+                (buttonLoading ? (
+                  <div className='d-flex justify-content-center mt-2'>
                     <button
-                      onClick={() => claim()}
-                      className='btn btn_primary mx-3'>
-                      Claim Tokens
+                      className='incupadButton_invest btn_primary btn_round'
+                      variant='primary'
+                      disabled>
+                      <Spinner
+                        as='span'
+                        animation='border'
+                        size='sm'
+                        role='status'
+                        aria-hidden='true'
+                      />
+                      <span className='visually-hidden'>Claim...</span>
                     </button>
                   </div>
-                )
-              ))}
-
-            
+                ) : (
+                  claimableTokens > 0 && (
+                    <div className='d-flex justify-content-center mt-3'>
+                      <button
+                        onClick={() => claim()}
+                        className='btn btn_primary mx-3'>
+                        Claim Tokens
+                      </button>
+                    </div>
+                  )
+                ))}
             </div>
           )}
+
+          <div className='arrow_containter mobile_hide'>
+            <a href='#poolsinformation'>
+              <div className='d-flex align-items-center justify-content-center flex-column'>
+                <p className='text-primary'>View Details</p>
+                <div className='arrow_down'></div>
+              </div>
+            </a>
+          </div>
         </Row>
       </Container>
       <LaunchStepThree show={showConnect} onHide={onHideHandler} />

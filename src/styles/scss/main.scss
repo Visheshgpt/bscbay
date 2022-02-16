@@ -1,5 +1,6 @@
 @import 'abstract/mixins';
 @import 'abstract/variables';
+@import 'abstract/animations';
 
 @import 'base/base';
 
@@ -18,4 +19,5 @@
 @import 'layout/header';
 
 @import 'pages/home';
-@import 'pages/incupad';
+@import 'pages/incupadtabs';
+@import 'pages/launchpadbsc';

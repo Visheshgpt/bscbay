@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Web3 from 'web3';
 
-import { chainRpcs } from '../../chainRPCs'
+import { chainRpcs } from '../../chainRPCs';
 
 // import video from "../../../assets/bscbayvideo.mp4";
 import video from '../../assets/video/video.mp4';
@@ -14,16 +14,14 @@ const IncupadPoolsInformation = ({ activePool }) => {
   const [tokenPrice, settokenPrice] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
 
-  
   function web3apis() {
-  
     // const web3 = new Web3(
     //   new Web3.providers.HttpProvider(
     //     chainRpcs['bsc'][0]
     //   )
     // );
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-     
+
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -74,11 +72,15 @@ const IncupadPoolsInformation = ({ activePool }) => {
   });
 
   return (
-    <Container as='section' fluid='xxl' className='pool-information-section'>
+    <Container
+      as='section'
+      fluid='xxl'
+      className='pool-information-section'
+      id='poolsinformation'>
       <Container>
         <Row>
           <Col xs={12}>
-            <h2>Pools Information</h2>
+            <h2>Pool Information</h2>
           </Col>
           <Col xs={12} lg={6}>
             <div className='pool-information-card'>

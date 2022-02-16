@@ -95,7 +95,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 30px;
-  width: 58%;
+  width: 75%;
 }
 .incupad-upcoming-card:hover {
   background: #3d3d3c;
@@ -190,7 +190,6 @@
   font-size: 10px;
   color: white;
   text-align: center;
-  margin-bottom: 20px;
 }
 .incupad-upcoming-pool-card-lower {
   position: relative;
@@ -336,6 +335,10 @@
   width: 50%;
   padding: 10px;
 }
+
+
+
+
 @media (max-width: 575.98px) {
   .lower-section {
     font-size: 11px;
@@ -343,51 +346,11 @@
   .incupad-completed-pool-card-lower {
     padding: 10px;
   }
-}
-
-// Active Button
-.incupadeButton__active {
-  /*
-  padding: 10px;
-  line-height: 1.54;
-  border: none;
-  background-color: #ffd366;
-  font-size: 16px;
-  font-weight: 400;
-  margin: auto;
-  margin-top: 10px;
-  color: black;
-  border-radius: 8px;
-  */
-}
-
-.invest__wrapper {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  margin-top: 10px;
-
-  .incupadButton_invest {
-    padding: 10px;
-    line-height: 1.54;
-    border: none;
-    background-color: #ffd366;
-    font-size: 16px;
-    font-weight: 400;
-    color: black;
-  }
-
-  input {
-    position: relative;
-    margin-right: 10px;
-    width: 80%;
-    background: transparent;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    outline: none;
+  .invest_input {
+    width: 90%;
   }
 }
+
 
 // incupad navbar css
 

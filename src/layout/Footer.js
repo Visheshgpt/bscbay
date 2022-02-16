@@ -60,11 +60,6 @@ function Footer() {
             ))}
           </div>
           <div className='text-white text-opacity-75'>
-            <div className='d-flex flex-column flex-md-row justify-content-center py-3'>
-              <div>
-                <Link className='btn py-2 btn-outline-primary'>Contact Us</Link>
-              </div>
-            </div>
             <div className='fw-bold py-2'>Copyright @ bscbay.com</div>
             <p className='small'>
               Disclaimer: The information provided shall not in any way

@@ -30,7 +30,7 @@ const IncupadFeature = () => {
     // get BNB balance of ICO
     web3.eth
       .getBalance('0xF944C1438C2903e593200d54885204DF181DBBf3')
-      .then((balance) => { 
+      .then((balance) => {
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
         setreceivedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
@@ -217,24 +217,24 @@ const IncupadFeature = () => {
                   </div>
                   {currentTimeData < StartTime ? (
                     <>
-                      <span>
+                      <span className='card-time-status'>Starts in</span>
+                      <span className='text-white fw-500 mb-4'>
                         <Timer initialcount={StartTime - currentTimeData} />
                       </span>
-
-                      <span className='card-time-status'>Starts in</span>
                     </>
                   ) : currentTimeData < EndTime ? (
                     <>
-                      <span>
+                      <span className='card-time-status'>Closes in</span>
+                      <span className='text-white fw-500 mb-4'>
                         <Timer initialcount={EndTime - currentTimeData} />
                       </span>
-
-                      <span className='card-time-status'>Closes in</span>
                     </>
                   ) : (
                     <>
                       {/* <span>{differceTime}</span> */}
-                      <span className='card-time-status'>Closed</span>
+                      <span className='card-time-status card-time-status-1 mb-4'>
+                        Closed{' '}
+                      </span>
                     </>
                   )}
                   {/* <span>{item.time}</span>

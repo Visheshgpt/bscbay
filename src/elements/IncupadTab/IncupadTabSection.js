@@ -19,7 +19,7 @@ function IncupadTabSection() {
         </Tab>
             */}
 
-        <Tab eventKey='pools' title='Pools'>
+        <Tab eventKey='pools' title='Pools' tabClassName='poolstab'>
           <IncupadFeature />
         </Tab>
         <Tab eventKey='levels' title='Levels'>
