@@ -500,7 +500,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   if (currentTimeData < StartTime) {
     activePool.status = 'Upcoming';
-  } else if (currentTimeData < EndTime && Number(ICOcompletePercentage) != 100 ) {
+  } else if (
+    currentTimeData < EndTime &&
+    Number(ICOcompletePercentage) != 100
+  ) {
     activePool.status = 'Ongoing';
   } else if (currentTimeData > EndTime) {
     activePool.status = 'Closed';
@@ -610,23 +613,18 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   <p>TBA</p> */}
 
                   {currentTimeData < StartTime ? (
-                    <>
-                      <b style={{ color: 'white' }}>Starts In:</b>
-                      <p>
-                        <Timer initialcount={StartTime - currentTimeData} />
-                      </p>
-                    </>
-                  ) : ( currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 ) ? (
-                    <>
-                      <b style={{ color: 'white' }}>Closes in:</b>
-                      <p>
-                        <Timer initialcount={EndTime - currentTimeData} />
-                      </p>
-                    </>
+                    <div className='timer_content'>
+                      <span>Starts In: </span>
+                      <Timer initialcount={StartTime - currentTimeData} />
+                    </div>
+                  ) : currentTimeData < EndTime &&
+                    Number(ICOcompletePercentage) !== 100 ? (
+                    <div className='timer_content'>
+                      <span>Closes in:</span>
+                      <Timer initialcount={EndTime - currentTimeData} />
+                    </div>
                   ) : (
-                    <>
-                      <b style={{ color: 'white' }}>Closed</b>
-                    </>
+                    <div className='closed'>Closed</div>
                   )}
                 </div>
                 <div className='lower-right-section'>
@@ -674,15 +672,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     <div className='d-flex justify-content-center'>
                       <div className='text-white d-flex align-items-center flex-row'>
                         {currentTimeData < StartTime ? (
-                          <>
-                            <span> Start in: </span> {' '} 
+                          <div className='timer_content'>
+                            <span> Start in: </span>
                             <Timer initialcount={StartTime - currentTimeData} />
-                          </>
-                        ) : ( currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 ) ? (
-                          <>
-                            <span className='mx-1'> Closes in: </span>
+                          </div>
+                        ) : currentTimeData < EndTime &&
+                          Number(ICOcompletePercentage) !== 100 ? (
+                          <div className='timer_content'>
+                            <span> Closes in: </span>
                             <Timer initialcount={EndTime - currentTimeData} />
-                          </>
+                          </div>
                         ) : (
                           <>
                             <span> Closed</span>
@@ -747,7 +746,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <span>
                         <span className='text-warning ms-1'>
                           {' '}
-                          Tokens Claimed: {(userInvested / tokenPrice).toFixed(0)}
+                          Tokens Claimed:{' '}
+                          {(userInvested / tokenPrice).toFixed(0)}
                         </span>
                       </span>
                     </div>

@@ -1,0 +1,79 @@
+/* input invest */
+
+.timer_content{
+  display: flex;
+  align-items: center;
+  color: white; 
+  span {
+    margin-right: 3px;
+  }
+}
+
+.closed {
+  font-weight: bold;
+  color: white;
+}
+
+.invest__wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 10px;
+  
+    .incupadButton_invest {
+      padding: 10px;
+      line-height: 1.54;
+      border: none;
+      background-color: #ffd366;
+      font-size: 16px;
+      font-weight: 400;
+      color: black;
+    }
+  
+    input {
+      position: relative;
+      margin-right: 10px;
+      width: 80%;
+      background: transparent;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      outline: none;
+    }
+
+    @include respond('phone') {
+         width: 90%;
+         margin: 10px auto;
+    
+        .invest_input {
+            width: 75% !important;
+         }
+      }
+  }
+
+.invest_input {
+    position: relative;
+    z-index: 100;
+    border: 1px solid #ffd366;
+    border-radius: 10px;
+    margin-right: 15px;
+    width: 45%;
+  }
+  
+  .invest_max {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .popwallet {
+    cursor: pointer;
+    transition: 0.1s ease-in;
+    &:hover {
+      transform: scale(1.024);
+    }
+  }
+

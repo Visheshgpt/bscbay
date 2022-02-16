@@ -65,7 +65,7 @@ function HomeBanner() {
                 You
               </div>
 
-              <div className='d-flex aling-items-center z-10 py-4'>
+              <div className='d-flex aling-items-center z-10 py-4 home_social_links w-100'>
                 {socialLinks.map((data, i) => (
                   <a
                     style={{ width: 30 }}
@@ -73,7 +73,7 @@ function HomeBanner() {
                     href={data.link}
                     target='_blank'
                     rel='noreferrer'
-                    className='mx-1 mx-sm-3'>
+                    className=''>
                     <img
                       className='d-block icon-hover'
                       height={25}

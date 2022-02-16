@@ -10,6 +10,8 @@ import HomeSectionRoadmap from '../elements/HomeSections/HomeSectionRoadmap';
 import HomeSectionSix from '../elements/HomeSections/HomeSectionSix';
 import HomeFaqSection from '../elements/HomeSections/HomeFaqSection';
 
+import HomePrivate from '../elements/HomeSections/HomePrivate';
+
 function Home() {
   return (
     <>
@@ -24,6 +26,7 @@ function Home() {
       <HomeSectionPartnership />
       <HomeSectionRoadmap />
       <HomeSectionSix />
+      <HomePrivate />
     </>
   );
 }
