@@ -54,13 +54,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [Minallocation, setMinallocation] = useState(0);
   const [txMessage, settxMessage] = useState('');
   const [search, setSearch] = useState(false);
-  const [StartTime, setStartTime] = useState(0);
-  const [EndTime, setEndTime] = useState(0);
+  // const [StartTime, setStartTime] = useState(0);
+  // const [EndTime, setEndTime] = useState(0);
   const [round, setround] = useState(0);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [successPageReload, setSuccessPageReload] = useState('');
 
   const remainingallocation = Maxallocation - userInvested;
+
+  const StartTime = activePool.startTime;
+  const EndTime = activePool.finishTime;
 
   function web3apis() {
     // const web3 = new Web3(
@@ -139,23 +142,23 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
-    // ICO start Time
-    contract.methods
-      .startTimestamp()
-      .call()
-      .then((time) => {
-        // console.log(time);
-        setStartTime(time);
-      });
+    // // ICO start Time
+    // contract.methods
+    //   .startTimestamp()
+    //   .call()
+    //   .then((time) => {
+    //     // console.log(time);
+    //     setStartTime(time);
+    //   });
 
-    // ICO End Time
-    contract.methods
-      .finishTimestamp()
-      .call()
-      .then((time) => {
-        //  console.log("endtime",time);
-        setEndTime(time);
-      });
+    // // ICO End Time
+    // contract.methods
+    //   .finishTimestamp()
+    //   .call()
+    //   .then((time) => {
+    //     //  console.log("endtime",time);
+    //     setEndTime(time);
+    //   });
 
     // get pre-sale round
     contract.methods
@@ -779,7 +782,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 )}
               </Col>
 
-              {!claimenabled && currentTimeData < EndTime && (
+              {!claimenabled && currentTimeData < EndTime && currentTimeData > StartTime && (
                 <div className='invest__wrapper'>
                   <div className='invest_input'>
                     <input

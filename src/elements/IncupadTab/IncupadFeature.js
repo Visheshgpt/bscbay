@@ -215,18 +215,18 @@ const IncupadFeature = () => {
                   <div className='card-time'>
                     <img src='./assets/is-time-1.svg' alt='time icon' />
                   </div>
-                  {currentTimeData < StartTime ? (
+                  {currentTimeData < item.startTime ? (
                     <>
                       <span className='card-time-status'>Starts in</span>
                       <span className='text-white fw-500 mb-4'>
-                        <Timer initialcount={StartTime - currentTimeData} />
+                        <Timer initialcount={item.startTime - currentTimeData} />
                       </span>
                     </>
-                  ) : (currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 )? (
+                  ) : (currentTimeData < item.finishTime && Number(ICOcompletePercentage) !=100 )? (
                     <>
                       <span className='card-time-status'>Closes in</span>
                       <span className='text-white fw-500 mb-4'>
-                        <Timer initialcount={EndTime - currentTimeData} />
+                        <Timer initialcount={item.finishTime - currentTimeData} />
                       </span>
                     </>
                   ) : (

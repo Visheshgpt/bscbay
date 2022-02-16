@@ -84,7 +84,7 @@ const InformationPage = () => {
       <section className="flex-fill bg-color-2 text-white py-5 position-relative">
         <Head title="Information" />
 
-        <Container fluid="xxl">
+        <Container fluid="xxl" className="mt-5 py-3">
           <img
             style={{ top: "30%", width: "20%" }}
             className="position-absolute start-0"

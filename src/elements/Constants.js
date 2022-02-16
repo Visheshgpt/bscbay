@@ -126,6 +126,8 @@ export const poolData = [
     time: 'TBA',
     chainID: '56',
     tokenDistribution: 'TBA',
+    startTime: 1645212618,
+    finishTime: 1645299018,
     tokenPrice: 'TBA',
     minAllocation: 'TBA',
     maxAllocation: 'TBA',

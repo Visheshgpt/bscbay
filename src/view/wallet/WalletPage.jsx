@@ -16,7 +16,7 @@ const WalletPage = () => {
       <section className="flex-fill bg-color-2 text-white py-5 position-relative">
         <Head title="Wallet" />
         <div className="bg-testing-1" />
-        <Container>
+        <Container className="mt-5 py-3">
           <Row>
             <Sidebar />
             <Col>
