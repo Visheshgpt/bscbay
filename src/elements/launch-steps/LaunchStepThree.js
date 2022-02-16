@@ -189,7 +189,7 @@ const LaunchStepThree = ({ show, onHide }) => {
             />
           </div>
 
-          <div
+          {/* <div
             onClick={requestAuthBSC}
             className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>
             <img
@@ -203,8 +203,8 @@ const LaunchStepThree = ({ show, onHide }) => {
               src='../assets/arrow-1.png'
               alt='...'
             />
-          </div>
-          <br></br>
+          </div> */}
+          {/* <br></br> */}
           <Link
             onClick={requestAuth}
             className='border border-primary rounded-lg-2 p-2 d-flex align-items-center popwallet'>

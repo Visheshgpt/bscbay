@@ -4,13 +4,13 @@ import HighCharts from '../../../components/HighCharts';
 import MobileHighCharts from '../../../components/MobileHightCharts';
 
 const data = [
-  { name: 'Presale', value: '40%' },
-  { name: 'Liquidity', value: '40%' },
-  { name: 'Marketing & Development', value: '5%' },
-  { name: 'Team', value: '5%' },
-  { name: 'Exchanges & Partnerships', value: '3%' },
-  { name: 'Strategic Advisors', value: '2%' },
-  { name: 'Ecosystem', value: '5%' },
+  { name: 'Presale', value: '42%' },
+  { name: 'Liquidity', value: '43%' },
+  { name: 'Marketing & Development', value: '4%' },
+  { name: 'Team', value: '4%' },
+  { name: 'Exchanges & Partnerships', value: '2%' },
+  { name: 'Strategic Advisors', value: '1%' },
+  { name: 'Ecosystem', value: '4%' },
 ];
 
 function HomeTokenomicsChart() {

@@ -27,8 +27,8 @@ export const poolData = [
     symbol: 'BSCB',
     decimals: 18,
     allocationType: 'BNB',
-    totalSupply: '1000000000',
-    accessType: 'TBA',
+    totalSupply: '1,000,000,000',
+    accessType: 'Partners Only',
     about: [
       'Earn 5% USDT reflections rewards every 4 hours automatically into your wallets.',
       'Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool',
@@ -38,6 +38,9 @@ export const poolData = [
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0x8D64b9E09688f16592522b0C98F17F1aD8488937',
     videolink: '../../..//assets/bscbayvideo.mp4',
-    contractAddress: '0xF944C1438C2903e593200d54885204DF181DBBf3',
+    contractAddress: '0x75C25d1Bb076FBDba97A40696aC05CEf19D17109',
   },
 ];
+
+
+// 0xF944C1438C2903e593200d54885204DF181DBBf3

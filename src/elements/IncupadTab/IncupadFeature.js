@@ -24,12 +24,12 @@ const IncupadFeature = () => {
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0xF944C1438C2903e593200d54885204DF181DBBf3';
+    var contractAddress = '0x75C25d1Bb076FBDba97A40696aC05CEf19D17109';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
     web3.eth
-      .getBalance('0xF944C1438C2903e593200d54885204DF181DBBf3')
+      .getBalance('0x75C25d1Bb076FBDba97A40696aC05CEf19D17109')
       .then((balance) => {
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
@@ -222,7 +222,7 @@ const IncupadFeature = () => {
                         <Timer initialcount={StartTime - currentTimeData} />
                       </span>
                     </>
-                  ) : currentTimeData < EndTime ? (
+                  ) : (currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 )? (
                     <>
                       <span className='card-time-status'>Closes in</span>
                       <span className='text-white fw-500 mb-4'>
@@ -249,17 +249,17 @@ const IncupadFeature = () => {
 
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Min Allocation</span>
-                      {/* <span>{Minallocation}</span> */}
-                      <span>TBA</span>
+                      <span>{Minallocation} BNB</span>
+                      {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Max Allocation</span>
-                      {/* <span>{Maxallocation}</span> */}
-                      <span>TBA</span>
+                      <span>{Maxallocation} BNB</span>
+                      {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Access Type</span>
-                      <span>{item.accessType}</span>
+                      <span>{item.accessType} </span>
                     </div>
                   </div>
                 </div>

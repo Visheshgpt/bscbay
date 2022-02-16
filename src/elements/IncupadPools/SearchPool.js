@@ -17,7 +17,7 @@ function Search({ show, onHide }) {
     );
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0xF944C1438C2903e593200d54885204DF181DBBf3';
+    var contractAddress = '0x75C25d1Bb076FBDba97A40696aC05CEf19D17109';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // check eligibility

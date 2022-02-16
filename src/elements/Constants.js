@@ -142,7 +142,7 @@ export const poolData = [
     decimals: 18,
     allocationType: 'BNB',
     totalSupply: '1000000000',
-    accessType: 'TBA',
+    accessType: 'Partners Only',
     about: [
       'Earn 4% USDT reflections rewards every 4 hours automatically into your wallets.',
       'Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool',

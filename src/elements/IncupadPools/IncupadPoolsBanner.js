@@ -500,7 +500,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   if (currentTimeData < StartTime) {
     activePool.status = 'Upcoming';
-  } else if (currentTimeData < EndTime) {
+  } else if (currentTimeData < EndTime && Number(ICOcompletePercentage) != 100 ) {
     activePool.status = 'Ongoing';
   } else if (currentTimeData > EndTime) {
     activePool.status = 'Closed';
@@ -595,7 +595,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       {activePool.allocationType}
                     </div>
                     <div className='upper-right-btn-two d-flex align-items-center justify-content-center fw-400 mobile_hide'>
-                      Access Type : {activePool.accessType}
+                      {activePool.accessType}
                     </div>
                   </div>
                   <span className='d-flex align-items-center justify-content-center '>
@@ -616,7 +616,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         <Timer initialcount={StartTime - currentTimeData} />
                       </p>
                     </>
-                  ) : currentTimeData < EndTime ? (
+                  ) : ( currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 ) ? (
                     <>
                       <b style={{ color: 'white' }}>Closes in:</b>
                       <p>
@@ -632,8 +632,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB} /{' '}
-                    {(MaxDistributedTokens * tokenPrice).toFixed(3)}{' '}
+                    {raisedBNB.toFixed(0)} /{' '}
+                    {(MaxDistributedTokens * tokenPrice).toFixed(0)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -675,10 +675,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
                       <div className='text-white d-flex align-items-center flex-row'>
                         {currentTimeData < StartTime ? (
                           <>
-                            <span> Start in: </span>{' '}
+                            <span> Start in: </span> {' '} 
                             <Timer initialcount={StartTime - currentTimeData} />
                           </>
-                        ) : currentTimeData < EndTime ? (
+                        ) : ( currentTimeData < EndTime && Number(ICOcompletePercentage) !=100 ) ? (
                           <>
                             <span className='mx-1'> Closes in: </span>
                             <Timer initialcount={EndTime - currentTimeData} />
@@ -692,8 +692,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
-                        Raised: {raisedBNB} BNB /{' '}
-                        {(MaxDistributedTokens * tokenPrice).toFixed(3)} BNB
+                        Raised: {raisedBNB.toFixed(1)} BNB /{' '}
+                        {(MaxDistributedTokens * tokenPrice).toFixed(0)} BNB
                       </span>
                     </div>
                     <div>
@@ -722,32 +722,32 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     <span className='pb-2'>
                       BSCB Balance: {userTokenalance.toFixed(0)} BSCB
                     </span>
-                    <span> BNB Balance: {userBNBbalance.toFixed(2)} BNB</span>
+                    <span> BNB Balance: {userBNBbalance.toFixed(1)} BNB</span>
                   </div>
                   <div className='d-flex flex-row justify-content-between text-white'>
                     {/* <span className="pb-2">Wallet Address: {address}</span> */}
                     <span className='pb-2'>
-                      User Invested: {userInvested.toFixed(4)} BNB
+                      User Invested: {userInvested.toFixed(1)} BNB
                     </span>
                     <span>
                       {' '}
-                      Remaining allocation: {remainingallocation.toFixed(4)} BNB
+                      Remaining allocation: {remainingallocation.toFixed(2)} BNB
                     </span>
                   </div>
-                  <div className='d-flex flex-row justify-content-between text-white'>
+                  {/* <div className='d-flex flex-row justify-content-between text-white'>
                     <span>
                       {' '}
                       Current Tier:{' '}
                       <span className='text-warning ms-1'>TBA</span>
                     </span>
-                  </div>
+                  </div> */}
                   <br></br>
                   {userInvested > 0 && claimableTokens === 0 ? (
                     <div className='d-flex flex-row justify-content-between text-white'>
                       <span>
                         <span className='text-warning ms-1'>
                           {' '}
-                          Tokens Claimed: {userInvested / tokenPrice}
+                          Tokens Claimed: {(userInvested / tokenPrice).toFixed(0)}
                         </span>
                       </span>
                     </div>
@@ -757,7 +757,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         {' '}
                         Claimable Tokens:{' '}
                         <span className='text-warning ms-1'>
-                          {claimableTokens} BSCBay
+                          {claimableTokens.toFixed(0)} BSCBay
                         </span>
                       </span>
                     </div>

@@ -48,7 +48,7 @@ const HomeSectionTwo = () => {
                   className='d-block w-100 h-100 rounded-lg-2 cursor-pointer'
                   src={video}
                   controls
-                  poster='./assets/bg-2.png'
+                  poster='./assets/homevideobg.png'
                 />
               </div>
             </Col>

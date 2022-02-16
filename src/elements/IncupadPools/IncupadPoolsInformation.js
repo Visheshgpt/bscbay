@@ -85,22 +85,22 @@ const IncupadPoolsInformation = ({ activePool }) => {
           <Col xs={12} lg={6}>
             <div className='pool-information-card'>
               <div>
-                <span>DISTRIBUTION DATE</span>
-                <span>TBA</span>
+                <span>SALE DATE</span>
+                <span>18 FEB' 22, 2:00 PM UTC</span>
               </div>
               <div>
                 <span>MIN. ALLOCATION</span>
-                <span>{Minallocation}</span>
+                <span>{Minallocation} BNB </span>
                 {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>MAX. ALLOCATION</span>
-                <span>{Maxallocation}</span>
+                <span>{Maxallocation} BNB</span>
                 {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>TOKEN PRICE</span>
-                <span>{tokenPrice}</span>
+                <span>{tokenPrice} BNB</span>
                 {/* <span>TBA</span> */}
               </div>
               <div>
@@ -131,8 +131,8 @@ const IncupadPoolsInformation = ({ activePool }) => {
               </div>
               <div>
                 <span>ADDRESS</span>
-                <span>{activePool.outputTokenaddress}</span>
-                {/* <span>TBA</span> */}
+                {/* <span>{activePool.outputTokenaddress}</span> */}
+                <span>TBA</span>
               </div>
             </div>
           </Col>
