@@ -26,7 +26,6 @@ function Home() {
       <HomeSectionPartnership />
       <HomeSectionRoadmap />
       <HomeSectionSix />
-      <HomePrivate />
     </>
   );
 }

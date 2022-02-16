@@ -1,19 +1,28 @@
-import WalletConnectProvider from "@walletconnect/web3-provider";
-
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import { getMonth } from '../utils/helper';
 function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
   let address = window.sessionStorage.getItem('walletAddress');
   let bnbbalance = window.sessionStorage.getItem('userBNB');
   let bscbbalance = window.sessionStorage.getItem('userBSCB');
 
-  async function logoutUser() {
+  const date = new Date();
+  const day = date.getDate();
+  const monthNUm = date.getMonth();
+  const hour = date.getHours();
+  const min = date.getMinutes();
 
+  console.log(date);
+
+  const month = getMonth(monthNUm);
+
+  async function logoutUser() {
     if (window.sessionStorage.getItem('walletName') === 'walletconnect') {
       //   ---------------working code ------------------
       const provider = new WalletConnectProvider({
         rpc: {
           // 1: "https://bsc-dataseed.binance.org/",
-          56: "https://bsc-dataseed.binance.org/",
-          97: "https://data-seed-prebsc-1-s1.binance.org:8545",
+          56: 'https://bsc-dataseed.binance.org/',
+          97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
         },
       });
       await provider.disconnect();
@@ -26,7 +35,6 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
     window.sessionStorage.removeItem('userBSCB');
     window.location.reload();
   }
-
 
   return (
     <div className='btn_header'>
@@ -69,7 +77,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
         </div>
       </div>
       <div style={{ color: 'white' }} className='date'>
-        Feb 11, 08.06 UTC
+        {month} {day}, {hour}.{min}
       </div>
     </div>
   );

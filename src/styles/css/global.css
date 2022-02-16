@@ -450,35 +450,36 @@ label {
   .popwallet:hover {
     transform: scale(1.024); }
 
-.private_feature .row {
-  padding: 20px  0px;
-  height: 200px; }
-
-.private_feature .col_1, .private_feature .col_2, .private_feature .col_3 {
-  display: flex;
-  align-items: center;
-  justify-items: center;
-  height: 100%; }
-
-.private_feature .col_2, .private_feature .col_3 {
-  flex-direction: column;
-  justify-content: space-between;
-  color: white; }
-
-.private_feature .col_3 {
-  align-items: flex-end; }
-
-.private_feature .btn-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-around; }
-  .private_feature .btn-section .btn-sm {
-    font-weight: 700;
-    margin-left: 10px; }
+.private_feature {
+  background-color: #222426; }
+  .private_feature .icon_box {
+    width: 225px; }
+  .private_feature .row {
+    padding: 20px  0px;
+    height: 200px; }
+  .private_feature .col_1, .private_feature .col_2, .private_feature .col_3 {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 100%; }
+  .private_feature .col_2, .private_feature .col_3 {
+    flex-direction: column;
+    justify-content: space-between;
+    color: white; }
+  .private_feature .col_3 {
+    align-items: flex-end; }
+  .private_feature .btn-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+    .private_feature .btn-section .btn-sm {
+      font-weight: 700;
+      margin-left: 10px; }
 
 footer {
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
-  color: #fff; }
+  color: #fff;
+  overflow: hidden; }
   footer .item-social-main {
     cursor: pointer; }
 
@@ -536,18 +537,12 @@ footer {
     font-weight: bold; }
 
 .home_banner {
-  padding-top: 80px !important; }
+  padding-top: 120px !important; }
   .home_banner .home_social_links a {
     margin-right: 20px; }
 
 .raised {
   font-size: 0.75rem; }
-
-.private_feature {
-  background-color: #222426;
-  border: 2px solid red; }
-  .private_feature .icon_box {
-    width: 225px; }
 
 .incupad_banner {
   background: url("../../assets/upcomming-bg.png") no-repeat center;
@@ -656,7 +651,7 @@ footer {
 
 @media only screen and (max-width: 575px) {
   .home_banner {
-    padding-top: 45px !important; }
+    padding-top: 90px !important; }
   .video_section {
     padding-top: 22px !important; }
     .video_section video {
