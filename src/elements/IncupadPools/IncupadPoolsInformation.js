@@ -131,8 +131,8 @@ const IncupadPoolsInformation = ({ activePool }) => {
               </div>
               <div>
                 <span>ADDRESS</span>
-                {/* <span>{activePool.outputTokenaddress}</span> */}
-                <span>TBA</span>
+                <span>{activePool.outputTokenaddress}</span>
+                {/* <span>TBA</span> */}
               </div>
             </div>
           </Col>
