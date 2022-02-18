@@ -9,6 +9,7 @@ import HomeSectionPartnership from '../elements/HomeSections/HomeSectionPartners
 import HomeSectionRoadmap from '../elements/HomeSections/HomeSectionRoadmap';
 import HomeSectionSix from '../elements/HomeSections/HomeSectionSix';
 import HomeFaqSection from '../elements/HomeSections/HomeFaqSection';
+import HomeIndustryPartner from '../elements/HomeSections/HomeIndustryPartner';
 
 import HomePrivate from '../elements/HomeSections/HomePrivate';
 
@@ -16,6 +17,7 @@ function Home() {
   return (
     <>
       <Head title='Home' />
+
       <HomeBanner />
       <HomeSectionTwo />
       <HomeFeatureSection />
@@ -24,7 +26,9 @@ function Home() {
       <HomeFaqSection />
       <HomeSectionFive />
       <HomeSectionPartnership />
+      {/* <HomeIndustryPartner /> */}
       <HomeSectionRoadmap />
+      <HomePrivate />
       <HomeSectionSix />
     </>
   );

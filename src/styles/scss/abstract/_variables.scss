@@ -7,18 +7,16 @@ $color-background-1: #56585f;
 $color-background-3: #282a33;
 $color-dark: #242837;
 
-
 $background-gradient: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
 $background-gradient-1:linear-gradient(180deg, #383a41 0%, #020214 100%), #ffffff;
 $primary-gradient: linear-gradient(180deg, #ffd366 0%, #ffbf20 100%);
 
 $box-shadow: inset 0px -10px 0px rgba(0, 0, 0, 0.25);
+$box-shadow-primary: 0px 8px 10px  rgba(255, 211, 102, 0.25);
 
 $h1-large: 60px;
 $h1-large-line-height: 70px;
 $h1-primary: 50px;
 $h1-primary-line-height: 60px;
-
-
 
 $font-poppins: 'Poppins', sans-serif;

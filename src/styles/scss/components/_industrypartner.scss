@@ -1,0 +1,82 @@
+.industry_partner {
+    padding: 40px 0px;
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    h4{
+        color: $color-primary;
+        margin-top: 15px;
+    }
+
+  
+    .contents{
+        margin: 15px 0px 30px;
+        .col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .box {
+            border: 1px solid $color-primary;
+            border-radius: 15px;
+            padding: 7px;
+            width: 218px;
+            height: 150px;
+           
+            img {
+                width: 200px;
+                height: 135px;
+            }
+        }
+    }
+}
+
+.partners {
+    .row {
+        width: 90%;
+        margin: 0px auto;
+    }
+    .col {
+        padding: 15px;
+    }
+    .img_container {
+        text-align: center;
+        color: $color-primary;
+      
+        .im{
+            box-shadow: $box-shadow-primary;
+        }
+        img {
+            width: 100px;
+            height: 150px;
+            border-radius: 12px;
+           
+        }
+        h6{
+            margin-top: 25px;
+        }
+
+      
+
+    }
+
+    @include respond('phone') {
+        .row{
+            width: 100%;
+        }
+        .col{
+            width: 50%;
+        }
+        .img_container {
+            img {
+                width: 175px;
+                height: 175px;
+            }
+        }
+
+      
+    }
+}

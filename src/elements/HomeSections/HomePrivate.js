@@ -11,10 +11,26 @@ function HomePrivate() {
         </Col>
         <Col lg={4} className='col_2'>
           <h5 className='text-primary'>Feature Private Sale</h5>
-          <div>
-            <div className='text-white'>Starts in: </div>
+
+          <div className='text-white starts_in'>
+            Starts in:{' '}
+            <span className='fw-600'>0 days 10 Hours 20 Mins 30 Seconds</span>
           </div>
-          <div className='progress_bar'>Progress</div>
+
+          <div className='progress_bar'>
+            <div className='progress_bar_top'>
+              <h6>Raised: 0/250 BNB</h6>
+            </div>
+            <ProgressBar
+              now={60}
+              label={`${60}%`}
+              className='progress-bar-section'
+            />
+            <div className='progress_bar_bottom'>
+              <span>Swap Progress</span>
+              <span>Participant: 0</span>
+            </div>
+          </div>
         </Col>
         <Col lg={4} className='col_3'>
           <div className='btn-section'>

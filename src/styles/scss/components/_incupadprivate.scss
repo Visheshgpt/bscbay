@@ -1,17 +1,20 @@
 .private_feature {
     background-color: $color-background;
+    padding-top: 30px;
+    padding-bottom: 30px;
     .icon_box {
         width: 225px;
     }
     .row{
         padding: 20px  0px;
-        height: 200px;
+        height: 220px;
     }
     .col_1,.col_2, .col_3 {
         display: flex;
         align-items: center;
         justify-items: center;
         height: 100%;
+        margin-bottom: 25px;
     }
 
     .col_2, .col_3{
@@ -21,7 +24,27 @@
     }
     .col_3{
         align-items: flex-end;
-        
+    }
+
+    .progress_bar {
+        width: 100%;
+        &_top, &_bottom{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            h6, span {
+                font-size: 0.75rem;
+                color: $color-primary;
+            }
+        }
+
+        &_bottom {
+            justify-content: space-between;
+            span {
+                color: white;
+                margin-top: 10px;
+            }
+        }
     }
 
     .btn-section{
@@ -32,7 +55,45 @@
         .btn-sm {
             font-weight: 700;
             margin-left: 10px;
+            margin-bottom: 15px;
         }
+    }
+
+    @include respond('tablet') {
+        .row{
+            height: auto;
+        }
+        .col_1 {
+            justify-content: center;
+        }
+        .col_1, .col_2, .col_3{
+            width: 90%;
+            margin: 10px auto 15px;
+        }
+        .col_2{
+            h4{font-size: 1rem;}
+            .starts_in {
+                font-size: 0.8rem;
+            }
+            margin-bottom: 15px;
+        }
+        .col_3{
+            flex-direction: row;
+        }
+        .progress_bar{
+            margin: 20px auto;
+        }
+    }
+
+    @include respond('phone') {
+        .col_2  {
+            margin-bottom: 10px;
+        }
+        .col_3{
+            flex-direction: column;
+           
+        }
+      
     }
     
 }
