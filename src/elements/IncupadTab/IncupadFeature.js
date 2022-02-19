@@ -112,6 +112,7 @@ const IncupadFeature = () => {
   ).toFixed(2);
 
   const featuredPoolData = poolData.filter((item) => item.featured === true);
+  featuredPoolData.reverse();
 
   const options = {
     dots: false,
