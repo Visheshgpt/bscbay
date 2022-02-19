@@ -8,8 +8,8 @@ export const poolData = [
     description:
       'BSCBay combines the previous successful instances and features of DEFI and integrates them to create a new paradigm. ',
     time: 'TBA',
-    startTime: 1645212618,
-    finishTime: 1645299018,
+    startTime: 1645192800,
+    finishTime: 1645279200,
     chainID: '56',
     tokenDistribution: 'TBA',
     tokenPrice: 'TBA',
@@ -40,7 +40,7 @@ export const poolData = [
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
     videolink: '../../..//assets/bscbayvideo.mp4',
-    contractAddress: '0x962b9B69E28c1aC13Ff1ED366218EF97a92b8Af5',
+    contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
   },
 ];
 

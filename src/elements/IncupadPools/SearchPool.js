@@ -10,14 +10,11 @@ function Search({ show, onHide }) {
   const [message, setMessage] = useState('');
 
   async function checkWhitelist() {
-    const web3 = new Web3(
-      new Web3.providers.HttpProvider(
-        'https://data-seed-prebsc-1-s1.binance.org:8545'
-      ) 
-    );
+    
+  const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x962b9B69E28c1aC13Ff1ED366218EF97a92b8Af5';
+    var contractAddress = '0x4b803DD894746E5c66812b1EBCaA1b63217c166a';
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // check eligibility
