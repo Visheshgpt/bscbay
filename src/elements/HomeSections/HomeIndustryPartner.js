@@ -21,7 +21,7 @@ function HomeIndustryPartner() {
             </Col>
             <Col>
               <div className='box'>
-                <img src='./assets/partners/sp.png' alt='' />
+                <img src='./assets/partners/sers.jpg' alt='' />
               </div>
             </Col>
             <Col>

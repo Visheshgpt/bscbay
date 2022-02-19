@@ -1,0 +1,18 @@
+.logo_box{
+    position: relative;
+
+    &::before{
+        content: "";
+        background-image: url('../../assets//p/14.png');
+        background-position: center center;
+        background-size: cover;
+        width: 115px;
+        height: 115px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-origin: center center;
+        animation: rotate-in-center 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite both;
+    }
+}

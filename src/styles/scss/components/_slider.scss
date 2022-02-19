@@ -1,0 +1,17 @@
+.slider {
+    &_item {
+       width: 80%;
+       margin: 0px auto;
+       align-content: center;
+       justify-content: center;
+       text-align: center;
+        &_img {
+            box-shadow: $box-shadow-primary;
+           img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+           }
+        }
+    }
+}

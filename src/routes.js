@@ -5,6 +5,7 @@ import PageNotFound from './view/PageNotFound/PageNotFound';
 import HomePage from './pages/Home';
 import IncupadPage from './pages/Incupad';
 import IncupadPools from './pages/IncupadPools';
+import IncpadPoolsNew from './pages/IncupadPoolsNew';
 import ScrollToTop from './components/ScrollToTop';
 
 const Routes = () => {
@@ -21,6 +22,7 @@ const Routes = () => {
           <Route exact path='/launchpad' component={IncupadPage} />
           <Route path='/incupad/:title' component={IncupadPools} />
           <Route path='/launchpad/:title' component={IncupadPools} />
+          <Route path='/newpage/:title' component={IncpadPoolsNew} />
           <Route exact path='*' component={PageNotFound} />
         </Switch>
       </ScrollToTop>

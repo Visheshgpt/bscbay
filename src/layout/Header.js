@@ -71,14 +71,14 @@ function Header() {
                 <li className='nav-item'>
                   <Link
                     to='/launchpad'
-                    className='btn btn_outline_primary fw-500'>
+                    className='btn btn-outline-primary fw-500'>
                     LaunchPad
                   </Link>
                 </li>
               ) : (
                 !walletLink && (
                   <li className='nav-item'>
-                    <Link to='/' className='btn btn_outline_primary fw-500'>
+                    <Link to='/' className='btn btn-outline-primary fw-500'>
                       Home
                     </Link>
                   </li>
@@ -96,7 +96,7 @@ function Header() {
             {showLaunchPadLink ? (
               <Link
                 to='/launchpad'
-                className='btn btn-sm btn_outline_primary text-white fw-500'>
+                className='btn btn-sm btn-outline-primary text-white fw-500'>
                 <small>
                   <small>LaunchPad</small>
                 </small>
@@ -105,7 +105,7 @@ function Header() {
               !walletLink && (
                 <Link
                   to='/'
-                  className='btn btn-sm btn_outline_primary text-white fw-500'>
+                  className='btn btn-sm btn-outline-primary text-white fw-500'>
                   <small>
                     <small>Home</small>
                   </small>

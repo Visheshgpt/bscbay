@@ -37,9 +37,9 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
   }
 
   return (
-    <div className='btn_header'>
+    <div className='btn-header'>
       <div
-        className={`btn_header_content ${showmobile && 'btn_header_mobile'}`}>
+        className={`btn-header-content ${showmobile && 'btn-header-mobile'}`}>
         {!showmobile && (
           <div className='d-flex flex-column'>
             <div style={{ fontSize: '12px' }} className='text-white'>
@@ -53,7 +53,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
 
         <div className='b'>
           <a href='#'>
-            <div style={{ fontSize: '13px' }} className='btn_rounded'>
+            <div style={{ fontSize: '13px' }} className='btn-rounded'>
               {address.slice(0, 5)}...{address.slice(-4)}
               <svg
                 stroke='currentColor'
@@ -76,7 +76,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
             alt=''></img>
         </div>
       </div>
-      <div style={{ color: 'white' }} className='date'>
+      <div className='date text-white'>
         {month} {day}, {hour}.{min}
       </div>
     </div>

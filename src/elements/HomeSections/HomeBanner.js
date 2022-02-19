@@ -83,6 +83,10 @@ function HomeBanner() {
                   </a>
                 ))}
               </div>
+              <div className='d-flex align-items-center justify-content-between'>
+                <div className='btn btn-sm btn-outline-primary '>KYC</div>
+                <div className='btn btn-sm btn-outline-primary mx-3'>Audit</div>
+              </div>
             </div>
           </Col>
           <Col

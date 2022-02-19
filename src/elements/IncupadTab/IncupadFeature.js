@@ -6,7 +6,7 @@ import OwlCarousel from 'react-owl-carousel2';
 import 'react-owl-carousel2/lib/styles.css';
 import 'react-owl-carousel2/src/owl.theme.default.css';
 
-import { poolData } from '../Constants';
+import { poolData } from '../../data';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
 
@@ -172,7 +172,11 @@ const IncupadFeature = () => {
   };
 
   return (
-    <Container as='section' fluid='xxl' className='incupad-upcoming-section'>
+    <Container
+      as='section'
+      fluid='xxl'
+      className='incupad-upcoming-section'
+      id='feature'>
       <Container>
         <Row>
           <Col xs={12} className='p-2'>
@@ -181,8 +185,12 @@ const IncupadFeature = () => {
           <OwlCarousel options={options}>
             {featuredPoolData.map((item) => (
               <Link to={`/launchpad/${item.title.replaceAll(' ', '-')}`}>
-                <div className='incupad-upcoming-pool-card'>
+                <div className='incupad-upcoming-pool-card relative'>
                   <span className='card-tag'>{item.tag}</span>
+
+                  {item.soldOut && (
+                    <span className='card-tag soldout'>Sold Out</span>
+                  )}
 
                   <div class='icon-box-incupad'>
                     <span>
@@ -219,14 +227,19 @@ const IncupadFeature = () => {
                     <>
                       <span className='card-time-status'>Starts in</span>
                       <span className='text-white fw-500 mb-4'>
-                        <Timer initialcount={item.startTime - currentTimeData} />
+                        <Timer
+                          initialcount={item.startTime - currentTimeData}
+                        />
                       </span>
                     </>
-                  ) : (currentTimeData < item.finishTime && Number(ICOcompletePercentage) !=100 )? (
+                  ) : currentTimeData < item.finishTime &&
+                    Number(ICOcompletePercentage) !== 100 ? (
                     <>
                       <span className='card-time-status'>Closes in</span>
                       <span className='text-white fw-500 mb-4'>
-                        <Timer initialcount={item.finishTime - currentTimeData} />
+                        <Timer
+                          initialcount={item.finishTime - currentTimeData}
+                        />
                       </span>
                     </>
                   ) : (
@@ -260,6 +273,10 @@ const IncupadFeature = () => {
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Access Type</span>
                       <span>{item.accessType} </span>
+                    </div>
+
+                    <div className='d-flex align-items-ceter justify-content-center mt-3'>
+                      <div className='btn  btn-outline-primary'>View Pool</div>
                     </div>
                   </div>
                 </div>

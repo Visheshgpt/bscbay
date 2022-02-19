@@ -20,6 +20,7 @@ function Home() {
 
       <HomeBanner />
       <HomeSectionTwo />
+      <HomePrivate />
       <HomeFeatureSection />
       <HomeTokenomicsSection />
       <HomeSectionSeven />
@@ -28,7 +29,7 @@ function Home() {
       <HomeSectionPartnership />
       {/* <HomeIndustryPartner /> */}
       <HomeSectionRoadmap />
-      <HomePrivate />
+
       <HomeSectionSix />
     </>
   );

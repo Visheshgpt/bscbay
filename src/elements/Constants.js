@@ -114,49 +114,6 @@ export const privateGuarantedData = [
   },
 ];
 
-export const poolData = [
-  {
-    title: 'BSCBay',
-    tag: 'BSC Chain',
-    status: 'upcoming',
-    featured: true,
-    img: '../assets/bscbay.png',
-    description:
-      'BSCBay combines the previous successful instances and features of DEFI and integrates them to create a new paradigm. ',
-    time: 'TBA',
-    chainID: '56',
-    tokenDistribution: 'TBA',
-    startTime: 1645212618,
-    finishTime: 1645299018,
-    tokenPrice: 'TBA',
-    minAllocation: 'TBA',
-    maxAllocation: 'TBA',
-    softCap: 'TBA',
-    hardCap: 'TBA',
-    receivedFund: 'TBA',
-    TwitterLink: 'https://twitter.com/bscbayofficial',
-    telegramLink: 'https://t.me/bscbayofficial',
-    redditLink: '',
-    instagramLink: '',
-    websitelink: '',
-    totalUsers: 100,
-    symbol: 'BSCB',
-    decimals: 18,
-    allocationType: 'BNB',
-    totalSupply: '1000000000',
-    accessType: 'Partners Only',
-    about: [
-      'Earn 4% USDT reflections rewards every 4 hours automatically into your wallets.',
-      'Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool',
-      'We will be launching services including LaunchPad, DexPad, Lockers, Token Minters, KYC, NFTs and Play to Earn games to ensure the investor pools never die.',
-      'BSCBay is a blockchain innovation hub with a combination of LaunchPad and DexPad complimenting. It combines the previous successful instances and features of DEFI and integrates them to create a new paradigm; a revolution within an evolution.',
-    ],
-    inputTokenaddress: 'TBA',
-    outputTokenaddress: '0xADC09B003B19d49999a545C8c3F90d22E45c6Dec',
-    videolink: '../../..//assets/bscbayvideo.mp4',
-  },
-];
-
 export const dataArr = [
   {
     title: `Redistributed in USDT`,

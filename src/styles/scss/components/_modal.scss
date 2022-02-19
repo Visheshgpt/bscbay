@@ -43,3 +43,14 @@
 .wallet_modal_section {
     padding: 25px;
 }
+
+.modal {
+    &-wallet {
+        &-item  {
+            transition: 0.1s ease-in;
+            &:hover {
+                transform: scale(1.04);
+            }
+        }
+    }
+}

@@ -17,6 +17,7 @@ import ERC20abi from '../../shared/BSCBAYabi.json';
 import AlertModal from '../../components/AlertModal';
 import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
+import Tooltip from '../../components/Tooltip';
 
 import { chainRpcs } from '../../chainRPCs';
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -645,9 +646,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   <span>Participant : {totalUsers}</span>
                 </div>
               </div>
-              <div className='d-flex justify-content-center'>
+              <div className='d-flex justify-content-center mt-4'>
                 <Button
-                  className='btn connect-btn'
+                  className='btn btn-primary'
                   onClick={() => setShowConnect(true)}>
                   Connect Wallet
                 </Button>
@@ -761,13 +762,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         Claimable Tokens:{' '}
                         <span className='text-warning ms-1'>
                           {claimableTokens.toFixed(0)} BSCBay
+                          <span className='tooltips mx-2'>
+                            <Tooltip />
+                          </span>
                         </span>
                       </span>
                     </div>
                   )}
                 </div>
 
-                {currentTime > EndTime && round == 0 && (
+                {currentTime > EndTime && round === 0 && (
                   <div className='ongoing-lower-card-last-section'>
                     {eligibility ? (
                       <span>Wallet Whitelisted: Yes</span>
@@ -782,47 +786,49 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 )}
               </Col>
 
-              {!claimenabled && currentTimeData < EndTime && currentTimeData > StartTime && (
-                <div className='invest__wrapper'>
-                  <div className='invest_input'>
-                    <input
-                      type='text'
-                      placeholder='Enter Amount'
-                      value={value}
-                      onChange={(e) => setvalue(e.target.value)}
-                    />
-                    <div
-                      className='invest_max'
-                      onClick={() => setvalue(remainingallocation)}>
-                      Max
-                    </div>
-                  </div>
-
-                  {buttonLoading ? (
-                    <button
-                      className='incupadButton_invest btn_round'
-                      variant='primary'
-                      disabled>
-                      <Spinner
-                        as='span'
-                        animation='border'
-                        size='sm'
-                        role='status'
-                        aria-hidden='true'
+              {!claimenabled &&
+                currentTimeData < EndTime &&
+                currentTimeData > StartTime && (
+                  <div className='invest__wrapper flexCenter w-100 mt-3'>
+                    <div className='invest_input'>
+                      <input
+                        type='text'
+                        placeholder='Enter Amount'
+                        value={value}
+                        onChange={(e) => setvalue(e.target.value)}
                       />
-                      <span className='visually-hidden'>Invest...</span>
-                    </button>
-                  ) : (
-                    <>
+                      <div
+                        className='invest_max'
+                        onClick={() => setvalue(remainingallocation)}>
+                        Max
+                      </div>
+                    </div>
+
+                    {buttonLoading ? (
                       <button
-                        className='incupadButton_invest btn_round'
-                        onClick={invest}>
-                        Invest
+                        className='btn btn-primary btn-round'
+                        variant='primary'
+                        disabled>
+                        <Spinner
+                          as='span'
+                          animation='border'
+                          size='sm'
+                          role='status'
+                          aria-hidden='true'
+                        />
+                        <span className='visually-hidden'>Invest...</span>
                       </button>
-                    </>
-                  )}
-                </div>
-              )}
+                    ) : (
+                      <>
+                        <button
+                          className='btn btn-primary btn-round'
+                          onClick={invest}>
+                          Invest
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
 
               {claimenabled &&
                 (buttonLoading ? (

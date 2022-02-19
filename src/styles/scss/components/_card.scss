@@ -112,5 +112,18 @@
             }
         }
     }
+
+    &_dark {
+        width:100%;
+        height: auto;
+        background: #2f3548;
+        opacity: 0.9;
+        border-radius: 10px;
+        color: white;
+    }
+
+    &_shadow {
+        box-shadow: $box-shadow;
+    }
 }
 
