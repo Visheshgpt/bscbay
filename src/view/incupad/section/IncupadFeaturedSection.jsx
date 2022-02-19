@@ -24,12 +24,12 @@ const IncupadFeaturedSection = () => {
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = "0x962b9B69E28c1aC13Ff1ED366218EF97a92b8Af5";
+    var contractAddress = "0x4b803DD894746E5c66812b1EBCaA1b63217c166a";
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // get BNB balance of ICO
     web3.eth
-      .getBalance("0x962b9B69E28c1aC13Ff1ED366218EF97a92b8Af5")
+      .getBalance("0x4b803DD894746E5c66812b1EBCaA1b63217c166a")
       .then((balance) => {
         // console.log(balance);
         var tokens = web3.utils.toBN(balance).toString();
