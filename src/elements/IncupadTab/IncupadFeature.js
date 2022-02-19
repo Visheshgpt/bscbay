@@ -184,7 +184,7 @@ const IncupadFeature = () => {
           </Col>
           <OwlCarousel options={options}>
             {featuredPoolData.map((item) => (
-              <Link to={`/launchpad/${item.title.replaceAll(' ', '-')}`}>
+              <Link to={`/launchpad/${item.id}`}>
                 <div className='incupad-upcoming-pool-card relative'>
                   <span className='card-tag'>{item.tag}</span>
 

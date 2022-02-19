@@ -7,9 +7,14 @@ import { poolData } from '../data';
 
 const IncupadPools = () => {
   const { title } = useParams();
-  const activePool = poolData.find(
-    (item) => item.title.replaceAll(' ', '-') === title
-  );
+
+  console.log('t = ', title);
+  const activePool = poolData.find((item) => {
+    console.log('id = ', item.id);
+    return item.id === Number(title);
+  });
+
+  console.log('t = ', activePool);
 
   return activePool !== undefined ? (
     <section>
