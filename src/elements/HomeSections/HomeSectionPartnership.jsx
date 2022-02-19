@@ -9,22 +9,78 @@ const HomeSectionPartnership = () => {
       <Container fluid="xxl">
         <Row>
           <Col lg={12}>
-            <div className="border-secondary py-4">
+            <div className="border-secondary py-4 partners">
              
                 <Row
                   className="justify-content-center align-items-center"
                   style={{ gap: 30 }}
                 >
-                  <h1 className="text-center">Partnership</h1>
-                  {imagesArr.map((data, i) => (
-                    <div style={{ width: 110 }} key={i}>
+                  <Col lg={12}>
+                    <h1 className="text-center">Partnership</h1>
+                  </Col>
+                  <Col lg={2} md={4} sm={12}>
+                    <div className="img_container">   
+                    <div className="im">
                       <img
-                        className="w-100"
-                        src={`/assets/pp-icon-${i}.png`}
-                        alt={data.key}
-                      />
-                    </div>
-                  ))}
+                          className="w-100"
+                          src='./assets/partners/guard.jpg'
+                          alt='guard'
+                        />
+                        </div>
+                          <h6>0xguard</h6>
+                      </div>
+                   </Col>
+                   <Col lg={2} md={4} sm={12}>
+                   <div className="img_container">
+                   <div className="im">
+                     <img
+                       className="w-100"
+                       src='./assets/partners/one.png'
+                       alt='sp'
+                     />
+                     </div>
+                       <h6>Certik</h6>
+                   </div>
+                   </Col>
+                   <Col lg={2} md={4} sm={12}>
+                   <div className="img_container">
+                   <div className="im">
+                     <img
+                       className="w-100"
+                       src='./assets/partners/sp.png'
+                       alt='sp'
+                     />
+                     </div>
+                       <h6>Solid Proof</h6>
+                   </div>
+                   </Col>
+                   <Col lg={2} md={4} sm={12}>
+                   <div className="img_container">
+                     <div className="im">
+                     <img
+                       className="w-100"
+                       src='./assets/partners/flooz.png'
+                       alt='sp'
+                     />
+                     </div>
+                    
+                     <h6>Flooz</h6>
+                   </div>
+                   </Col>
+                 
+                   <Col lg={2} md={4} sm={12}>
+                   <div className="img_container">
+                   <div className="im">
+                     <img
+                       className="w-100"
+                       src='./assets/partners/flooz.png'
+                       alt='sp'
+                     />
+                     </div>
+                       <h6>0xguard</h6>
+                   </div>
+                   </Col>
+               
                 </Row>
 
             </div>
