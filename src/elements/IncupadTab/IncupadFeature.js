@@ -8,93 +8,61 @@ import 'react-owl-carousel2/src/owl.theme.default.css';
 import { poolData } from '../../data';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
-import { objInArray } from '../../utils/helper';
+
+import { getAddress, getFeaturedPoolsData } from '../../utils/helper';
 
 const IncupadFeature = () => {
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
-  const featuredPoolData = poolData.filter((item) => item.featured === true);
-  featuredPoolData.reverse();
+  let featuredPoolData = getFeaturedPoolsData();
 
-  const [featuredPool, setfeaturedPool] = useState(featuredPoolData);
+  const [minAllocation, setMinallocation] = useState({});
+  const [maxAllocation, setMaxallocation] = useState([]);
+  const [ICOcompletePercentage, setIDOcompletePercentage] = useState(90);
 
-  // console.log('featuredpool ====>', featuredPool);
+  const addressArray = getAddress();
 
-  async function web3apis(add,i) {
-
-    console.log("add", add);
-    const newdata = {};
-
+  async function web3apis() {
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
-    const contract = new web3.eth.Contract(BSCBAYICOabi, add);
+    addressArray.map(async (item, index) => {
+      const contract = new web3.eth.Contract(BSCBAYICOabi, item);
+      // user MIN allocation
+      const amnt = await contract.methods.minInvestment().call();
+      const tokens = web3.utils.toBN(amnt).toString();
+      const min = Number(web3.utils.fromWei(tokens, 'ether'));
+      if (min) {
+        let minallocation = {
+          [index + 1]: min,
+        };
+        setMinallocation((prevState) => ({
+          ...prevState,
+          ...minallocation,
+        }));
+      }
 
+      const amnt2 = await contract.methods.maxInvestment().call();
+      const tokens2 = web3.utils.toBN(amnt2).toString();
+      const max = Number(web3.utils.fromWei(tokens2, 'ether'));
 
-    // let allocatedToken;
-    // let MaxDistributedTokens;
-    
-     // user MIN allocation
-    const amnt = await contract.methods.minInvestment().call()
-    const tokens = web3.utils.toBN(amnt).toString();
-    const min = (Number(web3.utils.fromWei(tokens, 'ether')));
-    console.log("min", min);
+      if (max) {
+        let maxallocation = {
+          [index + 1]: min,
+        };
+        setMaxallocation((prevState) => ({
+          ...prevState,
+          ...maxallocation,
+        }));
+      }
+      setIDOcompletePercentage(90);
 
-    // user MAX allocation
-    const amnt2 = await contract.methods.maxInvestment().call()
-    const tokens2 = web3.utils.toBN(amnt2).toString();
-    const max = (Number(web3.utils.fromWei(tokens2, 'ether')));
-    console.log("max", max);
-    
-    //    // get MAX DISTRIBUTED TOKENS
-    // contract.methods
-    //   .maxDistributedTokenAmount()
-    //   .call()
-    //   .then((amount) => {
-    //     // console.log(amount);
-    //     var tokens = web3.utils.toBN(amount).toString();
-    //     MaxDistributedTokens = (Number(web3.utils.fromWei(tokens, 'ether')));
-    //   });
-
-    // // get DISTRIBUTED TOKENS
-    // contract.methods
-    //   .tokensForDistribution()
-    //   .call()
-    //   .then((amount) => {
-    //     // console.log(amount);
-    //     var tokens = web3.utils.toBN(amount).toString();
-    //     allocatedToken = (Number(web3.utils.fromWei(tokens, 'ether')));
-    //   });
-
-    // const icopercentage = ((allocatedToken / MaxDistributedTokens) *100 ).toFixed(2);
-  
-    newdata.ICOcompletePercentage = 90;
-    newdata.minAllocation = min;
-    newdata.maxAllocation = max;
-
-    
-
-    return newdata;
-  }
-
-  
-  useEffect(() => {
-   
-    let localFeaturedPool = featuredPoolData;
-    featuredPoolData.map((item, index) => {
-      const addresss =
-        featuredPoolData &&
-        featuredPoolData[index] &&
-        featuredPoolData[index].contractAddress;
-      const data = web3apis(addresss,index);
-      const newData = { ...featuredPool[index], ...data, };
-      localFeaturedPool[index] = newData;
       return null;
     });
+  }
 
-    setfeaturedPool(localFeaturedPool);
-
-    console.log('frea state after pool = ', featuredPool);
+  useEffect(() => {
+    web3apis();
   }, []);
 
   // const ICOcompletePercentage = (
@@ -102,24 +70,11 @@ const IncupadFeature = () => {
   //   100
   // ).toFixed(2);
 
-  // const featuredPoolData = poolData.filter((item) => item.featured === true);
-
-  // console.log("1");
-
-  // let featuredPoolDataApi = featuredPoolData.map((item) => {
-  //    web3apis(item);
-  // } )
-
-  // console.log("abc",featuredPoolDataApi);
-
-  // console.log("2");
-
   const options = {
     dots: false,
     loop: false,
     autoplay: true,
     margin: 20,
-    autoplaySpeed: 1000,
     responsive: {
       0: {
         items: 1,
@@ -153,8 +108,6 @@ const IncupadFeature = () => {
     // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
   };
 
-  console.log('frea state pool = ', featuredPool);
-
   return (
     <Container
       as='section'
@@ -167,8 +120,8 @@ const IncupadFeature = () => {
             <h2 className='text-white text-center'>Featured Pools</h2>
           </Col>
           <OwlCarousel options={options}>
-            {featuredPool.map((item) => (
-              <Link to={`/launchpad/${item.id}`}>
+            {featuredPoolData.map((item) => (
+              <Link to={`/launchpad/${item.id}`} key={item.id}>
                 <div className='incupad-upcoming-pool-card relative'>
                   <span className='card-tag'>{item.tag}</span>
 
@@ -176,7 +129,7 @@ const IncupadFeature = () => {
                     <span className='card-tag soldout'>Sold Out</span>
                   )}
 
-                  <div class='icon-box-incupad'>
+                  <div className='icon-box-incupad'>
                     <span>
                       <img src={item.img} alt={item.title} />
                     </span>
@@ -238,23 +191,26 @@ const IncupadFeature = () => {
                   </div>
                   <span className="card-time-status">Upcomming</span> */}
                   <div className='incupad-upcoming-pool-card-lower'>
-                    {item.ICOcompletePercentage && (
+                    {ICOcompletePercentage && (
                       <ProgressBar
-                        now={item.ICOcompletePercentage}
+                        now={ICOcompletePercentage}
                         className='progress-bar-sectionn'
-                        label={`${Math.round(item.ICOcompletePercentage)}%`}
+                        label={`${Math.round(ICOcompletePercentage)}%`}
                       />
                     )}
 
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Min Allocation</span>
-               {  item.maxAllocation  && <span>{item.minAllocation} BNB</span>        }
-                      {/* <span>TBA</span> */}
+
+                      {minAllocation && (
+                        <span>{minAllocation[item.id]} BNB</span>
+                      )}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Max Allocation</span>
-               {  item.maxAllocation  &&  <span>{item.maxAllocation} BNB</span>       }
-                      {/* <span>TBA</span> */}
+                      {maxAllocation && (
+                        <span>{maxAllocation[item.id]} BNB</span>
+                      )}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Access Type</span>
