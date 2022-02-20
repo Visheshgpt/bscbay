@@ -41,3 +41,9 @@ export const getAddress = () => {
   poolData.map((item) => addressArray.push(item.contractAddress));
   return addressArray;
 };
+
+export const currentTimeData = () => {
+  const currentTime = new Date();
+  const currentTimeDate = Number(Date.parse(currentTime) / 1000);
+  return currentTimeDate;
+};

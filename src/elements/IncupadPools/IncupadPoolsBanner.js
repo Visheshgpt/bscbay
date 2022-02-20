@@ -132,7 +132,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
         setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
-        
       });
 
     // get DISTRIBUTED TOKENS
@@ -248,30 +247,27 @@ const IncupadPoolsBanner = ({ activePool }) => {
         );
       });
     }
-  } 
-   
+  }
 
   function progressbarApis() {
-
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
-
-       // get BNB balance of ICO
-       contract.methods
-       .totalBNBraise()
-       .call()
-       .then((amount) => {
+    // get BNB balance of ICO
+    contract.methods
+      .totalBNBraise()
+      .call()
+      .then((amount) => {
         //  console.log(amount);
-         var tokens = web3.utils.toBN(amount).toString();
-         setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
-       });
+        var tokens = web3.utils.toBN(amount).toString();
+        setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
 
-      // get total Users
-      contract.methods
+    // get total Users
+    contract.methods
       .totalUsers()
       .call()
       .then((totalusers) => {
@@ -279,8 +275,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         settotalUsers(totalusers);
       });
 
-     
-      contract.methods
+    contract.methods
       .tokensForDistribution()
       .call()
       .then((amount) => {
@@ -288,29 +283,25 @@ const IncupadPoolsBanner = ({ activePool }) => {
         var tokens = web3.utils.toBN(amount).toString();
         const alloctkn = Number(web3.utils.fromWei(tokens, 'ether'));
         // console.log("max", MaxDistributedTokens);
-        if (MaxDistributedTokens>0) {
-        const icopercent = (
-          (alloctkn / MaxDistributedTokens) *
-          100
-        ).toFixed(2);
-        // console.log("icopercent", icopercent);
-        setICOcompletePercentage(icopercent);
+        if (MaxDistributedTokens > 0) {
+          const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
+            2
+          );
+          // console.log("icopercent", icopercent);
+          setICOcompletePercentage(icopercent);
         }
       });
   }
 
-
-useEffect(() => {
-if (allocatedToken && MaxDistributedTokens) {
-        
-  const icopercent = (
-          (allocatedToken / MaxDistributedTokens) *
-          100
-        ).toFixed(2);
-        setICOcompletePercentage(icopercent);
-   }   
-  },[allocatedToken,MaxDistributedTokens])
-  
+  useEffect(() => {
+    if (allocatedToken && MaxDistributedTokens) {
+      const icopercent = (
+        (allocatedToken / MaxDistributedTokens) *
+        100
+      ).toFixed(2);
+      setICOcompletePercentage(icopercent);
+    }
+  }, [allocatedToken, MaxDistributedTokens]);
 
   // const handleAllowance = async () => {
   //   const web3 = await contractService.getWeb3Client();
@@ -552,16 +543,13 @@ if (allocatedToken && MaxDistributedTokens) {
     web3apis();
   }, [address]);
 
-
   useEffect(() => {
     const interval = setInterval(() => {
-    progressbarApis();
+      progressbarApis();
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-
- 
   // console.log("ICO",ICOcompletePercentage);
 
   const oneBNBprice = 1 / tokenPrice;

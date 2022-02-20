@@ -5,7 +5,7 @@ function IncupadBanner() {
   return (
     <Container as='section' fluid='xxl' className='incupad-banner-section'>
       <Row>
-        <Col lg={8} xl={6}>
+        <Col lg={6} xl={6}>
           <h1>
             Enter The <span>Gateway Of Blockchain</span> Innovation
           </h1>
@@ -23,6 +23,21 @@ function IncupadBanner() {
             ))}
           </div>
         </Col>
+        {/* <Col lg={6} xl={6}>
+          <div className='w-100'>
+            <div className='d-flex justify-content-end '>
+              <div className='card-featured'>test</div>
+            </div>
+          </div>
+          <div className='flexCenter flex-column card-featured justify-content-end'>
+            <h4 className='text-white mb-5'>Featured Pools</h4>
+            <div className='card-1 p-0 w-100'>
+              <div className='logos'>
+                <img src='../assets/bscbay.png' alt='bscbay' />
+              </div>
+            </div>
+          </div>
+        </Col> */}
       </Row>
     </Container>
   );

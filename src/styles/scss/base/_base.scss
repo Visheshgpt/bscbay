@@ -178,3 +178,14 @@ ul {
   font-size: 12px;
   font-weight: 500;
 }
+
+.owl-stage{
+  display: flex !important;
+}
+
+.owl-item {
+  height: inherit !important;
+}
+.owl-item >div{
+  height: 100%;
+}

@@ -96,7 +96,7 @@ function Header() {
             {showLaunchPadLink ? (
               <Link
                 to='/launchpad'
-                className='btn btn-sm btn-outline-primary text-white fw-500'>
+                className='btn btn-outline-primary text-white fw-500'>
                 <small>
                   <small>LaunchPad</small>
                 </small>
@@ -105,7 +105,7 @@ function Header() {
               !walletLink && (
                 <Link
                   to='/'
-                  className='btn btn-sm btn-outline-primary text-white fw-500'>
+                  className='btn btn-outline-primary text-white fw-500'>
                   <small>
                     <small>Home</small>
                   </small>

@@ -125,5 +125,19 @@
     &_shadow {
         box-shadow: $box-shadow;
     }
+
+    &-featured {
+        width: 60%;
+        margin:0px auto;
+
+        .logos{
+            margin-top: -107px;
+            img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+    
 }
 

@@ -11,13 +11,12 @@ const partnerArray = [{
   {
   name: 'Solid Proof', imgurl:'sp.png', links:'https://solidproof.io/'
 },{
-  name: 'SER Investment', imgurl:'sers.jpg', links:'https://sersinvestmentgroup.com/'
+  name: 'SERS Investment', imgurl:'sers.jpg', links:'https://sersinvestmentgroup.com/'
 },{
   name:'Herd Ventures', imgurl: 'herd.jpg', links:'https://www.herd-ventures.com/'
 }]
 
 const HomeSectionPartnership = () => {
-  const imagesArr = [{ key: 0 }, { key: 1 }, { key: 2 }];
 
   const settings = {
       dots: true,
@@ -25,7 +24,7 @@ const HomeSectionPartnership = () => {
       speed: 200,
       slidesToShow: 5,
       slidesToScroll: 1,
-      arrows: false,
+      arrows: true,
       autoplay:true,
       responsive: [
         {
@@ -73,7 +72,7 @@ const HomeSectionPartnership = () => {
                   style={{ gap: 30 }}
                 >
                   <Col lg={12}>
-                    <h1 className="text-center">Official Partners</h1>
+                    <h1 className="text-center">OFFICIAL PARTNERS</h1>
                   </Col>
                   <div>
         <Slider {...settings}>

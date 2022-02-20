@@ -171,6 +171,15 @@ ul {
   font-size: 12px;
   font-weight: 500; }
 
+.owl-stage {
+  display: flex !important; }
+
+.owl-item {
+  height: inherit !important; }
+
+.owl-item > div {
+  height: 100%; }
+
 .accordion .card-header {
   width: 100%;
   border-radius: 10px;
@@ -389,6 +398,15 @@ ul {
 
 .card_shadow {
   box-shadow: inset 0px -10px 0px rgba(0, 0, 0, 0.25); }
+
+.card-featured {
+  width: 60%;
+  margin: 0px auto; }
+  .card-featured .logos {
+    margin-top: -107px; }
+    .card-featured .logos img {
+      width: 80px;
+      height: 80px; }
 
 @media only screen and (max-width: 575px) {
   .heading-secondary-3 {
