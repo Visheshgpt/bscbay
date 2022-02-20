@@ -7,10 +7,11 @@ import { poolData } from '../data';
 
 const IncupadPools = () => {
   const { title } = useParams();
+  // console.log("useparams", useParams());
 
-  console.log('t = ', title);
+  // console.log('t = ', title);
   const activePool = poolData.find((item) => {
-    console.log('id = ', item.id);
+    // console.log('id = ', item.id);
     return item.id === Number(title);
   });
 
@@ -20,7 +21,7 @@ const IncupadPools = () => {
     <section>
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
-    </section>
+    </section> 
   ) : (
     <PageNotFound />
   );

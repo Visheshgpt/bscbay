@@ -13,7 +13,7 @@ export const poolData = [
     finishTime: 1645279200,
     chainID: '56',
     tokenDistribution: 'TBA',
-    tokenPrice: 'TBA',
+    tokenPrice: 'TBA', 
     minAllocation: 'TBA',
     maxAllocation: 'TBA',
     softCap: 'TBA',
@@ -42,7 +42,7 @@ export const poolData = [
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
     videolink: '../../..//assets/bscbayvideo.mp4',
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
-    soldout: false,
+    soldOut: true,
   },
   {
     title: 'BSCBay',
@@ -86,8 +86,8 @@ export const poolData = [
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
     videolink: '../../..//assets/bscbayvideo.mp4',
-    contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
-    soldout: false,
+    contractAddress: '0xF944C1438C2903e593200d54885204DF181DBBf3',
+    soldOut: false,
   },
 ];
 

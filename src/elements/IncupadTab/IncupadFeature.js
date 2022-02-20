@@ -10,109 +10,134 @@ import { poolData } from '../../data';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
 
+
+
+
 const IncupadFeature = () => {
-  const [receivedBNB, setreceivedBNB] = useState(0);
-  const [Minallocation, setMinallocation] = useState(0);
-  const [Maxallocation, setMaxallocation] = useState(0);
-  const [StartTime, setStartTime] = useState(0);
-  const [EndTime, setEndTime] = useState(0);
-  const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
-  const [allocatedToken, setallocatedToken] = useState(0);
 
-  function web3apis() {
-    // const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-
-    var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x4b803DD894746E5c66812b1EBCaA1b63217c166a';
-    var contract = new web3.eth.Contract(contractABI, contractAddress);
-
-    // get BNB balance of ICO
-    web3.eth
-      .getBalance('0x4b803DD894746E5c66812b1EBCaA1b63217c166a')
-      .then((balance) => {
-        // console.log(balance);
-        var tokens = web3.utils.toBN(balance).toString();
-        setreceivedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // get MAX DISTRIBUTED TOKENS
-    contract.methods
-      .maxDistributedTokenAmount()
-      .call()
-      .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // get DISTRIBUTED TOKENS
-    contract.methods
-      .tokensForDistribution()
-      .call()
-      .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // user MIN allocation
-    contract.methods
-      .minInvestment()
-      .call()
-      .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // user MAX allocation
-    contract.methods
-      .maxInvestment()
-      .call()
-      .then((amount) => {
-        //  console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // ICO start Time
-    contract.methods
-      .startTimestamp()
-      .call()
-      .then((time) => {
-        // console.log(time);
-        setStartTime(time);
-      });
-
-    // ICO End Time
-    contract.methods
-      .finishTimestamp()
-      .call()
-      .then((time) => {
-        //  console.log("endtime",time);
-        setEndTime(time);
-      });
-  }
-  //////////Time section
-  // const differceTime = EndTime - StartTime;
-  // console.log("diff",differceTime);
   let currentTime = new Date();
-  // console.log(currentTime)
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
-  // console.log("curr",currentTimeData);
-
-  useEffect(() => {
-    web3apis();
-  });
-
-  const ICOcompletePercentage = (
-    (allocatedToken / MaxDistributedTokens) *
-    100
-  ).toFixed(2);
 
   const featuredPoolData = poolData.filter((item) => item.featured === true);
   featuredPoolData.reverse();
+
+  const [featuredPool, setfeaturedPool] = useState(featuredPoolData)
+
+  console.log("featuredpool ====>", featuredPool );
+ 
+
+ 
+  function web3apis(add) {
+   
+    const newdata = []
+
+    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+
+    // var contractABI = BSCBAYICOabi;
+    // var contractAddress = contractAddress;
+    // var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    newdata.ICOcompletePercentage = 95
+    newdata["minAllocation"] = 2;
+    newdata["maxAllocation"] = 10
+
+    // console.log("newdata", newdata);
+
+   return newdata;
+  
+    // // get MAX DISTRIBUTED TOKENS
+    // contract.methods
+    //   .maxDistributedTokenAmount()
+    //   .call()
+    //   .then((amount) => {
+    //     // console.log(amount);
+    //     var tokens = web3.utils.toBN(amount).toString();
+    //     setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
+    //   });
+
+    // // get DISTRIBUTED TOKENS
+    // contract.methods
+    //   .tokensForDistribution()
+    //   .call()
+    //   .then((amount) => {
+    //     // console.log(amount);
+    //     var tokens = web3.utils.toBN(amount).toString();
+    //     setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
+    //   });
+
+    // // user MIN allocation
+    // contract.methods
+    //   .minInvestment()
+    //   .call()
+    //   .then((amount) => {
+    //     // console.log(amount);
+    //     var tokens = web3.utils.toBN(amount).toString();
+    //     setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+    //   });
+
+    // // user MAX allocation
+    // contract.methods
+    //   .maxInvestment()
+    //   .call()
+    //   .then((amount) => {
+    //     //  console.log(amount);
+    //     var tokens = web3.utils.toBN(amount).toString();
+    //     setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+    //   });
+
+    // // ICO start Time
+    // contract.methods
+    //   .startTimestamp()
+    //   .call()
+    //   .then((time) => {
+    //     // console.log(time);
+    //     setStartTime(time);
+    //   });
+
+    // // ICO End Time
+    // contract.methods
+    //   .finishTimestamp()
+    //   .call()
+    //   .then((time) => {
+    //     //  console.log("endtime",time);
+    //     setEndTime(time);
+    //   });
+
+    }
+
+ 
+ 
+  
+  useEffect(async () => {
+    // web3apis();
+    const addresss =  featuredPoolData && featuredPoolData[0] && featuredPoolData[0].contractAddress
+    const data = await web3apis([addresss]);
+    console.log("data", data);
+
+    const ml = [...featuredPool, ...data];
+    console.log("ml===>", ml);
+  
+  },[]);
+
+  // const ICOcompletePercentage = (
+  //   (allocatedToken / MaxDistributedTokens) *
+  //   100
+  // ).toFixed(2);
+
+  // const featuredPoolData = poolData.filter((item) => item.featured === true);
+
+  
+  
+  console.log("1");
+
+  // let featuredPoolDataApi = featuredPoolData.map((item) => {
+  //    web3apis(item);
+  // } ) 
+
+  // console.log("abc",featuredPoolDataApi);
+
+  // console.log("2");
+
 
   const options = {
     dots: false,
@@ -136,24 +161,6 @@ const IncupadFeature = () => {
     },
   };
 
-  // if (currentTimeData < StartTime) {
-  //   console.log("1");
-  // }
-  // else if (currentTimeData < EndTime) {
-  //   console.log("2");
-  // }
-  // else if (currentTimeData > EndTime) {
-  //   console.log("3");
-  //   console.log("startTime", StartTime);
-  //   console.log("Type",typeof StartTime);
-  //   console.log("endTime", EndTime);
-  //   console.log("Type",typeof EndTime);
-  //   console.log("currTime", currentTimeData);
-  //   console.log("Type",typeof currentTimeData);
-  // }
-  // else {
-  //   console.log("4");
-  // }
 
   var returnElapsedTime = function (epoch) {
     //We are assuming that the epoch is in seconds
@@ -192,7 +199,7 @@ const IncupadFeature = () => {
                   {item.soldOut && (
                     <span className='card-tag soldout'>Sold Out</span>
                   )}
-
+ 
                   <div class='icon-box-incupad'>
                     <span>
                       <img src={item.img} alt={item.title} />
@@ -234,7 +241,7 @@ const IncupadFeature = () => {
                       </span>
                     </>
                   ) : currentTimeData < item.finishTime &&
-                    Number(ICOcompletePercentage) !== 100 ? (
+                    Number(item.ICOcompletePercentage) !== 100 ? (
                     <>
                       <span className='card-time-status'>Closes in</span>
                       <span className='text-white fw-500 mb-4'>
@@ -255,20 +262,21 @@ const IncupadFeature = () => {
                   </div>
                   <span className="card-time-status">Upcomming</span> */}
                   <div className='incupad-upcoming-pool-card-lower'>
-                    <ProgressBar
-                      now={ICOcompletePercentage}
+
+             { item.ICOcompletePercentage &&  <ProgressBar
+                      now={item.ICOcompletePercentage}
                       className='progress-bar-sectionn'
-                      label={`${Math.round(ICOcompletePercentage)}%`}
-                    />
+                      label={`${Math.round(item.ICOcompletePercentage)}%`}
+                    />  }
 
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Min Allocation</span>
-                      <span>{Minallocation} BNB</span>
+                      <span>{item.minAllocation} BNB</span>
                       {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Max Allocation</span>
-                      <span>{Maxallocation} BNB</span>
+                      <span>{item.minAllocation} BNB</span>
                       {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
