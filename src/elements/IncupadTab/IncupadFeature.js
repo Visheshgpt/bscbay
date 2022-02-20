@@ -128,7 +128,7 @@ const IncupadFeature = () => {
 
   
   
-  console.log("1");
+  // console.log("1");
 
   // let featuredPoolDataApi = featuredPoolData.map((item) => {
   //    web3apis(item);
