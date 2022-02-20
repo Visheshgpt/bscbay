@@ -9,12 +9,14 @@ import { poolData } from '../../data';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
 import IncupadCardPool from '../../components/IncupadCardPool';
+import { currentTimeData } from '../../utils/helper'
+
 
 import { getAddress, getFeaturedPoolsData } from '../../utils/helper';
-
+ 
 const IncupadFeature = () => {
-  let currentTime = new Date();
-  let currentTimeData = Number(Date.parse(currentTime) / 1000);
+  // let currentTime = new Date();
+  // let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   let featuredPoolData = getFeaturedPoolsData();
 
@@ -22,7 +24,7 @@ const IncupadFeature = () => {
   const [maxAllocation, setMaxallocation] = useState({});
   const [ICOcompletePercentage, setIDOcompletePercentage] = useState({});
 
-  const addressArray = getAddress();
+  const addressArray = getAddress(); 
 
   async function web3apis() {
     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
@@ -132,9 +134,38 @@ const IncupadFeature = () => {
     // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
   };
 
-  const closedPoolsdData = featuredPoolData.filter(
-    (item) => item.soldOut === true
-  );
+  const closedPoolsdData  = featuredPoolData.filter(
+    (item) => {
+       
+      if ( currentTimeData() > item.finishTime )
+        {
+         return item
+        }
+        } 
+  ); 
+
+  const upcomingpool = featuredPoolData.filter(
+    (item) => {
+       
+      if ( currentTimeData() < item.startTime )
+        {
+         return item
+        }
+        } 
+  ); 
+
+  const ongoingpool = featuredPoolData.filter(
+    (item) => {
+       
+      if ( currentTimeData() < item.finishTime && currentTimeData() > item.startTime )
+        {
+         return item
+        }
+        } 
+  ); 
+ 
+
+
 
   return (
     <Container
@@ -163,10 +194,27 @@ const IncupadFeature = () => {
         </Row> */}
         <Row>
           <Col xs={12} className='p-2'>
-            <h2 className='text-white text-center'>Ongoing Pools</h2>
+       {  ongoingpool.length > 0  &&    <h2 className='text-white text-center'>Ongoing Pools</h2>  }
           </Col>
           <OwlCarousel options={options}>
-            {featuredPoolData.map((item) => (
+            { ongoingpool.length > 0 &&  ongoingpool.map((item) => (
+              <Link to={`/launchpad/${item.id}`} key={item.id}>
+                <IncupadCardPool
+                  item={item}
+                  minAllocation={minAllocation}
+                  maxAllocation={maxAllocation}
+                  ICOcompletePercentage={ICOcompletePercentage}
+                />
+              </Link> 
+            ))}
+          </OwlCarousel>
+        </Row>
+        <Row className='mt-5'>
+          <Col xs={12} className='p-2'>
+        {  upcomingpool.length > 0  &&      <h2 className='text-white text-center'>Upcoming Pools</h2>  }
+          </Col>
+          <OwlCarousel options={options}>
+            { upcomingpool.length &&  upcomingpool.map((item) => (
               <Link to={`/launchpad/${item.id}`} key={item.id}>
                 <IncupadCardPool
                   item={item}
@@ -180,27 +228,10 @@ const IncupadFeature = () => {
         </Row>
         <Row className='mt-5'>
           <Col xs={12} className='p-2'>
-            <h2 className='text-white text-center'>Upcoming Pools</h2>
+         { closedPoolsdData.length > 0  &&  <h2 className='text-white text-center'>Closed Pools</h2>  }
           </Col>
           <OwlCarousel options={options}>
-            {featuredPoolData.map((item) => (
-              <Link to={`/launchpad/${item.id}`} key={item.id}>
-                <IncupadCardPool
-                  item={item}
-                  minAllocation={minAllocation}
-                  maxAllocation={maxAllocation}
-                  ICOcompletePercentage={ICOcompletePercentage}
-                />
-              </Link>
-            ))}
-          </OwlCarousel>
-        </Row>
-        <Row className='mt-5'>
-          <Col xs={12} className='p-2'>
-            <h2 className='text-white text-center'>Closed Pools</h2>
-          </Col>
-          <OwlCarousel options={options}>
-            {closedPoolsdData.map((item) => (
+            {closedPoolsdData.length > 0 && closedPoolsdData.map((item) => (
               <Link to={`/launchpad/${item.id}`} key={item.id}>
                 <IncupadCardPool
                   item={item}

@@ -936,6 +936,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         <p>{txMessage}</p>
       </AlertModal>
       <SearchPool
+        contractadd={activePool.contractAddress}
         show={search}
         onHide={() => {
           console.log('search on hide click ==>');

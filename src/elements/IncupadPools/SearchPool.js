@@ -4,7 +4,7 @@ import AlertModal from '../../components/AlertModal';
 import Web3 from 'web3';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
-function Search({ show, onHide }) {
+function Search({ show, onHide, contractadd }) {
   const [value, setValue] = useState('');
 
   const [message, setMessage] = useState('');
@@ -14,7 +14,7 @@ function Search({ show, onHide }) {
   const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
-    var contractAddress = '0x4b803DD894746E5c66812b1EBCaA1b63217c166a';
+    var contractAddress = contractadd;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
     // check eligibility

@@ -24,23 +24,23 @@ function IncupadCardPool({
           {item.description.length > 120 && '...'}
         </p>
       )}
-
+  
       <div className='card-time'>
         <img src='./assets/is-time-1.svg' alt='time icon' />
       </div>
-      {currentTimeData < item.startTime ? (
+      {currentTimeData() < item.startTime ? (
         <>
           <span className='card-time-status'>Starts in</span>
           <span className='text-white fw-500 mb-4'>
-            <Timer initialcount={item.startTime - currentTimeData} />
+            <Timer initialcount={item.startTime - currentTimeData()} />
           </span>
         </>
-      ) : currentTimeData < item.finishTime &&
+      ) : currentTimeData() < item.finishTime &&
         Number(item.ICOcompletePercentage) !== 100 ? (
         <>
           <span className='card-time-status'>Closes in</span>
           <span className='text-white fw-500 mb-4'>
-            <Timer initialcount={item.finishTime - currentTimeData} />
+            <Timer initialcount={item.finishTime - currentTimeData()} />
           </span>
         </>
       ) : (
