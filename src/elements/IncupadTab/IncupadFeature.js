@@ -19,31 +19,41 @@ const IncupadFeature = () => {
 
   const [featuredPool, setfeaturedPool] = useState(featuredPoolData);
 
-  console.log('featuredpool ====>', featuredPool);
+  // console.log('featuredpool ====>', featuredPool);
 
-  function web3apis(add) {
+  async function web3apis(add,i) {
+
+    console.log("add", add);
     const newdata = {};
 
-    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
-    // var contractABI = BSCBAYICOabi;
-    // var contractAddress = contractAddress;
-    // var contract = new web3.eth.Contract(contractABI, contractAddress);
+    const contract = new web3.eth.Contract(BSCBAYICOabi, add);
 
-    newdata.ICOcompletePercentage = 95;
-    newdata['minAllocation'] = 2;
-    newdata['maxAllocation'] = 10;
 
-    return newdata;
+    // let allocatedToken;
+    // let MaxDistributedTokens;
+    
+     // user MIN allocation
+    const amnt = await contract.methods.minInvestment().call()
+    const tokens = web3.utils.toBN(amnt).toString();
+    const min = (Number(web3.utils.fromWei(tokens, 'ether')));
+    console.log("min", min);
 
-    // // get MAX DISTRIBUTED TOKENS
+    // user MAX allocation
+    const amnt2 = await contract.methods.maxInvestment().call()
+    const tokens2 = web3.utils.toBN(amnt2).toString();
+    const max = (Number(web3.utils.fromWei(tokens2, 'ether')));
+    console.log("max", max);
+    
+    //    // get MAX DISTRIBUTED TOKENS
     // contract.methods
     //   .maxDistributedTokenAmount()
     //   .call()
     //   .then((amount) => {
     //     // console.log(amount);
     //     var tokens = web3.utils.toBN(amount).toString();
-    //     setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
+    //     MaxDistributedTokens = (Number(web3.utils.fromWei(tokens, 'ether')));
     //   });
 
     // // get DISTRIBUTED TOKENS
@@ -53,58 +63,31 @@ const IncupadFeature = () => {
     //   .then((amount) => {
     //     // console.log(amount);
     //     var tokens = web3.utils.toBN(amount).toString();
-    //     setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
+    //     allocatedToken = (Number(web3.utils.fromWei(tokens, 'ether')));
     //   });
 
-    // // user MIN allocation
-    // contract.methods
-    //   .minInvestment()
-    //   .call()
-    //   .then((amount) => {
-    //     // console.log(amount);
-    //     var tokens = web3.utils.toBN(amount).toString();
-    //     setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
-    //   });
+    // const icopercentage = ((allocatedToken / MaxDistributedTokens) *100 ).toFixed(2);
+  
+    newdata.ICOcompletePercentage = 90;
+    newdata.minAllocation = min;
+    newdata.maxAllocation = max;
 
-    // // user MAX allocation
-    // contract.methods
-    //   .maxInvestment()
-    //   .call()
-    //   .then((amount) => {
-    //     //  console.log(amount);
-    //     var tokens = web3.utils.toBN(amount).toString();
-    //     setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
-    //   });
+    
 
-    // // ICO start Time
-    // contract.methods
-    //   .startTimestamp()
-    //   .call()
-    //   .then((time) => {
-    //     // console.log(time);
-    //     setStartTime(time);
-    //   });
-
-    // // ICO End Time
-    // contract.methods
-    //   .finishTimestamp()
-    //   .call()
-    //   .then((time) => {
-    //     //  console.log("endtime",time);
-    //     setEndTime(time);
-    //   });
+    return newdata;
   }
 
+  
   useEffect(() => {
-    // web3apis();
-    let localFeaturedPool = [];
+   
+    let localFeaturedPool = featuredPoolData;
     featuredPoolData.map((item, index) => {
       const addresss =
         featuredPoolData &&
         featuredPoolData[index] &&
         featuredPoolData[index].contractAddress;
-      const data = web3apis([addresss]);
-      const newData = { ...data, ...featuredPool[index] };
+      const data = web3apis(addresss,index);
+      const newData = { ...featuredPool[index], ...data, };
       localFeaturedPool[index] = newData;
       return null;
     });
@@ -184,7 +167,7 @@ const IncupadFeature = () => {
             <h2 className='text-white text-center'>Featured Pools</h2>
           </Col>
           <OwlCarousel options={options}>
-            {featuredPoolData.map((item) => (
+            {featuredPool.map((item) => (
               <Link to={`/launchpad/${item.id}`}>
                 <div className='incupad-upcoming-pool-card relative'>
                   <span className='card-tag'>{item.tag}</span>
@@ -265,12 +248,12 @@ const IncupadFeature = () => {
 
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Min Allocation</span>
-                      <span>{item.minAllocation} BNB</span>
+               {  item.maxAllocation  && <span>{item.minAllocation} BNB</span>        }
                       {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Max Allocation</span>
-                      <span>{item.minAllocation} BNB</span>
+               {  item.maxAllocation  &&  <span>{item.maxAllocation} BNB</span>       }
                       {/* <span>TBA</span> */}
                     </div>
                     <div className='min-allocation'>
