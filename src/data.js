@@ -43,6 +43,7 @@ export const poolData = [
     videolink: '../../..//assets/bscbayvideo.mp4',
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
     soldOut: true,
+    saleDate: "18 FEB' 22, 2:00 PM UTC",
   },
 
   {
@@ -77,7 +78,7 @@ export const poolData = [
     decimals: 18,
     allocationType: 'BNB',
     totalSupply: '1,000,000,000',
-    accessType: 'Partners Only',
+    accessType: 'Whitelist/Public',
     about: [
       'Earn 5% USDT reflections rewards every 4 hours automatically into your wallets.',
       'Unlike volume-based unsustainable projects, we ensure Sustainable Passive Income streams through Launchpad, DexPad and supporting tools whose income directly flows into investor rewards pool',
@@ -87,8 +88,9 @@ export const poolData = [
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
     videolink: '../../..//assets/bscbayvideo.mp4',
-    contractAddress: '0x66Cdc7382D3F90A2904151E80D6098CBB5ad4b39',
+    contractAddress: '0x4a29161073e0e44c808f86EE4f64a2C124d30279',
     soldOut: false,
+    saleDate: "23 FEB' 22, 6:00 PM UTC",
   },
 
 

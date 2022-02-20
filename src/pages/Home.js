@@ -11,7 +11,7 @@ import HomeSectionSix from '../elements/HomeSections/HomeSectionSix';
 import HomeFaqSection from '../elements/HomeSections/HomeFaqSection';
 import HomeIndustryPartner from '../elements/HomeSections/HomeIndustryPartner';
 
-import HomePrivate from '../elements/HomeSections/HomePrivate';
+// import HomsePrivate from '../elements/HomeSections/HomePrivate';
 
 function Home() {
   return (
@@ -20,7 +20,7 @@ function Home() {
 
       <HomeBanner />
       <HomeSectionTwo />
-      <HomePrivate />
+      {/* <HomePrivate /> */}
       <HomeFeatureSection />
       <HomeTokenomicsSection />
       <HomeSectionSeven />

@@ -84,8 +84,8 @@ function HomeBanner() {
                 ))}
               </div>
               <div className='d-flex align-items-center justify-content-between'>
-                <div className='btn btn-sm btn-outline-primary '>KYC</div>
-                <div className='btn btn-sm btn-outline-primary mx-3'>Audit</div>
+                <a className='btn btn-sm btn-outline-primary' href="https://github.com/solidproof/projects/blob/main/BSCBay/KYC_Certificate_Solidproof_BSCBay.png" target="_blank" > KYC </a>
+                <a className='btn btn-sm btn-outline-primary mx-3' href="https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf" target="_blank" >Audit</a>
               </div>
             </div>
           </Col>

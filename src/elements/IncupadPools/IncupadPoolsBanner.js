@@ -36,7 +36,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   // window.sessionStorage.setItem("userBNB", userBNBbalance);
   console.log('add', address);
   let selectedAccount;
-  let status = activePool.status;
+  // let status = activePool.status;
 
   const [raisedBNB, setraisedBNB] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
@@ -61,6 +61,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [successPageReload, setSuccessPageReload] = useState('');
   const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
+  const [status, setstatus] = useState(activePool.status);
 
   const remainingallocation = Maxallocation - userInvested;
 
@@ -291,6 +292,24 @@ const IncupadPoolsBanner = ({ activePool }) => {
           setICOcompletePercentage(icopercent);
         }
       });
+
+      let currentTime = new Date();
+      let currentTimeData = Number(Date.parse(currentTime) / 1000);
+
+      if (currentTimeData < StartTime) {
+        // console.log("1");
+        setstatus('Upcoming');
+
+      } else if (
+        currentTimeData < EndTime &&
+        Number(ICOcompletePercentage) != 100
+      ) {
+        // console.log("2");
+        setstatus('Ongoing');
+      } else if (currentTimeData > EndTime) {
+        // console.log("3");
+        setstatus('Closed');
+      }
   }
 
   useEffect(() => {
@@ -559,16 +578,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
-  if (currentTimeData < StartTime) {
-    activePool.status = 'Upcoming';
-  } else if (
-    currentTimeData < EndTime &&
-    Number(ICOcompletePercentage) != 100
-  ) {
-    activePool.status = 'Ongoing';
-  } else if (currentTimeData > EndTime) {
-    activePool.status = 'Closed';
-  }
+  // if (currentTimeData < StartTime) {
+  //   activePool.status = 'Upcoming';
+  // } else if (
+  //   currentTimeData < EndTime &&
+  //   Number(ICOcompletePercentage) != 100
+  // ) {
+  //   activePool.status = 'Ongoing';
+  // } else if (currentTimeData > EndTime) {
+  //   activePool.status = 'Closed';
+  // }
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -663,7 +682,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     </div>
                   </div>
                   <span className='d-flex align-items-center justify-content-center '>
-                    {activePool.status}
+                    {status}
                   </span>
                   <h3>
                     1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}

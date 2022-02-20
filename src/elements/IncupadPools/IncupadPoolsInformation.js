@@ -86,7 +86,7 @@ const IncupadPoolsInformation = ({ activePool }) => {
             <div className='pool-information-card'>
               <div>
                 <span>SALE DATE</span>
-                <span>18 FEB' 22, 2:00 PM UTC</span>
+                <span>{activePool.saleDate}</span>
               </div>
               <div>
                 <span>MIN. ALLOCATION</span>

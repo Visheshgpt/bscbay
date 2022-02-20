@@ -1,6 +1,22 @@
 import { Col, Container, Row, ProgressBar } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { poolData } from '../../data';
+import { currentTimeData } from '../../utils/helper';
+
 
 function HomePrivate() {
+
+  const [raisedBNB, setraisedBNB] = useState(0);
+  const [totalUsers, settotalUsers] = useState(0);
+  const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
+  const [allocatedToken, setallocatedToken] = useState(0);
+  const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
+
+
+
+
+
+
   return (
     <Container as='section' fluid='xxl' className='private_feature'>
       <Row>
