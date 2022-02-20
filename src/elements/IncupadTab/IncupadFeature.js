@@ -48,7 +48,7 @@ const IncupadFeature = () => {
 
       if (max) {
         let maxallocation = {
-          [index + 1]: min,
+          [index + 1]: max,
         };
         setMaxallocation((prevState) => ({
           ...prevState,

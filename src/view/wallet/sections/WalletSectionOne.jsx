@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 // import { Dropdown } from 'react-bootstrap';
-import RangeSlider from 'react-bootstrap-range-slider';
+// import RangeSlider from 'react-bootstrap-range-slider';
 import Web3 from 'web3';
 import BSCBAYabi from '../../../shared/BSCBAYabi.json';
 import CoinGecko from 'coingecko-api';
 
 const WalletSectionOne = () => {
-  const [valueSlider, setValueSlider] = React.useState(50);
-
-  
-
+  //const [valueSlider, setValueSlider] = React.useState(50);
   const boxArr = [
     {
       title: 'USDT Reward Pool',
@@ -44,35 +41,35 @@ const WalletSectionOne = () => {
     },
   ];
 
-  const totalArr = [
-    // {
-    //   key: 0,
-    //   title: 'USDT Earned',
-    //   subTitle: '15.3256',
-    //   text: 'User Claimed BNB',
-    // },
+  // const totalArr = [
+  //   // {
+  //   //   key: 0,
+  //   //   title: 'USDT Earned',
+  //   //   subTitle: '15.3256',
+  //   //   text: 'User Claimed BNB',
+  //   // },
 
-    // {
-    //   key: 1,
-    //   title: 'Users Earning',
-    //   subTitle: '205.56',
-    //   text: 'User Reinvestment',
-    // },
+  //   // {
+  //   //   key: 1,
+  //   //   title: 'Users Earning',
+  //   //   subTitle: '205.56',
+  //   //   text: 'User Reinvestment',
+  //   // },
 
-    // {
-    //   key: 0,
-    //   title: 'Total USDT Distributed',
-    //   subTitle: '3568 23',
-    //   text: 'Total BNB Claimed',
-    // },
+  //   // {
+  //   //   key: 0,
+  //   //   title: 'Total USDT Distributed',
+  //   //   subTitle: '3568 23',
+  //   //   text: 'Total BNB Claimed',
+  //   // },
 
-    // {
-    //   key: 1,
-    //   title: 'Total BNB Reinvest',
-    //   subTitle: '32659',
-    //   text: 'Total Reinvestment',
-    // },
-  ]; 
+  //   // {
+  //   //   key: 1,
+  //   //   title: 'Total BNB Reinvest',
+  //   //   subTitle: '32659',
+  //   //   text: 'Total Reinvestment',
+  //   // },
+  // ]; 
 
   const [maxTransactionAmount, setmaxTransactionAmount] = useState(0);
   const [TotalbnbinrewardPool, setTotalbnbinrewardPool] = useState(0);
@@ -94,7 +91,7 @@ const WalletSectionOne = () => {
   const [rewardhardCap, setrewardhardCap] = useState(0);
   //  const [reinvesttokens,setreinvesttokens] = useState(0);
 
-  var rewardshare = 0;
+  // var rewardshare = 0;
   //  console.log("pricepertoken",priceperToken)
 
   function web3apis() {
