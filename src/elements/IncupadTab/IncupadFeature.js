@@ -5,31 +5,24 @@ import Web3 from 'web3';
 import OwlCarousel from 'react-owl-carousel2';
 import 'react-owl-carousel2/lib/styles.css';
 import 'react-owl-carousel2/src/owl.theme.default.css';
-
 import { poolData } from '../../data';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
-
-
-
+import { objInArray } from '../../utils/helper';
 
 const IncupadFeature = () => {
-
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   const featuredPoolData = poolData.filter((item) => item.featured === true);
   featuredPoolData.reverse();
 
-  const [featuredPool, setfeaturedPool] = useState(featuredPoolData)
+  const [featuredPool, setfeaturedPool] = useState(featuredPoolData);
 
-  console.log("featuredpool ====>", featuredPool );
- 
+  console.log('featuredpool ====>', featuredPool);
 
- 
   function web3apis(add) {
-   
-    const newdata = []
+    const newdata = {};
 
     // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
@@ -37,14 +30,12 @@ const IncupadFeature = () => {
     // var contractAddress = contractAddress;
     // var contract = new web3.eth.Contract(contractABI, contractAddress);
 
-    newdata.ICOcompletePercentage = 95
-    newdata["minAllocation"] = 2;
-    newdata["maxAllocation"] = 10
+    newdata.ICOcompletePercentage = 95;
+    newdata['minAllocation'] = 2;
+    newdata['maxAllocation'] = 10;
 
-    // console.log("newdata", newdata);
+    return newdata;
 
-   return newdata;
-  
     // // get MAX DISTRIBUTED TOKENS
     // contract.methods
     //   .maxDistributedTokenAmount()
@@ -102,22 +93,26 @@ const IncupadFeature = () => {
     //     //  console.log("endtime",time);
     //     setEndTime(time);
     //   });
+  }
 
-    }
-
- 
- 
-  
-  useEffect(async () => {
+  useEffect(() => {
     // web3apis();
-    const addresss =  featuredPoolData && featuredPoolData[0] && featuredPoolData[0].contractAddress
-    const data = await web3apis([addresss]);
-    console.log("data", data);
+    let localFeaturedPool = [];
+    featuredPoolData.map((item, index) => {
+      const addresss =
+        featuredPoolData &&
+        featuredPoolData[index] &&
+        featuredPoolData[index].contractAddress;
+      const data = web3apis([addresss]);
+      const newData = { ...data, ...featuredPool[index] };
+      localFeaturedPool[index] = newData;
+      return null;
+    });
 
-    const ml = [...featuredPool, ...data];
-    console.log("ml===>", ml);
-  
-  },[]);
+    setfeaturedPool(localFeaturedPool);
+
+    console.log('frea state after pool = ', featuredPool);
+  }, []);
 
   // const ICOcompletePercentage = (
   //   (allocatedToken / MaxDistributedTokens) *
@@ -126,18 +121,15 @@ const IncupadFeature = () => {
 
   // const featuredPoolData = poolData.filter((item) => item.featured === true);
 
-  
-  
   // console.log("1");
 
   // let featuredPoolDataApi = featuredPoolData.map((item) => {
   //    web3apis(item);
-  // } ) 
+  // } )
 
   // console.log("abc",featuredPoolDataApi);
 
   // console.log("2");
-
 
   const options = {
     dots: false,
@@ -161,7 +153,6 @@ const IncupadFeature = () => {
     },
   };
 
-
   var returnElapsedTime = function (epoch) {
     //We are assuming that the epoch is in seconds
     console.log('seconds = ', epoch);
@@ -178,6 +169,8 @@ const IncupadFeature = () => {
     );
     // return Math.floor(hours) + " hours, " + Math.floor(minutes) + " minutes ";
   };
+
+  console.log('frea state pool = ', featuredPool);
 
   return (
     <Container
@@ -199,7 +192,7 @@ const IncupadFeature = () => {
                   {item.soldOut && (
                     <span className='card-tag soldout'>Sold Out</span>
                   )}
- 
+
                   <div class='icon-box-incupad'>
                     <span>
                       <img src={item.img} alt={item.title} />
@@ -262,12 +255,13 @@ const IncupadFeature = () => {
                   </div>
                   <span className="card-time-status">Upcomming</span> */}
                   <div className='incupad-upcoming-pool-card-lower'>
-
-             { item.ICOcompletePercentage &&  <ProgressBar
-                      now={item.ICOcompletePercentage}
-                      className='progress-bar-sectionn'
-                      label={`${Math.round(item.ICOcompletePercentage)}%`}
-                    />  }
+                    {item.ICOcompletePercentage && (
+                      <ProgressBar
+                        now={item.ICOcompletePercentage}
+                        className='progress-bar-sectionn'
+                        label={`${Math.round(item.ICOcompletePercentage)}%`}
+                      />
+                    )}
 
                     <div className='min-allocation'>
                       <span className='lower-card-name'>Min Allocation</span>

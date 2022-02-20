@@ -27,3 +27,9 @@ export const MyDiv = ({ classes = '', type = '', children }) => {
     </div>
   );
 };
+
+export const objInArray = (obj, arr) => {
+  console.log(arr);
+  Object.entries(obj).forEach(([key, value]) => (arr[0][key] = value));
+  return arr;
+};
