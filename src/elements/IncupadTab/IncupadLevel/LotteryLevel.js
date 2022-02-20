@@ -9,7 +9,7 @@ function LotteryLevel() {
 
       <Row>
         {levelData.map((item, index) => (
-          <CardLevel data={item} />
+          <CardLevel data={item} key={index} />
         ))}
       </Row>
     </section>

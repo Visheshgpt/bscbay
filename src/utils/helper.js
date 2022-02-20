@@ -1,3 +1,4 @@
+import { poolData } from '../data';
 export const getMonth = (num) => {
   const arr = [
     'Jan',
@@ -28,8 +29,15 @@ export const MyDiv = ({ classes = '', type = '', children }) => {
   );
 };
 
-export const objInArray = (obj, arr) => {
-  console.log(arr);
-  Object.entries(obj).forEach(([key, value]) => (arr[0][key] = value));
-  return arr;
+export const getFeaturedPoolsData = () => {
+  const featuredPoolData = poolData.filter((item) => item.featured === true);
+  featuredPoolData.reverse();
+
+  return featuredPoolData;
+};
+
+export const getAddress = () => {
+  let addressArray = [];
+  poolData.map((item) => addressArray.push(item.contractAddress));
+  return addressArray.reverse();
 };

@@ -19,13 +19,13 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 
-import { chainRpcs } from '../../chainRPCs';
+//import { chainRpcs } from '../../chainRPCs';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
 const IncupadPoolsBanner = ({ activePool }) => {
   const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
-  const [activate, setActivate] = useState(false);
+  //const [activate, setActivate] = useState(false);
   const [modalShow, setModalShow] = useState(false);
 
   const onHideHandler = () => {
@@ -283,14 +283,14 @@ const IncupadPoolsBanner = ({ activePool }) => {
     setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
 
-    if (value == '' || value == 0) {
+    if (value === '' || value === 0) {
       let msg = `Please Enter Value`;
       settxMessage(msg);
       setModalShow(true);
       setButtonLoading(false);
     } else if (
       Number(value) < Minallocation &&
-      remainingallocation == Maxallocation
+      remainingallocation === Maxallocation
     ) {
       let msg = `Enter Value Greater than Minimum Investment Amount`;
       settxMessage(msg);
@@ -301,7 +301,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       settxMessage(msg);
       setModalShow(true);
       setButtonLoading(false);
-    } else if (round == 0 && eligibility == false) {
+    } else if (round === 0 && eligibility === false) {
       let msg = `You are not Whitelisted`;
       settxMessage(msg);
       setModalShow(true);
