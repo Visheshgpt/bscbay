@@ -10,16 +10,17 @@ import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 import Timer from '../../components/Timer';
 
 import { getAddress, getFeaturedPoolsData } from '../../utils/helper';
-
+  
 const IncupadFeature = () => {
+
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   let featuredPoolData = getFeaturedPoolsData();
 
   const [minAllocation, setMinallocation] = useState({});
-  const [maxAllocation, setMaxallocation] = useState([]);
-  const [ICOcompletePercentage, setIDOcompletePercentage] = useState(90);
+  const [maxAllocation, setMaxallocation] = useState({});
+  const [ICOcompletePercentage, setIDOcompletePercentage] = useState({});
 
   const addressArray = getAddress();
 
@@ -48,14 +49,45 @@ const IncupadFeature = () => {
 
       if (max) {
         let maxallocation = {
-          [index + 1]: min,
+          [index + 1]: max,
         };
         setMaxallocation((prevState) => ({
           ...prevState,
           ...maxallocation,
         }));
       }
-      setIDOcompletePercentage(90);
+
+
+        // get DISTRIBUTED TOKENS
+      const amnt3 =  await contract.methods.tokensForDistribution().call()
+      // console.log("amnt3", amnt3);
+      const tokens3 = web3.utils.toBN(amnt3).toString();
+      const alloctoken = (Number(web3.utils.fromWei(tokens3, 'ether')));
+      
+      
+      // get MAX DISTRIBUTED TOKENS
+     const amnt4 = await contract.methods.maxDistributedTokenAmount().call()
+     const tokens4 = web3.utils.toBN(amnt4).toString();
+     const maxdistributed = (Number(web3.utils.fromWei(tokens4, 'ether')));
+      
+     
+     // ICO percentage
+     const ICOPercentage = (
+      (alloctoken / maxdistributed) *
+      100
+    ).toFixed(2);
+ 
+       
+    if (ICOPercentage) {
+      let ico = {
+        [index + 1]: ICOPercentage,
+      };
+      setIDOcompletePercentage((prevState) => ({
+        ...prevState,
+        ...ico,
+      }));
+    }     
+
 
       return null;
     });
@@ -191,11 +223,11 @@ const IncupadFeature = () => {
                   </div>
                   <span className="card-time-status">Upcomming</span> */}
                   <div className='incupad-upcoming-pool-card-lower'>
-                    {ICOcompletePercentage && (
+                    {ICOcompletePercentage[item.id] && (
                       <ProgressBar
-                        now={ICOcompletePercentage}
+                        now={ICOcompletePercentage[item.id]}
                         className='progress-bar-sectionn'
-                        label={`${Math.round(ICOcompletePercentage)}%`}
+                        label={`${Math.round(ICOcompletePercentage[item.id])}%`}
                       />
                     )}
 

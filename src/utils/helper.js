@@ -39,5 +39,5 @@ export const getFeaturedPoolsData = () => {
 export const getAddress = () => {
   let addressArray = [];
   poolData.map((item) => addressArray.push(item.contractAddress));
-  return addressArray.reverse();
+  return addressArray;
 };
