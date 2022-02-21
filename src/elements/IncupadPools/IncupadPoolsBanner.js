@@ -144,6 +144,27 @@ const IncupadPoolsBanner = ({ activePool }) => {
         var tokens = web3.utils.toBN(amount).toString();
         setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
       });
+      
+
+      let currentTime = new Date();
+      let currentTimeData = Number(Date.parse(currentTime) / 1000);
+
+      if (currentTimeData < StartTime) {
+        // console.log("1");
+        setstatus('Upcoming');
+
+      } else if (
+        currentTimeData < EndTime &&
+        Number(ICOcompletePercentage) != 100
+      ) {
+        // console.log("2");
+        setstatus('Ongoing');
+      } else if (currentTimeData > EndTime) {
+        // console.log("3");
+        setstatus('Closed');
+      }
+
+
 
     // // ICO start Time
     // contract.methods
