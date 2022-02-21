@@ -19,7 +19,7 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 
-import { chainRpcs } from '../../chainRPCs';
+import { chainRpcs, chainIds } from '../../chainRPCs';
 
 //import { chainRpcs } from '../../chainRPCs';
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -556,6 +556,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           window.location.reload();
         });
       } else {
+        
         window.ethereum.on('accountsChanged', async function (accounts) {
           const web3 = new Web3(
             new Web3.providers.HttpProvider(
@@ -573,10 +574,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
         });
 
         window.ethereum.on('chainChanged', (chainId) => {
-          console.log('chainId', chainId);
-          console.log('type of chainId', typeof chainId);
-
-          if (chainId != '0x61') {
+          // console.log('chainId', chainId);
+          // console.log('type of chainId', typeof chainId);
+      
+          if (chainId !=  "0x"+chainIds[activePool.chain].toString(16)) {
             settxMessage('Please Connect to "Binance Smart Chain Network"');
             setModalShow(true);
           } else {
@@ -597,6 +598,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   // console.log("ICO",ICOcompletePercentage);
 
+  
   const oneBNBprice = 1 / tokenPrice;
   // console.log("oneBNBprice", oneBNBprice);
 

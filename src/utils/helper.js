@@ -42,6 +42,14 @@ export const getAddress = () => {
   return addressArray;
 };
 
+
+export const getChains = () => {
+  let chainsArray = [];
+  poolData.map((item) => chainsArray.push(item.chain));
+  return chainsArray;
+};
+
+
 export const currentTimeData = () => {
   const currentTime = new Date();
   const currentTimeDate = Number(Date.parse(currentTime) / 1000);

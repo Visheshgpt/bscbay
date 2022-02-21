@@ -12,7 +12,8 @@ import IncupadCardPool from '../../components/IncupadCardPool';
 import { currentTimeData } from '../../utils/helper'
 
 
-import { getAddress, getFeaturedPoolsData } from '../../utils/helper';
+import { getAddress, getFeaturedPoolsData, getChains } from '../../utils/helper';
+import { chainRpcs, chainIds } from '../../chainRPCs';
  
 const IncupadFeature = () => {
   // let currentTime = new Date();
@@ -25,11 +26,20 @@ const IncupadFeature = () => {
   const [ICOcompletePercentage, setIDOcompletePercentage] = useState({});
 
   const addressArray = getAddress(); 
+  const getChainsArray = getChains(); 
 
-  async function web3apis() {
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+  // console.log("chains", getChainsArray);
+
+  async function web3apis() { 
+
+    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');  
 
     addressArray.map(async (item, index) => {
+       
+      // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');  
+      const web3 = new Web3(chainRpcs[getChainsArray[index]]);
+      // console.log("rpc", chainRpcs[getChains[index]]);
+
       const contract = new web3.eth.Contract(BSCBAYICOabi, item);
       // user MIN allocation
       const amnt = await contract.methods.minInvestment().call();

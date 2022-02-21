@@ -29,7 +29,7 @@ const getWeb3Client = async () => {
       console.log('id', id);
 
       // return web3Client;
-      if (id == 56) {
+      if (id == 56 || id == 97) {
         return web3Client; 
       } else {
         console.log('wront network message');
@@ -50,7 +50,7 @@ const getWeb3Client = async () => {
         console.log('ID', id);
 
         // return web3Client;
-        if (id == 56) {
+        if (id == 56 || id == 97) {
           return web3Client;
         } else {
           swal('Change Network to Binance Mainet');
@@ -83,7 +83,7 @@ const getWeb3Client = async () => {
       var id = await web3Client.eth.net.getId();
       console.log('netid', id);
       //  return web3Client;
-      if (id == 56) {
+      if (id == 56 || id == 97) {
         console.log('id', id);
         return web3Client;
       } else {

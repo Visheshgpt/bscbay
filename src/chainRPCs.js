@@ -13,7 +13,7 @@ export const chainRpcs = {
   };
   
   
-  export const chainId = {
+  export const chainIds = {
     bsc: 56,
     bsct: 97, 
   }; 
