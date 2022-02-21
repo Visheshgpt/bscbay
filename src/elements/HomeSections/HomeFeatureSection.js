@@ -83,9 +83,9 @@ const HomeFeatureSection = () => {
                     </a>
                   </div>
                   <div className='p-2'>
-                    <Link
+                    <a
                       className='btn-1 button-1 btn-color w-100'
-                      onClick={
+                      href={
                         'https://bscscan.com/address/0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6'
                       }>
                       <img height={20} src='./assets/file-1.png' alt='file' />
@@ -98,10 +98,10 @@ const HomeFeatureSection = () => {
                         src='../assets/arrow-2.png'
                         alt='arrow'
                       />
-                    </Link>
+                    </a>
                   </div>
                   <div className='p-2'>
-                    <Link className='btn-1 button-1 btn-color w-100'>
+                    <a className='btn-1 button-1 btn-color w-100'>
                       <img height={20} src='./assets/file-2.png' alt='file' />
                       <span className='ms-2 text-uppercase fw-bold text-small'>
                         Liquidity Locks
@@ -112,7 +112,7 @@ const HomeFeatureSection = () => {
                         src='../assets/arrow-2.png'
                         alt='arrow'
                       />
-                    </Link>
+                    </a>
                   </div>
                 </Row>
               </div>
