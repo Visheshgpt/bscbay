@@ -1,6 +1,6 @@
 export const chainRpcs = {
-    bsc: ['https://bsc-dataseed.binance.org/'],
-    bsct: ['https://data-seed-prebsc-1-s1.binance.org:8545/', 'https://data-seed-prebsc-2-s1.binance.org:8545/', 'https://data-seed-prebsc-1-s2.binance.org:8545/', 'https://data-seed-prebsc-2-s2.binance.org:8545/', 'https://data-seed-prebsc-1-s3.binance.org:8545/', 'https://data-seed-prebsc-2-s3.binance.org:8545/'], 
+    bsc: 'https://bsc-dataseed.binance.org/',
+    bsct: 'https://data-seed-prebsc-1-s1.binance.org:8545/', 
     heco: process.env.HECO_RPC || 'https://http-mainnet.hecochain.com',
     avax: process.env.AVAX_RPC || 'https://api.avax.network/ext/bc/C/rpc',
     polygon: process.env.POLYGON_RPC || 'https://polygon-rpc.com',
@@ -12,3 +12,9 @@ export const chainRpcs = {
     cronos: process.env.CRONOS_RPC || 'https://evm-cronos.crypto.org',
   };
   
+  
+  export const chainId = {
+    bsc: 56,
+    bsct: 97, 
+  }; 
+

@@ -20,7 +20,9 @@ const IncupadPoolsInformation = ({ activePool }) => {
     //     chainRpcs['bsc'][0]
     //   )
     // );
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+
+    // console.log("rpc", chainRpcs[activePool.chain]);
+    const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;

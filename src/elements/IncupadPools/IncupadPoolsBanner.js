@@ -19,6 +19,8 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 
+import { chainRpcs } from '../../chainRPCs';
+
 //import { chainRpcs } from '../../chainRPCs';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
@@ -69,10 +71,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const EndTime = activePool.finishTime;
 
   function web3apis() {
-    // const web3 = new Web3(
-    //     'https://data-seed-prebsc-1-s1.binance.org:8545/'
-    // );
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    
+    const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
@@ -148,6 +148,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
       let currentTime = new Date();
       let currentTimeData = Number(Date.parse(currentTime) / 1000);
+
 
       if (currentTimeData < StartTime) {
         // console.log("1");
@@ -272,7 +273,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
   }
 
   function progressbarApis() {
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+
+
+    const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
@@ -288,6 +291,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
       });
 
+
     // get total Users
     contract.methods
       .totalUsers()
@@ -297,6 +301,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
         settotalUsers(totalusers);
       });
 
+
     contract.methods
       .tokensForDistribution()
       .call()
@@ -304,12 +309,12 @@ const IncupadPoolsBanner = ({ activePool }) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
         const alloctkn = Number(web3.utils.fromWei(tokens, 'ether'));
-        // console.log("max", MaxDistributedTokens);
+        console.log("max", MaxDistributedTokens);
         if (MaxDistributedTokens > 0) {
           const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
             2
           );
-          // console.log("icopercent", icopercent);
+          console.log("icopercent", icopercent);
           setICOcompletePercentage(icopercent);
         }
       });

@@ -44,6 +44,7 @@ export const poolData = [
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
     soldOut: true,
     saleDate: "18 FEB' 22, 2:00 PM UTC",
+    chain: 'bsc'
   },
 
   {
@@ -91,6 +92,7 @@ export const poolData = [
     contractAddress: '0x4a29161073e0e44c808f86EE4f64a2C124d30279',
     soldOut: false,
     saleDate: "23 FEB' 22, 6:00 PM UTC",
+    chain: 'bsc'
   },
 
 
@@ -105,7 +107,7 @@ export const poolData = [
       'BSCBay combines the previous successful instances and features of DEFI and integrates them to create a new paradigm. ',
     time: 'TBA',
     startTime: 1645427156,
-    finishTime: 1645452156,
+    finishTime: 1645462156,
     chainID: '56',
     tokenDistribution: 'TBA',
     tokenPrice: 'TBA',
@@ -139,6 +141,7 @@ export const poolData = [
     contractAddress: '0xd2d02E69e07b725F4291940Ac5f80d912F7Ae9d4',
     soldOut: false,
     saleDate: "21 FEB' 22, 6:00 PM UTC",
+    chain: 'bsc'
   },
 
 
