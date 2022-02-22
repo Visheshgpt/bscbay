@@ -586,7 +586,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       progressbarApis();
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
