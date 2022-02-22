@@ -18,7 +18,7 @@ import AlertModal from '../../components/AlertModal';
 import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
-
+import { currentTimeData, currentTime } from '../../utils/helper';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -42,7 +42,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [raisedBNB, setraisedBNB] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
   const [totalUsers, settotalUsers] = useState(0);
-  const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
+  // const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
   const [userBNBbalance, setuserBNBbalance] = useState(0);
   const [userTokenalance, setuserTokenalance] = useState(0);
@@ -68,6 +68,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
   const StartTime = activePool.startTime;
   const EndTime = activePool.finishTime;
+
+  let MaxDistributedTokens = 0;
 
   function web3apis() {
     // const web3 = new Web3(
@@ -133,7 +135,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .then((amount) => {
         // console.log(amount);
         var tokens = web3.utils.toBN(amount).toString();
-        setMaxDistributedTokens(Number(web3.utils.fromWei(tokens, 'ether')));
+        MaxDistributedTokens = Number(web3.utils.fromWei(tokens, 'ether'));
       });
 
     // get DISTRIBUTED TOKENS
@@ -268,73 +270,17 @@ const IncupadPoolsBanner = ({ activePool }) => {
     }
   }
 
-  function progressbarApis() {
-    const web3 = new Web3(chainRpcs[activePool.chain]);
-
-    var contractABI = BSCBAYICOabi;
-    var contractAddress = activePool.contractAddress;
-    var contract = new web3.eth.Contract(contractABI, contractAddress);
-
-    // get BNB balance of ICO
-    contract.methods
-      .totalBNBraise()
-      .call()
-      .then((amount) => {
-        //  console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
-      });
-
-    // get total Users
-    contract.methods
-      .totalUsers()
-      .call()
-      .then((totalusers) => {
-        // console.log("totalusers", totalusers);
-        settotalUsers(totalusers);
-      });
-
-    contract.methods
-      .tokensForDistribution()
-      .call()
-      .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        const alloctkn = Number(web3.utils.fromWei(tokens, 'ether'));
-        // console.log("max", MaxDistributedTokens);
-        if (MaxDistributedTokens > 0) {
-          const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
-            2
-          );
-          // console.log("icopercent", icopercent);
-          setICOcompletePercentage(icopercent);
-        }
-      });
-
-    let currentTime = new Date();
-    let currentTimeData = Number(Date.parse(currentTime) / 1000);
-
-    if (currentTimeData < StartTime) {
-      // console.log("1");
-      setstatus('Upcoming');
-    } else if (
-      currentTimeData < EndTime &&
-      Number(ICOcompletePercentage) != 100
-    ) {
-      // console.log("2");
-      setstatus('Ongoing');
-    } else if (currentTimeData > EndTime) {
-      // console.log("3");
-      setstatus('Closed');
-    }
-  }
-
   useEffect(() => {
-    if (allocatedToken && MaxDistributedTokens) {
+    const a = allocatedToken;
+    const b = MaxDistributedTokens;
+    const c = a + b;
+    if (allocatedToken >= 0 && MaxDistributedTokens > 0) {
       const icopercent = (
         (allocatedToken / MaxDistributedTokens) *
         100
       ).toFixed(2);
+      console.log('value = ', icopercent);
+      console.log('asdf');
       setICOcompletePercentage(icopercent);
     }
   }, [allocatedToken, MaxDistributedTokens]);
@@ -567,7 +513,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           console.log('chainId', chainId);
           console.log('type of chainId', typeof chainId);
 
-          if (chainId !=  "0x"+chainIds[activePool.chain].toString(16)) {
+          if (chainId != '0x' + chainIds[activePool.chain].toString(16)) {
             settxMessage('Please Connect to "Binance Smart Chain Network"');
             setModalShow(true);
           } else {
@@ -578,6 +524,70 @@ const IncupadPoolsBanner = ({ activePool }) => {
     }
     web3apis();
   }, [address]);
+
+  function progressbarApis() {
+    const web3 = new Web3(chainRpcs[activePool.chain]);
+
+    var contractABI = BSCBAYICOabi;
+    var contractAddress = activePool.contractAddress;
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    // get BNB balance of ICO
+    contract.methods
+      .totalBNBraise()
+      .call()
+      .then((amount) => {
+        //  console.log(amount);
+        var tokens = web3.utils.toBN(amount).toString();
+        setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
+
+    // get total Users
+    contract.methods
+      .totalUsers()
+      .call()
+      .then((totalusers) => {
+        // console.log("totalusers", totalusers);
+        settotalUsers(totalusers);
+      });
+
+    contract.methods
+      .tokensForDistribution()
+      .call()
+      .then((amount) => {
+        // console.log(amount);
+        var tokens = web3.utils.toBN(amount).toString();
+        const alloctkn = Number(web3.utils.fromWei(tokens, 'ether'));
+        // console.log("max", MaxDistributedTokens);
+        if (alloctkn >= 0 && MaxDistributedTokens > 0) {
+          const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
+            2
+          );
+          const a = icopercent;
+
+          const b = a;
+          // console.log("icopercent", icopercent);
+          setICOcompletePercentage(icopercent);
+        }
+      });
+
+    let currentTime = new Date();
+    let currentTimeData = Number(Date.parse(currentTime) / 1000);
+
+    if (currentTimeData < StartTime) {
+      // console.log("1");
+      setstatus('Upcoming');
+    } else if (
+      currentTimeData < EndTime &&
+      Number(ICOcompletePercentage) != 100
+    ) {
+      // console.log("2");
+      setstatus('Ongoing');
+    } else if (currentTimeData > EndTime) {
+      // console.log("3");
+      setstatus('Closed');
+    }
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -592,8 +602,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
   // console.log("oneBNBprice", oneBNBprice);
 
   //time
-  let currentTime = new Date();
-  let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   // if (currentTimeData < StartTime) {
   //   activePool.status = 'Upcoming';

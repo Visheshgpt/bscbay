@@ -33,6 +33,7 @@ const IncupadBannerSection = () => {
                 <a
                   href="https://my.forms.app/crptoprojects/bscbaylaunch"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={item.img} alt={item.title} />
                 </a>

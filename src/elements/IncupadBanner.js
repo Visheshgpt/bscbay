@@ -55,7 +55,7 @@ function IncupadBanner({ id }) {
                         <div className='icon-box-incupad logos'>
                           <img src={item.img} alt={item.title} />
                         </div>
-                        <h2 className='mt-4 mb-2'>{item.title}</h2>
+                        <h4 className='mt-4 mb-2'>{item.title}</h4>
                         <TimerSection
                           startTime={item.startTime}
                           finishTime={item.finishTime}
@@ -74,7 +74,7 @@ function IncupadBanner({ id }) {
                         <Link to={`/launchpad/${item.id}`} key={item.id}>
                           <div
                             aria-label='button'
-                            className='btn btn-outline-primary mt-2'>
+                            className='btn btn-sm btn-outline-primary mt-2'>
                             View Pool
                           </div>
                         </Link>

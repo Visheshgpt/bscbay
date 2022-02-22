@@ -54,3 +54,7 @@ export const currentTimeData = () => {
   const currentTimeDate = Number(Date.parse(currentTime) / 1000);
   return currentTimeDate;
 };
+
+export const currentTime = () => {
+  return new Date();
+};
