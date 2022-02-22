@@ -21,16 +21,16 @@ const IncupadFeature = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const random = Math.floor(Math.random(1, 9) * 100);
-      const payload = {
-        1: random,
-      };
-      dispatch(updateICOCompletePercentage(payload));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // const random = Math.floor(Math.random(1, 9) * 100);
+  //     const payload = {
+  //       1: random,
+  //     };
+  //     dispatch(updateICOCompletePercentage(payload));
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // async function web3apis() {
   //   const web3 = new Web3('https://bsc-dataseed1.binance.org:443');

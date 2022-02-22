@@ -152,8 +152,8 @@ export const poolData = [
     description:
       'BSCBay combines the previous successful instances and features of DEFI and integrates them to create a new paradigm. ',
     time: 'TBA',
-    startTime: 1645461309,
-    finishTime: 1645466309,
+    startTime: 1645529059,
+    finishTime: 1655529059,
     chainID: '56',
     chain: 'bsct',
     tokenDistribution: 'TBA',
