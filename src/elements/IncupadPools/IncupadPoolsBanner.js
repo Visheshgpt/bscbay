@@ -18,7 +18,6 @@ import AlertModal from '../../components/AlertModal';
 import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
-import { currentTimeData, currentTime } from '../../utils/helper';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -156,7 +155,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       setstatus('Upcoming');
     } else if (
       currentTimeData < EndTime &&
-      Number(ICOcompletePercentage) != 100
+      Number(ICOcompletePercentage) !== 100
     ) {
       // console.log("2");
       setstatus('Ongoing');
@@ -271,16 +270,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
   }
 
   useEffect(() => {
-    const a = allocatedToken;
-    const b = MaxDistributedTokens;
-    const c = a + b;
     if (allocatedToken >= 0 && MaxDistributedTokens > 0) {
       const icopercent = (
         (allocatedToken / MaxDistributedTokens) *
         100
       ).toFixed(2);
-      console.log('value = ', icopercent);
-      console.log('asdf');
       setICOcompletePercentage(icopercent);
     }
   }, [allocatedToken, MaxDistributedTokens]);
@@ -602,6 +596,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
   // console.log("oneBNBprice", oneBNBprice);
 
   //time
+  let currentTime = new Date();
+  let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   // if (currentTimeData < StartTime) {
   //   activePool.status = 'Upcoming';
