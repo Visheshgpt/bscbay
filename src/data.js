@@ -327,7 +327,7 @@ export const poolData = [
   //   outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
   //   videolink: '../../..//assets/bscbayvideo.mp4',
   //   contractAddress: '0x292066abCcdAf96ef045bFAe17018adAE9B9142b',
-  //   soldOut: false,
+  //   soldOut: true,
   // },
 ];
 
