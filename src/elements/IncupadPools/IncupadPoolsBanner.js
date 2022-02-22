@@ -19,7 +19,8 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 
-//import { chainRpcs } from '../../chainRPCs';
+import { chainRpcs, chainIds } from '../../chainRPCs';
+
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
 const IncupadPoolsBanner = ({ activePool }) => {
@@ -72,7 +73,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
     // const web3 = new Web3(
     //     'https://data-seed-prebsc-1-s1.binance.org:8545/'
     // );
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
@@ -268,7 +269,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   }
 
   function progressbarApis() {
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
@@ -547,11 +548,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
         });
       } else {
         window.ethereum.on('accountsChanged', async function (accounts) {
-          const web3 = new Web3(
-            new Web3.providers.HttpProvider(
-              'https://data-seed-prebsc-2-s1.binance.org:8545/'
-            )
-          );
+          // const web3 = new Web3(
+          //   new Web3.providers.HttpProvider(
+          //     'https://data-seed-prebsc-2-s1.binance.org:8545/'
+          //   )
+          // );
 
           selectedAccount = accounts[0];
           address = selectedAccount;
@@ -566,7 +567,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           console.log('chainId', chainId);
           console.log('type of chainId', typeof chainId);
 
-          if (chainId != '0x61') {
+          if (chainId !=  "0x"+chainIds[activePool.chain].toString(16)) {
             settxMessage('Please Connect to "Binance Smart Chain Network"');
             setModalShow(true);
           } else {
