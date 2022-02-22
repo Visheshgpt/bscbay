@@ -532,8 +532,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .call()
       .then((amount) => {
         //  console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
+        const tokens = web3.utils.toBN(amount).toString();
+        const bnb = Number(web3.utils.fromWei(tokens, 'ether'));
+        if (bnb !== raisedBNB) setraisedBNB(bnb);
       });
 
     // get total Users
@@ -542,7 +543,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       .call()
       .then((totalusers) => {
         // console.log("totalusers", totalusers);
-        settotalUsers(totalusers);
+        if (totalUsers !== totalusers) settotalUsers(totalusers);
       });
 
     contract.methods
@@ -557,11 +558,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
           const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
             2
           );
-          const a = icopercent;
-
-          const b = a;
-          // console.log("icopercent", icopercent);
-          setICOcompletePercentage(icopercent);
+          if (ICOcompletePercentage !== icopercent)
+            setICOcompletePercentage(icopercent);
         }
       });
 
@@ -573,7 +571,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       setstatus('Upcoming');
     } else if (
       currentTimeData < EndTime &&
-      Number(ICOcompletePercentage) != 100
+      Number(ICOcompletePercentage) !== 100
     ) {
       // console.log("2");
       setstatus('Ongoing');
@@ -590,25 +588,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // console.log("ICO",ICOcompletePercentage);
-
   const oneBNBprice = 1 / tokenPrice;
-  // console.log("oneBNBprice", oneBNBprice);
 
   //time
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
-
-  // if (currentTimeData < StartTime) {
-  //   activePool.status = 'Upcoming';
-  // } else if (
-  //   currentTimeData < EndTime &&
-  //   Number(ICOcompletePercentage) != 100
-  // ) {
-  //   activePool.status = 'Ongoing';
-  // } else if (currentTimeData > EndTime) {
-  //   activePool.status = 'Closed';
-  // }
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>

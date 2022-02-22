@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const addressArray = poolsdata.address;
 
-    addressArray.map(async (item, index) => {
+    addressArray.map(async (item) => {
       const web3 = new Web3(item.chainUrl);
       const contract = new web3.eth.Contract(BSCBAYICOabi, item.address);
       const amnt = await contract.methods.minInvestment().call();

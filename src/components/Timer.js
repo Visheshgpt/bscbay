@@ -18,6 +18,10 @@ function Timer({ initialcount }) {
       if (secondsRemaining > 0) {
         setSecondsRemaining(secondsRemaining - 1);
       } else {
+        if (secondsRemaining === 0) {
+          setSecondsRemaining(secondsRemaining - 1);
+          window.location.reload();
+        }
         setStatus();
       }
     },

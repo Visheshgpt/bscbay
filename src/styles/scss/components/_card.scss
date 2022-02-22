@@ -167,6 +167,13 @@
             }
         }
     }
+
+    @include respond('phone') {
+        &-featured { 
+            width: 90%;
+            margin-right: 15px;
+        }
+    }
     
 }
 

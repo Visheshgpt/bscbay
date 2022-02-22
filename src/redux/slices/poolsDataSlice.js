@@ -28,6 +28,8 @@ const initialState = {
   minAllocation: {},
   maxAllocation: {},
   ICOCompletePercentage: {},
+  maxDistributionTokens: {},
+  allocationTokens: {},
 };
 
 export const poolsDataSlice = createSlice({
@@ -46,7 +48,18 @@ export const poolsDataSlice = createSlice({
         ...action.payload,
       };
     },
-
+    addMaxDistributionTokens: (state, action) => {
+      state.maxDistributionTokens = {
+        ...state.maxDistributionTokens,
+        ...action.payload,
+      };
+    },
+    addAllocationTokens: (state, action) => {
+      state.allocationTokens = {
+        ...state.allocationTokens,
+        ...action.payload,
+      };
+    },
     updateICOCompletePercentage: (state, action) => {
       state.ICOCompletePercentage = {
         ...state.ICOCompletePercentage,
@@ -58,6 +71,8 @@ export const poolsDataSlice = createSlice({
 
 export const {
   updateICOCompletePercentage,
+  addAllocationTokens,
+  addMaxDistributionTokens,
   addMinAllocation,
   addMaxAllocation,
   addICOCompletePercentage,
