@@ -10,8 +10,7 @@ function Search({ show, onHide, contractadd }) {
   const [message, setMessage] = useState('');
 
   async function checkWhitelist() {
-    
-  const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = contractadd;
@@ -45,7 +44,7 @@ function Search({ show, onHide, contractadd }) {
           <div className='my-2'>{message}</div>
         </div>
         <div className='d-flex justify-content-center'>
-          <button className='btn btn_primary mt-2' onClick={checkWhitelist}>
+          <button className='btn btn-primary mt-2' onClick={checkWhitelist}>
             Check Whitelist
           </button>
         </div>

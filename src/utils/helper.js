@@ -1,4 +1,5 @@
 import { poolData } from '../data';
+import { chainRpcs } from '../chainRPCs';
 export const getMonth = (num) => {
   const arr = [
     'Jan',
@@ -38,7 +39,13 @@ export const getFeaturedPoolsData = () => {
 
 export const getAddress = () => {
   let addressArray = [];
-  poolData.map((item) => addressArray.push(item.contractAddress));
+  poolData.map((item) =>
+    addressArray.push({
+      address: item.contractAddress,
+      id: item.id,
+      chainUrl: chainRpcs[item.chain],
+    })
+  );
   return addressArray;
 };
 

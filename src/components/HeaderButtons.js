@@ -52,7 +52,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
         )}
 
         <div className='b'>
-          <a href='#'>
+          <div>
             <div style={{ fontSize: '13px' }} className='btn-rounded'>
               {address.slice(0, 5)}...{address.slice(-4)}
               <svg
@@ -67,7 +67,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
                 <path d='M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z'></path>
               </svg>
             </div>
-          </a>
+          </div>
         </div>
         <div className='icons'>
           <img

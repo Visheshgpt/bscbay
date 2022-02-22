@@ -21,7 +21,7 @@ const IncupadPools = () => {
     <section>
       <IncupadPoolsBanner activePool={activePool} />
       <IncupadPoolsInformation activePool={activePool} />
-    </section> 
+    </section>
   ) : (
     <PageNotFound />
   );

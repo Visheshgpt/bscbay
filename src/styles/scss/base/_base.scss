@@ -189,3 +189,7 @@ ul {
 .owl-item >div{
   height: 100%;
 }
+
+.slick-prev:before, .slick-next:before {
+  color: $color-primary !important;
+}

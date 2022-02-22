@@ -1,6 +1,5 @@
-import { currentTimeData } from '../utils/helper';
-import Timer from './Timer';
 import { ProgressBar } from 'react-bootstrap';
+import TimerSection from './TimeSection';
 
 function IncupadCardPool({
   item,
@@ -24,51 +23,32 @@ function IncupadCardPool({
           {item.description.length > 120 && '...'}
         </p>
       )}
-  
+
       <div className='card-time'>
         <img src='./assets/is-time-1.svg' alt='time icon' />
       </div>
-      {currentTimeData() < item.startTime ? (
-        <>
-          <span className='card-time-status'>Starts in</span>
-          <span className='text-white fw-500 mb-4'>
-            <Timer initialcount={item.startTime - currentTimeData()} />
-          </span>
-        </>
-      ) : currentTimeData() < item.finishTime &&
-        Number(item.ICOcompletePercentage) !== 100 ? (
-        <>
-          <span className='card-time-status'>Closes in</span>
-          <span className='text-white fw-500 mb-4'>
-            <Timer initialcount={item.finishTime - currentTimeData()} />
-          </span>
-        </>
-      ) : (
-        <>
-          {/* <span>{differceTime}</span> */}
-          <span className='card-time-status card-time-status-1 mb-4'>
-            Closed{' '}
-          </span>
-        </>
-      )}
+      <TimerSection
+        startTime={item.startTime}
+        finishTime={item.finishTime}
+        ICOcompletePercentage={ICOcompletePercentage}
+      />
 
       <div className='incupad-upcoming-pool-card-lower'>
-        {ICOcompletePercentage[item.id] && (
+        {ICOcompletePercentage && (
           <ProgressBar
-            now={ICOcompletePercentage[item.id]}
+            now={ICOcompletePercentage}
             className='progress-bar-sectionn'
-            label={`${Math.round(ICOcompletePercentage[item.id])}%`}
+            label={`${Math.round(ICOcompletePercentage)}%`}
           />
         )}
 
         <div className='min-allocation'>
           <span className='lower-card-name'>Min Allocation</span>
-
-          {minAllocation && <span>{minAllocation[item.id]} BNB</span>}
+          {minAllocation && <span>{minAllocation} BNB</span>}
         </div>
         <div className='min-allocation'>
           <span className='lower-card-name'>Max Allocation</span>
-          {maxAllocation && <span>{maxAllocation[item.id]} BNB</span>}
+          {maxAllocation && <span>{maxAllocation} BNB</span>}
         </div>
         <div className='min-allocation'>
           <span className='lower-card-name'>Access Type</span>
