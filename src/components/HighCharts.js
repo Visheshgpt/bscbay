@@ -32,10 +32,10 @@ function HighCharts({ setTokenomics }) {
             name: 'Presale',
             color: '#ffd366',
             y: 400000000,
-            selected: false,
+            selected: false, 
           },
           {
-            name: 'Liquidity',
+            name: 'Liquidities and Burn',
             color: '#222426',
             y: 400000000,
             selected: false,

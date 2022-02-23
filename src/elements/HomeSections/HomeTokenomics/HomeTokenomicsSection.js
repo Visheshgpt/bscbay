@@ -50,7 +50,7 @@ const HomeTokenomicsSection = () => {
                       <b>Auto $USDT</b> rewards directly into their wallets.
                     </li>
                     <li>
-                      <b>$BSCB is reward</b> distribution strategy works in the
+                      <b>$BSCBs reward</b> distribution strategy works in the
                       following ways:
                     </li>
                   </ul>

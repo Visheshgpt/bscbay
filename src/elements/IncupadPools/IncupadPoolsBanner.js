@@ -41,7 +41,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
   const [raisedBNB, setraisedBNB] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
   const [totalUsers, settotalUsers] = useState(0);
-  // const [MaxDistributedTokens, setMaxDistributedTokens] = useState(0);
+  const [HardCap, setHardCap] = useState(0);
   const [allocatedToken, setallocatedToken] = useState(0);
   const [userBNBbalance, setuserBNBbalance] = useState(0);
   const [userTokenalance, setuserTokenalance] = useState(0);
@@ -137,6 +137,17 @@ const IncupadPoolsBanner = ({ activePool }) => {
         MaxDistributedTokens = Number(web3.utils.fromWei(tokens, 'ether'));
       });
 
+       // get Hard Cap TOKENS
+    contract.methods
+    .maxDistributedTokenAmount()
+    .call()
+    .then((amount) => {
+      // console.log(amount);
+      var tokens = web3.utils.toBN(amount).toString();
+      setHardCap(Number(web3.utils.fromWei(tokens, 'ether')));
+    });
+      
+
     // get DISTRIBUTED TOKENS
     contract.methods
       .tokensForDistribution()
@@ -155,11 +166,11 @@ const IncupadPoolsBanner = ({ activePool }) => {
       setstatus('Upcoming');
     } else if (
       currentTimeData < EndTime &&
-      Number(ICOcompletePercentage) !== 100
+      Number(ICOcompletePercentage) != 100
     ) {
       // console.log("2");
       setstatus('Ongoing');
-    } else if (currentTimeData > EndTime) {
+    } else if (currentTimeData > EndTime || Number(ICOcompletePercentage) == 100 ) {
       // console.log("3");
       setstatus('Closed');
     }
@@ -716,7 +727,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   <h5>Raised</h5>
                   <h4>
                     {raisedBNB.toFixed(0)} /{' '}
-                    {(MaxDistributedTokens * tokenPrice).toFixed(0)}{' '}
+                    {(HardCap * tokenPrice).toFixed(0)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -777,7 +788,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
                         Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(MaxDistributedTokens * tokenPrice).toFixed(0)} BNB
+                        {(HardCap * tokenPrice).toFixed(0)} BNB
                       </span>
                     </div>
                     <div>
@@ -869,7 +880,8 @@ const IncupadPoolsBanner = ({ activePool }) => {
 
               {!claimenabled &&
                 currentTimeData < EndTime &&
-                currentTimeData > StartTime && (
+                currentTimeData > StartTime &&
+                Number(ICOcompletePercentage) != 100 && (
                   <div className='invest__wrapper flexCenter w-100 mt-3'>
                     <div className='invest_input'>
                       <input

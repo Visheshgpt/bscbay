@@ -169,7 +169,7 @@ export const dataArr = [
   },
   {
     title: 'Auto Buy-Back and Burn',
-    text: 'BSCB is a deflationary token and 1% will be used to buyback the token and burn the supply. The is will continuously reduce the supply and improve the over health of the ecosystem. ',
+    text: 'BSCB is a deflationary token and 1% will be used to buyback the token and burn the supply. This will continuously reduce the supply and improve the over health of the ecosystem. ',
   },
   {
     title: `Auto $USDT Distribution`,

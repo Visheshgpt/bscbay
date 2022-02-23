@@ -34,8 +34,8 @@ function MobileHighCharts({ setTokenomics }) {
             y: 400000000,
             selected: false,
           },
-          {
-            name: 'Liquidity',
+          { 
+            name: 'Liquidities and Burn',
             color: '#222426',
             y: 400000000,
             selected: false,

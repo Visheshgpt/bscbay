@@ -245,7 +245,7 @@ const WalletSectionOne = () => {
         <div className="card__wrapper card__two">
           <div className="card__50">
             <h4>
-              <span className="text-primary">0.009</span> USDT
+              <span className="text-primary">0</span> USDT
             </h4>
             <h4>USDT Rewarded To You</h4>
           </div>
@@ -265,7 +265,7 @@ const WalletSectionOne = () => {
               <h4>Last Payout Time</h4>
               <h4>
                 <span className="text-primary">
-                  Wed, 09 Feb 2022 21:01:47 GMT
+                TBA
                 </span>
               </h4>
             </div>
@@ -273,7 +273,7 @@ const WalletSectionOne = () => {
               <h4>Upcoming Payout Unlock At</h4>
               <h4>
                 <span className="text-primary">
-                  Wed, 09 Feb 2022 23:01:47 GMT
+                 TBA
                 </span>
               </h4>
             </div>
@@ -297,7 +297,7 @@ const WalletSectionOne = () => {
               Bay Holders
             </h3>
             <h1>
-              <span className="text-primary">257100.09</span> USDT
+              <span className="text-primary">0.000</span> USDT
             </h1>
           </div>
         </div>
@@ -306,7 +306,7 @@ const WalletSectionOne = () => {
           <div className="card__100 flex-row justify-content-between p-5 align-items-center">
             <h6>Total Buy-Back and Burnt</h6>
             <h6>
-              <span className="text-primary">257100.09 | 1,000,000</span> BSCB
+              <span className="text-primary">0.000 | 0.000</span> BSCB
             </h6>
           </div>
         </div>
@@ -317,19 +317,19 @@ const WalletSectionOne = () => {
           <div className="card__33">
             <h4>No Of Holders</h4>
             <h4>
-              <span className="text-primary">8000</span>
+              <span className="text-primary">000</span>
             </h4>
           </div>
           <div className="card__33">
             <h4>Total Liquidity Pool</h4>
             <h4>
-              <span className="text-primary">$ 100,000 | BNB 1200</span>
+              <span className="text-primary">$ 0.000 | BNB 0</span>
             </h4>
           </div>
           <div className="card__33">
             <h4>BSCB Price in Mn</h4>
             <h4>
-              <span className="text-primary">$0.005</span>
+              <span className="text-primary">$0.000</span>
             </h4>
           </div>
         </div>

@@ -5,7 +5,7 @@ import MobileHighCharts from '../../../components/MobileHightCharts';
 
 const data = [
   { name: 'Presale', value: '42%' },
-  { name: 'Liquidity', value: '43%' },
+  { name: 'Liquidities and Burn', value: '43%' },
   { name: 'Marketing & Development', value: '4%' },
   { name: 'Team', value: '4%' },
   { name: 'Exchanges & Partnerships', value: '2%' },
