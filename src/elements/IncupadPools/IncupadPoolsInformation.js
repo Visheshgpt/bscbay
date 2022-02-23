@@ -8,6 +8,8 @@ import { chainRpcs } from '../../chainRPCs';
 import video from '../../assets/video/video.mp4';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
+// import { chainRpcs, chainIds } from '../../chainRPCs';
+
 const IncupadPoolsInformation = ({ activePool }) => {
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
@@ -20,7 +22,8 @@ const IncupadPoolsInformation = ({ activePool }) => {
     //     chainRpcs['bsc'][0]
     //   )
     // );
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    const web3 = new Web3(chainRpcs[activePool.chain]);
+    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
 
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
