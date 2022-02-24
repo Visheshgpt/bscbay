@@ -35,133 +35,87 @@ const WalletSectionOne = () => {
     },
   ];
 
-  const [maxTransactionAmount, setmaxTransactionAmount] = useState(0);
-  const [TotalbnbinrewardPool, setTotalbnbinrewardPool] = useState(0);
-  const [LMbalanceLPpool, setLMbalanceLPpool] = useState(0);
   const [oneBNBprice, setoneBNBprice] = useState(0);
   const [LPbnb, setLPbnb] = useState(0);
   const [circulatingSupply, setcirculatingSupply] = useState(0);
-  const [LMBalanceuser, setLMBalanceuser] = useState(0);
-  const [bnbreward, setbnbreward] = useState(0);
-  const [nextAvailableclaim, setnextAvailableclaim] = useState(0);
-  const [user, setUser] = useState(false);
-  const [value, setValue] = useState(0);
-  const [previousbnbreward, setpreviousbnbreward] = useState(0);
-  const [totaldistributedBnb, settotaldistributedBnb] = useState(0);
-  const [userclaimBnb, setuserclaimBnb] = useState(0);
-  const [totalreinvested, settotalreinvested] = useState(0);
-  const [userreinvested, setuserreinvested] = useState(0);
-  const [rewardhardCap, setrewardhardCap] = useState(0);
+  const [totalUSDTdistributed, settotalUSDTdistributed] = useState(0);
+  const [holders, setholders] = useState(0);
+  const [buyback, setbuyback] = useState(0);
+  const [userInfo, setuserInfo] = useState({});
+  const [userbalance, setuserbalance] = useState(0);
+  const [Lpbscbay, setLpbscbay] = useState(0);
 
-  function web3apis() {
-    let address = window.sessionStorage.getItem("walletAddress");
 
-    if (!address) return;
+  function web3apis2() {
+
     const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
 
     var contractABI = BSCBAYabi;
-    var contractAddress = "0x8b4202C2026C77e99f84805644bdcE2B9541598c";
+    var contractAddress = "0x2c5508FbbFAE53947d0e7FE708b16100cF04f6C0";
     var contract = new web3.eth.Contract(contractABI, contractAddress);
 
-    contract.methods
-      ._maxTxAmount()
-      .call()
-      .then((amount) => {
-        var gwei = web3.utils.toBN(amount).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setmaxTransactionAmount(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    web3.eth
-      .getBalance("0x8b4202C2026C77e99f84805644bdcE2B9541598c")
-      .then((balance) => {
-        var tokens = web3.utils.toBN(balance).toString();
-        setTotalbnbinrewardPool(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    // total claimed BNb
-    contract.methods
-      .totalClaimedBNB()
+      // total USDT distributed
+      contract.methods
+      .getTotalDividendsDistributed()
       .call()
       .then((amount) => {
         var tokens = web3.utils.toBN(amount).toString();
-        settotaldistributedBnb(Number(web3.utils.fromWei(tokens, "ether")));
+        settotalUSDTdistributed(Number(web3.utils.fromWei(tokens, "ether")));
       });
 
-    // user claimed BNb
-    contract.methods
-      .userClaimedBNB(address)
+      // total number of holder
+      contract.methods
+      .getNumberOfDividendTokenHolders()
+      .call()
+      .then((holders) => {
+        setholders(Number(holders));
+      });
+
+      // total Buyback
+      contract.methods
+      .totalbuyback()
       .call()
       .then((amount) => {
         var tokens = web3.utils.toBN(amount).toString();
-        setuserclaimBnb(Number(web3.utils.fromWei(tokens, "ether")));
+        setbuyback(Number(web3.utils.fromWei(tokens, "ether")));
       });
 
-    // total reinvested bnb
-    contract.methods
-      .totalreinvested()
-      .call()
-      .then((amount) => {
-        var gwei = web3.utils.toBN(amount).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        settotalreinvested(Number(web3.utils.fromWei(tokens, "ether")));
-      });
+      // get TotalBNB in liquidity Pool
+      var wrappednBNBABI = [
+        {
+          constant: true,
+          inputs: [{ name: "", type: "address" }],
+          name: "balanceOf",
+          outputs: [{ name: "", type: "uint256" }],
+          payable: false,
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
+      var wrappedBNBcontractAddress =
+        "0xae13d989dac2f0debff460ac112a837c89baa7cd";
 
-    // user reinvested
-    contract.methods
-      .userreinvested(address)
-      .call()
-      .then((amount) => {
-        var gwei = web3.utils.toBN(amount).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setuserreinvested(Number(web3.utils.fromWei(tokens, "ether")));
-      });
+      var wrappedBNBcontract = new web3.eth.Contract(
+        wrappednBNBABI,
+        wrappedBNBcontractAddress
+      );
 
-    // get reward Hard CAP limit
-    contract.methods
-      .rewardHardcap()
-      .call()
-      .then((balance) => {
-        var tokens = web3.utils.toBN(balance).toString();
-        setrewardhardCap(Number(web3.utils.fromWei(tokens, "ether")));
-      });
+      wrappedBNBcontract.methods
+        .balanceOf("0xD28876147e4a53D4e0E602868642f54b64e91D9c")
+        .call()
+        .then((balance) => {
+          var tokens = web3.utils.toBN(balance).toString();
+          setLPbnb(Number(web3.utils.fromWei(tokens, "ether")));
+        });   
 
-    // get TotalBNB in liquidity Pool
-    var wrappednBNBABI = [
-      {
-        constant: true,
-        inputs: [{ name: "", type: "address" }],
-        name: "balanceOf",
-        outputs: [{ name: "", type: "uint256" }],
-        payable: false,
-        stateMutability: "view",
-        type: "function",
-      },
-    ];
-    var wrappedBNBcontractAddress =
-      "0xae13d989dac2f0debff460ac112a837c89baa7cd";
 
-    var wrappedBNBcontract = new web3.eth.Contract(
-      wrappednBNBABI,
-      wrappedBNBcontractAddress
-    );
-
-    wrappedBNBcontract.methods
-      .balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938")
+     // get token Balance in LP
+      contract.methods
+      .balanceOf("0xD28876147e4a53D4e0E602868642f54b64e91D9c")
       .call()
       .then((balance) => {
         var tokens = web3.utils.toBN(balance).toString();
-        setLPbnb(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    // get token in LP
-    contract.methods
-      .balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938")
-      .call()
-      .then((balance) => {
-        var gwei = web3.utils.toBN(balance).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setLMbalanceLPpool(Number(web3.utils.fromWei(tokens, "ether")));
+        setLpbscbay(Number(web3.utils.fromWei(tokens, "ether")));
       });
 
     //  circulating Supply LM token
@@ -169,55 +123,89 @@ const WalletSectionOne = () => {
       .balanceOf("0x000000000000000000000000000000000000dEaD")
       .call()
       .then((balance) => {
-        var gwei = web3.utils.toBN(balance).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
+        var tokens = web3.utils.toBN(balance).toString();
         var csupply =
           Number(1000000) - Number(web3.utils.fromWei(tokens, "ether"));
         setcirculatingSupply(csupply);
       });
 
-    // fetch latest 1 BNB price
-    const CoinGeckoClient = new CoinGecko();
-    // fetch price of 1 BNB
-    CoinGeckoClient.simple
-      .price({
-        ids: ["binancecoin"],
-        vs_currencies: ["usd"],
-      })
-      .then((data) => {
-        setoneBNBprice(Number(data.data.binancecoin.usd));
-      });
+      // fetch latest 1 BNB price
+      const CoinGeckoClient = new CoinGecko();
+      // fetch price of 1 BNB
+      CoinGeckoClient.simple
+        .price({
+          ids: ["binancecoin"],
+          vs_currencies: ["usd"],
+        })
+        .then((data) => {
+          setoneBNBprice(Number(data.data.binancecoin.usd));
+        });  
+  
 
-    // LM BALANCE user
-    contract.methods
+  }
+
+ function web3apis3() {
+  let address = window.sessionStorage.getItem('walletAddress');
+
+   if (address) {
+
+    // if (!address) return;
+    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+    var contractABI = BSCBAYabi;
+    var contractAddress = "0x2c5508FbbFAE53947d0e7FE708b16100cF04f6C0";
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+     
+    // user Balance
+      contract.methods
       .balanceOf(address)
       .call()
-      .then((balance) => {
-        var gwei = web3.utils.toBN(balance).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setLMBalanceuser(web3.utils.fromWei(tokens, "ether"));
+      .then((amount) => {
+        var tokens = web3.utils.toBN(amount).toString();
+        setuserbalance(Number(web3.utils.fromWei(tokens, "ether")));
       });
 
-    contract.methods
-      .calculateBNBReward(address)
+     
+      // total number of holder
+      contract.methods
+      .getAccountDividendsInfo(address)
       .call()
-      .then((balance) => {
-        var tokens = web3.utils.toBN(balance).toString();
-        setbnbreward(Number(web3.utils.fromWei(tokens, "ether")));
-      });
+      .then((userdetails) => {
+        console.log("UserInfo", userdetails);
+        console.log("typeof",typeof userdetails);
+        // setuserInfo(userdetails);
+        const obj = {};
+        let userpending =  Number(web3.utils.fromWei(web3.utils.toBN(userdetails[3]).toString(), "ether"))
+        let usertotalclaimed = Number(web3.utils.fromWei(web3.utils.toBN(userdetails[4]).toString(), "ether"))
 
-    // next Available Claim Date API
-
-    contract.methods
-      .nextAvailableClaimDate(address)
-      .call()
-      .then((time) => {
-        setnextAvailableclaim(time);
-        if (time == 0) {
-          setUser(true);
-        }
+        obj["pending"] = userpending; 
+        obj["claimed"] = usertotalclaimed;
+        obj["queue"] = userdetails[2];
+        obj["lastclaim"] = userdetails[5];
+        obj["nextclaim"] = userdetails[6];
+        setuserInfo(obj);
       });
-  }
+   }  
+
+
+ }
+
+
+useEffect(() => {
+  web3apis3();
+},[])
+
+
+useEffect(() => {
+  web3apis2();
+},[])
+
+
+// let priceperToken = (((1000000 * LPbnb) / Lpbscbay) * oneBNBprice) / 1000000;
+let permillbcbs = ((1000000 * LPbnb) / Lpbscbay) * oneBNBprice;
+console.log("pmb", permillbcbs);
+
+
 
   return (
     <div>
@@ -245,17 +233,17 @@ const WalletSectionOne = () => {
         <div className="card__wrapper card__two">
           <div className="card__50">
             <h4>
-              <span className="text-primary">0</span> USDT
+              <span className="text-primary">{Number(userInfo.claimed).toFixed(2)}</span> USDT
             </h4>
             <h4>USDT Rewarded To You</h4>
           </div>
           <div className="card__50">
             <h4>
-              <span className="text-primary">0.000</span> USDT
+              <span className="text-primary">{Number(userInfo.pending).toFixed(2)}</span> USDT
             </h4>
             <h6>Pending USDT Payout</h6>
             <button className="card__button">Claim Now</button>
-            <span className="card__wait">(Or wait in queue: 7878)</span>
+            <span className="card__wait">(Or wait in queue: {userInfo.queue})</span>
           </div>
         </div>
         {/* Second Card Section */}
@@ -265,7 +253,8 @@ const WalletSectionOne = () => {
               <h4>Last Payout Time</h4>
               <h4>
                 <span className="text-primary">
-                TBA
+                 {/* {userInfo.lastclaim} */}
+                 {new Date(userInfo.lastclaim* 1000).toLocaleString("en-US",{weekday: "long"})}, {new Date(userInfo.lastclaim* 1000).toLocaleString("en-US",{month: "long"})} {new Date(userInfo.lastclaim* 1000).toLocaleString("en-US",{day: "numeric"})}, {new Date(userInfo.lastclaim* 1000).toLocaleString("en-US",{year: "numeric"})}  {new Date(userInfo.lastclaim * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
                 </span>
               </h4>
             </div>
@@ -273,7 +262,8 @@ const WalletSectionOne = () => {
               <h4>Upcoming Payout Unlock At</h4>
               <h4>
                 <span className="text-primary">
-                 TBA
+                 {/* {userInfo.nextclaim} */}
+                 {new Date(userInfo.nextclaim* 1000).toLocaleString("en-US",{weekday: "long"})}, {new Date(userInfo.nextclaim* 1000).toLocaleString("en-US",{month: "long"})} {new Date(userInfo.nextclaim* 1000).toLocaleString("en-US",{day: "numeric"})}, {new Date(userInfo.nextclaim* 1000).toLocaleString("en-US",{year: "numeric"})}  {new Date(userInfo.nextclaim * 1000).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}              
                 </span>
               </h4>
             </div>
@@ -281,7 +271,7 @@ const WalletSectionOne = () => {
           <div className="card__50">
             <h4>Your Holding</h4>
             <h4>
-              <span className="text-primary">0.000 BSCB</span>
+              <span className="text-primary">{userbalance.toFixed(2)} BSCB</span>
             </h4>
           </div>
         </div>
@@ -297,7 +287,7 @@ const WalletSectionOne = () => {
               Bay Holders
             </h3>
             <h1>
-              <span className="text-primary">0.000</span> USDT
+              <span className="text-primary">{totalUSDTdistributed.toFixed(2)}</span> USDT
             </h1>
           </div>
         </div>
@@ -306,7 +296,7 @@ const WalletSectionOne = () => {
           <div className="card__100 flex-row justify-content-between p-5 align-items-center">
             <h6>Total Buy-Back and Burnt</h6>
             <h6>
-              <span className="text-primary">0.000 | 0.000</span> BSCB
+              <span className="text-primary">{buyback} | 0.000</span> BSCB
             </h6>
           </div>
         </div>
@@ -317,19 +307,19 @@ const WalletSectionOne = () => {
           <div className="card__33">
             <h4>No Of Holders</h4>
             <h4>
-              <span className="text-primary">000</span>
+              <span className="text-primary">{holders}</span>
             </h4>
           </div>
           <div className="card__33">
             <h4>Total Liquidity Pool</h4>
             <h4>
-              <span className="text-primary">$ 0.000 | BNB 0</span>
+              <span className="text-primary">$ {(LPbnb*oneBNBprice).toFixed(2)} | BNB {LPbnb.toFixed(2)}</span>
             </h4>
           </div>
           <div className="card__33">
             <h4>BSCB Price in Mn</h4>
             <h4>
-              <span className="text-primary">$0.000</span>
+              <span className="text-primary">$ {permillbcbs.toFixed(2)}</span>
             </h4>
           </div>
         </div>
