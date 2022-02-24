@@ -1,0 +1,65 @@
+.locker {
+    // background: $background-gradient;
+//    text-align: center;
+   padding: 0px;
+   background: $color-dark;
+   border-radius: 0px 0px 20px 20px;
+    h3 {
+        margin: 0px;
+    }
+   .nav{
+    border-top: 1px solid $color-background-1;
+    padding: 0px;
+    height: 60px;
+    text-align: center;
+        &-item{
+           width: 50%;
+           position: relative;
+        }
+
+        &-link.active{ 
+            &::before{ 
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%);
+            }
+       }
+   }
+
+   &-content {
+        background: $background-gradient;
+        border-radius: 20px;
+        margin-top: 4px;
+   }
+
+   .tokensection {
+        p{
+            font-size: 0.8rem;
+            margin: 0px;
+        }
+        .data {
+            border-bottom: 1px solid $color-background-1;
+        }
+        .accordion {
+            &-header {
+                border-bottom: 1px solid $color-dark;
+                &:hover{
+                    background: $color-background-3;
+                }
+            }
+            &-content {
+                background: black;
+            }
+
+        }
+        // accordion{
+        //     &-header{
+        //         color: $color-primary;
+            
+        //     }
+        //     &-content {
+        //         background: black;
+        //     }    
+        // }
+    }
+}
