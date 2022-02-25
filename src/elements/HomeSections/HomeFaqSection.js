@@ -4,11 +4,8 @@ function HomeFaqSection() {
   const [activeId, setActiveId] = useState();
 
   function toggleActive(id) {
-    if (activeId === id) {
-      setActiveId(null);
-    } else {
-      setActiveId(id);
-    }
+    if (activeId === id) setActiveId(null);
+    else setActiveId(id);
   }
   return (
     <section className='faq_section py-5'>

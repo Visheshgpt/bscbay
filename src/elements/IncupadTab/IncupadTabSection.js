@@ -6,7 +6,7 @@ import IncupadLevelSection from './IncupadLevel/IncupadLevelSection';
 
 function IncupadTabSection() {
   return (
-    <section className='incupad_tabs' id='pools'>
+    <section className='incupad_tabs mytabs' id='pools'>
       <Tab.Container defaultActiveKey='poolstab'>
         <Row>
           <Col sm={12}>
