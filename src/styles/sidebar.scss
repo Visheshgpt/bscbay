@@ -40,7 +40,6 @@
   right: 10px;
   width: 40px;
   height: 40px;
-  display: flex;
   align-items: center;
 }
 
@@ -56,5 +55,12 @@
   .sidebar-hide {
     transform: translateX(-100%);
     transition: all 0.5s ease;
+  }
+}
+
+
+@media screen and (max-width: 768px)  {
+  .sidebar-btn {
+    display: none !important;
   }
 }

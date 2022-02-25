@@ -19,18 +19,14 @@ import SearchPool from './SearchPool';
 import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 import { chainRpcs, chainIds } from '../../chainRPCs';
+import WalletConnect from '../../components/WalletConnect';
 
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
 const IncupadPoolsBanner = ({ activePool }) => {
-  const [showConnect, setShowConnect] = useState(false);
   // Button Activate state
   //const [activate, setActivate] = useState(false);
   const [modalShow, setModalShow] = useState(false);
-
-  const onHideHandler = () => {
-    setShowConnect(false);
-  };
 
   let address = window.sessionStorage.getItem('walletAddress');
   // window.sessionStorage.setItem("userBNB", userBNBbalance);
@@ -137,16 +133,15 @@ const IncupadPoolsBanner = ({ activePool }) => {
         MaxDistributedTokens = Number(web3.utils.fromWei(tokens, 'ether'));
       });
 
-       // get Hard Cap TOKENS
+    // get Hard Cap TOKENS
     contract.methods
-    .maxDistributedTokenAmount()
-    .call()
-    .then((amount) => {
-      // console.log(amount);
-      var tokens = web3.utils.toBN(amount).toString();
-      setHardCap(Number(web3.utils.fromWei(tokens, 'ether')));
-    });
-      
+      .maxDistributedTokenAmount()
+      .call()
+      .then((amount) => {
+        // console.log(amount);
+        var tokens = web3.utils.toBN(amount).toString();
+        setHardCap(Number(web3.utils.fromWei(tokens, 'ether')));
+      });
 
     // get DISTRIBUTED TOKENS
     contract.methods
@@ -170,7 +165,10 @@ const IncupadPoolsBanner = ({ activePool }) => {
     ) {
       // console.log("2");
       setstatus('Ongoing');
-    } else if (currentTimeData > EndTime || Number(ICOcompletePercentage) == 100 ) {
+    } else if (
+      currentTimeData > EndTime ||
+      Number(ICOcompletePercentage) == 100
+    ) {
       // console.log("3");
       setstatus('Closed');
     }
@@ -726,8 +724,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB.toFixed(0)} /{' '}
-                    {(HardCap * tokenPrice).toFixed(0)}{' '}
+                    {raisedBNB.toFixed(0)} / {(HardCap * tokenPrice).toFixed(0)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -739,11 +736,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                 </div>
               </div>
               <div className='d-flex justify-content-center mt-4'>
-                <Button
-                  className='btn btn-primary'
-                  onClick={() => setShowConnect(true)}>
-                  Connect Wallet
-                </Button>
+                <WalletConnect />
               </div>
               {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
             </Col>
@@ -964,7 +957,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
           </div>
         </Row>
       </Container>
-      <LaunchStepThree show={showConnect} onHide={onHideHandler} />
+      {/* <LaunchStepThree show={showConnect} onHide={onHideHandler} /> */}
       <AlertModal
         show={modalShow}
         onHide={setModalShow}

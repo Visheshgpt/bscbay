@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import HeaderButtons from '../components/HeaderButtons';
+import WalletConnect from '../components/WalletConnect';
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -29,6 +30,11 @@ function Header() {
   if (location.pathname === '/') {
     showLaunchPadLink = true;
     walletLink = false;
+  }
+
+  let hideHomeDashboard = false;
+  if (location.pathname === '/dashboard') {
+    hideHomeDashboard = true;
   }
 
   header === 'fixed' && scrollPosition > 10
@@ -102,7 +108,8 @@ function Header() {
                 </small>
               </Link>
             ) : (
-              !walletLink && (
+              !walletLink &&
+              !hideHomeDashboard && (
                 <Link
                   to='/'
                   className='btn btn-outline-primary text-white fw-500'>
@@ -112,6 +119,7 @@ function Header() {
                 </Link>
               )
             )}
+            {!walletLink && hideHomeDashboard && <WalletConnect />}
             {walletLink && <HeaderButtons showmobile={true} />}
           </div>
           {/* Mobile button */}
