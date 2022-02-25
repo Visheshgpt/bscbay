@@ -77,12 +77,13 @@ function IncupadBanner() {
             {upcomingData.map((item, index) => (
               <div key={index} className='incupad-upcoming-card'>
                 <a
-                  href='https://my.forms.app/crptoprojects/bscbaylaunch'
+                  href={item.link}
                   target='_blank'
                   rel='noreferrer'>
                   <img src={item.img} alt={item.title} />
+                  <span>{item.title}</span>
                 </a>
-                <span>{item.title}</span>
+              
               </div>
             ))}
           </div>

@@ -15,9 +15,9 @@ export const socialLinks = [
   { link: 'https://www.reddit.com/r/BSCBay/' },
 ];
 
-export const upcomingData = [
-  { title: 'Apply as a project', img: '../assets/is-1.svg' },
-  { title: 'Buy on Pancakeswap', img: '../assets/is-2.svg' },
+export const upcomingData = [ 
+  { title: 'Apply as a project', img: '../assets/is-1.svg', link: "https://my.forms.app/crptoprojects/bscbaylaunch" },
+  { title: 'Buy on Pancakeswap', img: '../assets/is-2.svg', link: "https://pancakeswap.finance/swap?outputCurrency=0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6" },
   // { title: "Buy on Kucoin", img: "./assets/is-3.svg" },
   // { title: "Buy on Gate.io", img: "./assets/is-4.svg" },
 ];

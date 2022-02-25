@@ -150,7 +150,7 @@ let bscBayMarketCap = priceperToken * circulatingSupply;
 
 ecosystemData[0].number = bscBayMarketCap.toFixed(0);
 ecosystemData[1].number = permillbcbs.toFixed(0);
-ecosystemData[2].number = (LPbnb*oneBNBprice).toFixed(0);
+ecosystemData[2].number = (LPbnb*oneBNBprice*2).toFixed(0);
 ecosystemData[3].number = totalUSDTdistributed.toFixed(0);
 ecosystemData[4].number = (buyback*oneBNBprice).toFixed(2);
 ecosystemData[5].number = holders.toFixed(0);
