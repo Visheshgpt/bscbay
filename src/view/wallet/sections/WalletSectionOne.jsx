@@ -219,7 +219,7 @@ console.log("pmb", permillbcbs);
           </div>
           <div className="text-sm-end">
             <div className="text-small text-white-2">
-              Today BCBS <b>TBA</b>/Million{" "}
+              Today BCBS <b>{permillbcbs.toFixed(1)}</b>$/Million{" "}
             </div>
             <div className="text-small"></div>
           </div>
@@ -233,13 +233,13 @@ console.log("pmb", permillbcbs);
         <div className="card__wrapper card__two">
           <div className="card__50">
             <h4>
-              <span className="text-primary">{Number(userInfo.claimed).toFixed(2)}</span> USDT
+              <span className="text-primary">{Number(userInfo.claimed).toFixed(1)}</span> USDT
             </h4>
             <h4>USDT Rewarded To You</h4>
           </div>
           <div className="card__50">
             <h4>
-              <span className="text-primary">{Number(userInfo.pending).toFixed(2)}</span> USDT
+              <span className="text-primary">{Number(userInfo.pending).toFixed(1)}</span> USDT
             </h4>
             <h6>Pending USDT Payout</h6>
             {/* <button className="card__button">Claim Now</button> */}
@@ -271,7 +271,7 @@ console.log("pmb", permillbcbs);
           <div className="card__50">
             <h4>Your Holding</h4>
             <h4>
-              <span className="text-primary">{userbalance.toFixed(2)} BSCB</span>
+              <span className="text-primary">{userbalance.toFixed(1)} BSCB</span>
             </h4>
           </div>
         </div>
@@ -287,7 +287,7 @@ console.log("pmb", permillbcbs);
               Bay Holders
             </h3>
             <h1>
-              <span className="text-primary">{totalUSDTdistributed.toFixed(2)}</span> USDT
+              <span className="text-primary">{totalUSDTdistributed.toFixed(1)}</span> USDT
             </h1>
           </div>
         </div>
@@ -296,7 +296,7 @@ console.log("pmb", permillbcbs);
           <div className="card__100 flex-row justify-content-between p-5 align-items-center">
             <h6>Total Buy-Back and Burnt</h6>
             <h6>
-              <span className="text-primary">{buyback} | 0.000</span> BSCB
+              <span className="text-primary">{(buyback*oneBNBprice).toFixed(1)} </span> USDT
             </h6>
           </div>
         </div>
@@ -313,13 +313,13 @@ console.log("pmb", permillbcbs);
           <div className="card__33">
             <h4>Total Liquidity Pool</h4>
             <h4>
-              <span className="text-primary">$ {(LPbnb*oneBNBprice).toFixed(2)} | BNB {LPbnb.toFixed(2)}</span>
+              <span className="text-primary">$ {(LPbnb*oneBNBprice).toFixed(1)} | BNB {LPbnb.toFixed(1)}</span>
             </h4>
           </div>
           <div className="card__33">
             <h4>BSCB Price in Mn</h4>
             <h4>
-              <span className="text-primary">$ {permillbcbs.toFixed(2)}</span>
+              <span className="text-primary">$ {permillbcbs.toFixed(1)}</span>
             </h4>
           </div>
         </div>

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Row } from "react-bootstrap";
+import { Row, Button } from "react-bootstrap";
+ 
+import LaunchStepThree from '../elements/launch-steps/LaunchStepThree';
+
 // import Web3Modal from "web3modal";
 // import Cookies from 'universal-cookie';
 
@@ -26,138 +29,55 @@ export const Sidebar = () => {
  
   let address = window.sessionStorage.getItem("walletAddress"); 
 
+  const [showConnect, setShowConnect] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
-  const [LMBalanceuser, setLMBalanceuser] = useState(0);
-  const [oneBNBprice, setoneBNBprice] = useState(0);
-  const [LPbnb, setLPbnb] = useState(0);
-  const [LMbalanceLPpool, setLMbalanceLPpool] = useState(0);
+  const onHideHandler = () => {
+    setShowConnect(false);
+  };
+
+  const [userbalance, setuserbalance] = useState(0);
+ 
 
   const [show, setShow] = React.useState(false);
   const linksArr = [
     { link: "/", icon: <Icon0 />, name: "Homepage" },
     { link: "/dashboard", icon: <Icon1 />, name: "Wallet", className: "active" },
     { link: "/dashboard", icon: <Icon2 />, name: "Documentation" },
-    { link: "/dashboard", icon: <Icon3 />, name: "Contract" },
-    { link: "/dashboard", icon: <Icon4 />, name: "Reports & Charts" },
-    { link: "/dashboard", icon: <Icon5 />, name: "Disclaimer" },
+    { link: "https://bscscan.com/token/0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6", icon: <Icon3 />, name: "Contract" },
+    { link: "https://www.dextools.io/app/bsc/pair-explorer/0x30e3a76f435908414d42a92505497b3681f5504a", icon: <Icon4 />, name: "Reports & Charts" },
+    // { link: "/dashboard", icon: <Icon5 />, name: "Disclaimer" },
   ];
 
-  const socialMediaArr = [
-    // { link: "https://google.com" },
-    // { link: "https://google.com" },
-    // { link: "https://google.com" },
-    // { link: "https://google.com" },
-    // { link: "https://google.com" },
-  ];
-
-  var priceperToken =
-    (((1000000 * LPbnb) / LMbalanceLPpool) * oneBNBprice) / 1000000;
-   
 
   function web3apis() {
-    // let address = window.sessionStorage.getItem("walletAddress");
+   
+    address =  window.sessionStorage.getItem("walletAddress");
 
-    address = window.sessionStorage.getItem("walletAddress");
      if(!address) return;
-    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
-    // const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-
+    
+    const web3 = new Web3("https://bsc-dataseed.binance.org/");
     var contractABI = BSCBAYabi;
-    var contractAddress = "0x8b4202C2026C77e99f84805644bdcE2B9541598c";
+    var contractAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
     var contract = new web3.eth.Contract(contractABI, contractAddress);
-
-    // LM BALANCE user
-    contract.methods
+     
+    // user Balance
+      contract.methods
       .balanceOf(address)
       .call()
-      .then((balance) => {
-        var gwei = web3.utils.toBN(balance).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setLMBalanceuser(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    // get token in LP
-    contract.methods
-      .balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938")
-      .call()
-      .then((balance) => {
-        var gwei = web3.utils.toBN(balance).toString();
-        var tokens = web3.utils.toWei(gwei, "Gwei");
-        setLMbalanceLPpool(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    // get TotalBNB in liquidity Pool
-    var wrappednBNBABI = [
-      {
-        constant: true,
-        inputs: [{ name: "", type: "address" }],
-        name: "balanceOf",
-        outputs: [{ name: "", type: "uint256" }],
-        payable: false,
-        stateMutability: "view",
-        type: "function",
-      },
-    ];
-    var wrappedBNBcontractAddress =
-      "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
-
-    var wrappedBNBcontract = new web3.eth.Contract(
-      wrappednBNBABI,
-      wrappedBNBcontractAddress
-    );
-
-    wrappedBNBcontract.methods
-      .balanceOf("0xDd25d5c356Ff41feB5846c6E2960995925ED7938")
-      .call()
-      .then((balance) => {
-        var tokens = web3.utils.toBN(balance).toString();
-        setLPbnb(Number(web3.utils.fromWei(tokens, "ether")));
-      });
-
-    // fetch latest 1 BNB price
-    const CoinGeckoClient = new CoinGecko();
-    // fetch price of 1 BNB
-    CoinGeckoClient.simple
-      .price({
-        ids: ["binancecoin"],
-        vs_currencies: ["usd"],
-      })
-      .then((data) => {
-        setoneBNBprice(Number(data.data.binancecoin.usd));
+      .then((amount) => {
+        var tokens = web3.utils.toBN(amount).toString();
+        setuserbalance(Number(web3.utils.fromWei(tokens, "ether")));
       });
   }
 
   useEffect(() => {
-    // web3apis();
+    web3apis();
   });
+
 
   async function logoutUser() {
     if (window.sessionStorage.getItem("walletName") == "walletconnect") {
-      // const providerOptions = {
-      //   walletconnect: {
-      //     package: WalletConnectProvider, // required
-      //     options: {
-      //      rpc: {
-      //            1 : "https://bsc-dataseed.binance.org/",
-      //            56: "https://bsc-dataseed.binance.org/",
-      //            97: "https://data-seed-prebsc-1-s1.binance.org:8545"
-      //        // ...
-      //      },
-      //       //infuraId: "27e484dcd9e3efcfd25a83a78777cdf1" // required
-      //     }
-      //   }
-      // };
-
-      // const web3Modal = new Web3Modal({
-      //  //  network: "mainnet", // optional
-      //   cacheProvider: true, // optional
-      //   providerOptions // required
-      // });
-
-      // await web3Modal.clearCachedProvider();
-      // // await web3Modal.close();
-
-      //   ---------------working code ------------------
       const provider = new WalletConnectProvider({
         rpc: {
           1: "https://bsc-dataseed.binance.org/",
@@ -200,16 +120,16 @@ export const Sidebar = () => {
             <ul className="nav flex-column">
               {linksArr.map((data) => (
                 <li className="nav-item pb-3">
-                  <Link
-                    exact
+                  <a
+                    
                     className={`nav-link ${data.className}`}
-                    to={data.link}
+                    href={data.link} 
                   >
                     <div className="d-flex">
                       <span className="me-2">{data.icon}</span>
                       <span>{data.name}</span>
                     </div>
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -221,7 +141,7 @@ export const Sidebar = () => {
                     Your Balance
                   </div>
                   <div className="title-small fw-normal">
-                    BSCB: TBA
+                    BSCB: {userbalance}
                   </div>
                 </div>
               </li>
@@ -235,27 +155,20 @@ export const Sidebar = () => {
                   </div>
                 </p>
               </li>
-              <li className="nav-item py-3 w-100 align-self-baseline">
-                <Link className="btn py-2 btn-outline-primary">
-                  <i className="me-2" style={{ height: 30, width: 20 }}>
-                    <BNBIcon />
-                  </i>
-                  <div className="text-uppercase title-small-1">Buy bcsb</div>
-                </Link>
-                <div className="text-white-2 text-small-1 mt-2">
-                  {/* 5% Fee on Reward Extraction */}
-                </div>
-              </li>
+            { !address &&  <li className="nav-item py-4 w-100 align-self-baseline">
+                  <Button onClick={() => setShowConnect(true)} className='btn btn-primary'>Connect Wallet</Button>   
+              </li> }
             </ul>
-            <div className="mt-5 px-3">
+          { address &&  <div className="mt-5 px-3">
               <Link onClick={logoutUser}>
                 <img src="/assets/logout.png" alt="logout" />
               </Link>
-            </div>
+            </div> }
           </div>
         </div>
         {/*  */}
-        <Row
+        <LaunchStepThree show={showConnect} onHide={onHideHandler} />
+        {/* <Row
           className="justify-content-lg-center z-10 pt-4 mx-0"
           style={{ opacity: 0.7 }}
         >
@@ -276,7 +189,9 @@ export const Sidebar = () => {
               />
             </a>
           ))}
-        </Row>
+          
+          
+        </Row> */}
       </section>
     </>
   );

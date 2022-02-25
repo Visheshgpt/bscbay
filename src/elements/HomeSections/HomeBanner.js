@@ -3,6 +3,8 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { socialLinks } from '../Constants';
 import { ReactComponent as Arrow } from '../../assets/next.svg';
 
+import AnimatedNumber from "animated-number-react";
+
 import Web3 from "web3";
 import BSCBAYabi from "../../shared/BSCBAYabi.json"
 import CoinGecko from "coingecko-api";
@@ -10,11 +12,11 @@ import CoinGecko from "coingecko-api";
 function HomeBanner() {
 
   const ecosystemData = [
-    { name: 'BSCB MarketCap', number: 'TBA ' },
-    { name: 'Per Million BCBS', number: 'TBA' },
-    { name: 'Liquidity Pool', number: 'TBA' },
+    { name: 'BSCB MarketCap ($)', number: 'TBA ' },
+    { name: 'Per Million BCBS ($)', number: 'TBA' },
+    { name: `Liquidity Pool \u00A0 ($)`, number: 'TBA' },
     { name: 'Total USDT Distributed', number: 'TBA' },
-    { name: 'Total Buyback', number: 'TBA' },
+    { name: 'Total Buyback ($)', number: 'TBA' },
     { name: 'No. of Holders', number: 'TBA' },
   ];
 
@@ -85,6 +87,7 @@ function web3apis2() {
         .call()
         .then((balance) => {
           var tokens = web3.utils.toBN(balance).toString();
+          console.log("tb", tokens);
           setLPbnb(Number(web3.utils.fromWei(tokens, "ether")));
         });   
 
@@ -122,10 +125,20 @@ function web3apis2() {
         });  
  }
 
-
+ 
 
 useEffect(() => {
   web3apis2();
+})
+
+
+useEffect(() => {
+
+  const intervalId =  setInterval(() => {
+    web3apis2();
+  }, 4000);
+
+  return () => clearInterval(intervalId);
 },[])
 
 
@@ -135,12 +148,16 @@ console.log("pmb", permillbcbs);
 
 let bscBayMarketCap = priceperToken * circulatingSupply;
 
-ecosystemData[0].number = bscBayMarketCap.toFixed(2);
-ecosystemData[1].number = permillbcbs.toFixed(2);
-ecosystemData[2].number = LPbnb.toFixed(2);
-ecosystemData[3].number = totalUSDTdistributed.toFixed(2);
-ecosystemData[4].number = buyback.toFixed(2);
-ecosystemData[5].number = holders.toFixed(2);
+ecosystemData[0].number = bscBayMarketCap.toFixed(0);
+ecosystemData[1].number = permillbcbs.toFixed(0);
+ecosystemData[2].number = (LPbnb*oneBNBprice).toFixed(0);
+ecosystemData[3].number = totalUSDTdistributed.toFixed(0);
+ecosystemData[4].number = (buyback*oneBNBprice).toFixed(2);
+ecosystemData[5].number = holders.toFixed(0);
+
+
+// formatValue = value => `$ ${new Intl.NumberFormat().format(value)}`;
+// formatNormalValue = value => `$ ${value.toFixed(8)}`;
 
 
   useEffect(() => {
@@ -223,8 +240,9 @@ ecosystemData[5].number = holders.toFixed(2);
                 ))}
               </div>
               <div className='d-flex align-items-center justify-content-between'>
-                <a className='btn btn-sm btn-outline-primary' href="https://github.com/solidproof/projects/blob/main/BSCBay/KYC_Certificate_Solidproof_BSCBay.png" target="_blank" > KYC </a>
-                <a className='btn btn-sm btn-outline-primary mx-3' href="https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf" target="_blank" >Audit</a>
+                <a className='btn btn-sm btn-outline-primary' href="https://pancakeswap.finance/swap?outputCurrency=0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6" target="_blank" > Buy Now </a>
+                {/* <a className='btn btn-sm btn-outline-primary mx-3' href="https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf" target="_blank" >Audit</a> */}
+                {/* <a className='btn btn-sm btn-outline-primary mx-3' href="https://github.com/solidproof/projects/blob/main/BSCBay/SmartContract_Audit_Solidproof_BSCBay.pdf" target="_blank" >Buy</a> */}
               </div>
             </div>
           </Col>
@@ -272,7 +290,15 @@ ecosystemData[5].number = holders.toFixed(2);
                   <span className='text-capitalize text-white-2'>
                     {data.name}
                   </span>
-                  <span className='text-white'>{data.number}</span>
+                  <span className='text-white'>
+
+                  <AnimatedNumber
+                   value={data.number}
+                   formatValue={(value )=>`$ ${new Intl.NumberFormat().format(value)}`}
+                   duration={300}
+               />
+
+                  </span>
                 </div>
               ))}
             </div>

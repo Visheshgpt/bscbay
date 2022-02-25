@@ -18,7 +18,7 @@ const WalletPage = () => {
               <WalletSectionOne />
             </Col>
           </Row>
-          <FooterLinks />
+          {/* <FooterLinks /> */}
         </Container>
       </section>
     </>

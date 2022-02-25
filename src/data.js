@@ -52,7 +52,7 @@ export const poolData = [
     id: 2,
     tag: 'BSC Chain',
     status: 'upcoming',
-    featured: true,
+    featured: false,
     img: './assets/bscbay.png',
     description:
       'BSCBay combines the previous successful instances and features of DEFI and integrates them to create a new paradigm. ',
@@ -91,7 +91,7 @@ export const poolData = [
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
     videolink: '../../..//assets/bscbayvideo.mp4',
     contractAddress: '0x87f3fce34c239466502ecb5481bbb5bd08c64656',
-    soldOut: false,
+    soldOut: true,
     saleDate: "23 FEB' 22, 6:00 PM UTC",
   },
 
