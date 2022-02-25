@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, matchPath } from 'react-router-dom';
 import HeaderButtons from '../components/HeaderButtons';
 import WalletConnect from '../components/WalletConnect';
 
@@ -24,17 +24,24 @@ function Header() {
   }, []);
 
   const location = useLocation();
-  let walletLink = window.sessionStorage.getItem('walletAddress') || false;
-  let showLaunchPadLink = false;
 
-  if (location.pathname === '/') {
+  const matchLaunchpadTitle = matchPath(location.pathname, {
+    path: `/launchpad/:title`,
+  });
+
+  let hideHomeDashboard = false;
+  let showLaunchPadLink = false;
+  let walletLink = window.sessionStorage.getItem('walletAddress') || false;
+
+  if (location.pathname === '/dashboard') hideHomeDashboard = true;
+  if (matchLaunchpadTitle && matchLaunchpadTitle.isExact) {
     showLaunchPadLink = true;
     walletLink = false;
   }
 
-  let hideHomeDashboard = false;
-  if (location.pathname === '/dashboard') {
-    hideHomeDashboard = true;
+  if (location.pathname === '/') {
+    showLaunchPadLink = true;
+    walletLink = false;
   }
 
   header === 'fixed' && scrollPosition > 10
@@ -90,6 +97,7 @@ function Header() {
                   </li>
                 )
               )}
+
               {walletLink && (
                 <li className='nav-item'>
                   <HeaderButtons />
