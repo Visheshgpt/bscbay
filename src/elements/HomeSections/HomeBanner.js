@@ -1,9 +1,148 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import { Container, Col, Row } from 'react-bootstrap';
-import { ecosystemData, socialLinks } from '../Constants';
+import { socialLinks } from '../Constants';
 import { ReactComponent as Arrow } from '../../assets/next.svg';
 
+import Web3 from "web3";
+import BSCBAYabi from "../../shared/BSCBAYabi.json"
+import CoinGecko from "coingecko-api";
+
 function HomeBanner() {
+
+  const ecosystemData = [
+    { name: 'BSCB MarketCap', number: 'TBA ' },
+    { name: 'Per Million BCBS', number: 'TBA' },
+    { name: 'Liquidity Pool', number: 'TBA' },
+    { name: 'Total USDT Distributed', number: 'TBA' },
+    { name: 'Total Buyback', number: 'TBA' },
+    { name: 'No. of Holders', number: 'TBA' },
+  ];
+
+  const [oneBNBprice, setoneBNBprice] = useState(0);
+  const [LPbnb, setLPbnb] = useState(0);
+  const [circulatingSupply, setcirculatingSupply] = useState(0);
+  const [totalUSDTdistributed, settotalUSDTdistributed] = useState(0);
+  const [holders, setholders] = useState(0);
+  const [buyback, setbuyback] = useState(0);
+  const [Lpbscbay, setLpbscbay] = useState(0);
+
+function web3apis2() {
+
+    const web3 = new Web3("https://bsc-dataseed.binance.org/");
+
+    var contractABI = BSCBAYabi;
+    var contractAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+      // total USDT distributed
+      contract.methods
+      .getTotalDividendsDistributed()
+      .call()
+      .then((amount) => {
+        var tokens = web3.utils.toBN(amount).toString();
+        settotalUSDTdistributed(Number(web3.utils.fromWei(tokens, "ether")));
+      });
+
+      // total number of holder
+      contract.methods
+      .getNumberOfDividendTokenHolders()
+      .call()
+      .then((holders) => {
+        setholders(Number(holders));
+      });
+
+      // total Buyback
+      contract.methods
+      .totalbuyback()
+      .call()
+      .then((amount) => {
+        var tokens = web3.utils.toBN(amount).toString();
+        setbuyback(Number(web3.utils.fromWei(tokens, "ether")));
+      });
+
+      // get TotalBNB in liquidity Pool
+      var wrappednBNBABI = [
+        {
+          constant: true,
+          inputs: [{ name: "", type: "address" }],
+          name: "balanceOf",
+          outputs: [{ name: "", type: "uint256" }],
+          payable: false,
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
+      var wrappedBNBcontractAddress =
+        "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+
+      var wrappedBNBcontract = new web3.eth.Contract(
+        wrappednBNBABI,
+        wrappedBNBcontractAddress
+      );
+
+      wrappedBNBcontract.methods
+        .balanceOf("0x30e3a76f435908414d42A92505497B3681F5504A")
+        .call()
+        .then((balance) => {
+          var tokens = web3.utils.toBN(balance).toString();
+          setLPbnb(Number(web3.utils.fromWei(tokens, "ether")));
+        });   
+
+
+     // get token Balance in LP
+      contract.methods
+      .balanceOf("0x30e3a76f435908414d42A92505497B3681F5504A")
+      .call()
+      .then((balance) => {
+        var tokens = web3.utils.toBN(balance).toString();
+        setLpbscbay(Number(web3.utils.fromWei(tokens, "ether")));
+      });
+
+    //  circulating Supply LM token
+    contract.methods
+      .balanceOf("0x000000000000000000000000000000000000dEaD")
+      .call()
+      .then((balance) => {
+        var tokens = web3.utils.toBN(balance).toString();
+        var csupply =
+          Number(1000000000) - Number(web3.utils.fromWei(tokens, "ether"));
+        setcirculatingSupply(csupply);
+      });
+
+      // fetch latest 1 BNB price
+      const CoinGeckoClient = new CoinGecko();
+      // fetch price of 1 BNB
+      CoinGeckoClient.simple
+        .price({
+          ids: ["binancecoin"],
+          vs_currencies: ["usd"],
+        })
+        .then((data) => {
+          setoneBNBprice(Number(data.data.binancecoin.usd));
+        });  
+ }
+
+
+
+useEffect(() => {
+  web3apis2();
+},[])
+
+
+let priceperToken = (((1000000 * LPbnb) / Lpbscbay) * oneBNBprice) / 1000000;
+let permillbcbs = ((1000000 * LPbnb) / Lpbscbay) * oneBNBprice;
+console.log("pmb", permillbcbs);
+
+let bscBayMarketCap = priceperToken * circulatingSupply;
+
+ecosystemData[0].number = bscBayMarketCap.toFixed(2);
+ecosystemData[1].number = permillbcbs.toFixed(2);
+ecosystemData[2].number = LPbnb.toFixed(2);
+ecosystemData[3].number = totalUSDTdistributed.toFixed(2);
+ecosystemData[4].number = buyback.toFixed(2);
+ecosystemData[5].number = holders.toFixed(2);
+
+
   useEffect(() => {
     const colorDataWord = Array.from(
       document.getElementsByClassName('changeWord')
