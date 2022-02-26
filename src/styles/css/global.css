@@ -56,6 +56,10 @@ h1, h2 {
 .fw-100 {
   font-weight: 100 !important; }
 
+.small {
+  font-size: 0.8rem;
+  margin: 0px; }
+
 .pointer {
   cursor: pointer; }
 
@@ -819,9 +823,6 @@ label {
     .locker .tokensection .circleradius img {
       width: 100%;
       height: auto; }
-  .locker .tokensection .small {
-    font-size: 0.8rem;
-    margin: 0px; }
   .locker .tokensection .address {
     background: #222426;
     cursor: pointer;
@@ -837,6 +838,26 @@ label {
       background: #282a33; }
   .locker .tokensection .accordion-content {
     background: black; }
+
+.dexpad-titltext {
+  content: '';
+  transform: rotate(-40deg);
+  position: absolute;
+  border-top: 2px solid #ffd366;
+  border-bottom: 2px solid #ffd366;
+  top: 12px;
+  left: -21px;
+  width: 100px;
+  font-size: 0.9rem;
+  font-weight: bold; }
+
+.dexpad-pools-banner {
+  width: 100%;
+  height: 100vh; }
+  .dexpad-pools-banner > div, .dexpad-pools-banner > div > div {
+    height: 100%; }
+  .dexpad-pools-banner > div > div {
+    align-items: center; }
 
 footer {
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;

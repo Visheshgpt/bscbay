@@ -37,9 +37,9 @@ export const getFeaturedPoolsData = () => {
   return featuredPoolData;
 };
 
-export const getAddress = () => {
+export const getAddress = (data) => {
   let addressArray = [];
-  poolData.map((item) =>
+  data.map((item) =>
     addressArray.push({
       address: item.contractAddress,
       id: item.id,
@@ -49,7 +49,7 @@ export const getAddress = () => {
   return addressArray;
 };
 
-export const currentTimeData = () => {
+export const currentTimeDate = () => {
   const currentTime = new Date();
   const currentTimeDate = Number(Date.parse(currentTime) / 1000);
   return currentTimeDate;

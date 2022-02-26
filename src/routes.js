@@ -7,7 +7,9 @@ import IncupadPage from './pages/Incupad';
 import IncupadPools from './pages/IncupadPools';
 import IncpadPoolsNew from './pages/IncupadPoolsNew';
 import ScrollToTop from './components/ScrollToTop';
-import Locker from './pages/Locker';
+import LockerPage from './pages/Locker';
+import DexpadPage from './pages/Dexpad';
+import DexpadPoolsPage from './pages/DexpadPools';
 
 const Routes = () => {
   return (
@@ -21,7 +23,9 @@ const Routes = () => {
           <Route path='/information' component={InformationPage} />
           <Route exact path='/incupad' component={IncupadPage} />
           <Route exact path='/launchpad' component={IncupadPage} />
-          <Route exact path='/locker' component={Locker} />
+          <Route exact path='/dexpad' component={DexpadPage} />
+          <Route exact path='/dexpad/:id' component={DexpadPoolsPage} />
+          <Route exact path='/locker' component={LockerPage} />
           <Route path='/incupad/:title' component={IncupadPools} />
           <Route path='/launchpad/:title' component={IncupadPools} />
           <Route path='/newpage/:title' component={IncpadPoolsNew} />

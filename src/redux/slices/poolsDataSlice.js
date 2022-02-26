@@ -3,20 +3,20 @@ import { poolData } from '../../data';
 import {
   getAddress,
   getFeaturedPoolsData,
-  currentTimeData,
+  currentTimeDate,
 } from '../../utils/helper';
 
 const featureddata = getFeaturedPoolsData();
 const closedData = poolData.filter(
-  (item) => currentTimeData() > item.finishTime
+  (item) => currentTimeDate() > item.finishTime
 );
 const upcomingData = poolData.filter(
-  (item) => currentTimeData() < item.startTime
+  (item) => currentTimeDate() < item.startTime
 );
 
 const ongoingdata = poolData.filter(
   (item) =>
-    currentTimeData() < item.finishTime && currentTimeData() > item.startTime
+    currentTimeDate() < item.finishTime && currentTimeDate() > item.startTime
 );
 
 const initialState = {
@@ -24,7 +24,7 @@ const initialState = {
   closedPoolData: closedData,
   upcomingPoolData: upcomingData,
   ongoingPoolData: ongoingdata,
-  address: getAddress(),
+  address: getAddress(poolData),
   minAllocation: {},
   maxAllocation: {},
   ICOCompletePercentage: {},

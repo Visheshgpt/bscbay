@@ -7,7 +7,7 @@ import AlertModal from '../../../components/AlertModal';
 
 import contractService from '../../../shared/LMcontractservice';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import { currentTimeData } from "../../../utils/helper";
+import { currentTimeDate } from "../../../utils/helper";
 
 
 const WalletSectionOne = () => {
@@ -372,7 +372,7 @@ const claim = async () => {
             </h4>
             <h6>Pending USDT Payout</h6>
      
-      {  (currentTimeData() > userInfo.nextclaim && userInfo.nextclaim !=0) &&  <div> <button onClick={() => claim()} className="card__button">Claim Now</button>
+      {(currentTimeDate() > userInfo.nextclaim && userInfo.nextclaim !==0) &&  <div> <button onClick={() => claim()} className="card__button">Claim Now</button>
                 <br></br>
                  <span className="card__wait">(Or wait  in queue: {userInfo.queue})</span></div>   }
 

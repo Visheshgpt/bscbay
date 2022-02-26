@@ -9,6 +9,7 @@ function IncupadCardPool({
   maxAllocation,
   allocationTokens,
   maxDistributionTokens,
+  dexpad = false,
   // checkClose = false,
 }) {
   let icopercent = -1;
@@ -22,10 +23,14 @@ function IncupadCardPool({
   //   (icopercent === '100.00' || ICOcompletePercentage === '100.00')
   // )
   //   return null;
+  const url = dexpad ? `/dexpad/${item.id}` : `/launchpad/${item.id}`;
 
   return (
-    <Link to={`/launchpad/${item.id}`} key={item.id}>
+    <Link to={url} key={item.id}>
       <div className='incupad-upcoming-pool-card h-100 relative'>
+        {dexpad && (
+          <div className='dexpad-banner text-primary text-center'>Dexpad</div>
+        )}
         <span className='card-tag'>{item.tag}</span>
         {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}
         <div className='icon-box-incupad'>

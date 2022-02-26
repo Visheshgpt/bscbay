@@ -6,7 +6,6 @@ import WalletConnect from '../components/WalletConnect';
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [toggleClass, setToggleClass] = useState('');
   const [header, setHeader] = useState('fixed');
   const [header_, setHeader_] = useState();
 
@@ -23,26 +22,27 @@ function Header() {
     };
   }, []);
 
+  let showLaunchPadLink = false;
+  let showHomeLink = false;
+  let showHeaderButton =
+    window.sessionStorage.getItem('walletAddress') || false;
+
   const location = useLocation();
+  const { pathname } = location;
+
+  if (pathname === '/') {
+    showLaunchPadLink = true;
+    showHeaderButton = false;
+  }
+
+  if (pathname === '/launchpad') showHomeLink = true;
 
   const matchLaunchpadTitle = matchPath(location.pathname, {
     path: `/launchpad/:title`,
   });
 
-  let hideHomeDashboard = false;
-  let showLaunchPadLink = false;
-  let walletLink = window.sessionStorage.getItem('walletAddress') || false;
-
-  if (location.pathname === '/dashboard') hideHomeDashboard = true;
-  if (matchLaunchpadTitle && matchLaunchpadTitle.isExact) {
-    showLaunchPadLink = true;
-    walletLink = false;
-  }
-
-  if (location.pathname === '/') {
-    showLaunchPadLink = true;
-    walletLink = false;
-  }
+  if (matchLaunchpadTitle && matchLaunchpadTitle.isExact && !showHeaderButton)
+    showHomeLink = true;
 
   header === 'fixed' && scrollPosition > 10
     ? header_ && header_.classList.add('header_background')
@@ -80,7 +80,12 @@ function Header() {
                   Documentation
                 </a>
               </li>
-              {showLaunchPadLink ? (
+
+              {showHeaderButton ? (
+                <li className='nav-item'>
+                  <HeaderButtons />
+                </li>
+              ) : showLaunchPadLink ? (
                 <li className='nav-item'>
                   <Link
                     to='/launchpad'
@@ -88,26 +93,20 @@ function Header() {
                     LaunchPad
                   </Link>
                 </li>
-              ) : (
-                !walletLink && (
-                  <li className='nav-item'>
-                    <Link to='/' className='btn btn-outline-primary fw-500'>
-                      Home
-                    </Link>
-                  </li>
-                )
-              )}
-
-              {walletLink && (
+              ) : showHomeLink ? (
                 <li className='nav-item'>
-                  <HeaderButtons />
+                  <Link to='/' className='btn btn-outline-primary fw-500'>
+                    Home
+                  </Link>
                 </li>
-              )}
+              ) : null}
             </ul>
           </div>
           {/* Mobile button */}
           <div className='ms-auto d-flex d-md-none align-items-center'>
-            {showLaunchPadLink ? (
+            {showHeaderButton ? (
+              <HeaderButtons showmobile={true} />
+            ) : showLaunchPadLink ? (
               <Link
                 to='/launchpad'
                 className='btn btn-outline-primary text-white fw-500'>
@@ -115,20 +114,15 @@ function Header() {
                   <small>LaunchPad</small>
                 </small>
               </Link>
-            ) : (
-              !walletLink &&
-              !hideHomeDashboard && (
-                <Link
-                  to='/'
-                  className='btn btn-outline-primary text-white fw-500'>
-                  <small>
-                    <small>Home</small>
-                  </small>
-                </Link>
-              )
-            )}
-            {!walletLink && hideHomeDashboard && <WalletConnect />}
-            {walletLink && <HeaderButtons showmobile={true} />}
+            ) : showHomeLink ? (
+              <Link
+                to='/'
+                className='btn btn-outline-primary text-white fw-500'>
+                <small>
+                  <small>Home</small>
+                </small>
+              </Link>
+            ) : null}
           </div>
           {/* Mobile button */}
         </div>
