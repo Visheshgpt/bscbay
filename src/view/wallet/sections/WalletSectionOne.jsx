@@ -3,6 +3,13 @@ import Web3 from "web3";
 import BSCBAYabi from "../../../shared/BSCBAYabi.json";
 import CoinGecko from "coingecko-api";
 
+import AlertModal from '../../../components/AlertModal';
+
+import contractService from '../../../shared/LMcontractservice';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import { currentTimeData } from "../../../utils/helper";
+
+
 const WalletSectionOne = () => {
   const boxArr = [
     {
@@ -44,7 +51,13 @@ const WalletSectionOne = () => {
   const [userInfo, setuserInfo] = useState({});
   const [userbalance, setuserbalance] = useState(0);
   const [Lpbscbay, setLpbscbay] = useState(0);
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [txMessage, settxMessage] = useState('');
+  const [modalShow, setModalShow] = useState(false);
+  const [successPageReload, setSuccessPageReload] = useState('');
 
+  let address;
+  let selectedAccount;
 
   function web3apis2() {
 
@@ -145,7 +158,8 @@ const WalletSectionOne = () => {
   }
 
  function web3apis3() {
-  let address = window.sessionStorage.getItem('walletAddress');
+ 
+   address =  window.sessionStorage.getItem('walletAddress');
 
    if (address) {
 
@@ -186,8 +200,6 @@ const WalletSectionOne = () => {
         setuserInfo(obj);
       });
    }  
-
-
  }
 
 
@@ -200,10 +212,131 @@ useEffect(() => {
   web3apis2();
 },[])
 
+useEffect(() => {
+  const loginType = localStorage.getItem('loginType');
+  let provider =
+    window.ethereum || window.BinanceChain || Web3.givenProvider || loginType;
+
+  if (typeof provider !== 'undefined' && address) {
+    if (loginType === 'walletconnect') {
+      console.log('acc');
+
+      const wprovider = new WalletConnectProvider({
+        rpc: {
+          56: 'https://bsc-dataseed.binance.org/',
+          97: 'https://data-seed-prebsc-1-s1.binance.org:8545',
+        },
+      });
+
+      wprovider.on('accountsChanged', async function (accounts) {
+        selectedAccount = accounts[0];
+        address = selectedAccount;
+        //  window.ethereum.eth.requestAccounts();
+        console.log('acc', selectedAccount);
+        window.sessionStorage.setItem('walletAddress', selectedAccount);
+
+        window.location.reload();
+      });
+    } else {
+      window.ethereum.on('accountsChanged', async function (accounts) {
+        // const web3 = new Web3(
+        //   new Web3.providers.HttpProvider(
+        //     'https://data-seed-prebsc-2-s1.binance.org:8545/'
+        //   )
+        // );
+
+        selectedAccount = accounts[0];
+        address = selectedAccount;
+        //  window.ethereum.eth.requestAccounts();
+        console.log('acc', selectedAccount);
+        window.sessionStorage.setItem('walletAddress', selectedAccount);
+
+        window.location.reload();
+      });
+
+      window.ethereum.on('chainChanged', (chainId) => {
+        console.log('chainId', chainId);
+        console.log('type of chainId', typeof chainId);
+
+        if (chainId != '0x38' ) {
+          settxMessage('Please Connect to "Binance Smart Chain Network"');
+          setModalShow(true);
+        } else {
+          window.location.reload();
+        }
+      });
+    }
+  }
+}, [address]);
+
 
 // let priceperToken = (((1000000 * LPbnb) / Lpbscbay) * oneBNBprice) / 1000000;
 let permillbcbs = ((1000000 * LPbnb) / Lpbscbay) * oneBNBprice;
 console.log("pmb", permillbcbs);
+
+
+const claim = async () => { 
+  
+  const web3 = await contractService.getWeb3Client(); 
+  address = window.sessionStorage.getItem('walletAddress');
+
+  if (web3) {
+    try {
+      var contractABI = BSCBAYabi;
+      var contractAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
+      var contract = new web3.eth.Contract(contractABI, contractAddress);
+      const gasPrice = await web3.eth.getGasPrice();
+
+      console.log('Claim called ==>');
+
+      let redeemedtokens = Number(userInfo.pending);
+      console.log("redeemedtokens", redeemedtokens);
+
+      contract.methods
+        .claim()
+        .send({ from: address, gasPrice: web3.utils.toHex(gasPrice * 1.6) })
+        .then(function (receipt) {
+          console.log(receipt);
+
+          if (receipt.status) {
+            setSuccessPageReload('sucess');
+            // setclaimableTokens(0);
+            settxMessage('');
+            setModalShow(true);
+            // alert("Transaction Success");
+            settxMessage(
+              `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
+            );
+            // setButtonLoading(false);
+          } else {
+            settxMessage('Transaction Failed');
+            setModalShow(true);
+            // alert("Transaction Failed");
+            // setButtonLoading(false);
+          }
+        })
+        .catch((e) => {
+          console.log('error is', e);
+          settxMessage('Transaction Failed!');
+          setModalShow(true);
+          // setButtonLoading(false);
+          //  alert("Transaction Failed!");
+          //  window.location.reload();
+        });
+    } catch {
+      settxMessage('Transaction Failed!');
+      setModalShow(true);
+      // setButtonLoading(false);
+      // alert("Transaction Failed!");
+    }
+  } else {
+    settxMessage('Change network to binance');
+    setModalShow(true);
+    // setButtonLoading(false);
+    // alert("Change network to binance");
+  }
+};
+
 
   return (
     <div>
@@ -238,8 +371,11 @@ console.log("pmb", permillbcbs);
               <span className="text-primary">{Number(userInfo.pending).toFixed(1)}</span> USDT
             </h4>
             <h6>Pending USDT Payout</h6>
-            {/* <button className="card__button">Claim Now</button> */}
-            {/* <span className="card__wait">(Or wait in queue: {userInfo.queue})</span> */}
+     
+      {  (currentTimeData() > userInfo.nextclaim && userInfo.nextclaim !=0) &&  <div> <button onClick={() => claim()} className="card__button">Claim Now</button>
+                <br></br>
+                 <span className="card__wait">(Or wait  in queue: {userInfo.queue})</span></div>   }
+
           </div>
         </div>
         {/* Second Card Section */}
@@ -271,6 +407,12 @@ console.log("pmb", permillbcbs);
             </h4>
           </div>
         </div>
+        <AlertModal
+        show={modalShow}
+        onHide={setModalShow}
+        successpagereload={successPageReload}>
+        <p>{txMessage}</p>
+      </AlertModal>
       </section>
 
       {/* <h1 className="text-center dashboard__info__heading">Investor Relations</h1> */}
