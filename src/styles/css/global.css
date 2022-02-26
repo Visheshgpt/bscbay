@@ -791,8 +791,9 @@ label {
   padding: 0px;
   background: #242837;
   border-radius: 0px 0px 20px 20px; }
-  .locker h3 {
-    margin: 0px; }
+  .locker-img img {
+    width: 100px;
+    height: 100px; }
   .locker .nav {
     border-top: 1px solid #56585f;
     padding: 0px;
@@ -809,6 +810,22 @@ label {
     background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
     border-radius: 20px;
     margin-top: 4px; }
+  .locker .tokensection .circleradius {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px; }
+    .locker .tokensection .circleradius img {
+      width: 100%;
+      height: auto; }
+  .locker .tokensection .small {
+    font-size: 0.8rem;
+    margin: 0px; }
+  .locker .tokensection .address {
+    background: #222426;
+    cursor: pointer;
+    border-radius: 12px; }
   .locker .tokensection p {
     font-size: 0.8rem;
     margin: 0px; }

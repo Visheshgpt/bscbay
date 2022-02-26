@@ -3,7 +3,6 @@ import { Head } from "../../components/Head";
 import { Row, Col, Container } from "react-bootstrap";
 import { Sidebar } from "../../components/Sidebar";
 import WalletSectionOne from "./sections/WalletSectionOne";
-import FooterLinks from "../../components/FooterLinks";
 
 const WalletPage = () => {
   return (

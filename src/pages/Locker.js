@@ -7,7 +7,9 @@ function Locker() {
       <Container fluid='xxl' className='position-relative mt-5 py-3'>
         <Row className='justify-content-center'>
           <Col lg={6} className='locker mytabs'>
-            <h3 className='text-center p-2'>Locker</h3>
+            <div className='text-center p-2 locker-img'>
+              <img src='../locker.png' alt='LockerPage' />
+            </div>
             <Tab.Container defaultActiveKey='tokenstab'>
               <Col sm={12}>
                 <Nav className='flexCenter'>

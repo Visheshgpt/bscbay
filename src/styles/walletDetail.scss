@@ -209,4 +209,15 @@
   margin: 10px 0px;
 }
 
+@media screen and (max-width: 480px) {
+  .card__two, .card__three{
+    grid-template-columns: 1fr;
+  }
+  .card__wrapper { 
+    .card__50{
+      padding: 15px ;
+    }
+  }
+}
+
 //linear-gradient(180deg, #ffd366 0%, #ffbf20 100%);

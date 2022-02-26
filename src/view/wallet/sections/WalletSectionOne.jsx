@@ -205,8 +205,6 @@ useEffect(() => {
 let permillbcbs = ((1000000 * LPbnb) / Lpbscbay) * oneBNBprice;
 console.log("pmb", permillbcbs);
 
-
-
   return (
     <div>
       {/* Header Start */}
@@ -225,9 +223,7 @@ console.log("pmb", permillbcbs);
           </div>
         </div>
       </header>
-      {/* Header End */}
-      {/* Main Start */}
-      {/* <h1 className="text-center">Information</h1> */}
+
       <section className="d-flex flex-wrap">
         {/* First Card Section */}
         <div className="card__wrapper card__two">

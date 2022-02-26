@@ -1,25 +1,6 @@
 import { useState } from 'react';
-import { Accordion, Card } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 import AnimatedLogo from '../../components/AnimatedLogo';
-
-const data = [
-  {
-    label: 'Total Tokens Held By Team',
-    value: 'BSCB 40,000,000',
-  },
-  {
-    label: '% Held By Team',
-    value: '4.00%',
-  },
-  {
-    label: 'Total Locked Period',
-    value: '4 Months',
-  },
-  {
-    label: 'Vesting Schdule',
-    value: '25% / Month',
-  },
-];
 
 const tokenData = [
   {
@@ -63,16 +44,117 @@ function LiquiditySection() {
   return (
     <div className='tokensection py-3 px-4'>
       <div className='flexCenter'>
-        <AnimatedLogo />
+        <span className='small px-2'>Pancakeswap V2 pair :</span>
+        <span className='small address py-1 px-3'>0xc...Ee0</span>
       </div>
-      <h5 className='fw-light text-center mt-3 mb-4'>Teams Tokens Locked</h5>
-
-      {data.map((item, index) => (
-        <div className='flexBetween data'>
-          <p>{item.label}</p>
-          <p>{item.value}</p>
+      <div className='d-flex flex-column items-center py-3 mb-2'>
+        <div>1 WBNB = 125.53 B BabyDoge </div>
+        <div>1 BabyDoge = 0.000000000007966037 WBNB</div>
+      </div>
+      <div className='flexCenter'>Locked Liquidity</div>
+      <div className='flexBetween'>
+        <div className='d-flex flex-column'>
+          <div className='circleradius mb-2'>
+            <img src='../coin1.png' alt='' />
+          </div>
+          <h6 className='py-1'>WBNB</h6>
+          <div className='d-flex items-center mb-1'>
+            <div>
+              <img src='../locker.png' alt='' width='20px' height='20px' />{' '}
+            </div>
+            <div>
+              <img
+                src='../coin1.png'
+                alt=''
+                width='24px'
+                height='18px'
+                className='px-1'
+              />
+            </div>
+            <div className='text-primary'>42,291.22</div>
+          </div>
+          <div className='d-flex items-center mb-1'>
+            <div>
+              <img src='../locker.png' alt='' width='20px' height='20px' />{' '}
+            </div>
+            <div>
+              <img
+                src='../coin1.png'
+                alt=''
+                width='24px'
+                height='18px'
+                className='px-1'
+              />
+            </div>
+            <div>69,132.68 (1.2%)</div>
+          </div>
         </div>
-      ))}
+        <div className=''>
+          <div className=''>
+            <AnimatedLogo />
+          </div>
+        </div>
+        <div className='d-flex flex-column align-items-end'>
+          <div className='circleradius mb-2'>
+            <img src='../coin2.png' alt='' />
+          </div>
+          <h6 className='py-1'>BobyDoge</h6>
+          <div className='d-flex items-center mb-1'>
+            <div>
+              <img src='../locker.png' alt='' width='20px' height='20px' />{' '}
+            </div>
+            <div>
+              <img
+                src='../coin1.png'
+                alt=''
+                width='24px'
+                height='18px'
+                className='px-1'
+              />
+            </div>
+            <div className='text-primary'>42,291.22</div>
+          </div>
+          <div className='d-flex items-center mb-1'>
+            <div>
+              <img src='../locker.png' alt='' width='20px' height='20px' />{' '}
+            </div>
+            <div>
+              <img
+                src='../coin1.png'
+                alt=''
+                width='24px'
+                height='18px'
+                className='px-1'
+              />
+            </div>
+            <div>69,132.68 (1.2%)</div>
+          </div>
+        </div>
+      </div>
+
+      <div className='flexCenter py-2'>
+        <span className='text-primary'>$28,250,424 </span> / $46,180,443
+      </div>
+      <div className='d-flex flex-column text-muted mb-4'>
+        <div className='flexBetween'>
+          <span>Total LP tokens </span>
+          <span> 656,681.1467 </span>
+        </div>
+        <div className='flexBetween'>
+          <span>Total LP tokens </span>
+          <span> 656,681.1467 </span>
+        </div>
+      </div>
+
+      <div className='d-flex flex-column '>
+        <h3 className='fw-light'>Liquidity Locks</h3>
+        <p className='text-muted'>
+          Please be aware only the univ2 tokens are locked. Not the actual
+          dollar value. This changes as people trade. More liquidity tokens are
+          also minted as people add liquidity to the pool.
+        </p>
+      </div>
+
       <p className='fw-light mt-3'>
         The following is the vesting schedule of locked tokens by the team. The
         transaction ID's are available publicly to be viewed.
