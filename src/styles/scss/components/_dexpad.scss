@@ -24,7 +24,15 @@
             }
         }
     }
+
+    @include respond('phone') {
+        &-pools{
+            &-banner{ 
+                height: auto;
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+        }
+    }
    
 }
-
-

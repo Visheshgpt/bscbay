@@ -29,7 +29,7 @@ function IncupadCardPool({
     <Link to={url} key={item.id}>
       <div className='incupad-upcoming-pool-card h-100 relative'>
         {dexpad && (
-          <div className='dexpad-banner text-primary text-center'>Dexpad</div>
+          <div className='dexpad-titltext text-primary text-center'>Dexpad</div>
         )}
         <span className='card-tag'>{item.tag}</span>
         {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}

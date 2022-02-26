@@ -198,3 +198,8 @@ ul {
 .slick-prev:before, .slick-next:before {
   color: $color-primary !important;
 }
+
+.b-primary {
+  border: 1px solid $color-primary;
+  border-radius: 12px;
+}

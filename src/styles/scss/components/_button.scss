@@ -86,7 +86,7 @@
             border: 0px;
             width: 100px;
             padding: 0px;
-           margin-right: 12px;
+            margin-right: 12px;
         }
     }
 
@@ -123,10 +123,11 @@
     }
 
     @include respond('phone') {
-        &_header{ 
+        &-header{ 
+            margin-right: 18px;
             .date {
                 font-size: 0.65rem;
-                right:20px;
+                right:10px;
             }
         }
     }

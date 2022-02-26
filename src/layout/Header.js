@@ -24,6 +24,8 @@ function Header() {
 
   let showLaunchPadLink = false;
   let showHomeLink = false;
+  let showDexpadlLink = false;
+  let showConnectWallet = false;
   let showHeaderButton =
     window.sessionStorage.getItem('walletAddress') || false;
 
@@ -32,17 +34,36 @@ function Header() {
 
   if (pathname === '/') {
     showLaunchPadLink = true;
+    showDexpadlLink = true;
     showHeaderButton = false;
   }
 
   if (pathname === '/launchpad') showHomeLink = true;
 
-  const matchLaunchpadTitle = matchPath(location.pathname, {
+  if (pathname === '/dexpad') {
+    showHomeLink = true;
+    showLaunchPadLink = true;
+  }
+
+  if (pathname === '/dashboard' && !showHeaderButton) {
+    showConnectWallet = true;
+  }
+
+  const matchLaunchpadTitle = matchPath(pathname, {
     path: `/launchpad/:title`,
   });
 
   if (matchLaunchpadTitle && matchLaunchpadTitle.isExact && !showHeaderButton)
     showHomeLink = true;
+
+  const matchLaunchpadId = matchPath(pathname, {
+    path: `/dexpad/:id`,
+  });
+
+  if (matchLaunchpadId && matchLaunchpadId.isExact && !showHeaderButton) {
+    showHomeLink = true;
+    showLaunchPadLink = true;
+  }
 
   header === 'fixed' && scrollPosition > 10
     ? header_ && header_.classList.add('header_background')
@@ -85,45 +106,70 @@ function Header() {
                 <li className='nav-item'>
                   <HeaderButtons />
                 </li>
-              ) : showLaunchPadLink ? (
+              ) : (
+                <>
+                  {showLaunchPadLink && (
+                    <li className='nav-item'>
+                      <Link
+                        to='/launchpad'
+                        className='btn btn-outline-primary fw-500'>
+                        LaunchPad
+                      </Link>
+                    </li>
+                  )}
+                  {showHomeLink && (
+                    <li className='nav-item'>
+                      <Link
+                        to='/'
+                        className='btn btn-outline-primary fw-500 mx-3'>
+                        Home
+                      </Link>
+                    </li>
+                  )}
+                </>
+              )}
+              {/* {showDexpadlLink && (
                 <li className='nav-item'>
                   <Link
-                    to='/launchpad'
-                    className='btn btn-outline-primary fw-500'>
-                    LaunchPad
+                    to='/dexpad'
+                    className='btn btn-outline-primary fw-500 mx-3'>
+                    DexPools
                   </Link>
                 </li>
-              ) : showHomeLink ? (
-                <li className='nav-item'>
-                  <Link to='/' className='btn btn-outline-primary fw-500'>
-                    Home
-                  </Link>
-                </li>
-              ) : null}
+              )} */}
             </ul>
           </div>
           {/* Mobile button */}
           <div className='ms-auto d-flex d-md-none align-items-center'>
             {showHeaderButton ? (
               <HeaderButtons showmobile={true} />
-            ) : showLaunchPadLink ? (
-              <Link
-                to='/launchpad'
-                className='btn btn-outline-primary text-white fw-500'>
-                <small>
-                  <small>LaunchPad</small>
-                </small>
-              </Link>
-            ) : showHomeLink ? (
-              <Link
-                to='/'
-                className='btn btn-outline-primary text-white fw-500'>
-                <small>
-                  <small>Home</small>
-                </small>
-              </Link>
-            ) : null}
+            ) : (
+              <>
+                {showHomeLink && (
+                  <Link to='/' className='btn-sm b-primary text-white fw-500'>
+                    Home
+                  </Link>
+                )}
+                {showLaunchPadLink && (
+                  <Link
+                    to='/launchpad'
+                    className='btn-sm b-primary text-white fw-500 mx-1'>
+                    LaunchPad
+                  </Link>
+                )}
+                {/* {showDexpadlLink && (
+                  <Link
+                    to='/dexpad'
+                    className='btn-sm b-primary text-white fw-500 mx-1'>
+                    DexPools
+                  </Link>
+                )} */}
+              </>
+            )}
+
+            {showConnectWallet && <WalletConnect />}
           </div>
+
           {/* Mobile button */}
         </div>
       </Container>

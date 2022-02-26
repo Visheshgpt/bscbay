@@ -187,6 +187,10 @@ ul {
 .slick-prev:before, .slick-next:before {
   color: #ffd366 !important; }
 
+.b-primary {
+  border: 1px solid #ffd366;
+  border-radius: 12px; }
+
 .accordion .card-header {
   width: 100%;
   border-radius: 10px;
@@ -305,9 +309,11 @@ ul {
     background: #ffd366;
     color: #242837; }
   @media only screen and (max-width: 575px) {
-    .btn_header .date {
-      font-size: 0.65rem;
-      right: 20px; } }
+    .btn-header {
+      margin-right: 18px; }
+      .btn-header .date {
+        font-size: 0.65rem;
+        right: 10px; } }
 
 .whitepaper_btn {
   width: 220px;
@@ -859,6 +865,12 @@ label {
   .dexpad-pools-banner > div > div {
     align-items: center; }
 
+@media only screen and (max-width: 575px) {
+  .dexpad-pools-banner {
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 40px; } }
+
 footer {
   background: linear-gradient(180deg, #383a41 0%, #1b1b20 100%), #ffffff;
   color: #fff;
@@ -1005,6 +1017,8 @@ footer {
     width: 100%; }
 
 @media only screen and (max-width: 575px) {
+  #navbar .container-xxl {
+    padding: 0px 15px; }
   .home_banner {
     padding-top: 90px !important; }
   .video_section {

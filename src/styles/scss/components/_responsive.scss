@@ -1,4 +1,12 @@
 @include respond('phone') {
+
+    #navbar {
+        .container-xxl{
+            padding: 0px 15px;
+        }
+    }
+   
+  
     .home_banner {
         padding-top: 90px !important;
     }
