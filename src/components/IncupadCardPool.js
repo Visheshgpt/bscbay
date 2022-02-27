@@ -34,7 +34,7 @@ function IncupadCardPool({
         )}
         <span className='card-tag'>{item.tag}</span>
         {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}
-        <AnimatedLogo />
+        <AnimatedLogo srcimg={item.img} />
         <span className='card-title'>{item.title}</span>
         {item.description && (
           <p className='card-description'>

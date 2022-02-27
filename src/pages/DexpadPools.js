@@ -14,7 +14,7 @@ function DexpadPools() {
     <section className='bg-color-2 text-white relative'>
       <DexpadPoolBanner activePool={activePool} />
       <DexpadInformation activePool={activePool} />
-      <DexpadAdmin />
+      {/* <DexpadAdmin /> */}
     </section>
   );
 }

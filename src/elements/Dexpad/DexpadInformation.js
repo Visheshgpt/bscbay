@@ -20,7 +20,7 @@ function DexpadInformation({ activePool }) {
           <Col xs={12}>
             <h2>Pool Information</h2>
           </Col>
-          <Col xs={12} lg={6}>
+          <Col xs={12} lg={6}> 
             <div className='pool-information-card'>
               <div>
                 <span>SALE DATE</span>
@@ -28,18 +28,18 @@ function DexpadInformation({ activePool }) {
               </div>
               <div>
                 <span>MIN. ALLOCATION</span>
-                <span>{Minallocation} BNB </span>
-                {/* <span>TBA</span> */}
+                {/* <span>{Minallocation} BNB </span> */}
+                <span>2.5 BNB</span>
               </div>
               <div>
                 <span>MAX. ALLOCATION</span>
-                <span>{Maxallocation} BNB</span>
-                {/* <span>TBA</span> */}
+                {/* <span>{Maxallocation} BNB</span> */}
+                <span>5 BNB</span>
               </div>
               <div>
                 <span>TOKEN PRICE</span>
-                <span>{tokenPrice} BNB</span>
-                {/* <span>TBA</span> */}
+                {/* <span>{tokenPrice} BNB</span> */}
+                <span>0.00002777</span>
               </div>
               <div>
                 <span>ACCESS TYPE</span>
@@ -85,16 +85,16 @@ function DexpadInformation({ activePool }) {
           </Col>
 
           <Col xs={6} lg={6} className='project-video-section'>
-            <h2 className='mb-3'>Project Clip</h2>
+          {activePool.videolink && <> <h2 className='mb-3'>Project Clip</h2> 
             <div className='videoContainer mt-2 '>
               <video
                 className='incupad-pool-video responsive-iframe '
-                src={video}
+                src={activePool.videolink}
                 controls
                 // frameborder="0"
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               />
-            </div>
+            </div></> }
           </Col>
 
           <Col xs={12}></Col>

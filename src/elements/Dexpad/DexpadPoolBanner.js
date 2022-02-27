@@ -577,7 +577,7 @@ const DexpadPoolBanner = ({ activePool }) => {
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   return (
-    <Container as='div' fluid='xxl' className='dexpad-pools-banner'>
+    <Container as='div' fluid='xxl' className='dexpad-pools-banner incupad-upcoming-section' >
       <Container>
         <Row className='relative'>
           <Col lg={7} md={7} className='left-section'>
@@ -656,13 +656,13 @@ const DexpadPoolBanner = ({ activePool }) => {
               {/* <img src="../assets/instagarm.svg" alt="instagram" /> */}
             </div>
             <div className='d-flex align-items-center mt-4'>
-              <a href='/dexpad' className='btn btn-sm btn-outline-primary'>
+              <a href='' className='btn btn-sm btn-outline-primary'> 
                 <span className='mx-1'>KYC</span>
                 <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
-              <a href='/dexpad' className='btn btn-sm btn-outline-primary mx-3'>
+              <a href={activePool.kycLink} target="_blank" className='btn btn-sm btn-outline-primary mx-3'>
                 <span className='mx-1'>AUDIT</span>
-                <img src='../close.png' alt='' width='12px' height='12px' />
+                <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
             </div>
           </Col>
@@ -683,8 +683,10 @@ const DexpadPoolBanner = ({ activePool }) => {
                     {status}
                   </span>
                   <h3>
-                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
-                    {activePool.symbol}{' '}
+                    {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    {activePool.symbol}{' '} */}
+                  1 BNB = 36000 BCT
+
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -708,15 +710,17 @@ const DexpadPoolBanner = ({ activePool }) => {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB.toFixed(0)} / {(HardCap * tokenPrice).toFixed(0)}{' '}
-                    {activePool.allocationType}
+                    {/* {raisedBNB.toFixed(0)} / {(HardCap * tokenPrice).toFixed(0)}{' '}
+                    {activePool.allocationType} */}
+                    0 / 200 BNB
                   </h4>
                   <ProgressBar
-                    now={ICOcompletePercentage}
+                    now={0}
                     className='progress-bar-section'
-                    label={`${Math.round(ICOcompletePercentage)}%`}
+                    label={`${Math.round(0)}%`}
                   />
-                  <span>Participant : {totalUsers}</span>
+                  {/* <span>Participant : {totalUsers}</span> */}
+                  <span>Participant : 0</span>
                 </div>
               </div>
               <div className='d-flex justify-content-center mt-4'>
@@ -740,8 +744,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className='ongoing-upper-card-right'>
-                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
-                    {activePool.symbol}{' '}
+                    {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    {activePool.symbol}{' '} */}
+                    1 BNB = 36000 BCT
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
@@ -768,22 +773,27 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
-                        Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(HardCap * tokenPrice).toFixed(0)} BNB
+                        {/* Raised: {raisedBNB.toFixed(1)} BNB /{' '}
+                        {(HardCap * tokenPrice).toFixed(0)} BNB */}
+                        Raised: 0/200 BNB
                       </span>
                     </div>
                     <div>
                       <ProgressBar
-                        now={ICOcompletePercentage}
+                        // now={ICOcompletePercentage}
+                        // className='pro-bar-section'
+                        // label={`${Math.round(ICOcompletePercentage)}%`}
+                        now={0}
                         className='pro-bar-section'
-                        label={`${Math.round(ICOcompletePercentage)}%`}
+                        label={`${Math.round(0)}%`}
                       />
                     </div>
                     <div>
                       <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
                         {/* <span>Total Raised :150/500 BNB</span> */}
-                        <span>Participants : {totalUsers}</span>
+                        {/* <span>Participants : {totalUsers}</span> */}
+                        <span>Participants : {0}</span>
                       </div>
                     </div>
                   </div>
@@ -834,9 +844,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                         {' '}
                         Claimable Tokens:{' '}
                         <span className='text-warning ms-1'>
-                          {claimableTokens.toFixed(0)} BSCBay
+                          {claimableTokens.toFixed(0)} BSCT
                           <span className='tooltips mx-2'>
-                            <Tooltip />
+                            {/* <Tooltip /> */}
                           </span>
                         </span>
                       </span>
@@ -932,6 +942,11 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </div>
                   )
                 ))}
+            
+            <p className='text-muted pt-3 text-center small'>
+                Project Launch in On DEXPAD. <br />
+                Please Do Your Own Research Before Investing.
+              </p>
             </div>
           )}
 

@@ -1,8 +1,8 @@
-function AnimatedLogo({ text = false }) {
+function AnimatedLogo({ text = false, srcimg }) {
   return (
     <div className='logo_content d-flex align-items-center my-4'>
       <div className='logo_box'>
-        <img src='../assets/bscbay.png' alt='logo' height='55px' />
+        <img src={srcimg} alt='logo' height='55px' />
       </div>
       {text && (
         <div className='mx-3'>
@@ -16,3 +16,4 @@ function AnimatedLogo({ text = false }) {
 }
 
 export default AnimatedLogo;
+  

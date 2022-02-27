@@ -20,11 +20,14 @@ function Dexpad() {
           {dexpadData.length > 0 &&
             dexpadData.map((item) => (
               <Col lg='4'>
-                <IncupadCardPool
+                <IncupadCardPool 
                   item={item}
-                  minAllocation={minAllocation[item.id]}
-                  maxAllocation={maxAllocation[item.id]}
-                  ICOcompletePercentage={ICOCompletePercentage[item.id]}
+                  // minAllocation={minAllocation[item.id]}
+                  minAllocation="2.5"
+                  // maxAllocation={maxAllocation[item.id]}
+                  maxAllocation="5"
+                  // ICOcompletePercentage={ICOCompletePercentage[item.id]}
+                  ICOcompletePercentage="0"
                   allocationTokens={allocationTokens[item.id]}
                   maxDistributionTokens={maxDistributionTokens[item.id]}
                   checkClose={true}
