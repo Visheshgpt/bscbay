@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { dexpaddata } from '../dexpaddata';
 import DexpadPoolBanner from '../elements/Dexpad/DexpadPoolBanner';
 import DexpadInformation from '../elements/Dexpad/DexpadInformation';
-
+import DexpadAdmin from '../elements/Dexpad/DexpadAdmin';
 function DexpadPools() {
   const { id } = useParams();
 
@@ -14,6 +14,7 @@ function DexpadPools() {
     <section className='bg-color-2 text-white relative'>
       <DexpadPoolBanner activePool={activePool} />
       <DexpadInformation activePool={activePool} />
+      <DexpadAdmin />
     </section>
   );
 }

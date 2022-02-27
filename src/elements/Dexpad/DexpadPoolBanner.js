@@ -577,7 +577,7 @@ const DexpadPoolBanner = ({ activePool }) => {
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   return (
-    <Container as='section' fluid='xxl' className='dexpad-pools-banner'>
+    <Container as='div' fluid='xxl' className='dexpad-pools-banner'>
       <Container>
         <Row className='relative'>
           <Col lg={7} md={7} className='left-section'>
@@ -657,10 +657,12 @@ const DexpadPoolBanner = ({ activePool }) => {
             </div>
             <div className='d-flex align-items-center mt-4'>
               <a href='/dexpad' className='btn btn-sm btn-outline-primary'>
-                KYC <img src='../check.png' alt='' width='15px' height='15px' />
+                <span className='mx-1'>KYC</span>
+                <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
               <a href='/dexpad' className='btn btn-sm btn-outline-primary mx-3'>
-                AUDIT
+                <span className='mx-1'>AUDIT</span>
+                <img src='../close.png' alt='' width='12px' height='12px' />
               </a>
             </div>
           </Col>

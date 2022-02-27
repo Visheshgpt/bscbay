@@ -1,6 +1,7 @@
 import { ProgressBar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TimerSection from './TimeSection';
+import AnimatedLogo from './AnimatedLogo';
 
 function IncupadCardPool({
   item,
@@ -33,11 +34,7 @@ function IncupadCardPool({
         )}
         <span className='card-tag'>{item.tag}</span>
         {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}
-        <div className='icon-box-incupad'>
-          <span>
-            <img src={item.img} alt={item.title} />
-          </span>
-        </div>
+        <AnimatedLogo />
         <span className='card-title'>{item.title}</span>
         {item.description && (
           <p className='card-description'>
