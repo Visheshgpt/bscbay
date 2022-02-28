@@ -23,4 +23,38 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+
+  <script type="text/javascript" src="https://widgets.rubic.exchange/iframe/bundle.min.js"></script>
+
+<script defer type="text/javascript">
+  // describe widget configuration and saving to a global variable for future use
+  var configuration = {
+      from: 'ETH',
+      to: '0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6',
+      fromChain: 'ETH',
+      toChain: 'BSC',
+      amount: 1,
+      iframe: 'flex',
+      hideSelectionFrom: false,
+      hideSelectionTo: true,
+      theme: 'dark',
+      background: '#28372e',
+      injectTokens: {
+          'eth': [
+              '0xa4eed63db85311e22df4473f87ccfc3dadcfa3e3'
+          ],
+          'bsc' :['0xaa3387b36a4acd9d2c1326a7f10658d7051b73a6']
+      },
+      slippagePercent: {
+          instantTrades: 2,
+          crossChain: 5
+      }
+  }
+
+  // prevent accidental changes to the object, for example, when re-creating a widget for another theme
+  Object.freeze(configuration);
+
+  // create widget
+  rubicWidget.init(configuration);
+</script>
 </html>

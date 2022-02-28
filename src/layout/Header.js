@@ -38,7 +38,7 @@ function Header() {
     showHeaderButton = false;
   }
 
-  if (pathname === '/launchpad') showHomeLink = true;
+  if (pathname === '/launchpad' || pathname === '/buyvia') showHomeLink = true;
 
   if (pathname === '/dexpad') {
     showHomeLink = true;
@@ -99,6 +99,11 @@ function Header() {
                   className='nav-link'
                   rel='noreferrer'>
                   Documentation
+                </a>
+              </li>
+              <li className='nav-item pe-lg-4'>
+                <a href='/buyvia' className='nav-link'>
+                  Buyvia
                 </a>
               </li>
 
@@ -176,25 +181,30 @@ function Header() {
       {/* Mobile Navbar */}
       <section className='bg-secondary py-2 fixed-bottom d-block d-md-none'>
         <div>
-          <ul className='nav justify-content-around'>
-            <li className='nav-item pe-lg-4'>
+          <ul className='nav nav-mobile'>
+            <li className='nav-item lg-3'>
               <Link to='/dashboard' className='nav-link'>
                 <small>Dashboard</small>
               </Link>
             </li>
 
-            <li className='nav-item pe-lg-4'>
+            <li className='nav-item lg-3'>
               <Link to='/information' className='nav-link'>
                 <small>Services</small>
               </Link>
             </li>
-            <li className='nav-item pe-lg-4'>
+            <li className='nav-item lg-3'>
               <a
                 href='https://docs.bscbay.com/'
                 target='_blank'
                 className='nav-link'
                 rel='noreferrer'>
                 <small>Documentation</small>
+              </a>
+            </li>
+            <li className='nav-item lg-3'>
+              <a href='/buyvia' className='nav-link'>
+                Buyvia
               </a>
             </li>
           </ul>
