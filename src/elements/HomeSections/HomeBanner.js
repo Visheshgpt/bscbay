@@ -17,7 +17,7 @@ function HomeBanner() {
     { name: `Liquidity Pool \u00A0 ($)`, number: 'TBA' },
     { name: 'Total USDT Distributed', number: 'TBA' },
     { name: 'Total Buyback ($)', number: 'TBA' },
-    { name: 'No. of Holders', number: 'TBA' },
+    { name: 'BNB Price', number: 'TBA' },
   ];
 
   const [oneBNBprice, setoneBNBprice] = useState(0);
@@ -153,7 +153,7 @@ ecosystemData[1].number = permillbcbs.toFixed(0);
 ecosystemData[2].number = (LPbnb*oneBNBprice*2).toFixed(0);
 ecosystemData[3].number = totalUSDTdistributed.toFixed(0);
 ecosystemData[4].number = (buyback*oneBNBprice).toFixed(2);
-ecosystemData[5].number = holders.toFixed(0);
+ecosystemData[5].number = oneBNBprice.toFixed(0);
 
 
 // formatValue = value => `$ ${new Intl.NumberFormat().format(value)}`;

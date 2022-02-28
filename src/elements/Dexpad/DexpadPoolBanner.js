@@ -727,7 +727,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                 <WalletConnect />
               </div>
               <p className='text-muted pt-3 text-center small'>
-                Project Launch in On DEXPAD. <br />
+                Project launch is on DEXPAD. <br />
                 Please Do Your Own Research Before Investing.
               </p>
               {/* { address ? <WalletDetails activePool={activePool} /> : <WalletDetails activePool={activePool}/> } */}
@@ -944,7 +944,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                 ))}
             
             <p className='text-muted pt-3 text-center small'>
-                Project Launch in On DEXPAD. <br />
+                Project launch is on DEXPAD. <br />
                 Please Do Your Own Research Before Investing.
               </p>
             </div>

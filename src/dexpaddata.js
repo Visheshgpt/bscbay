@@ -9,8 +9,8 @@ export const dexpaddata = [
     description:
       'BlockStar will change the Social Media landscape forever. Full KYC and Audited done Through TRU-AUDIT The First Social Media Platform built on blockchain technology! Come Join the Fun!!! BlockStar.site',
     time: 'TBA',
-    startTime: 1646143200,
-    finishTime: 1646229600,
+    startTime: 1646316000,
+    finishTime: 1646402400,
     chainID: '56', 
     chain: 'bsc',
     tokenDistribution: 'TBA',

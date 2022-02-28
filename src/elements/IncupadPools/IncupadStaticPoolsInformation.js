@@ -1,4 +1,7 @@
 import { Col, Container, Row } from 'react-bootstrap';
+
+import video from '../../assets/video/metatags.mp4';
+
 function IncupadStaticPoolsInformation({ activePool }) {
   const {
     saleDate,
@@ -6,7 +9,7 @@ function IncupadStaticPoolsInformation({ activePool }) {
     maxAllocation,
     tokenPrice,
     accessType,
-    title,
+    title,   
     symbol,
     decimals,
     totalSupply,
@@ -89,7 +92,7 @@ function IncupadStaticPoolsInformation({ activePool }) {
             <div className='videoContainer mt-2 '>
               <video
                 className='incupad-pool-video responsive-iframe '
-                src={videolink}
+                src={video}
                 controls
                 // frameborder="0"
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

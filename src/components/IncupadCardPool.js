@@ -43,10 +43,11 @@ function IncupadCardPool({
           </p>
         )}
 
-        <div className='card-time'>
+        {/* <div className='card-time'>
           <img src='./assets/is-time-1.svg' alt='time icon' />
-        </div>
-        {icopercent !== -1 ? (
+        </div> */}
+      
+        {/* {icopercent !== -1 ? (
           <TimerSection
             startTime={item.startTime}
             finishTime={item.finishTime}
@@ -58,8 +59,9 @@ function IncupadCardPool({
             finishTime={item.finishTime}
             ICOcompletePercentage={ICOcompletePercentage}
           />
-        )}
-
+        )} */}
+        <br></br>
+        
         <div className='incupad-upcoming-pool-card-lower'>
           {icopercent !== -1 ? (
             <ProgressBar

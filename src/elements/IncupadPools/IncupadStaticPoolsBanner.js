@@ -4,6 +4,11 @@ import { currentTimeDate } from '../../utils/helper';
 import Timer from '../../components/Timer';
 import WalletConnect from '../../components/WalletConnect';
 import Tooltip from '../../components/Tooltip';
+ 
+import React, { useEffect, useState } from 'react';
+import Web3 from 'web3';
+import { chainRpcs, chainIds } from '../../chainRPCs';
+import ERC20abi from '../../shared/BSCBAYabi.json';
 
 function IncupadStaticPoolsBanner({ activePool }) {
   const {
@@ -27,14 +32,60 @@ function IncupadStaticPoolsBanner({ activePool }) {
     hardCap,
     tokenPrice,
     raisedBNB,
-    userTokenalance,
-    userBNBbalance,
     userInvested,
     remainingallocation,
     claimableTokens,
   } = activePool;
 
+  const [userBNBbalance, setuserBNBbalance] = useState(0);
+  const [userTokenalance, setuserTokenalance] = useState(0);
+
   const address = window.sessionStorage.getItem('walletAddress');
+
+  
+  function web3apis() {
+
+    const web3 = new Web3("https://bsc-dataseed.binance.org/");
+
+    if (address) {
+      var contractTokenABI = ERC20abi;
+      var contractTokenAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
+      var Tokencontract = new web3.eth.Contract(
+        contractTokenABI,
+        contractTokenAddress
+      );
+
+      // get USER TOKENS
+      Tokencontract.methods
+        .balanceOf(address)
+        .call()
+        .then((amount) => {
+          // console.log("ii",amount);
+          var tokens = web3.utils.toBN(amount).toString();
+          setuserTokenalance(Number(web3.utils.fromWei(tokens, 'ether')));
+          window.sessionStorage.setItem(
+            'userBSCB',
+            web3.utils.fromWei(tokens, 'ether')
+          );
+        });
+
+      // get User BNB balance
+      web3.eth.getBalance(address).then((balance) => {
+        ////console.log(balance);
+        var tokens = web3.utils.toBN(balance).toString();
+        setuserBNBbalance(Number(web3.utils.fromWei(tokens, 'ether')));
+        window.sessionStorage.setItem(
+          'userBNB',
+          web3.utils.fromWei(tokens, 'ether')
+        );
+      });
+    }
+  }
+
+ 
+useEffect(() => {
+  web3apis()
+})
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -74,32 +125,21 @@ function IncupadStaticPoolsBanner({ activePool }) {
                     {status}
                   </span>
                   <h3>
-                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    1 {activePool.allocationType} = {oneBNBprice} {' '}
                     {activePool.symbol}{' '}
                   </h3>
                   *
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
                   <p>TBA</p> */}
-                  {currentTimeDate < StartTime ? (
-                    <div className='timer_content'>
-                      <span>Starts In: </span>
-                      <Timer initialcount={StartTime - currentTimeDate} />
-                    </div>
-                  ) : currentTimeDate < EndTime &&
-                    Number(ICOcompletePercentage) !== 100 ? (
-                    <div className='timer_content'>
-                      <span>Closes in:</span>
-                      <Timer initialcount={EndTime - currentTimeDate} />
-                    </div>
-                  ) : (
-                    <div className='closed'>Closed</div>
-                  )}
+         
+                    <div className='closed'>Upcoming</div>
+                  
                 </div>
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB.toFixed(0)} / {(hardCap * tokenPrice).toFixed(0)}{' '}
-                    {activePool.allocationType}
+                    {raisedBNB.toFixed(0)} / {(hardCap).toFixed(0)}{' '}
+                    {activePool.allocationType}   
                   </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
@@ -133,28 +173,15 @@ function IncupadStaticPoolsBanner({ activePool }) {
                   <div className='ongoing-lower-card text-white w-100'>
                     <div className='d-flex justify-content-center'>
                       <div className='text-white d-flex align-items-center flex-row'>
-                        {currentTimeDate < StartTime ? (
-                          <div className='timer_content'>
-                            <span> Start in: </span>
-                            <Timer initialcount={StartTime - currentTimeDate} />
-                          </div>
-                        ) : currentTimeDate < EndTime &&
-                          Number(ICOcompletePercentage) !== 100 ? (
-                          <div className='timer_content'>
-                            <span> Closes in: </span>
-                            <Timer initialcount={EndTime - currentTimeDate} />
-                          </div>
-                        ) : (
-                          <>
-                            <span> Closed</span>
-                          </>
-                        )}
+                  
+                            <span> Upcoming</span>
+
                       </div>
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
                         Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(hardCap * tokenPrice).toFixed(0)} BNB
+                        {(hardCap).toFixed(0)} BNB
                       </span>
                     </div>
                     <div>
@@ -192,7 +219,7 @@ function IncupadStaticPoolsBanner({ activePool }) {
                     </span>
                     <span>
                       {' '}
-                      Remaining allocation: {remainingallocation.toFixed(2)} BNB
+                      Remaining allocation: {remainingallocation} BNB
                     </span>
                   </div>
                   {/* <div className='d-flex flex-row justify-content-between text-white'>
@@ -203,30 +230,20 @@ function IncupadStaticPoolsBanner({ activePool }) {
                       </span>
                     </div> */}
                   <br></br>
-                  {userInvested > 0 && claimableTokens === 0 ? (
-                    <div className='d-flex flex-row justify-content-between text-white'>
-                      <span>
-                        <span className='text-warning ms-1'>
-                          {' '}
-                          Tokens Claimed:{' '}
-                          {(userInvested / tokenPrice).toFixed(0)}
-                        </span>
-                      </span>
-                    </div>
-                  ) : (
+   
                     <div className='d-flex flex-row justify-content-between text-white'>
                       <span>
                         {' '}
                         Claimable Tokens:{' '}
                         <span className='text-warning ms-1'>
-                          BSCBay
+                          {activePool.symbol}
                           <span className='tooltips mx-2'>
-                            <Tooltip />
+                            {/* <Tooltip /> */}
                           </span>
                         </span>
                       </span>
                     </div>
-                  )}
+
                 </div>
 
                 {/* {currentTime > EndTime && round === 0 && (
