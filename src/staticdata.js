@@ -57,6 +57,7 @@ export const staticData = [
     remainingallocation: 'TBA',
     claimableTokens: 100,
     youtube: false,
+    tiltText: 'ICO',
   },
 
   {

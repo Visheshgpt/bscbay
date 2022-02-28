@@ -29,8 +29,10 @@ function IncupadCardPool({
   return (
     <Link to={url} key={item.id}>
       <div className='incupad-upcoming-pool-card h-100 relative'>
-        {dexpad && (
-          <div className='dexpad-titltext text-primary text-center'>Dexpad</div>
+        {item.tiltText && (
+          <div className='dexpad-titltext text-primary text-center'>
+            {item.tiltText}
+          </div>
         )}
         <span className='card-tag'>{item.tag}</span>
         {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}
@@ -46,9 +48,10 @@ function IncupadCardPool({
         <div className='card-time'>
           <img src='./assets/is-time-1.svg' alt='time icon' />
         </div>
-      
-        {staticdata ? <p className='py-2 text-white'>Upcoming</p>
-         : icopercent !== -1 ? (
+
+        {staticdata ? (
+          <p className='py-2 text-white'>Upcoming</p>
+        ) : icopercent !== -1 ? (
           <TimerSection
             startTime={item.startTime}
             finishTime={item.finishTime}
@@ -60,8 +63,7 @@ function IncupadCardPool({
             finishTime={item.finishTime}
             ICOcompletePercentage={ICOcompletePercentage}
           />
-        )   }
-     
+        )}
 
         {/* {icopercent !== -1 ? (
           <TimerSection
@@ -78,7 +80,7 @@ function IncupadCardPool({
         )} */}
 
         {/* <br></br> */}
-        
+
         <div className='incupad-upcoming-pool-card-lower'>
           {icopercent !== -1 ? (
             <ProgressBar

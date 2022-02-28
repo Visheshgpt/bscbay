@@ -11,7 +11,7 @@ export const dexpaddata = [
     time: 'TBA',
     startTime: 1646316000,
     finishTime: 1646402400,
-    chainID: '56', 
+    chainID: '56',
     chain: 'bsc',
     tokenDistribution: 'TBA',
     tokenPrice: 'TBA',
@@ -25,10 +25,8 @@ export const dexpaddata = [
     redditlink: '',
     instagramlink: '',
     websitelink: 'https://blockstar.site/',
-    auditLink:
-      '',
-    kycLink:
-      'https://blockstar.site/page/view-album-media?id=2140',
+    auditLink: '',
+    kycLink: 'https://blockstar.site/page/view-album-media?id=2140',
     totalUsers: 100,
     symbol: 'BCT',
     decimals: 9,
@@ -36,7 +34,7 @@ export const dexpaddata = [
     totalSupply: '100,000,000',
     accessType: 'Private/Whitelist',
     about: [
-      'BlockStar will change the Social Media landscape forever. Full KYC and Audited done Through TRU-AUDIT The First Social Media Platform built on blockchain technology! Come Join the Fun!!! BlockStar.site'
+      'BlockStar will change the Social Media landscape forever. Full KYC and Audited done Through TRU-AUDIT The First Social Media Platform built on blockchain technology! Come Join the Fun!!! BlockStar.site',
     ],
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0x6b2Bf0d3dfF08D32460D043851CCecc05BF8E197',
@@ -44,5 +42,6 @@ export const dexpaddata = [
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
     soldOut: false,
     saleDate: "1 March' 22, 2:00 PM UTC",
+    tiltText: 'Dexpad',
   },
 ];
