@@ -95,7 +95,6 @@ export const poolData = [
     saleDate: "23 FEB' 22, 6:00 PM UTC",
   },
 
-  
   // {
   //   title: 'BSCBay',
   //   id: 3,
@@ -143,7 +142,7 @@ export const poolData = [
   //   soldOut: false,
   //   saleDate: "23 FEB' 22, 6:00 PM UTC",
   // },
-  
+
   // {
   //   title: 'BSCBayTestnet',
   //   id: 3,
@@ -192,7 +191,6 @@ export const poolData = [
   //   saleDate: "21 FEB' 22, 6:00 PM UTC",
   // },
 
-  
   // {
   //   title: 'BSCBay',
   //   id: 2,
@@ -287,4 +285,3 @@ export const poolData = [
 ];
 
 // 0xF944C1438C2903e593200d54885204DF181DBBf3
-

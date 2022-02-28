@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  ProgressBar,
-  Button,
-  Spinner,
-} from 'react-bootstrap';
+import { Container, Row, Col, ProgressBar, Spinner } from 'react-bootstrap';
 import Web3 from 'web3';
+import SocialLink from '../../components/SocialLink';
 
 import LaunchStepThree from '../launch-steps/LaunchStepThree';
 // import WalletDetails from "../../walletDetails/WalletDetails";
@@ -603,6 +597,16 @@ const IncupadPoolsBanner = ({ activePool }) => {
   let currentTime = new Date();
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
+  const {
+    twitterlink,
+    redditlink,
+    telegramlink,
+    discordlink,
+    websitelink,
+    auditlink,
+    instagramLink,
+  } = activePool;
+
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
       <Container>
@@ -620,66 +624,13 @@ const IncupadPoolsBanner = ({ activePool }) => {
             <h2>{activePool.title}</h2>
             <p>{activePool.description}</p>
             <div className='social_icons'>
-              {activePool.telegramlink && (
-                <a
-                  href={activePool.telegramlink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/telegram.png' alt='telegram' />
-                </a>
-              )}
-              {activePool.twitterlink && (
-                <a
-                  href={activePool.twitterlink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/twitter.png' alt='twiter' />
-                </a>
-              )}
-              {activePool.redditlink && (
-                <a
-                  href={activePool.redditlink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/reddit.png' alt='reddit' />
-                </a>
-              )}
-
-              {activePool.discordlink && (
-                <a
-                  href={activePool.discordlink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/audit.png' alt='audit' />
-                </a>
-              )}
-
-              {activePool.websitelink && (
-                <a
-                  href={activePool.websitelink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/website.png' alt='website' />
-                </a>
-              )}
-
-              {activePool.auditlink && (
-                <a href={activePool.auditlink} target='_blank' rel='noreferrer'>
-                  <img src='../assets/social/audit.png' alt='audit' />
-                </a>
-              )}
-              {activePool.instagramLink && (
-                <a
-                  href={activePool.instagramLink}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <img src='../assets/social/insta.png' alt='instagram' />
-                </a>
-              )}
-
-              {/* <img src="../assets/telegram.png" alt="facebook" /> */}
-              {/* <img src="../assets/linked-in.svg" alt="linkedin" /> */}
-              {/* <img src="../assets/instagarm.svg" alt="instagram" /> */}
+              <SocialLink slink={telegramlink} name='telegram' />
+              <SocialLink slink={twitterlink} name='twitter' />
+              <SocialLink slink={redditlink} name='reddit' />
+              <SocialLink slink={discordlink} name='audit' />
+              <SocialLink slink={websitelink} name='website' />
+              <SocialLink slink={auditlink} name='audit' />
+              <SocialLink slink={instagramLink} name='insta' />
             </div>
           </Col>
 
@@ -968,7 +919,6 @@ const IncupadPoolsBanner = ({ activePool }) => {
         contractadd={activePool.contractAddress}
         show={search}
         onHide={() => {
-          console.log('search on hide click ==>');
           setSearch(false);
         }}
       />

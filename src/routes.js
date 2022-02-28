@@ -29,7 +29,7 @@ const Routes = () => {
           <Route exact path='/locker' component={LockerPage} />
           <Route exact path='/buyvia' component={Buyvia} />
           <Route path='/incupad/:title' component={IncupadPools} />
-          <Route path='/launchpad/:title' component={IncupadPools} />
+          <Route path='/launchpad/:type/:id' component={IncupadPools} />
           <Route path='/newpage/:title' component={IncpadPoolsNew} />
           <Route exact path='*' component={PageNotFound} />
         </Switch>

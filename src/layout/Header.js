@@ -50,7 +50,7 @@ function Header() {
   }
 
   const matchLaunchpadTitle = matchPath(pathname, {
-    path: `/launchpad/:title`,
+    path: `/launchpad/:type/:id`,
   });
 
   if (matchLaunchpadTitle && matchLaunchpadTitle.isExact && !showHeaderButton)

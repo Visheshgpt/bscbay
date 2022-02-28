@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Web3 from 'web3';
 
 import { chainRpcs } from '../../chainRPCs';
-
 // import video from "../../../assets/bscbayvideo.mp4";
 import video from '../../assets/video/video.mp4';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
@@ -163,8 +162,6 @@ const IncupadPoolsInformation = ({ activePool }) => {
               />
             </div>
           </Col>
-
-          <Col xs={12}></Col>
         </Row>
       </Container>
     </Container>

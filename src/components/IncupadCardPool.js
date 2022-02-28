@@ -11,6 +11,7 @@ function IncupadCardPool({
   allocationTokens,
   maxDistributionTokens,
   dexpad = false,
+  staticdata = false,
   // checkClose = false,
 }) {
   let icopercent = -1;
@@ -19,12 +20,11 @@ function IncupadCardPool({
     icopercent = ((allocationTokens / maxDistributionTokens) * 100).toFixed(2);
   }
 
-  // if (
-  //   !checkClose &&
-  //   (icopercent === '100.00' || ICOcompletePercentage === '100.00')
-  // )
-  //   return null;
-  const url = dexpad ? `/dexpad/${item.id}` : `/launchpad/${item.id}`;
+  const url = dexpad
+    ? `/dexpad/${item.id}`
+    : staticdata
+    ? `/launchpad/static/${item.id}`
+    : `/launchpad/dynamic/${item.id}`;
 
   return (
     <Link to={url} key={item.id}>

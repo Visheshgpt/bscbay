@@ -1,4 +1,5 @@
 import { poolData } from '../data';
+import { staticData } from '../staticdata';
 import { chainRpcs } from '../chainRPCs';
 export const getMonth = (num) => {
   const arr = [
@@ -57,4 +58,8 @@ export const currentTimeDate = () => {
 
 export const currentTime = () => {
   return new Date();
+};
+
+export const getStaticDataByType = (value) => {
+  return staticData.filter((item) => item.status === value);
 };

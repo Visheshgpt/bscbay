@@ -1,9 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import OwlCarousel from 'react-owl-carousel2';
 import 'react-owl-carousel2/lib/styles.css';
 import 'react-owl-carousel2/src/owl.theme.default.css';
 import IncupadCardPool from '../../components/IncupadCardPool';
+import { getStaticDataByType } from '../../utils/helper';
 
 const IncupadFeature = () => {
   const poolData = useSelector((state) => state.pooldata);
@@ -18,26 +18,7 @@ const IncupadFeature = () => {
     allocationTokens,
   } = poolData;
 
-  const options = {
-    dots: false,
-    loop: false,
-    autoplay: true,
-    margin: 20,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      768: {
-        items: 1,
-      },
-      1200: {
-        items: 3,
-      },
-      1900: {
-        items: 3,
-      },
-    },
-  };
+  const staticUpcomingData = getStaticDataByType('upcoming');
 
   return (
     <Container
@@ -86,7 +67,7 @@ const IncupadFeature = () => {
         </Row>
         <Row className='mt-5'>
           <Col xs={12} className='p-2'>
-            {upcomingPoolData.length > 0 && (
+            {(upcomingPoolData.length > 0 || staticUpcomingData.length > 0) && (
               <h2 className='text-white text-center'>Upcoming Pools</h2>
             )}
           </Col>
@@ -100,6 +81,18 @@ const IncupadFeature = () => {
                   ICOcompletePercentage={ICOCompletePercentage[item.id]}
                   allocationTokens={allocationTokens[item.id]}
                   maxDistributionTokens={maxDistributionTokens[item.id]}
+                />
+              ))}
+            {staticUpcomingData.length > 0 &&
+              staticUpcomingData.map((item) => (
+                <IncupadCardPool
+                  item={item}
+                  minAllocation={item.minAllocation}
+                  maxAllocation={item.maxAllocation}
+                  ICOcompletePercentage={item.ICOcompletePercentage}
+                  allocationTokens={item.allocationTokens}
+                  maxDistributionTokens={item.maxDistributionTokens}
+                  staticdata={true}
                 />
               ))}
           </Col>
