@@ -103,7 +103,7 @@ function Header() {
               </li>
               <li className='nav-item pe-lg-4'>
                 <a href='/buyvia' className='nav-link'>
-                  Buyvia
+                  Buy Via
                 </a>
               </li>
 
@@ -133,7 +133,7 @@ function Header() {
                   )}
                 </>
               )}
-              {/* {showDexpadlLink && (
+              {showDexpadlLink && (
                 <li className='nav-item'>
                   <Link
                     to='/dexpad'
@@ -141,7 +141,7 @@ function Header() {
                     DexPools
                   </Link>
                 </li>
-              )} */}
+              )}
             </ul>
           </div>
           {/* Mobile button */}
@@ -162,13 +162,13 @@ function Header() {
                     LaunchPad
                   </Link>
                 )}
-                {/* {showDexpadlLink && (
+                {showDexpadlLink && (
                   <Link
                     to='/dexpad'
                     className='btn-sm b-primary text-white fw-500 mx-1'>
                     DexPools
                   </Link>
-                )} */}
+                )}
               </>
             )}
 
@@ -204,7 +204,7 @@ function Header() {
             </li>
             <li className='nav-item lg-3'>
               <a href='/buyvia' className='nav-link'>
-                Buyvia
+                Buy Via
               </a>
             </li>
           </ul>

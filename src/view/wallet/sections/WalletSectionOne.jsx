@@ -443,9 +443,9 @@ const claim = async () => {
       <section className="d-flex flex-wrap">
         <div className="card__wrapper card__three">
           <div className="card__33">
-            <h4>No Of Holders</h4>
+            <h4>BNB Price</h4>
             <h4>
-              <span className="text-primary">{holders}</span>
+              <span className="text-primary">$ {oneBNBprice.toFixed(2)}</span>
             </h4>
           </div>
           <div className="card__33">
