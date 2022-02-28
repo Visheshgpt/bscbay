@@ -43,10 +43,26 @@ function IncupadCardPool({
           </p>
         )}
 
-        {/* <div className='card-time'>
+        <div className='card-time'>
           <img src='./assets/is-time-1.svg' alt='time icon' />
-        </div> */}
+        </div>
       
+        {staticdata ? <p className='py-2 text-white'>Upcoming</p>
+         : icopercent !== -1 ? (
+          <TimerSection
+            startTime={item.startTime}
+            finishTime={item.finishTime}
+            ICOcompletePercentage={icopercent}
+          />
+        ) : (
+          <TimerSection
+            startTime={item.startTime}
+            finishTime={item.finishTime}
+            ICOcompletePercentage={ICOcompletePercentage}
+          />
+        )   }
+     
+
         {/* {icopercent !== -1 ? (
           <TimerSection
             startTime={item.startTime}
@@ -60,7 +76,8 @@ function IncupadCardPool({
             ICOcompletePercentage={ICOcompletePercentage}
           />
         )} */}
-        <br></br>
+
+        {/* <br></br> */}
         
         <div className='incupad-upcoming-pool-card-lower'>
           {icopercent !== -1 ? (
