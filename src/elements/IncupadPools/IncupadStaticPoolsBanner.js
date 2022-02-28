@@ -1,13 +1,9 @@
-import { Container, Row, Col, ProgressBar, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, ProgressBar } from 'react-bootstrap';
 import SocialLink from '../../components/SocialLink';
-import { currentTimeDate } from '../../utils/helper';
-import Timer from '../../components/Timer';
 import WalletConnect from '../../components/WalletConnect';
-import Tooltip from '../../components/Tooltip';
- 
+
 import React, { useEffect, useState } from 'react';
 import Web3 from 'web3';
-import { chainRpcs, chainIds } from '../../chainRPCs';
 import ERC20abi from '../../shared/BSCBAYabi.json';
 
 function IncupadStaticPoolsBanner({ activePool }) {
@@ -26,15 +22,11 @@ function IncupadStaticPoolsBanner({ activePool }) {
     accessType,
     status,
     oneBNBprice,
-    StartTime,
-    EndTime,
     ICOcompletePercentage,
     hardCap,
-    tokenPrice,
     raisedBNB,
     userInvested,
     remainingallocation,
-    claimableTokens,
   } = activePool;
 
   const [userBNBbalance, setuserBNBbalance] = useState(0);
@@ -42,14 +34,12 @@ function IncupadStaticPoolsBanner({ activePool }) {
 
   const address = window.sessionStorage.getItem('walletAddress');
 
-  
   function web3apis() {
-
-    const web3 = new Web3("https://bsc-dataseed.binance.org/");
+    const web3 = new Web3('https://bsc-dataseed.binance.org/');
 
     if (address) {
       var contractTokenABI = ERC20abi;
-      var contractTokenAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
+      var contractTokenAddress = '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6';
       var Tokencontract = new web3.eth.Contract(
         contractTokenABI,
         contractTokenAddress
@@ -82,10 +72,9 @@ function IncupadStaticPoolsBanner({ activePool }) {
     }
   }
 
- 
-useEffect(() => {
-  web3apis()
-})
+  useEffect(() => {
+    web3apis();
+  });
 
   return (
     <Container as='section' fluid='xxl' className='upcoming-pool-banner'>
@@ -125,21 +114,19 @@ useEffect(() => {
                     {status}
                   </span>
                   <h3>
-                    1 {activePool.allocationType} = {oneBNBprice} {' '}
+                    1 {activePool.allocationType} = {oneBNBprice}{' '}
                     {activePool.symbol}{' '}
                   </h3>
                   *
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
                   <p>TBA</p> */}
-         
-                    <div className='closed'>Upcoming</div>
-                  
+                  <div className='closed'>Upcoming</div>
                 </div>
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB.toFixed(0)} / {(hardCap).toFixed(0)}{' '}
-                    {activePool.allocationType}   
+                    {raisedBNB.toFixed(0)} / {hardCap.toFixed(0)}{' '}
+                    {activePool.allocationType}
                   </h4>
                   <ProgressBar
                     now={ICOcompletePercentage}
@@ -173,15 +160,13 @@ useEffect(() => {
                   <div className='ongoing-lower-card text-white w-100'>
                     <div className='d-flex justify-content-center'>
                       <div className='text-white d-flex align-items-center flex-row'>
-                  
-                            <span> Upcoming</span>
-
+                        <span> Upcoming</span>
                       </div>
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
                         Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(hardCap).toFixed(0)} BNB
+                        {hardCap.toFixed(0)} BNB
                       </span>
                     </div>
                     <div>
@@ -194,7 +179,6 @@ useEffect(() => {
                     <div>
                       <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
-                        {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : 0</span>
                       </div>
                     </div>
@@ -204,7 +188,6 @@ useEffect(() => {
 
               {/* Second Banner on BSCBay */}
               <Col xs={12} className='ongoing-lower-card mt-2'>
-                {/* {status !== 'closed' ? ( */}
                 <div className='d-flex flex-column justify-content-between'>
                   <div className='d-flex flex-row justify-content-between text-white'>
                     <span className='pb-2'>
@@ -222,43 +205,20 @@ useEffect(() => {
                       Remaining allocation: {remainingallocation} BNB
                     </span>
                   </div>
-                  {/* <div className='d-flex flex-row justify-content-between text-white'>
-                      <span>
-                        {' '}
-                        Current Tier:{' '}
-                        <span className='text-warning ms-1'>TBA</span>
-                      </span>
-                    </div> */}
+
                   <br></br>
-   
-                    <div className='d-flex flex-row justify-content-between text-white'>
-                      <span>
-                        {' '}
-                        Claimable Tokens:{' '}
-                        <span className='text-warning ms-1'>
-                          {activePool.symbol}
-                          <span className='tooltips mx-2'>
-                            {/* <Tooltip /> */}
-                          </span>
-                        </span>
+
+                  <div className='d-flex flex-row justify-content-between text-white'>
+                    <span>
+                      {' '}
+                      Claimable Tokens:{' '}
+                      <span className='text-warning ms-1'>
+                        {activePool.symbol}
+                        <span className='tooltips mx-2'></span>
                       </span>
-                    </div>
-
-                </div>
-
-                {/* {currentTime > EndTime && round === 0 && (
-                  <div className='ongoing-lower-card-last-section'>
-                    {eligibility ? (
-                      <span>Wallet Whitelisted: Yes</span>
-                    ) : (
-                      <span>Wallet Whitelisted: No</span>
-                    )}
-
-                    <span className='pointer' onClick={() => setSearch(true)}>
-                      Check Other Wallets For Whitelist
                     </span>
                   </div>
-                )} */}
+                </div>
               </Col>
             </div>
           )}

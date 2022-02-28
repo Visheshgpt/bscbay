@@ -51,9 +51,10 @@ const IncupadFeature = () => {
               <h2 className='text-white text-center'>Ongoing Pools</h2>
             )}
           </Col>
-          <Col lg={4}>
-            {ongoingPoolData.length > 0 &&
-              ongoingPoolData.map((item) => (
+
+          {ongoingPoolData.length > 0 &&
+            ongoingPoolData.map((item) => (
+              <Col lg={4}>
                 <IncupadCardPool
                   item={item}
                   minAllocation={minAllocation[item.id]}
@@ -62,8 +63,8 @@ const IncupadFeature = () => {
                   allocationTokens={allocationTokens[item.id]}
                   maxDistributionTokens={maxDistributionTokens[item.id]}
                 />
-              ))}
-          </Col>
+              </Col>
+            ))}
         </Row>
         <Row className='mt-5'>
           <Col xs={12} className='p-2'>
@@ -71,9 +72,10 @@ const IncupadFeature = () => {
               <h2 className='text-white text-center'>Upcoming Pools</h2>
             )}
           </Col>
-          <Col lg={4}>
-            {upcomingPoolData.length > 0 &&
-              upcomingPoolData.map((item) => (
+
+          {upcomingPoolData.length > 0 &&
+            upcomingPoolData.map((item) => (
+              <Col lg={4}>
                 <IncupadCardPool
                   item={item}
                   minAllocation={minAllocation[item.id]}
@@ -82,9 +84,12 @@ const IncupadFeature = () => {
                   allocationTokens={allocationTokens[item.id]}
                   maxDistributionTokens={maxDistributionTokens[item.id]}
                 />
-              ))}
-            {staticUpcomingData.length > 0 &&
-              staticUpcomingData.map((item) => (
+              </Col>
+            ))}
+
+          {staticUpcomingData.length > 0 &&
+            staticUpcomingData.map((item) => (
+              <Col lg={4}>
                 <IncupadCardPool
                   item={item}
                   minAllocation={item.minAllocation}
@@ -94,8 +99,8 @@ const IncupadFeature = () => {
                   maxDistributionTokens={item.maxDistributionTokens}
                   staticdata={true}
                 />
-              ))}
-          </Col>
+              </Col>
+            ))}
         </Row>
         <Row className='mt-5'>
           <Col xs={12} className='p-2'>

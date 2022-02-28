@@ -20,8 +20,6 @@ const IncupadPage = () => {
   return (
     <section className="incupad-outer">
     
-
-
       {/* <ScrollToTopOnMount/> */}
       <IncupadNavBar />
       <IncupadBannerSection />

@@ -577,7 +577,10 @@ const DexpadPoolBanner = ({ activePool }) => {
   let currentTimeData = Number(Date.parse(currentTime) / 1000);
 
   return (
-    <Container as='div' fluid='xxl' className='dexpad-pools-banner incupad-upcoming-section' >
+    <Container
+      as='div'
+      fluid='xxl'
+      className='dexpad-pools-banner incupad-upcoming-section'>
       <Container>
         <Row className='relative'>
           <Col lg={7} md={7} className='left-section'>
@@ -650,17 +653,17 @@ const DexpadPoolBanner = ({ activePool }) => {
                   <img src='../assets/social/insta.png' alt='instagram' />
                 </a>
               )}
-
-              {/* <img src="../assets/telegram.png" alt="facebook" /> */}
-              {/* <img src="../assets/linked-in.svg" alt="linkedin" /> */}
-              {/* <img src="../assets/instagarm.svg" alt="instagram" /> */}
             </div>
             <div className='d-flex align-items-center mt-4'>
-              <a href='' className='btn btn-sm btn-outline-primary'> 
+              <a href='' className='btn btn-sm btn-outline-primary'>
                 <span className='mx-1'>KYC</span>
                 <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
-              <a href={activePool.kycLink} target="_blank" className='btn btn-sm btn-outline-primary mx-3'>
+              <a
+                href={activePool.kycLink}
+                target='_blank'
+                className='btn btn-sm btn-outline-primary mx-3'
+                rel='noreferrer'>
                 <span className='mx-1'>AUDIT</span>
                 <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
@@ -685,8 +688,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                   <h3>
                     {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
                     {activePool.symbol}{' '} */}
-                  1 BNB = 36000 BCT
-
+                    1 BNB = 36000 BCT
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -942,8 +944,8 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </div>
                   )
                 ))}
-            
-            <p className='text-muted pt-3 text-center small'>
+
+              <p className='text-muted pt-3 text-center small'>
                 Project launch is on DEXPAD. <br />
                 Please Do Your Own Research Before Investing.
               </p>
