@@ -9,12 +9,13 @@ function IncupadStaticPoolsInformation({ activePool }) {
     maxAllocation,
     tokenPrice,
     accessType,
-    title,   
+    title,
     symbol,
     decimals,
     totalSupply,
     outputTokenaddress,
     videolink,
+    youtube,
   } = activePool;
   return (
     <Container
@@ -90,13 +91,24 @@ function IncupadStaticPoolsInformation({ activePool }) {
           <Col xs={6} lg={6} className='project-video-section'>
             <h2 className='mb-3'>Project Clip</h2>
             <div className='videoContainer mt-2 '>
-              <video
-                className='incupad-pool-video responsive-iframe '
-                src={video}
-                controls
-                // frameborder="0"
-                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              />
+              {youtube ? (
+                <iframe
+                  width='100%'
+                  height='349'
+                  src={videolink}
+                  title='YouTube video player'
+                  frameborder='0'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowfullscreen></iframe>
+              ) : (
+                <video
+                  className='incupad-pool-video responsive-iframe '
+                  src={videolink}
+                  controls
+                  // frameborder="0"
+                  // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                />
+              )}
             </div>
           </Col>
         </Row>
