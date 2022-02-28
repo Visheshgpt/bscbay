@@ -91,11 +91,10 @@ h1, h2 {
   color: $color-primary;
 }
 
-
-
 .highcharts-background {
   fill: transparent !important;
 }
+
 ul {
   list-style: none;
 }
@@ -202,4 +201,11 @@ ul {
 .b-primary {
   border: 1px solid $color-primary;
   border-radius: 12px;
+}
+
+.nav-mobile{
+  justify-content: space-between;
+  .nav-link {
+    padding: 10px 8px; 
+  }
 }

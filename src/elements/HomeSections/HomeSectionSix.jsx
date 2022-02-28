@@ -31,7 +31,7 @@ const HomeSectionSix = () => {
               </Link>
             </div>
           </div>
-     
+
       </Container>
     </section>
   );

@@ -105,6 +105,9 @@ const HomeSectionPartnership = () => {
             </div>
           </Col>
         </Row>
+
+
+     
       </Container>
     </section>
   );

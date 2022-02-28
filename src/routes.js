@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import LockerPage from './pages/Locker';
 import DexpadPage from './pages/Dexpad';
 import DexpadPoolsPage from './pages/DexpadPools';
+import Buyvia from './pages/Buyvia';
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
           <Route exact path='/dexpad' component={DexpadPage} />
           <Route exact path='/dexpad/:id' component={DexpadPoolsPage} />
           <Route exact path='/locker' component={LockerPage} />
+          <Route exact path='/buyvia' component={Buyvia} />
           <Route path='/incupad/:title' component={IncupadPools} />
           <Route path='/launchpad/:title' component={IncupadPools} />
           <Route path='/newpage/:title' component={IncpadPoolsNew} />
