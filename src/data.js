@@ -45,7 +45,7 @@ export const poolData = [
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
     soldOut: true,
     saleDate: "18 FEB' 22, 2:00 PM UTC",
-    tiltText: 'Incupad',
+    tiltText: '',
   },
 
   {

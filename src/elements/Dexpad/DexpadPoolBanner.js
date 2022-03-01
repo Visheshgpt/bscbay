@@ -527,7 +527,7 @@ const DexpadPoolBanner = ({ activePool }) => {
         // console.log("totalusers", totalusers);
         if (totalUsers !== totalusers) settotalUsers(totalusers);
       });
-
+  
     contract.methods
       .tokensForDistribution()
       .call()
@@ -655,15 +655,15 @@ const DexpadPoolBanner = ({ activePool }) => {
               )}
             </div>
             <div className='d-flex align-items-center mt-4'>
-              <a href='' className='btn btn-sm btn-outline-primary'>
+              <a  href={activePool.kycLink} className='btn btn-sm btn-outline-primary'>
                 <span className='mx-1'>KYC</span>
                 <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
               <a
-                href={activePool.kycLink}
+                href={activePool.auditLink} 
                 target='_blank'
                 className='btn btn-sm btn-outline-primary mx-3'
-                rel='noreferrer'>
+               >
                 <span className='mx-1'>AUDIT</span>
                 <img src='../check.png' alt='' width='12px' height='12px' />
               </a>
@@ -688,7 +688,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                   <h3>
                     {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
                     {activePool.symbol}{' '} */}
-                    1 BNB = 36000 BCT
+                    1 BNB = 36000 {activePool.symbol}
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -748,7 +748,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                   <span className='ongoing-upper-card-right'>
                     {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
                     {activePool.symbol}{' '} */}
-                    1 BNB = 36000 BCT
+                    1 BNB = 36000 {activePool.symbol}
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
@@ -846,7 +846,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                         {' '}
                         Claimable Tokens:{' '}
                         <span className='text-warning ms-1'>
-                          {claimableTokens.toFixed(0)} BSCT
+                          {claimableTokens.toFixed(0)} {activePool.symbol}
                           <span className='tooltips mx-2'>
                             {/* <Tooltip /> */}
                           </span>
