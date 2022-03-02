@@ -11,7 +11,7 @@ function HeaderButtons({ userBNB, userBSC, showmobile = false }) {
   const hour = date.getHours();
   const min = date.getMinutes();
 
-  console.log(date);
+  // console.log(date);
 
   const month = getMonth(monthNUm);
 

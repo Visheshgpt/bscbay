@@ -85,7 +85,7 @@ export const staticData = [
     telegramlink: 'http://t.me/flewup',
     redditlink: '',
     instagramlink: '',
-    websitelink: 'https://metagamespace.net/',
+    websitelink: 'https://flewup.com/',
     auditLink: 'https://metagamespace.net/Meta_Audit.pdf',
     totalUsers: 100,
     symbol: 'TBA',

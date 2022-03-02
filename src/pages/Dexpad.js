@@ -22,12 +22,12 @@ function Dexpad() {
               <Col lg='4'>
                 <IncupadCardPool 
                   item={item}
-                  // minAllocation={minAllocation[item.id]}
-                  minAllocation="2.5"
-                  // maxAllocation={maxAllocation[item.id]}
-                  maxAllocation="5"
-                  // ICOcompletePercentage={ICOCompletePercentage[item.id]}
-                  ICOcompletePercentage="0"
+                  minAllocation={minAllocation[item.id]}
+                 
+                  maxAllocation={maxAllocation[item.id]}
+                  
+                  ICOcompletePercentage={ICOCompletePercentage[item.id]}
+              
                   allocationTokens={allocationTokens[item.id]}
                   maxDistributionTokens={maxDistributionTokens[item.id]}
                   checkClose={true}

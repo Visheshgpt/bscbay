@@ -29,7 +29,7 @@ const getWeb3Client = async () => {
       console.log('id', id);
 
       // return web3Client;
-      if (id == 56 ) {
+      if (id == 56 || id ==97 ) {
         return web3Client; 
       } else {
         console.log('wront network message');

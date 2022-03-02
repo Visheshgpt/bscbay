@@ -16,6 +16,10 @@ import {
   adddICOCompletePercentage,
 } from './redux/slices/dexpadDataSlice';
 
+import { converttoEther } from './utils/helper.js';
+
+ 
+
 function App() {
   const poolsdata = useSelector((state) => state.pooldata);
   const dexpadData = useSelector((state) => state.dexpaddata);
@@ -68,23 +72,23 @@ function App() {
       });
     }
 
-    const dAddressArray = dexpadData.dAddress;
+    const dAddressArray = dexpadData.dAddress; 
     if (dAddressArray && dAddressArray.length > 0) {
       dAddressArray.map(async (item) => {
         const web3 = new Web3(item.chainUrl);
         const contract = new web3.eth.Contract(BSCBAYICOabi, item.address);
         const amnt = await contract.methods.minInvestment().call();
-        const tokens = web3.utils.toBN(amnt).toString();
-        const min = Number(web3.utils.fromWei(tokens, 'ether'));
-        if (min) {
+        // const tokens = web3.utils.toBN(amnt).toString();
+        const min = converttoEther(web3, amnt, 18)
+        if (min) { 
           const payload = {
             [item.id]: min,
           };
           dispatch(adddMinAllocation(payload));
         }
         const amnt2 = await contract.methods.maxInvestment().call();
-        const tokens2 = web3.utils.toBN(amnt2).toString();
-        const max = Number(web3.utils.fromWei(tokens2, 'ether'));
+        // const tokens2 = web3.utils.toBN(amnt2).toString();
+        const max = converttoEther(web3, amnt2, 18)
         if (max) {
           const payload = {
             [item.id]: max,
@@ -93,13 +97,13 @@ function App() {
         }
 
         const amnt3 = await contract.methods.tokensForDistribution().call();
-        const tokens3 = web3.utils.toBN(amnt3).toString();
-        const alloctoken = Number(web3.utils.fromWei(tokens3, 'ether'));
+        // const tokens3 = web3.utils.toBN(amnt3).toString();
+        const alloctoken = converttoEther(web3, amnt3, item.decimal)
 
         // get MAX DISTRIBUTED TOKENS
         const amnt4 = await contract.methods.maxDistributedTokenAmount().call();
-        const tokens4 = web3.utils.toBN(amnt4).toString();
-        const maxdistributed = Number(web3.utils.fromWei(tokens4, 'ether'));
+        // const tokens4 = web3.utils.toBN(amnt4).toString();
+        const maxdistributed = converttoEther(web3, amnt4, item.decimal)
 
         if (alloctoken >= 0 && maxdistributed > 0) {
           const ICOPercentage = ((alloctoken / maxdistributed) * 100).toFixed(

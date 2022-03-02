@@ -4,14 +4,14 @@ import AlertModal from '../../components/AlertModal';
 import Web3 from 'web3';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
-function Search({ show, onHide, contractadd }) {
+function Search({ show, onHide, contractadd, chain }) {
   const [value, setValue] = useState('');
 
   const [message, setMessage] = useState('');
 
   async function checkWhitelist() {
-    const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-
+    const web3 = new Web3(chain);
+ 
     var contractABI = BSCBAYICOabi;
     var contractAddress = contractadd;
     var contract = new web3.eth.Contract(contractABI, contractAddress);

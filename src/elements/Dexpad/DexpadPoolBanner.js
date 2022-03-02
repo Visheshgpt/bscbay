@@ -10,6 +10,9 @@ import Tooltip from '../../components/Tooltip';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 import WalletConnect from '../../components/WalletConnect';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import { converttoEther, getUserBSCBAYBalance } from '../../utils/helper';
+import SearchPool from '../IncupadPools/SearchPool';
+
 
 const DexpadPoolBanner = ({ activePool }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -43,7 +46,7 @@ const DexpadPoolBanner = ({ activePool }) => {
   const EndTime = activePool.finishTime;
   let MaxDistributedTokens = 0;
 
-  function web3apis() {
+ async function web3apis() {
     const web3 = new Web3(chainRpcs[activePool.chain]);
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
@@ -54,19 +57,18 @@ const DexpadPoolBanner = ({ activePool }) => {
       .totalBNBraise()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setraisedBNB(Number(web3.utils.fromWei(tokens, 'ether')));
+        setraisedBNB(converttoEther(web3, amount, 18));
       });
 
+      
     // token Price
     contract.methods
       .tokenPrice()
       .call()
       .then((amount) => {
-        var tokens = web3.utils.toBN(amount).toString();
-        settokenPrice(Number(web3.utils.fromWei(tokens, 'ether')));
+        settokenPrice(converttoEther(web3, amount, 18));
       });
+ 
 
     // get total Users
     contract.methods
@@ -81,19 +83,15 @@ const DexpadPoolBanner = ({ activePool }) => {
       .maxInvestment()
       .call()
       .then((amount) => {
-        //  console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setMaxallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+        setMaxallocation(converttoEther(web3, amount, 18));
       });
 
-    // user MIN allocation
-    contract.methods
+     // user MIN allocation
+     contract.methods
       .minInvestment()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setMinallocation(Number(web3.utils.fromWei(tokens, 'ether')));
+        setMinallocation(converttoEther(web3, amount, 18));
       });
 
     // get MAX DISTRIBUTED TOKENS
@@ -101,9 +99,8 @@ const DexpadPoolBanner = ({ activePool }) => {
       .maxDistributedTokenAmount()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        MaxDistributedTokens = Number(web3.utils.fromWei(tokens, 'ether'));
+        MaxDistributedTokens = (converttoEther(web3, amount, activePool.decimals));
+        console.log("Maxcheck", MaxDistributedTokens);
       });
 
     // get Hard Cap TOKENS
@@ -111,9 +108,7 @@ const DexpadPoolBanner = ({ activePool }) => {
       .maxDistributedTokenAmount()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setHardCap(Number(web3.utils.fromWei(tokens, 'ether')));
+        setHardCap((converttoEther(web3, amount, activePool.decimals)));
       });
 
     // get DISTRIBUTED TOKENS
@@ -121,9 +116,7 @@ const DexpadPoolBanner = ({ activePool }) => {
       .tokensForDistribution()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        setallocatedToken(Number(web3.utils.fromWei(tokens, 'ether')));
+        setallocatedToken((converttoEther(web3, amount, activePool.decimals)));
       });
 
     let currentTime = new Date();
@@ -174,26 +167,30 @@ const DexpadPoolBanner = ({ activePool }) => {
       });
 
     if (address) {
+
       var contractTokenABI = ERC20abi;
-      var contractTokenAddress = activePool.outputTokenaddress;
+      var contractTokenAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
       var Tokencontract = new web3.eth.Contract(
         contractTokenABI,
         contractTokenAddress
       );
 
-      // get USER TOKENS
       Tokencontract.methods
         .balanceOf(address)
         .call()
         .then((amount) => {
-          // console.log("ii",amount);
-          var tokens = web3.utils.toBN(amount).toString();
-          setuserTokenalance(Number(web3.utils.fromWei(tokens, 'ether')));
+          
+          let balance = converttoEther(web3, amount, 18);
+          setuserTokenalance(balance)    
           window.sessionStorage.setItem(
             'userBSCB',
-            web3.utils.fromWei(tokens, 'ether')
+            balance
           );
         });
+
+      //  let userbal = await getUserBSCBAYBalance(address);
+      //  setuserTokenalance(userbal);
+     
 
       // check eligibility
       contract.methods
@@ -220,13 +217,13 @@ const DexpadPoolBanner = ({ activePool }) => {
         .then((obj) => {
           console.log('User Info', obj.debt);
 
-          var claimabletokens = web3.utils.toBN(obj.debt).toString();
+          // var claimabletokens = web3.utils.toBN(obj.debt).toString();
           setclaimableTokens(
-            Number(web3.utils.fromWei(claimabletokens, 'ether'))
+            Number(converttoEther(web3, obj.debt, activePool.decimals))
           );
 
-          var userinvested = web3.utils.toBN(obj.totalInvestedETH).toString();
-          setuserInvested(Number(web3.utils.fromWei(userinvested, 'ether')));
+          // var userinvested = web3.utils.toBN(obj.totalInvestedETH).toString();
+          setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
         });
 
       // check wallet approved or not
@@ -296,6 +293,8 @@ const DexpadPoolBanner = ({ activePool }) => {
     setButtonLoading(true);
     const web3 = await contractService.getWeb3Client();
 
+    console.log("web3", web3);
+
     if (value === '' || value === 0) {
       let msg = `Please Enter Value`;
       settxMessage(msg);
@@ -345,7 +344,7 @@ const DexpadPoolBanner = ({ activePool }) => {
               if (receipt.status) {
                 let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${
                   Number(value) / Number(tokenPrice)
-                } BSCB .`;
+                } ${activePool.symbol} .`;
                 setSuccessPageReload('sucess');
                 settxMessage(msg);
                 setModalShow(true);
@@ -374,7 +373,7 @@ const DexpadPoolBanner = ({ activePool }) => {
           setButtonLoading(false);
           // alert("Transaction Failed!");
         }
-      } else {
+      } else { 
         settxMessage('Change network to binance');
         setModalShow(true);
         setButtonLoading(false);
@@ -442,6 +441,9 @@ const DexpadPoolBanner = ({ activePool }) => {
       // alert("Change network to binance");
     }
   };
+
+  console.log("hardcap", HardCap);
+  console.log("tp", tokenPrice);
 
   useEffect(() => {
     const loginType = localStorage.getItem('loginType');
@@ -513,9 +515,7 @@ const DexpadPoolBanner = ({ activePool }) => {
       .totalBNBraise()
       .call()
       .then((amount) => {
-        //  console.log(amount);
-        const tokens = web3.utils.toBN(amount).toString();
-        const bnb = Number(web3.utils.fromWei(tokens, 'ether'));
+        const bnb = Number(converttoEther(web3, amount, 18));
         if (bnb !== raisedBNB) setraisedBNB(bnb);
       });
 
@@ -532,9 +532,8 @@ const DexpadPoolBanner = ({ activePool }) => {
       .tokensForDistribution()
       .call()
       .then((amount) => {
-        // console.log(amount);
-        var tokens = web3.utils.toBN(amount).toString();
-        const alloctkn = Number(web3.utils.fromWei(tokens, 'ether'));
+        
+        const alloctkn = Number(converttoEther(web3, amount, activePool.decimals));
         // console.log("max", MaxDistributedTokens);
         if (alloctkn >= 0 && MaxDistributedTokens > 0) {
           const icopercent = ((alloctkn / MaxDistributedTokens) * 100).toFixed(
@@ -686,9 +685,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                     {status}
                   </span>
                   <h3>
-                    {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
-                    {activePool.symbol}{' '} */}
-                    1 BNB = 36000 {activePool.symbol}
+                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    {activePool.symbol}{' '}
+                    {/* 1 BNB = 36000 {activePool.symbol} */}
                   </h3>
 
                   {/* <b style={{ color: 'white' }}>Starts In:</b>
@@ -707,22 +706,22 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </div>
                   ) : (
                     <div className='closed'>Closed</div>
-                  )}
+                  )} 
                 </div>
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {/* {raisedBNB.toFixed(0)} / {(HardCap * tokenPrice).toFixed(0)}{' '}
-                    {activePool.allocationType} */}
-                    0 / 200 BNB
+                  {raisedBNB.toFixed(0)} / {(HardCap * tokenPrice).toFixed(0)}{' '}
+                    {activePool.allocationType}
                   </h4>
                   <ProgressBar
-                    now={0}
+                    now={ICOcompletePercentage}
                     className='progress-bar-section'
-                    label={`${Math.round(0)}%`}
+                    label={`${Math.round(ICOcompletePercentage)}%`}
+                  
                   />
-                  {/* <span>Participant : {totalUsers}</span> */}
-                  <span>Participant : 0</span>
+                  <span>Participant : {totalUsers}</span>
+                  {/* <span>Participant : 0</span> */}
                 </div>
               </div>
               <div className='d-flex justify-content-center mt-4'>
@@ -746,9 +745,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </span>
                   </div>
                   <span className='ongoing-upper-card-right'>
-                    {/* 1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
-                    {activePool.symbol}{' '} */}
-                    1 BNB = 36000 {activePool.symbol}
+                    1 {activePool.allocationType} = {oneBNBprice.toFixed(0)}{' '}
+                    {activePool.symbol}{' '}
+                    {/* 1 BNB = 36000 {activePool.symbol} */}
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
@@ -775,9 +774,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                     </div>
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
-                        {/* Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(HardCap * tokenPrice).toFixed(0)} BNB */}
-                        Raised: 0/200 BNB
+                        Raised: {raisedBNB.toFixed(1)} BNB /{' '}
+                        {(HardCap * tokenPrice).toFixed(0)} BNB
+                        {/* Raised: 0/200 BNB */}
                       </span>
                     </div>
                     <div>
@@ -785,9 +784,9 @@ const DexpadPoolBanner = ({ activePool }) => {
                         // now={ICOcompletePercentage}
                         // className='pro-bar-section'
                         // label={`${Math.round(ICOcompletePercentage)}%`}
-                        now={0}
+                        now={ICOcompletePercentage}
                         className='pro-bar-section'
-                        label={`${Math.round(0)}%`}
+                        label={`${Math.round(ICOcompletePercentage)}%`}
                       />
                     </div>
                     <div>
@@ -969,6 +968,14 @@ const DexpadPoolBanner = ({ activePool }) => {
         successpagereload={successPageReload}>
         <p>{txMessage}</p>
       </AlertModal>
+      <SearchPool
+        contractadd={activePool.contractAddress}
+        chain={chainRpcs[activePool.chain]}
+        show={search}
+        onHide={() => {
+          setSearch(false);
+        }}
+      />
     </Container>
   );
 };

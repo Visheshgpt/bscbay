@@ -917,6 +917,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
       </AlertModal>
       <SearchPool
         contractadd={activePool.contractAddress}
+        chain={chainRpcs[activePool.chain]}
         show={search}
         onHide={() => {
           setSearch(false);

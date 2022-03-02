@@ -1,13 +1,68 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+import Web3 from 'web3';
 import { Col, Container, Row } from 'react-bootstrap';
 import video from '../../assets/video/video.mp4';
+
+import { chainRpcs } from '../../chainRPCs';
+import { converttoEther, getUserBSCBAYBalance } from '../../utils/helper';
+import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
 function DexpadInformation({ activePool }) {
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
-  const [allocatedToken, setallocatedToken] = useState(0);
+  // const [allocatedToken, setallocatedToken] = useState(0);
+
+
+  function web3apis() {
+   
+    const web3 = new Web3(chainRpcs[activePool.chain]);
+   
+    var contractABI = BSCBAYICOabi;
+    var contractAddress = activePool.contractAddress;
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    // // get DISTRIBUTED TOKENS
+    // contract.methods
+    //   .tokensForDistribution()
+    //   .call()
+    //   .then((amount) => {
+    //     setallocatedToken(converttoEther(web3, amount, activePool.decimals));
+    //   });
+
+    // user MIN allocation
+    contract.methods
+      .minInvestment()
+      .call()
+      .then((amount) => {
+        setMinallocation(converttoEther(web3, amount, 18));
+      });
+
+    // user MAX allocation
+    contract.methods
+      .maxInvestment()
+      .call()
+      .then((amount) => {
+        setMaxallocation(converttoEther(web3, amount, 18));
+      });
+
+    // token Price
+    contract.methods
+      .tokenPrice()
+      .call()
+      .then((amount) => {
+        settokenPrice(converttoEther(web3, amount, 18));
+      });
+  }
+
+  useEffect(() => {
+    web3apis();
+  });
+  
+
+
+
 
   return (
     <Container
@@ -28,18 +83,18 @@ function DexpadInformation({ activePool }) {
               </div>
               <div>
                 <span>MIN. ALLOCATION</span>
-                {/* <span>{Minallocation} BNB </span> */}
-                <span>2.5 BNB</span>
+                <span>{Minallocation} BNB </span>
+                {/* <span>2.5 BNB</span> */}
               </div>
               <div>
                 <span>MAX. ALLOCATION</span>
-                {/* <span>{Maxallocation} BNB</span> */}
-                <span>5 BNB</span>
+                <span>{Maxallocation} BNB</span>
+                {/* <span>5 BNB</span> */}
               </div>
               <div>
                 <span>TOKEN PRICE</span>
-                {/* <span>{tokenPrice} BNB</span> */}
-                <span>0.00002777</span>
+                <span>{tokenPrice} BNB</span>
+                {/* <span>0.00002777</span> */}
               </div>
               <div>
                 <span>ACCESS TYPE</span>
