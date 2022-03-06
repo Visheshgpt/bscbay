@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import video from '../../assets/video/video.mp4';
 
 import { chainRpcs } from '../../chainRPCs';
-import { converttoEther, getUserBSCBAYBalance } from '../../utils/helper';
+import { converttoEther } from '../../utils/helper';
 import BSCBAYICOabi from '../../shared/BSCBAYICO.json';
 
 function DexpadInformation({ activePool }) {
@@ -14,11 +14,9 @@ function DexpadInformation({ activePool }) {
   const [tokenPrice, settokenPrice] = useState(0);
   // const [allocatedToken, setallocatedToken] = useState(0);
 
-
   function web3apis() {
-   
     const web3 = new Web3(chainRpcs[activePool.chain]);
-   
+
     var contractABI = BSCBAYICOabi;
     var contractAddress = activePool.contractAddress;
     var contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -59,10 +57,6 @@ function DexpadInformation({ activePool }) {
   useEffect(() => {
     web3apis();
   });
-  
-
-
-
 
   return (
     <Container
@@ -75,7 +69,7 @@ function DexpadInformation({ activePool }) {
           <Col xs={12}>
             <h2>Pool Information</h2>
           </Col>
-          <Col xs={12} lg={6}> 
+          <Col xs={12} lg={6}>
             <div className='pool-information-card'>
               <div>
                 <span>SALE DATE</span>
@@ -140,16 +134,21 @@ function DexpadInformation({ activePool }) {
           </Col>
 
           <Col xs={6} lg={6} className='project-video-section'>
-          {activePool.videolink && <> <h2 className='mb-3'>Project Clip</h2> 
-            <div className='videoContainer mt-2 '>
-              <video
-                className='incupad-pool-video responsive-iframe '
-                src={activePool.videolink}
-                controls
-                // frameborder="0"
-                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              />
-            </div></> }
+            {activePool.videolink && (
+              <>
+                {' '}
+                <h2 className='mb-3'>Project Clip</h2>
+                <div className='videoContainer mt-2 '>
+                  <video
+                    className='incupad-pool-video responsive-iframe '
+                    src={activePool.videolink}
+                    controls
+                    // frameborder="0"
+                    // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  />
+                </div>
+              </>
+            )}
           </Col>
 
           <Col xs={12}></Col>

@@ -4,76 +4,82 @@ import TimerSection from './TimeSection';
 import AnimatedLogo from './AnimatedLogo';
 
 function IncupadCardPool({
-  data,
+  item,
   minAllocation,
+  ICOcompletePercentage,
   maxAllocation,
   allocationTokens,
   maxDistributionTokens,
-  ICOcompletePercentage = 90,
-  checkclose = false,
+  dexpad = false,
+  staticdata = false,
+  // checkClose = false,
 }) {
   let icopercent = -1;
-
-  const {
-    accessType,
-    description,
-    finishTime,
-    id,
-    type,
-    tag,
-    title,
-    img,
-    tiltText,
-    soldOut,
-    startTime,
-    dexpad,
-  } = data;
 
   if (allocationTokens && maxDistributionTokens) {
     icopercent = ((allocationTokens / maxDistributionTokens) * 100).toFixed(2);
   }
 
-  console.log('idc = ', icopercent);
-  console.log('mxdt = ', maxDistributionTokens, ' atks = ', allocationTokens);
-
-  const url = dexpad ? `/dexpad/${id}` : `/launchpad/${type}/${id}`;
+  const url = dexpad
+    ? `/dexpad/${item.id}`
+    : staticdata
+    ? `/launchpad/static/${item.id}`
+    : `/launchpad/dynamic/${item.id}`;
 
   return (
-    <Link to={url} key={id}>
+    <Link to={url} key={item.id}>
       <div className='incupad-upcoming-pool-card h-100 relative'>
-        {tiltText && (
+        {item.tiltText && (
           <div className='dexpad-titltext text-primary text-center'>
-            {tiltText}
+            {item.tiltText}
           </div>
         )}
-        <span className='card-tag'>{tag}</span>
-        {soldOut && <span className='card-tag soldout'>Sold Out</span>}
-        <AnimatedLogo srcimg={img} />
-        <span className='card-title'>{title}</span>
-        {description && (
+        <span className='card-tag'>{item.tag}</span>
+        {item.soldOut && <span className='card-tag soldout'>Sold Out</span>}
+        <AnimatedLogo srcimg={item.img} />
+        <span className='card-title'>{item.title}</span>
+        {item.description && (
           <p className='card-description'>
-            {description.substring(0, 120)}
-            {description.length > 120 && '...'}
+            {item.description.substring(0, 120)}
+            {item.description.length > 120 && '...'}
           </p>
         )}
+
         <div className='card-time'>
           <img src='./assets/is-time-1.svg' alt='time icon' />
         </div>
-        {type === 'static' ? (
+
+        {staticdata ? (
           <p className='py-2 text-white'>Upcoming</p>
         ) : icopercent !== -1 ? (
           <TimerSection
-            startTime={startTime}
-            finishTime={finishTime}
+            startTime={item.startTime}
+            finishTime={item.finishTime}
             ICOcompletePercentage={icopercent}
           />
         ) : (
           <TimerSection
-            startTime={startTime}
-            finishTime={finishTime}
+            startTime={item.startTime}
+            finishTime={item.finishTime}
             ICOcompletePercentage={ICOcompletePercentage}
           />
         )}
+
+        {/* {icopercent !== -1 ? (
+          <TimerSection
+            startTime={item.startTime}
+            finishTime={item.finishTime}
+            ICOcompletePercentage={icopercent}
+          />
+        ) : (
+          <TimerSection
+            startTime={item.startTime}
+            finishTime={item.finishTime}
+            ICOcompletePercentage={ICOcompletePercentage}
+          />
+        )} */}
+
+        {/* <br></br> */}
 
         <div className='incupad-upcoming-pool-card-lower'>
           {icopercent !== -1 ? (
@@ -89,6 +95,7 @@ function IncupadCardPool({
               label={`${Math.round(ICOcompletePercentage)}%`}
             />
           )}
+
           <div className='min-allocation'>
             <span className='lower-card-name'>Min Allocation</span>
             {minAllocation && <span>{minAllocation} BNB</span>}
@@ -99,7 +106,7 @@ function IncupadCardPool({
           </div>
           <div className='min-allocation'>
             <span className='lower-card-name'>Access Type</span>
-            <span>{accessType} </span>
+            <span>{item.accessType} </span>
           </div>
 
           <div className='d-flex align-items-ceter justify-content-center mt-3'>

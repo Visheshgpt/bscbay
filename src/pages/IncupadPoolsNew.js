@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 import IncupadPoolsBanner from '../components/Banner/IncupadBanner';
 import PageNotFound from './PageNotFound/PageNotFound';
 import NewRightSection from '../elements/IncupadPoolsNew/NewRightSection';
-import { poolData } from '../data';
+import { poolsData } from '../data';
 
 function IncupadNewPools() {
   const { title } = useParams();
-  const activePool = poolData.find(
+  const activePool = poolsData.find(
     (item) => item.title.replaceAll(' ', '-') === title
   );
 

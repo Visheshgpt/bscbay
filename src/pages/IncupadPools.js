@@ -5,23 +5,14 @@ import IncupadPoolsBanner from '../elements/IncupadPools/IncupadPoolsBanner';
 import IncupadStaticPoolsBanner from '../elements/IncupadPools/IncupadStaticPoolsBanner';
 import IncupadPoolsInformation from '../elements/IncupadPools/IncupadPoolsInformation';
 import IncupadStaticPoolsInformation from '../elements/IncupadPools/IncupadStaticPoolsInformation';
-import { poolData } from '../data';
-import { staticData } from '../staticdata';
+import { poolsData } from '../data';
 
 const IncupadPools = () => {
   const { type, id } = useParams();
 
-  let activePool = [];
-
-  if (type === 'static') {
-    activePool = staticData.find((item) => {
-      return item.id === Number(id);
-    });
-  } else {
-    activePool = poolData.find((item) => {
-      return item.id === Number(id);
-    });
-  }
+  const activePool = poolsData.find((item) => {
+    return item.id === Number(id) && item.type === type;
+  });
 
   return activePool !== undefined ? (
     <section>
@@ -32,8 +23,8 @@ const IncupadPools = () => {
         </>
       ) : (
         <>
-          <IncupadPoolsBanner activePool={activePool} />
-          <IncupadPoolsInformation activePool={activePool} />
+          <IncupadPoolsBanner activePool={activePool} type={type} />
+          <IncupadPoolsInformation activePool={activePool} type={type} />
         </>
       )}
     </section>

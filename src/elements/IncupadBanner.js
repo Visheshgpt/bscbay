@@ -11,6 +11,7 @@ import {
   addMaxDistributionTokens,
   addAllocationTokens,
 } from '../redux/slices/poolsDataSlice';
+import { getPayload } from '../utils/helper';
 
 function IncupadBanner() {
   const poolData = useSelector((state) => state.pooldata);
@@ -39,9 +40,7 @@ function IncupadBanner() {
         .then((amount) => {
           const tokens = web3.utils.toBN(amount).toString();
           const mxdt = Number(web3.utils.fromWei(tokens, 'ether'));
-          const payload = {
-            [item.id]: mxdt,
-          };
+          const payload = getPayload('normal', item.id, mxdt);
           dispatch(addMaxDistributionTokens(payload));
         });
 
@@ -51,9 +50,7 @@ function IncupadBanner() {
         .then((amount) => {
           var tokens = web3.utils.toBN(amount).toString();
           const at = Number(web3.utils.fromWei(tokens, 'ether'));
-          const payload = {
-            [item.id]: at,
-          };
+          const payload = getPayload('normal', item.id, at);
           dispatch(addAllocationTokens(payload));
         });
     });
@@ -76,14 +73,10 @@ function IncupadBanner() {
           <div className='incupad-card'>
             {upcomingData.map((item, index) => (
               <div key={index} className='incupad-upcoming-card'>
-                <a
-                  href={item.link}
-                  target='_blank'
-                  rel='noreferrer'>
+                <a href={item.link} target='_blank' rel='noreferrer'>
                   <img src={item.img} alt={item.title} />
                   <span>{item.title}</span>
                 </a>
-              
               </div>
             ))}
           </div>
