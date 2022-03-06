@@ -110,6 +110,10 @@ const IncupadPoolsInformation = ({ activePool }) => {
                 <span>{activePool.accessType}</span>
                 {/* <span>TBA</span> */}
               </div>
+              <div>
+                <span>ABc</span>
+                <span>Abc</span>
+              </div>
             </div>
           </Col>
           <Col xs={12} lg={6}>
@@ -135,6 +139,10 @@ const IncupadPoolsInformation = ({ activePool }) => {
                 <span>ADDRESS</span>
                 <span>{activePool.outputTokenaddress}</span>
                 {/* <span>TBA</span> */}
+              </div>
+              <div>
+                <span>Investor Vestation</span>
+                <span>{activePool.investorVestation}</span>
               </div>
             </div>
           </Col>

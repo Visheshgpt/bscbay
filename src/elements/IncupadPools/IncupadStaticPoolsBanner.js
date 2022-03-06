@@ -157,7 +157,7 @@ function IncupadStaticPoolsBanner({ activePool }) {
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
-                  <div className='ongoing-lower-card text-white w-100'>
+                  <div className='ongoing-lower-card text-white w-100 pb-0'>
                     <div className='d-flex justify-content-center'>
                       <div className='text-white d-flex align-items-center flex-row'>
                         <span> Upcoming</span>
@@ -180,6 +180,9 @@ function IncupadStaticPoolsBanner({ activePool }) {
                       <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
                         <span>Participants : 0</span>
+                      </div>
+                      <div className='text-white text-center'>
+                        Your Tier: <span className='text-primary'>GOLD</span>
                       </div>
                     </div>
                   </div>

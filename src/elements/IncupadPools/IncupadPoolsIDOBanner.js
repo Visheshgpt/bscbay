@@ -626,13 +626,14 @@ function checkStatus() {
                     <div>
                       <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
-
                         <div>
-                        <span>Your Tier:</span> 
-                        <span className='text-warning ms-1'> Gold </span>
+                        {/* <span className='text-warning ms-1'> Gold </span> */}
                        </div> 
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : {totalUsers}</span>
+                      </div>
+                      <div className='text-white text-center'>
+                        Your Tier: <span className='text-primary'>GOLD</span>
                       </div>
                     </div>
                   </div>
