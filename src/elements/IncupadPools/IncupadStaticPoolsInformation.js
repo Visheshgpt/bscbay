@@ -16,6 +16,7 @@ function IncupadStaticPoolsInformation({ activePool }) {
     outputTokenaddress,
     videolink,
     youtube,
+    investorVestation,
   } = activePool;
   return (
     <Container
@@ -50,6 +51,10 @@ function IncupadStaticPoolsInformation({ activePool }) {
                 <span>ACCESS TYPE</span>
                 <span>{accessType}</span>
               </div>
+              <div>
+                <span>ABc</span>
+                <span>Abc</span>
+              </div>
             </div>
           </Col>
           <Col xs={12} lg={6}>
@@ -74,6 +79,10 @@ function IncupadStaticPoolsInformation({ activePool }) {
                 <span>ADDRESS</span>
                 <span>{outputTokenaddress}</span>
                 {/* <span>TBA</span> */}
+              </div>
+              <div>
+                <span>Investor Vestation</span>
+                <span>{investorVestation}</span>
               </div>
             </div>
           </Col>

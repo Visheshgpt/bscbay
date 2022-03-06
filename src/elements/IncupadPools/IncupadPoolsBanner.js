@@ -708,7 +708,7 @@ const IncupadPoolsBanner = ({ activePool }) => {
                   </span>
                 </div>
                 <div className='d-flex flex-row justify-content-center'>
-                  <div className='ongoing-lower-card text-white w-100'>
+                  <div className='ongoing-lower-card text-white w-100 pb-0'>
                     <div className='d-flex justify-content-center'>
                       <div className='text-white d-flex align-items-center flex-row'>
                         {currentTimeData < StartTime ? (
@@ -747,6 +747,9 @@ const IncupadPoolsBanner = ({ activePool }) => {
                         <span>Swap Progress</span>
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : {totalUsers}</span>
+                      </div>
+                      <div className='text-white text-center'>
+                        Your Tier: <span className='text-primary'>GOLD</span>
                       </div>
                     </div>
                   </div>

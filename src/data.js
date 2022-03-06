@@ -59,6 +59,7 @@ export const poolsData = [
     claimableTokens: 100,
     youtube: false,
     tiltText: 'IDO',
+    investorVestation: '25% at launch, 25% every month',
   },
   {
     title: 'Flewup NFT Robots',
@@ -114,6 +115,7 @@ export const poolsData = [
     claimableTokens: 100,
     youtube: false,
     tiltText: 'Incupad',
+    investorVestation: '25% at launch, 25% every month',
   },
   {
     title: 'BSCBay',
@@ -163,6 +165,7 @@ export const poolsData = [
     soldOut: true,
     saleDate: "18 FEB' 22, 2:00 PM UTC",
     tiltText: 'IDO',
+    investorVestation: '25% at launch, 25% every month',
   },
   {
     title: 'BSCBay',
@@ -212,6 +215,7 @@ export const poolsData = [
     soldOut: true,
     saleDate: "18 FEB' 22, 2:00 PM UTC",
     tiltText: '',
+    investorVestation: '25% at launch, 25% every month',
   },
 
   {
@@ -261,6 +265,7 @@ export const poolsData = [
     contractAddress: '0x87f3fce34c239466502ecb5481bbb5bd08c64656',
     soldOut: true,
     saleDate: "23 FEB' 22, 6:00 PM UTC",
+    investorVestation: '25% at launch, 25% every month',
   },
   {
     title: 'Normal New BSCBay',
@@ -309,5 +314,6 @@ export const poolsData = [
     contractAddress: '0x87f3fce34c239466502ecb5481bbb5bd08c64656',
     soldOut: true,
     saleDate: "23 FEB' 22, 6:00 PM UTC",
+    investorVestation: '25% at launch, 25% every month',
   },
 ];
