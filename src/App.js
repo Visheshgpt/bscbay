@@ -4,6 +4,8 @@ import Web3 from 'web3';
 import Routes from './routes.js';
 import Layout from './layout/index';
 import BSCBAYICOabi from './shared/BSCBAYICO.json';
+import BSCBAYIDOabi from './shared/BSCBAYIDO.json';
+
 import {
   addMinAllocations,
   addMaxAllocations,
@@ -25,6 +27,7 @@ function App() {
   const dispatch = useDispatch();
 
   const { address, idoAddress } = poolsdata;
+
 
   useEffect(() => {
     if (address && address.length > 0) {
@@ -69,7 +72,7 @@ function App() {
     if (idoAddress && idoAddress.length > 0) {
       idoAddress.map(async (item) => {
         const web3 = new Web3(item.chainUrl);
-        const contract = new web3.eth.Contract(BSCBAYICOabi, item.address);
+        const contract = new web3.eth.Contract(BSCBAYIDOabi, item.address);
         const amnt = await contract.methods.minInvestment().call();
         const tokens = web3.utils.toBN(amnt).toString();
         const min = Number(web3.utils.fromWei(tokens, 'ether'));
@@ -78,20 +81,21 @@ function App() {
           dispatch(addMinAllocations(payload));
         }
 
-        const amnt2 = await contract.methods.maxInvestment().call();
+        const amnt2 = await contract.methods.Tier1maxInvestment().call();
         const tokens2 = web3.utils.toBN(amnt2).toString();
         const max = Number(web3.utils.fromWei(tokens2, 'ether'));
+        console.log("max", max);
         if (max) {
           const payload = getPayload('ido', item.id, max);
           dispatch(addMaxAllocations(payload));
         }
 
-        const amnt3 = await contract.methods.tokensForDistribution().call();
+        const amnt3 = await contract.methods.totalBNBraise().call();
         const tokens3 = web3.utils.toBN(amnt3).toString();
         const alloctoken = Number(web3.utils.fromWei(tokens3, 'ether'));
 
         // get MAX DISTRIBUTED TOKENS
-        const amnt4 = await contract.methods.maxDistributedTokenAmount().call();
+        const amnt4 = await contract.methods.hardCap().call();
         const tokens4 = web3.utils.toBN(amnt4).toString();
         const maxdistributed = Number(web3.utils.fromWei(tokens4, 'ether'));
 

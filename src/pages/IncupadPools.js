@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import PageNotFound from './PageNotFound/PageNotFound';
 import IncupadPoolsBanner from '../elements/IncupadPools/IncupadPoolsBanner';
 import IncupadStaticPoolsBanner from '../elements/IncupadPools/IncupadStaticPoolsBanner';
+import IncupadPoolsIDOBanner from '../elements/IncupadPools/IncupadPoolsIDOBanner';
 import IncupadPoolsInformation from '../elements/IncupadPools/IncupadPoolsInformation';
 import IncupadStaticPoolsInformation from '../elements/IncupadPools/IncupadStaticPoolsInformation';
+import IncupadPoolsIDOInformation from '../elements/IncupadPools/IncupadPoolsIDOInformation';
+
 import { poolsData } from '../data';
 
 const IncupadPools = () => {
@@ -21,12 +24,15 @@ const IncupadPools = () => {
           <IncupadStaticPoolsBanner activePool={activePool} />
           <IncupadStaticPoolsInformation activePool={activePool} />
         </>
-      ) : (
+      ) : (type === 'normal') ? (
         <>
           <IncupadPoolsBanner activePool={activePool} type={type} />
           <IncupadPoolsInformation activePool={activePool} type={type} />
-        </>
-      )}
+        </>  
+      ): <>
+      <IncupadPoolsIDOBanner activePool={activePool} type={type} />
+      <IncupadPoolsIDOInformation activePool={activePool} type={type} />
+         </> } 
     </section>
   ) : (
     <PageNotFound />
