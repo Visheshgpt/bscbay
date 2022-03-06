@@ -75,6 +75,9 @@ const DexpadPoolBanner = ({ activePool }) => {
       .totalUsers()
       .call()
       .then((totalusers) => {
+
+     console.log("totalusers,", totalusers);
+
         settotalUsers(totalusers);
       });
 
@@ -410,7 +413,7 @@ const DexpadPoolBanner = ({ activePool }) => {
               setModalShow(true);
               // alert("Transaction Success");
               settxMessage(
-                `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
+                `You Have Successfully Claimed all your refunds!`
               );
               setButtonLoading(false);
             } else {
@@ -794,7 +797,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                         <span>Swap Progress</span>
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         {/* <span>Participants : {totalUsers}</span> */}
-                        <span>Participants : {0}</span>
+                        <span>Participants : {totalUsers}</span>
                       </div>
                     </div>
                   </div>
