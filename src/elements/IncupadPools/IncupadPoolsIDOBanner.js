@@ -12,27 +12,31 @@ import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 import WalletConnect from '../../components/WalletConnect';
-import { converttoEther, getUserBSCBAYBalance, currentTimeDate, getTier } from '../../utils/helper';
+
+import {
+  converttoEther,
+  getUserBSCBAYBalance,
+  currentTimeDate,
+  getTier,
+} from '../../utils/helper';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-  
 
 const IncupadPoolsIDOBanner = ({ activePool }) => {
- 
   const [modalShow, setModalShow] = useState(false);
 
   let address = window.sessionStorage.getItem('walletAddress');
   // console.log('add', address);
   let selectedAccount;
- 
+
   const [raisedBNB, setraisedBNB] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
   const [totalUsers, settotalUsers] = useState(0);
   const [HardCap, setHardCap] = useState(0);
-//   const [allocatedToken, setallocatedToken] = useState(0);
+  //   const [allocatedToken, setallocatedToken] = useState(0);
   const [userBNBbalance, setuserBNBbalance] = useState(0);
   const [userTokenalance, setuserTokenalance] = useState(0);
   const [eligibility, seteligibility] = useState(false);
-//   const [walletapproved, setwalletapproved] = useState(false);
+  //   const [walletapproved, setwalletapproved] = useState(false);
   const [claimenabled, setclaimenabled] = useState(false);
   const [value, setvalue] = useState('');
   const [userInvested, setuserInvested] = useState(0);
@@ -49,16 +53,15 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
   const [status, setstatus] = useState(activePool.status);
 
-
   const [Tier1Max, setTier1Max] = useState(0);
   const [Tier2Max, setTier2Max] = useState(0);
   const [Tier3Max, setTier3Max] = useState(0);
   const [Tier4Max, setTier4Max] = useState(0);
-  const [publicMax, setpublicMax] = useState(0)
+  const [publicMax, setpublicMax] = useState(0);
 
-  const [userGlobalTier, setuserGlobalTier] = useState(0)
-  const [userIdoTier, setuserIdoTier] = useState(0)
- 
+  const [userGlobalTier, setuserGlobalTier] = useState(0);
+  const [userIdoTier, setuserIdoTier] = useState(0);
+
   const remainingallocation = Maxallocation - userInvested;
 
   const StartTime = activePool.startTime;
@@ -66,19 +69,16 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
 
   let MaxDistributedTokens = 0;
   // let userTier=0;
-  let globalTier=0;
+  let globalTier = 0;
   let tier1 = 0;
   let tier2 = 0;
   let tier3 = 0;
   let tier4 = 0;
-  let publicmax=0;
-  
+  let publicmax = 0;
 
   // console.log("tier1max", Tier1Max);
 
-
   function web3apis() {
-   
     const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYIDOabi;
@@ -101,7 +101,6 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         settokenPrice(converttoEther(web3, amount, 18));
       });
 
-
     // get total Users
     contract.methods
       .totalUsers()
@@ -109,7 +108,6 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
       .then((totalusers) => {
         settotalUsers(totalusers);
       });
-
 
     // user MIN allocation
     contract.methods
@@ -119,104 +117,95 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         setMinallocation(converttoEther(web3, amount, 18));
       });
 
-     // Tier1 Max allocation
-     contract.methods
-     .Tier1maxInvestment()
-     .call()
-     .then((amount) => {
-      tier1 = converttoEther(web3, amount, 18)
-      setTier1Max(tier1);
-     });  
+    // Tier1 Max allocation
+    contract.methods
+      .Tier1maxInvestment()
+      .call()
+      .then((amount) => {
+        tier1 = converttoEther(web3, amount, 18);
+        setTier1Max(tier1);
+      });
 
-     // Tier2 Max allocation
-     contract.methods
-     .Tier2maxInvestment()
-     .call()
-     .then((amount) => {
-      tier2 =  converttoEther(web3, amount, 18)
-      setTier2Max(tier2);
-     });  
-     
-     // Tier3 Max allocation
-     contract.methods
-     .Tier3maxInvestment()
-     .call()
-     .then((amount) => {
-      tier3 =  converttoEther(web3, amount, 18)
-      setTier3Max(tier3);
-     });  
-     
-     // Tier4 Max allocation
-     contract.methods
-     .Tier4maxInvestment()
-     .call()
-     .then((amount) => {
-      tier4 =  converttoEther(web3, amount, 18)
-      setTier4Max(tier4);
-     });   
+    // Tier2 Max allocation
+    contract.methods
+      .Tier2maxInvestment()
+      .call()
+      .then((amount) => {
+        tier2 = converttoEther(web3, amount, 18);
+        setTier2Max(tier2);
+      });
 
-     // Tier4 Max allocation
-     contract.methods
-     .fcfsMaxInvestment()
-     .call()
-     .then((amount) => {
-      publicmax =  converttoEther(web3, amount, 18)
-      setpublicMax(publicmax);
-     });    
+    // Tier3 Max allocation
+    contract.methods
+      .Tier3maxInvestment()
+      .call()
+      .then((amount) => {
+        tier3 = converttoEther(web3, amount, 18);
+        setTier3Max(tier3);
+      });
 
-     
+    // Tier4 Max allocation
+    contract.methods
+      .Tier4maxInvestment()
+      .call()
+      .then((amount) => {
+        tier4 = converttoEther(web3, amount, 18);
+        setTier4Max(tier4);
+      });
+
+    // Tier4 Max allocation
+    contract.methods
+      .fcfsMaxInvestment()
+      .call()
+      .then((amount) => {
+        publicmax = converttoEther(web3, amount, 18);
+        setpublicMax(publicmax);
+      });
+
     // check claim enabled or not
     contract.methods
-    .Claimenabled()
-    .call()
-    .then((value) => {
-    setclaimenabled(value);
-    });  
-
+      .Claimenabled()
+      .call()
+      .then((value) => {
+        setclaimenabled(value);
+      });
 
     // get Hard Cap TOKENS
     contract.methods
       .hardCap()
       .call()
       .then((amount) => {
-        MaxDistributedTokens = converttoEther(web3, amount, 18);  
+        MaxDistributedTokens = converttoEther(web3, amount, 18);
         setHardCap(converttoEther(web3, amount, 18));
-      }); 
-    
+      });
 
     // get pre-sale round
     contract.methods
       .round()
       .call()
-      .then((round) => {
-        setround(Number(round));
-        // localStorage.setItem("round", round)
+      .then((roundval) => {
+        setround(Number(roundval));
+        if (round !== 0) checkMaxalloc();
+        localStorage.setItem('round', roundval);
       });
 
-
     if (address) {
-
       var contractTokenABI = ERC20abi;
       var contractTokenAddress = activePool.outputTokenaddress;
       var Tokencontract = new web3.eth.Contract(
         contractTokenABI,
         contractTokenAddress
-      ); 
+      );
 
       // get USER TOKENS
       Tokencontract.methods
         .balanceOf(address)
         .call()
         .then((amount) => {
-          
           let balance = converttoEther(web3, amount, 18);
-          setuserTokenalance(balance)    
-          window.sessionStorage.setItem(
-            'userBSCB',
-            balance
-          );
+          setuserTokenalance(balance);
+          window.sessionStorage.setItem('userBSCB', balance);
         });
-
 
       // check eligibility
       contract.methods
@@ -234,9 +223,10 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         .then((value) => {
           // console.log("global tier", value);
           setuserGlobalTier(Number(value));
-          globalTier = Number(value)
+          globalTier = Number(value);
+          if (globalTier !== 0) checkMaxalloc();
         });
-      
+
       // get user info
       contract.methods
         .userInfo(address)
@@ -247,15 +237,14 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
           setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
           setuserIdoTier(Number(obj.tier));
           // userTier = (Number(obj.tier));
-           let maxalloc = converttoEther(web3, obj.maxInvestment, 18);
-           if (maxalloc === 0) {
-             console.log("-------");
-              checkMaxalloc();
-           }
-           else {
+          let maxalloc = converttoEther(web3, obj.maxInvestment, 18);
+          if (maxalloc === 0) {
+            console.log('-------');
+            checkMaxalloc();
+          } else {
             setMaxallocation(maxalloc);
-           }
-        // setMaxallocation(Number(0.8))
+          }
+          // setMaxallocation(Number(0.8))
         });
 
       // get User BNB balance
@@ -267,43 +256,35 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         );
       });
     }
-  } 
+  }
 
- function checkMaxalloc() {
+  function checkMaxalloc() {
+    // console.log("check max");
 
-  // console.log("check max");
+    // console.log("2121212112", tier4);
+    console.log('2121212112', globalTier);
 
-  // console.log("2121212112", tier4);
-  console.log("2121212112", globalTier);
-  
-      if (round === 0) {
-           if (globalTier === 1) {
-            setMaxallocation(tier1);
-           } 
-           else if (globalTier === 2) {
-            setMaxallocation(tier2);
-           } 
-           else if (globalTier === 3) {
-            setMaxallocation(tier3);
-           } 
-           else if (globalTier === 4) {
-            setMaxallocation(tier4);
-           } 
-          //  else {
-          //   setMaxallocation(tier4);
-          //  }
+    if (round === 0) {
+      if (globalTier === 1) {
+        setMaxallocation(tier1);
+      } else if (globalTier === 2) {
+        setMaxallocation(tier2);
+      } else if (globalTier === 3) {
+        setMaxallocation(tier3);
+      } else if (globalTier === 4) {
+        setMaxallocation(tier4);
       }
-      else if (round === 2) {
-        setMaxallocation(publicmax);
-      }
-   
-  }  
- 
-// console.log("Max", Maxallocation);
+      //  else {
+      //   setMaxallocation(tier4);
+      //  }
+    } else if (round === 2) {
+      setMaxallocation(publicmax);
+    }
+  }
 
+  // console.log("Max", Maxallocation);
 
-function checkStatus() {
-   
+  function checkStatus() {
     let currentTimeData = currentTimeDate();
 
     if (currentTimeData < StartTime) {
@@ -322,14 +303,11 @@ function checkStatus() {
       // console.log("3");
       setstatus('Closed');
     }
-}
+  }
 
   useEffect(() => {
     if (raisedBNB >= 0 && MaxDistributedTokens > 0) {
-      const icopercent = (
-        (raisedBNB / MaxDistributedTokens) *
-        100
-      ).toFixed(2);
+      const icopercent = ((raisedBNB / MaxDistributedTokens) * 100).toFixed(2);
       setICOcompletePercentage(icopercent);
     }
   }, [raisedBNB, MaxDistributedTokens]);
@@ -484,7 +462,7 @@ function checkStatus() {
       // alert("Change network to binance");
     }
   };
- 
+
   useEffect(() => {
     const loginType = localStorage.getItem('loginType');
     let provider =
@@ -544,7 +522,6 @@ function checkStatus() {
   }, [address]);
 
   function progressbarApis() {
-    
     const web3 = new Web3(chainRpcs[activePool.chain]);
     var contractABI = BSCBAYIDOabi;
     var contractAddress = activePool.contractAddress;
@@ -555,15 +532,13 @@ function checkStatus() {
       .totalBNBraise()
       .call()
       .then((amount) => {
-        const bnb = converttoEther(web3,amount,18)
+        const bnb = converttoEther(web3, amount, 18);
         if (bnb !== raisedBNB) setraisedBNB(bnb);
         if (bnb >= 0 && MaxDistributedTokens > 0) {
-            const icopercent = ((bnb / MaxDistributedTokens) * 100).toFixed(
-              2
-            );
-            if (ICOcompletePercentage !== icopercent)
-              setICOcompletePercentage(icopercent);
-          }
+          const icopercent = ((bnb / MaxDistributedTokens) * 100).toFixed(2);
+          if (ICOcompletePercentage !== icopercent)
+            setICOcompletePercentage(icopercent);
+        }
       });
 
     // get total Users
@@ -574,13 +549,12 @@ function checkStatus() {
         // console.log("totalusers", totalusers);
         if (totalUsers !== totalusers) settotalUsers(totalusers);
       });
-    
-    checkStatus();
 
+    checkStatus();
   }
 
   useEffect(() => {
-    checkStatus();  
+    checkStatus();
     const interval = setInterval(() => {
       progressbarApis();
     }, 3000);
@@ -588,10 +562,6 @@ function checkStatus() {
   }, []);
 
   const oneBNBprice = 1 / tokenPrice;
-
-
-
-
 
   //time
   let currentTimeData = currentTimeDate();
@@ -674,7 +644,7 @@ function checkStatus() {
                 <div className='lower-right-section'>
                   <h5>Raised</h5>
                   <h4>
-                    {raisedBNB.toFixed(0)} / {(HardCap).toFixed(0)}{' '}
+                    {raisedBNB.toFixed(0)} / {HardCap.toFixed(0)}{' '}
                     {activePool.allocationType}
                   </h4>
                   <ProgressBar
@@ -731,7 +701,7 @@ function checkStatus() {
                     <div className='d-flex align-items-center justify-content-end raised mt-2'>
                       <span className='text-primary'>
                         Raised: {raisedBNB.toFixed(1)} BNB /{' '}
-                        {(HardCap).toFixed(0)} BNB
+                        {HardCap.toFixed(0)} BNB
                       </span>
                     </div>
                     <div>
@@ -745,15 +715,18 @@ function checkStatus() {
                       <div className='d-flex flex-row align-items-center justify-content-between ongoing-upper-last-section mt-2'>
                         <span>Swap Progress</span>
                         <div>
-                        {/* <span className='text-warning ms-1'> Gold </span> */}
-                       </div> 
+                          {/* <span className='text-warning ms-1'> Gold </span> */}
+                        </div>
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : {totalUsers}</span>
                       </div>
                       <div className='text-white text-center'>
-                      Your Tier: <span className='text-primary'>{getTier(userIdoTier)}</span>
+                        Your Tier:{' '}
+                        <span className='text-primary'>
+                          {getTier(userIdoTier)}
+                        </span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </Col>
@@ -800,7 +773,7 @@ function checkStatus() {
                     <div className='d-flex flex-row justify-content-between text-white'>
                       <span>
                         {' '}
-                        Claimable Tokens:{' '}
+                        Claimable Tokens:
                         <span className='text-warning ms-1'>
                           {claimableTokens.toFixed(0)} BSCBay
                           <span className='tooltips mx-2'>
@@ -811,7 +784,6 @@ function checkStatus() {
                     </div>
                   )}
                 </div>
-
 
                 {currentTimeData < EndTime && round === 1 && (
                   <div className='ongoing-lower-card-last-section'>
