@@ -12,7 +12,7 @@ import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 import WalletConnect from '../../components/WalletConnect';
-import { converttoEther, getUserBSCBAYBalance, currentTimeDate } from '../../utils/helper';
+import { converttoEther, getUserBSCBAYBalance, currentTimeDate, getTier } from '../../utils/helper';
 import WalletConnectProvider from '@walletconnect/web3-provider';
   
 
@@ -21,7 +21,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [modalShow, setModalShow] = useState(false);
 
   let address = window.sessionStorage.getItem('walletAddress');
-  console.log('add', address);
+  // console.log('add', address);
   let selectedAccount;
  
   const [raisedBNB, setraisedBNB] = useState(0);
@@ -49,12 +49,32 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
   const [status, setstatus] = useState(activePool.status);
 
+
+  const [Tier1Max, setTier1Max] = useState(0);
+  const [Tier2Max, setTier2Max] = useState(0);
+  const [Tier3Max, setTier3Max] = useState(0);
+  const [Tier4Max, setTier4Max] = useState(0);
+  const [publicMax, setpublicMax] = useState(0)
+
+  const [userGlobalTier, setuserGlobalTier] = useState(0)
+  const [userIdoTier, setuserIdoTier] = useState(0)
+ 
   const remainingallocation = Maxallocation - userInvested;
 
   const StartTime = activePool.startTime;
   const EndTime = activePool.finishTime;
 
   let MaxDistributedTokens = 0;
+  // let userTier=0;
+  let globalTier=0;
+  let tier1 = 0;
+  let tier2 = 0;
+  let tier3 = 0;
+  let tier4 = 0;
+  let publicmax=0;
+  
+
+  // console.log("tier1max", Tier1Max);
 
 
   function web3apis() {
@@ -99,6 +119,51 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         setMinallocation(converttoEther(web3, amount, 18));
       });
 
+     // Tier1 Max allocation
+     contract.methods
+     .Tier1maxInvestment()
+     .call()
+     .then((amount) => {
+      tier1 = converttoEther(web3, amount, 18)
+      setTier1Max(tier1);
+     });  
+
+     // Tier2 Max allocation
+     contract.methods
+     .Tier2maxInvestment()
+     .call()
+     .then((amount) => {
+      tier2 =  converttoEther(web3, amount, 18)
+      setTier2Max(tier2);
+     });  
+     
+     // Tier3 Max allocation
+     contract.methods
+     .Tier3maxInvestment()
+     .call()
+     .then((amount) => {
+      tier3 =  converttoEther(web3, amount, 18)
+      setTier3Max(tier3);
+     });  
+     
+     // Tier4 Max allocation
+     contract.methods
+     .Tier4maxInvestment()
+     .call()
+     .then((amount) => {
+      tier4 =  converttoEther(web3, amount, 18)
+      setTier4Max(tier4);
+     });   
+
+     // Tier4 Max allocation
+     contract.methods
+     .fcfsMaxInvestment()
+     .call()
+     .then((amount) => {
+      publicmax =  converttoEther(web3, amount, 18)
+      setpublicMax(publicmax);
+     });    
+
      
     // check claim enabled or not
     contract.methods
@@ -125,6 +190,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
       .call()
       .then((round) => {
         setround(Number(round));
+        // localStorage.setItem("round", round)
       });
 
 
@@ -161,18 +227,36 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
           seteligibility(true);
         });
 
+      //check User Global Tier
+      contract.methods
+        .checkUserTier(address)
+        .call()
+        .then((value) => {
+          // console.log("global tier", value);
+          setuserGlobalTier(Number(value));
+          globalTier = Number(value)
+        });
+      
       // get user info
       contract.methods
         .userInfo(address)
         .call()
         .then((obj) => {
-          console.log('User Info', obj.debt);
+          // console.log('User Info', obj.debt);
           setclaimableTokens(converttoEther(web3, obj.remainingClaim, 9));
           setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
-          setMaxallocation(converttoEther(web3, obj.maxInvestment, 18))
+          setuserIdoTier(Number(obj.tier));
+          // userTier = (Number(obj.tier));
+           let maxalloc = converttoEther(web3, obj.maxInvestment, 18);
+           if (maxalloc === 0) {
+             console.log("-------");
+              checkMaxalloc();
+           }
+           else {
+            setMaxallocation(maxalloc);
+           }
         // setMaxallocation(Number(0.8))
         });
-
 
       // get User BNB balance
       web3.eth.getBalance(address).then((balance) => {
@@ -183,7 +267,40 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         );
       });
     }
-  }
+  } 
+
+ function checkMaxalloc() {
+
+  // console.log("check max");
+
+  // console.log("2121212112", tier4);
+  console.log("2121212112", globalTier);
+  
+      if (round === 0) {
+           if (globalTier === 1) {
+            setMaxallocation(tier1);
+           } 
+           else if (globalTier === 2) {
+            setMaxallocation(tier2);
+           } 
+           else if (globalTier === 3) {
+            setMaxallocation(tier3);
+           } 
+           else if (globalTier === 4) {
+            setMaxallocation(tier4);
+           } 
+          //  else {
+          //   setMaxallocation(tier4);
+          //  }
+      }
+      else if (round === 2) {
+        setMaxallocation(publicmax);
+      }
+   
+  }  
+ 
+// console.log("Max", Maxallocation);
+
 
 function checkStatus() {
    
@@ -207,7 +324,6 @@ function checkStatus() {
     }
 }
 
-
   useEffect(() => {
     if (raisedBNB >= 0 && MaxDistributedTokens > 0) {
       const icopercent = (
@@ -217,7 +333,6 @@ function checkStatus() {
       setICOcompletePercentage(icopercent);
     }
   }, [raisedBNB, MaxDistributedTokens]);
-
 
   const invest = async () => {
     setButtonLoading(true);
@@ -257,7 +372,7 @@ function checkStatus() {
           let amnt = web3.utils.toHex(
             web3.utils.toWei(value.toString(), 'ether')
           );
-          console.log('amnt', amnt);
+          // console.log('amnt', amnt);
 
           contract.methods
             .Invest()
@@ -267,7 +382,7 @@ function checkStatus() {
               gasPrice: web3.utils.toHex(gasPrice * 1.6),
             })
             .then(function (receipt) {
-              console.log(receipt);
+              // console.log(receipt);
 
               if (receipt.status) {
                 let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${
@@ -287,7 +402,7 @@ function checkStatus() {
               }
             })
             .catch((e) => {
-              console.log('error is', e);
+              // console.log('error is', e);
               settxMessage('Transaction Failed!');
               setModalShow(true);
               setButtonLoading(false);
@@ -377,7 +492,7 @@ function checkStatus() {
 
     if (typeof provider !== 'undefined' && address) {
       if (loginType === 'walletconnect') {
-        console.log('acc');
+        // console.log('acc');
 
         const wprovider = new WalletConnectProvider({
           rpc: {
@@ -413,8 +528,8 @@ function checkStatus() {
         });
 
         window.ethereum.on('chainChanged', (chainId) => {
-          console.log('chainId', chainId);
-          console.log('type of chainId', typeof chainId);
+          // console.log('chainId', chainId);
+          // console.log('type of chainId', typeof chainId);
 
           if (chainId != '0x' + chainIds[activePool.chain].toString(16)) {
             settxMessage('Please Connect to "Binance Smart Chain Network"');
@@ -428,7 +543,6 @@ function checkStatus() {
     web3apis();
   }, [address]);
 
-  
   function progressbarApis() {
     
     const web3 = new Web3(chainRpcs[activePool.chain]);
@@ -474,6 +588,10 @@ function checkStatus() {
   }, []);
 
   const oneBNBprice = 1 / tokenPrice;
+
+
+
+
 
   //time
   let currentTimeData = currentTimeDate();
@@ -633,9 +751,9 @@ function checkStatus() {
                         <span>Participants : {totalUsers}</span>
                       </div>
                       <div className='text-white text-center'>
-                        Your Tier: <span className='text-primary'>GOLD</span>
+                      Your Tier: <span className='text-primary'>{getTier(userIdoTier)}</span>
                       </div>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </Col>
@@ -693,6 +811,7 @@ function checkStatus() {
                     </div>
                   )}
                 </div>
+
 
                 {currentTimeData < EndTime && round === 1 && (
                   <div className='ongoing-lower-card-last-section'>

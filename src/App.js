@@ -84,7 +84,7 @@ function App() {
         const amnt2 = await contract.methods.Tier1maxInvestment().call();
         const tokens2 = web3.utils.toBN(amnt2).toString();
         const max = Number(web3.utils.fromWei(tokens2, 'ether'));
-        console.log("max", max);
+        // console.log("max", max);
         if (max) {
           const payload = getPayload('ido', item.id, max);
           dispatch(addMaxAllocations(payload));

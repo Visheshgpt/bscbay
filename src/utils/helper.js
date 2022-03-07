@@ -123,3 +123,24 @@ export const getPayload = (type, id, val) => {
     },
   };
 };
+
+export const getTier = (tier) => {
+    
+  if (tier === 1) {
+    return 'Bronze'
+  }
+  else if (tier === 2) {
+    return 'Silver'
+  }
+  else if (tier === 3) {
+    return 'Gold'
+  }
+  else if (tier === 4) {
+    return 'Platinum'
+  }
+  else {
+    return 'None'
+  }
+
+} 
+
