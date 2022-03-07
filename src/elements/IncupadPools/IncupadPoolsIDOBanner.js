@@ -52,6 +52,12 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [successPageReload, setSuccessPageReload] = useState('');
   const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
   const [status, setstatus] = useState(activePool.status);
+  const [tiers, setTiers] = useState({
+    t1: 0,
+    t2: 0,
+    t3: 0,
+    t4: 0,
+  });
 
   const [Tier1Max, setTier1Max] = useState(0);
   const [Tier2Max, setTier2Max] = useState(0);
@@ -59,7 +65,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [Tier4Max, setTier4Max] = useState(0);
   const [publicMax, setpublicMax] = useState(0);
 
-  const [userGlobalTier, setuserGlobalTier] = useState(0);
+  const [ugt, setUGT] = useState(0);
   const [userIdoTier, setuserIdoTier] = useState(0);
 
   const remainingallocation = Maxallocation - userInvested;
@@ -76,9 +82,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   let tier4 = 0;
   let publicmax = 0;
 
-  // console.log("tier1max", Tier1Max);
-
-  function web3apis() {
+  async function web3apis() {
     const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYIDOabi;
@@ -118,49 +122,47 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
       });
 
     // Tier1 Max allocation
-    contract.methods
-      .Tier1maxInvestment()
-      .call()
-      .then((amount) => {
-        tier1 = converttoEther(web3, amount, 18);
-        setTier1Max(tier1);
-      });
+    const a1 = await contract.methods.Tier1maxInvestment().call();
+    const a2 = await contract.methods.Tier2maxInvestment().call();
+    const a3 = await contract.methods.Tier3maxInvestment().call();
+    const a4 = await contract.methods.Tier4maxInvestment().call();
 
-    // Tier2 Max allocation
-    contract.methods
-      .Tier2maxInvestment()
-      .call()
-      .then((amount) => {
-        tier2 = converttoEther(web3, amount, 18);
-        setTier2Max(tier2);
-      });
+    if (a1 && a2 && a3 && a4) {
+      setTiers((prevState) => ({
+        ...prevState,
+        t1: converttoEther(web3, a1, 18),
+        t2: converttoEther(web3, a2, 18),
+        t3: converttoEther(web3, a3, 18),
+        t4: converttoEther(web3, a4, 18),
+      }));
 
-    // Tier3 Max allocation
-    contract.methods
-      .Tier3maxInvestment()
-      .call()
-      .then((amount) => {
-        tier3 = converttoEther(web3, amount, 18);
-        setTier3Max(tier3);
-      });
+      const roundVal = Number(await contract.methods.round().call());
+      if (roundVal) setround(roundVal);
+
+      let pubmax = 0;
+      const pubmaxamount = await contract.methods.fcfsMaxInvestment().call();
+      if (pubmaxamount) {
+        pubmax = converttoEther(web3, pubmaxamount, 18);
+        setpublicMax(pubmax);
+      }
+
+      if (address) {
+        const value = await contract.methods.checkUserTier(address).call();
+        if (value) setUGT(Number(value));
+
+        const obj = await contract.methods.userInfo(address).call();
+        if (obj) {
+          setclaimableTokens(converttoEther(web3, obj.remainingClaim, 9));
+          setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
+          setuserIdoTier(Number(obj.tier));
+          const maxalloc = converttoEther(web3, obj.maxInvestment, 18);
+          if (maxalloc === 0) checkMaxalloc(roundVal, pubmax);
+          else setMaxallocation(maxalloc);
+        }
+      }
+    }
 
     // Tier4 Max allocation
-    contract.methods
-      .Tier4maxInvestment()
-      .call()
-      .then((amount) => {
-        tier4 = converttoEther(web3, amount, 18);
-        setTier4Max(tier4);
-      });
-
-    // Tier4 Max allocation
-    contract.methods
-      .fcfsMaxInvestment()
-      .call()
-      .then((amount) => {
-        publicmax = converttoEther(web3, amount, 18);
-        setpublicMax(publicmax);
-      });
 
     // check claim enabled or not
     contract.methods
@@ -177,16 +179,6 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
       .then((amount) => {
         MaxDistributedTokens = converttoEther(web3, amount, 18);
         setHardCap(converttoEther(web3, amount, 18));
-      });
-
-    // get pre-sale round
-    contract.methods
-      .round()
-      .call()
-      .then((roundval) => {
-        setround(Number(roundval));
-        if (round !== 0) checkMaxalloc();
-        localStorage.setItem('round', roundval);
       });
 
     if (address) {
@@ -216,37 +208,6 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
           seteligibility(true);
         });
 
-      //check User Global Tier
-      contract.methods
-        .checkUserTier(address)
-        .call()
-        .then((value) => {
-          // console.log("global tier", value);
-          setuserGlobalTier(Number(value));
-          globalTier = Number(value);
-          if (globalTier !== 0) checkMaxalloc();
-        });
-
-      // get user info
-      contract.methods
-        .userInfo(address)
-        .call()
-        .then((obj) => {
-          // console.log('User Info', obj.debt);
-          setclaimableTokens(converttoEther(web3, obj.remainingClaim, 9));
-          setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
-          setuserIdoTier(Number(obj.tier));
-          // userTier = (Number(obj.tier));
-          let maxalloc = converttoEther(web3, obj.maxInvestment, 18);
-          if (maxalloc === 0) {
-            console.log('-------');
-            checkMaxalloc();
-          } else {
-            setMaxallocation(maxalloc);
-          }
-          // setMaxallocation(Number(0.8))
-        });
-
       // get User BNB balance
       web3.eth.getBalance(address).then((balance) => {
         setuserBNBbalance(converttoEther(web3, balance, 18));
@@ -258,27 +219,19 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
     }
   }
 
-  function checkMaxalloc() {
-    // console.log("check max");
-
-    // console.log("2121212112", tier4);
-    console.log('2121212112', globalTier);
-
-    if (round === 0) {
-      if (globalTier === 1) {
-        setMaxallocation(tier1);
-      } else if (globalTier === 2) {
-        setMaxallocation(tier2);
-      } else if (globalTier === 3) {
-        setMaxallocation(tier3);
-      } else if (globalTier === 4) {
-        setMaxallocation(tier4);
+  function checkMaxalloc(roundVal, pubmax) {
+    if (roundVal === 0) {
+      if (ugt === 1) {
+        setMaxallocation(tiers.t1);
+      } else if (ugt === 2) {
+        setMaxallocation(tiers.t2);
+      } else if (ugt === 3) {
+        setMaxallocation(tiers.t3);
+      } else if (ugt === 4) {
+        setMaxallocation(tiers.t4);
       }
-      //  else {
-      //   setMaxallocation(tier4);
-      //  }
-    } else if (round === 2) {
-      setMaxallocation(publicmax);
+    } else if (roundVal === 2) {
+      setMaxallocation(pubmax);
     }
   }
 

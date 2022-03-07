@@ -15,9 +15,9 @@ const IncupadPoolsIDOInformation = ({ activePool }) => {
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
-//   const [allocatedToken, setallocatedToken] = useState(0);
- 
-  function web3apis() { 
+  //   const [allocatedToken, setallocatedToken] = useState(0);
+
+  function web3apis() {
     // const web3 = new Web3(
     //   new Web3.providers.HttpProvider(
     //     chainRpcs['bsc'][0]
