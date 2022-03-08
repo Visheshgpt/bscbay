@@ -12,7 +12,7 @@ import Timer from '../../components/Timer';
 import Tooltip from '../../components/Tooltip';
 import { chainRpcs, chainIds } from '../../chainRPCs';
 import WalletConnect from '../../components/WalletConnect';
-
+ 
 import {
   converttoEther,
   getUserBSCBAYBalance,
@@ -32,6 +32,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [tokenPrice, settokenPrice] = useState(0);
   const [totalUsers, settotalUsers] = useState(0);
   const [HardCap, setHardCap] = useState(0);
+  const [SoftCap, setSoftCap] = useState(0);
   //   const [allocatedToken, setallocatedToken] = useState(0);
   const [userBNBbalance, setuserBNBbalance] = useState(0);
   const [userTokenalance, setuserTokenalance] = useState(0);
@@ -52,12 +53,6 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [successPageReload, setSuccessPageReload] = useState('');
   const [ICOcompletePercentage, setICOcompletePercentage] = useState(0);
   const [status, setstatus] = useState(activePool.status);
-  const [tiers, setTiers] = useState({
-    t1: 0,
-    t2: 0,
-    t3: 0,
-    t4: 0,
-  });
 
   const [Tier1Max, setTier1Max] = useState(0);
   const [Tier2Max, setTier2Max] = useState(0);
@@ -65,7 +60,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   const [Tier4Max, setTier4Max] = useState(0);
   const [publicMax, setpublicMax] = useState(0);
 
-  const [ugt, setUGT] = useState(0);
+  const [userGlobalTier, setuserGlobalTier] = useState(0);
   const [userIdoTier, setuserIdoTier] = useState(0);
 
   const remainingallocation = Maxallocation - userInvested;
@@ -82,7 +77,9 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
   let tier4 = 0;
   let publicmax = 0;
 
-  async function web3apis() {
+  // console.log("tier1max", Tier1Max);
+
+  function web3apis() {
     const web3 = new Web3(chainRpcs[activePool.chain]);
 
     var contractABI = BSCBAYIDOabi;
@@ -122,47 +119,49 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
       });
 
     // Tier1 Max allocation
-    const a1 = await contract.methods.Tier1maxInvestment().call();
-    const a2 = await contract.methods.Tier2maxInvestment().call();
-    const a3 = await contract.methods.Tier3maxInvestment().call();
-    const a4 = await contract.methods.Tier4maxInvestment().call();
+    contract.methods
+      .Tier1maxInvestment()
+      .call()
+      .then((amount) => {
+        tier1 = converttoEther(web3, amount, 18);
+        setTier1Max(tier1);
+      });
 
-    if (a1 && a2 && a3 && a4) {
-      setTiers((prevState) => ({
-        ...prevState,
-        t1: converttoEther(web3, a1, 18),
-        t2: converttoEther(web3, a2, 18),
-        t3: converttoEther(web3, a3, 18),
-        t4: converttoEther(web3, a4, 18),
-      }));
+    // Tier2 Max allocation
+    contract.methods
+      .Tier2maxInvestment()
+      .call()
+      .then((amount) => {
+        tier2 = converttoEther(web3, amount, 18);
+        setTier2Max(tier2);
+      });
 
-      const roundVal = Number(await contract.methods.round().call());
-      if (roundVal) setround(roundVal);
-
-      let pubmax = 0;
-      const pubmaxamount = await contract.methods.fcfsMaxInvestment().call();
-      if (pubmaxamount) {
-        pubmax = converttoEther(web3, pubmaxamount, 18);
-        setpublicMax(pubmax);
-      }
-
-      if (address) {
-        const value = await contract.methods.checkUserTier(address).call();
-        if (value) setUGT(Number(value));
-
-        const obj = await contract.methods.userInfo(address).call();
-        if (obj) {
-          setclaimableTokens(converttoEther(web3, obj.remainingClaim, 9));
-          setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
-          setuserIdoTier(Number(obj.tier));
-          const maxalloc = converttoEther(web3, obj.maxInvestment, 18);
-          if (maxalloc === 0) checkMaxalloc(roundVal, pubmax);
-          else setMaxallocation(maxalloc);
-        }
-      }
-    }
+    // Tier3 Max allocation
+    contract.methods
+      .Tier3maxInvestment()
+      .call()
+      .then((amount) => {
+        tier3 = converttoEther(web3, amount, 18);
+        setTier3Max(tier3);
+      });
 
     // Tier4 Max allocation
+    contract.methods
+      .Tier4maxInvestment()
+      .call()
+      .then((amount) => {
+        tier4 = converttoEther(web3, amount, 18);
+        setTier4Max(tier4);
+      });
+
+    // Tier4 Max allocation
+    contract.methods
+      .fcfsMaxInvestment()
+      .call()
+      .then((amount) => {
+        publicmax = converttoEther(web3, amount, 18);
+        setpublicMax(publicmax);
+      });
 
     // check claim enabled or not
     contract.methods
@@ -181,9 +180,30 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
         setHardCap(converttoEther(web3, amount, 18));
       });
 
+
+    // get Soft Cap
+     // get Hard Cap TOKENS
+     contract.methods
+     .softCap()
+     .call()
+     .then((amount) => {
+      //  MaxDistributedTokens = converttoEther(web3, amount, 18);
+       setSoftCap(converttoEther(web3, amount, 18));
+     });  
+
+    // get pre-sale round
+    contract.methods
+      .round()
+      .call()
+      .then((roundval) => {
+        setround(Number(roundval));
+        if (round !== 0) checkMaxalloc();
+        localStorage.setItem('round', roundval);
+      });
+
     if (address) {
       var contractTokenABI = ERC20abi;
-      var contractTokenAddress = activePool.outputTokenaddress;
+      var contractTokenAddress = "0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6";
       var Tokencontract = new web3.eth.Contract(
         contractTokenABI,
         contractTokenAddress
@@ -208,6 +228,37 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
           seteligibility(true);
         });
 
+      //check User Global Tier
+      contract.methods
+        .checkUserTier(address)
+        .call()
+        .then((value) => {
+          // console.log("global tier", value);
+          setuserGlobalTier(Number(value));
+          globalTier = Number(value);
+          if (globalTier !== 0) checkMaxalloc();
+        });
+
+      // get user info
+      contract.methods
+        .userInfo(address)
+        .call()
+        .then((obj) => {
+          // console.log('User Info', obj.debt);
+          setclaimableTokens(converttoEther(web3, obj.remainingClaim, 9));
+          setuserInvested(converttoEther(web3, obj.totalInvestedETH, 18));
+          setuserIdoTier(Number(obj.tier));
+          // userTier = (Number(obj.tier));
+          let maxalloc = converttoEther(web3, obj.maxInvestment, 18);
+          if (maxalloc === 0) {
+            console.log('-------');
+            checkMaxalloc();
+          } else {
+            setMaxallocation(maxalloc);
+          }
+          // setMaxallocation(Number(0.8))
+        });
+
       // get User BNB balance
       web3.eth.getBalance(address).then((balance) => {
         setuserBNBbalance(converttoEther(web3, balance, 18));
@@ -219,26 +270,47 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
     }
   }
 
-  function checkMaxalloc(roundVal, pubmax) {
-    if (roundVal === 0) {
-      if (ugt === 1) {
-        setMaxallocation(tiers.t1);
-      } else if (ugt === 2) {
-        setMaxallocation(tiers.t2);
-      } else if (ugt === 3) {
-        setMaxallocation(tiers.t3);
-      } else if (ugt === 4) {
-        setMaxallocation(tiers.t4);
+
+
+  function checkMaxalloc() {
+
+ console.log("UI",userInvested);
+
+ if (userInvested == 0) {
+
+    if (round === 0) {
+      if (userGlobalTier === 1) {
+        setMaxallocation(Tier1Max);
+      } else if (userGlobalTier === 2) {
+        setMaxallocation(Tier2Max);
+      } else if (userGlobalTier === 3) {
+        setMaxallocation(Tier3Max);
+      } else if (userGlobalTier === 4) {
+        setMaxallocation(Tier4Max);
       }
-    } else if (roundVal === 2) {
-      setMaxallocation(pubmax);
+      //  else {
+      //   setMaxallocation(tier4);
+      //  }
+    } else if (round === 2) {
+      setMaxallocation(publicMax);
     }
   }
+  }
+  
+
+useEffect(() => {
+  setTimeout(() => {
+    checkMaxalloc()
+  }, 5000);
+})
+
 
   // console.log("Max", Maxallocation);
 
   function checkStatus() {
     let currentTimeData = currentTimeDate();
+
+    // console.log("ICOCP", ICOcompletePercentage);
 
     if (currentTimeData < StartTime) {
       // console.log("1");
@@ -318,7 +390,7 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
               if (receipt.status) {
                 let msg = `Congratulations ! Your Participation In Presale Has Been Successful.\n You have Invested ${value} BNB amounting to allocation of ${
                   Number(value) / Number(tokenPrice)
-                } BSCB .`;
+                } ${activePool.symbol}`;
                 setSuccessPageReload('sucess');
                 settxMessage(msg);
                 setModalShow(true);
@@ -376,6 +448,8 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
           .send({ from: address, gasPrice: web3.utils.toHex(gasPrice * 1.6) })
           .then(function (receipt) {
             console.log(receipt);
+            // console.log(receipt.events.TokensWithdrawn);
+            // console.log(receipt.events.TokensWithdrawn.returnValues);
 
             if (receipt.status) {
               setSuccessPageReload('sucess');
@@ -383,9 +457,19 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
               settxMessage('');
               setModalShow(true);
               // alert("Transaction Success");
+             
+             if ( SoftCap <= raisedBNB) {
+              let claimedtkns = converttoEther(web3,receipt.events.TokensWithdrawn.returnValues.amount,activePool.decimals);
               settxMessage(
-                `Awesome ! You Have Successfully Claimed ${redeemedtokens} BSCB Tokens !`
-              );
+                `Awesome ! You Have Successfully Claimed ${claimedtkns} ${activePool.symbol} Tokens !`
+              ); 
+              }  
+              else {
+                settxMessage(
+                  `You have Successfully Claimed your refunds ${userInvested} BNB!`
+                );
+              }
+              
               setButtonLoading(false);
             } else {
               settxMessage('Transaction Failed');
@@ -673,12 +757,21 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
                         {/* <span>Total Raised :150/500 BNB</span> */}
                         <span>Participants : {totalUsers}</span>
                       </div>
-                      <div className='text-white text-center'>
+               { round === 0 ?   
+                 <div className='text-white text-center'>
                         Your Tier:{' '}
-                        <span className='text-primary'>
+                    
+                  {  (userIdoTier>0) ?  <span className='text-primary'>
                           {getTier(userIdoTier)}
-                        </span>
-                      </div>
+                        </span> 
+                     :    
+                     <span className='text-primary'>
+                     {getTier(userGlobalTier)}
+                   </span> 
+                  }
+
+                      </div>  :  <div className='text-white text-center'>
+                        Public Round </div> }   
                     </div>
                   </div>
                 </div>
@@ -699,10 +792,15 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
                     <span className='pb-2'>
                       User Invested: {userInvested.toFixed(1)} BNB
                     </span>
-                    <span>
+                { remainingallocation>=0 ? <span>
                       {' '}
                       Remaining allocation: {remainingallocation.toFixed(2)} BNB
-                    </span>
+                    </span> : 
+                    <span>
+                      {' '}
+                      Remaining allocation: 0 BNB
+                    </span> 
+                    }
                   </div>
                   {/* <div className='d-flex flex-row justify-content-between text-white'>
                     <span>
@@ -717,8 +815,8 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
                       <span>
                         <span className='text-warning ms-1'>
                           {' '}
-                          Tokens Claimed:{' '}
-                          {(userInvested / tokenPrice).toFixed(0)}
+                          Tokens Claimed:{' '} 
+                          {(userInvested / tokenPrice).toFixed(0)}  {activePool.symbol}
                         </span>
                       </span>
                     </div>
@@ -728,9 +826,9 @@ const IncupadPoolsIDOBanner = ({ activePool }) => {
                         {' '}
                         Claimable Tokens:
                         <span className='text-warning ms-1'>
-                          {claimableTokens.toFixed(0)} BSCBay
+                          {claimableTokens.toFixed(0)} {activePool.symbol}
                           <span className='tooltips mx-2'>
-                            <Tooltip />
+                            <Tooltip message={activePool.tooltip} />
                           </span>
                         </span>
                       </span>

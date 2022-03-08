@@ -1,8 +1,9 @@
 export const poolsData = [
+ 
   {
     title: 'MetaGameSpace',
     type: 'ido',
-    id: 10,
+    id: 11,
     tag: 'BSC Chain',
     status: 'upcoming',
     featured: false,
@@ -10,10 +11,10 @@ export const poolsData = [
     description:
       'MetaGameSpace is a Tech Brand developing its own Gaming Metaverse. We have our first game Genesys being developed and the Genesys Tech Demo V1 is live on our website for the community.',
     time: 'TBA',
-    startTime: 1646665350,
-    finishTime: 1646668350,
+    startTime: 1646755200,
+    finishTime: 1646841600,
     chainID: '56',
-    chain: 'bsct',
+    chain: 'bsc',
     tokenDistribution: 100000000,
     tokenPrice: '0.0000001',
     minAllocation: 'TBA',
@@ -29,7 +30,7 @@ export const poolsData = [
     auditLink: 'https://metagamespace.net/Meta_Audit.pdf',
     totalUsers: 100,
     symbol: 'METAGS',
-    decimals: 9,
+    decimals: 9, 
     allocationType: 'BNB',
     totalSupply: '10,000,000,000',
     accessType: 'Tiers/Public',
@@ -41,13 +42,13 @@ export const poolsData = [
       'KryoMeta - Android Multiplayer Online Battle Arena (MOBA) ',
       'Eddy Tech - Android Arcade Game',
       'BullDose - Android Simulation Game',
-    ],
+    ],  
     inputTokenaddress: 'TBA',
-    outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
-    videolink: 'https://www.youtube.com/watch?v=7C_fAtib5RE&list=PLRvfK-PduIovr-qqvUeg0i38LIC8s7r3Q&index=17',
-    contractAddress: "0x8f939482F81eC93154A2eA07cbC656F07A9e5355",
+    outputTokenaddress: '0xBB77D0A1181E38a0374Dc6891E2847C2b61B3545',
+    videolink: '/assets/video/metatag.mp4',
+    contractAddress: "0xED8Ec2280dae82f53C1f62a0D01C01b23D93d706",
     soldOut: false,
-    saleDate: 'TBA',
+    saleDate: '8 March,22 4:00 PM UTC',
     ICOcompletePercentage: 0,
     allocationTokens: 100000,
     oneBNBprice: 10000000,
@@ -61,8 +62,12 @@ export const poolsData = [
     tiltText: 'IDO',
     youtube: true,
     investorVestation: '25% at launch, 25% every month',
+    tooltip: "$METAGs can be claimed after TGE on 11th Mar'22. Tokens are vested as follows: 25% at TGE, 25% Every month there after for 3 months",
+    schedule: "25% at TGE, 25% Every month there after for 3 months"
   },
-  
+
+
+
   {
     title: 'Flewup NFT Robots',
     type: 'static',
@@ -214,7 +219,7 @@ export const poolsData = [
     ],
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
-    videolink: '../../..//assets/bscbayvideo.mp4',
+    videolink: '/assets/video/video.mp4',
     contractAddress: '0x4b803DD894746E5c66812b1EBCaA1b63217c166a',
     soldOut: true,
     saleDate: "18 FEB' 22, 2:00 PM UTC",
@@ -265,7 +270,7 @@ export const poolsData = [
     ],
     inputTokenaddress: 'TBA',
     outputTokenaddress: '0xaa3387B36a4aCd9D2c1326a7f10658d7051b73a6',
-    videolink: '../../..//assets/bscbayvideo.mp4',
+    videolink: '/assets/video/video.mp4',
     contractAddress: '0x87f3fce34c239466502ecb5481bbb5bd08c64656',
     soldOut: true,
     saleDate: "23 FEB' 22, 6:00 PM UTC",

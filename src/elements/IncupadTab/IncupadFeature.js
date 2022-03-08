@@ -15,12 +15,12 @@ const IncupadFeature = () => {
       className='incupad-upcoming-section'
       id='feature'>
       <Container>
-        {upcomingData && upcomingData.length > 0 && (
-          <IncupadFeatureCards data={upcomingData} title='Upcoming' />
-        )}
         {ongoingData && ongoingData.length > 0 && (
           <IncupadFeatureCards data={ongoingData} title='Ongoing' />
         )}
+          {upcomingData && upcomingData.length > 0 && (
+          <IncupadFeatureCards data={upcomingData} title='Upcoming' />
+        )} 
         {closedData && closedData.length > 0 && (
           <IncupadFeatureCards data={closedData} title='Closed' />
         )}

@@ -14,6 +14,7 @@ import { converttoEther } from '../../utils/helper';
 const IncupadPoolsIDOInformation = ({ activePool }) => {
   const [Minallocation, setMinallocation] = useState(0);
   const [Maxallocation, setMaxallocation] = useState(0);
+  const [Tier1Maxallocation, setTier1Maxallocation] = useState(0);
   const [tokenPrice, settokenPrice] = useState(0);
   //   const [allocatedToken, setallocatedToken] = useState(0);
 
@@ -46,6 +47,13 @@ const IncupadPoolsIDOInformation = ({ activePool }) => {
         setMaxallocation(converttoEther(web3, amount, 18));
       });
 
+      contract.methods
+      .Tier1maxInvestment()
+      .call()
+      .then((amount) => {
+        setTier1Maxallocation(converttoEther(web3, amount, 18));
+      }); 
+      
     // token Price
     contract.methods
       .tokenPrice()
@@ -83,12 +91,12 @@ const IncupadPoolsIDOInformation = ({ activePool }) => {
               </div>
               <div>
                 <span>MAX. ALLOCATION</span>
-                <span>{Maxallocation} BNB</span>
+                <span>{Tier1Maxallocation} - {Maxallocation} BNB</span>
                 {/* <span>TBA</span> */}
               </div>
               <div>
                 <span>TOKEN PRICE</span>
-                <span>{tokenPrice} BNB</span>
+                <span>{tokenPrice.toFixed(7)} BNB</span>
                 {/* <span>TBA</span> */}
               </div>
               <div>
@@ -97,8 +105,8 @@ const IncupadPoolsIDOInformation = ({ activePool }) => {
                 {/* <span>TBA</span> */}
               </div>
               <div>
-                <span>Empty Field</span>
-                <span>{activePool.accessType}</span>
+                <span>Investor Vestation</span>
+                <span>Yes</span>
                 {/* <span>TBA</span> */}
               </div>
             </div>
@@ -128,8 +136,8 @@ const IncupadPoolsIDOInformation = ({ activePool }) => {
                 {/* <span>TBA</span> */}
               </div>
               <div>
-                <span>Investor Vestation</span>
-                <span>25% at launch</span>
+                <span>Schedule</span> 
+                <span>{activePool.schedule}</span>
                 {/* <span>TBA</span> */}
               </div>
             </div>

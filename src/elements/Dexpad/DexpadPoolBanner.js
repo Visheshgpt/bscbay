@@ -850,7 +850,7 @@ const DexpadPoolBanner = ({ activePool }) => {
                         <span className='text-warning ms-1'>
                           {claimableTokens.toFixed(0)} {activePool.symbol}
                           <span className='tooltips mx-2'>
-                            {/* <Tooltip /> */}
+                          <Tooltip message={activePool.tooltip} />
                           </span>
                         </span>
                       </span>

@@ -25,7 +25,7 @@ function App() {
   const dexpadData = useSelector((state) => state.dexpaddata);
   // const newpoolData = useSelector((state) => state.poolnewdata);
   const dispatch = useDispatch();
-
+  
   const { address, idoAddress } = poolsdata;
 
 

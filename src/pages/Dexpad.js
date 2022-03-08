@@ -21,7 +21,7 @@ function Dexpad() {
             dexpadData.map((item) => (
               <Col lg='4'>
                 <IncupadCardPool 
-                  item={item}
+                  data={item}
                   minAllocation={minAllocation[item.id]}
                  
                   maxAllocation={maxAllocation[item.id]}

@@ -36,7 +36,7 @@ function IncupadCardPool({
   console.log('idc = ', icopercent);
   console.log('mxdt = ', maxDistributionTokens, ' atks = ', allocationTokens);
 
-  const url = dexpad ? `/dexpad/${id}` : `/launchpad/${type}/${id}`;
+  const url = type === 'dexpad' ? `/dexpad/${id}` : `/launchpad/${type}/${id}`;
 
   return (
     <Link to={url} key={id}>
